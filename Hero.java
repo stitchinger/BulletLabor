@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
+
 public class Hero {
 	int posX, velocityX, posY, velocityY, nx2, nx, sprungKraft;
 	int gravity;
@@ -17,7 +18,7 @@ public class Hero {
 		posY = 172; //Initialisierungswert auf der y-Achse
 		sprungKraft = 20;
 		inAir = false;
-		gravity = 1;
+		gravity = 3;
 		
 	}
 	
