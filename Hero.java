@@ -18,7 +18,7 @@ public class Hero {
 		posY = 172; //Initialisierungswert auf der y-Achse
 		sprungKraft = 20;
 		inAir = false;
-		gravity = 3;
+		gravity = 1;
 		
 	}
 	
