@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 
 public class Hero {
-	int posX, velocityX, posY, velocityY, nx2, nx, sprungKraft, test;
+	int posX, velocityX, posY, velocityY, nx2, nx, sprungKraft;
 	int gravity;
 	boolean inAir;
 	Image hero_image; //damit das importierte Bild global in der Klasse verwendet werden kann | bzgl z.B. Getter-Methode
@@ -75,6 +75,6 @@ public class Hero {
 		if (key == KeyEvent.VK_UP) { // VK = Vector Keys || Tasten Event . Ort des Tastenevents _ Spezifizierung des Tastenevents
 			//velocityY = 0; // ==> damit der Hero nicht weiter nach oben geht
 			//posY = 172; // setzt den ursprünglichen y-Achsenwert fest ==> Charakter geht wieder auf die ursprünglichen y-Achsen Abschnitt
-		}
+	}
     }
 }
