@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 
 public class Hero {
-	int posX, velocityX, posY, velocityY, nx2, nx, sprungKraft;
+	int posX, velocityX, posY, velocityY, nx2, nx, sprungKraft, test;
 	int gravity;
 	boolean inAir;
 	Image hero_image; //damit das importierte Bild global in der Klasse verwendet werden kann | bzgl z.B. Getter-Methode
