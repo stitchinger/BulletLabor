@@ -1,4 +1,4 @@
-//Alex arbeitet dran!
+//Georg arbeitet dran!
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
