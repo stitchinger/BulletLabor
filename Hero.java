@@ -1,4 +1,4 @@
-//Georg arbeitet dran!
+//Nur ein Test ;)
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
