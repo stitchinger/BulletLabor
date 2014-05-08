@@ -14,7 +14,8 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGame {
 
-    // Fenster Einstellungen  +++++++++++++
+    // am arsch
+	// Fenster Einstellungen  +++++++++++++
 	static int width = 1200;
     static int height = 800;
     static boolean fullscreen = false;
