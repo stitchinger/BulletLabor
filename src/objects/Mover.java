@@ -107,7 +107,7 @@ public class Mover extends GameObject{
     // ist gelandet? Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public boolean isLanded(){
     	
-    	return this.posY + this.height >= 690 && this.velocityY > 0;
+    	return this.posY + this.height >= 700 && this.velocityY > 0;
     }
     
     

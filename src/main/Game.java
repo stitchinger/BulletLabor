@@ -155,6 +155,8 @@ public class Game extends BasicGame {
         g.drawString("Kills: " + killCount, 10, 130);
         g.drawString("Health: "+ (player.getHealth()), 10, 150);
         
+        
+        
 
     }
 

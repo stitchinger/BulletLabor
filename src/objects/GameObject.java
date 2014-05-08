@@ -20,6 +20,7 @@ public class GameObject {
     protected int width;
     protected int height;
     
+    
     protected int health;
     
     // Konstruktor Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -96,6 +97,8 @@ public class GameObject {
     	Game.killCount++;
     	
     }
+    
+    
     
   
      
