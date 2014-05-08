@@ -36,7 +36,7 @@ public class Bullet extends GameObject{
     // 2. Konstruktor ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Bullet(Image sprite, float x, float y, int width, int height, double vecX, double vecY) {
         
-    	super(sprite, x, y, width, height);
+    	super(sprite, x-width/2, y-height/2, width, height);
         
         this.spreadRange = 3;
         this.speed = 35;

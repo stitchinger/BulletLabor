@@ -1,8 +1,5 @@
 package main;
 
-import static main.Game.bulletSprite;
-import static main.Game.bullet_list;
-
 import java.util.LinkedList;
 import java.util.List;
 
