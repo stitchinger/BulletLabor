@@ -15,7 +15,7 @@ public class Player extends Mover{
 	
 	private long currentTime; 
 	private int shootRate;
-	
+	// Neuer Kommentar
     // Konstrukor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public Player(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergereicht
