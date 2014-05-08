@@ -18,18 +18,17 @@ public class Player extends Mover{
 	
     // Konstrukor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public Player(Image img, int x, int y, int width, int height) {
-        super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergereicht
+        super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
         // dieses sind speziell für den Player gesetzte Variablen
-        this.direction = "right";
-        this.maxSpeed = 8;
-        this.acceleration = 0.4f;
-        this.jumpHeight = 17;
-        this.gravity = 0.35f;
-        this.isRunning = false;
-        this.isInAir = true;
-        this.shootRate = 100;
-        this.health = 100;
+        this.direction = "right";  	// Blickrichtung
+        this.maxSpeed = 8;         	// Maximale Laufgeschwindigkeit
+        this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
+        this.jumpHeight = 13;		// Sprungkraft
+        this.gravity = 0.35f;		// Gravitation
+        this.isInAir = true;		// Ist der Player in der Luft?
+        this.shootRate = 100;		// Feuerrate
+        this.health = 100;			// Gesundheitspunkte
         
         
         
@@ -49,7 +48,7 @@ public class Player extends Mover{
     
     // Steuerung des Spielers +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void playerControl(Input in){
-        isRunning = false;
+       
         
         if(in.isKeyDown(Input.KEY_A)){
             

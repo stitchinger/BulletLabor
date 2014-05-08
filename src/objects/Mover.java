@@ -31,10 +31,7 @@ public class Mover extends GameObject{
 
     // Update Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void update(){
-    	// is on ground ?
-        if(this.getY()< 680){
-        	this.fall();
-        }
+    	
     	if(this.isLanded()){
             this.isInAir = false;
             this.velocityY = 0;
@@ -111,6 +108,11 @@ public class Mover extends GameObject{
     public boolean isLanded(){
     	
     	return this.posY + this.height >= 690 && this.velocityY > 0;
+    }
+    
+    public boolean isGrounded(){
+    	
+    	return this.posY + this.height >= 690;
     }
        
     
