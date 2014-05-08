@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 
 public class Bullet extends GameObject{
     
-    private double velX;
-    private double velY;
+    private double velocityX;
+    private double velocityY;
     private int spreadRange;
     private int speed;
     public int bulletDamage;
@@ -21,13 +21,13 @@ public class Bullet extends GameObject{
         this.bulletDamage = 10;
         
         if(direction == "left"){
-            velX = -speed;
+            velocityX = -speed;
         }else if(direction == "right"){
-            velX = speed;
+            velocityX = speed;
         }
         
          
-       velY = (int)(Math.random()* this.spreadRange - this.spreadRange/2);
+       velocityY = (int)(Math.random()* this.spreadRange - this.spreadRange/2);
        
        
        
@@ -44,16 +44,16 @@ public class Bullet extends GameObject{
         
         float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
         
-        velX =  ((vecX / hypo) * speed) + this.spreading();
-        velY =  ((vecY / hypo) * speed) + this.spreading();
+        velocityX =  ((vecX / hypo) * speed) + this.spreading();
+        velocityY =  ((vecY / hypo) * speed) + this.spreading();
         
         
     }
     
     // Update Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void update(){
-        this.posX += velX;
-        this.posY += velY;
+        this.posX += velocityX;
+        this.posY += velocityY;
         hitbox.setLocation(this.posX, this.posY);
     }
     
