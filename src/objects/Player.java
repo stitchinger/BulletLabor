@@ -24,7 +24,7 @@ public class Player extends Mover{
         this.direction = "right";
         this.maxSpeed = 8;
         this.acceleration = 0.4f;
-        this.jumpHeight = 12;
+        this.jumpHeight = 17;
         this.gravity = 0.35f;
         this.isRunning = false;
         this.isInAir = true;
@@ -92,13 +92,7 @@ public class Player extends Mover{
         ypos = ypos - this.posY;
         bullet_list.add(new Bullet(bulletSprite, this.posX, this.posY, 40, 40, xpos, ypos));
        
-        float hypo = (float) Math.sqrt((xpos * xpos) + (ypos * ypos));
-        
-        xpos =  ((xpos / hypo) * 5);
-        ypos =  ((ypos / hypo) * 5);
-        
-        this.velocityX -= xpos;
-        this.velocityY -= ypos;
+       
        
     }
 

@@ -41,7 +41,7 @@ public class Enemy extends Mover{
         } else if(this.posX <= 0){
         	this.direction = "right";
         }
-        if(Math.random() < 0.9f && !this.isInAir){
+        if(Math.random() < 0.1f && !this.isInAir){
         	
         	this.jump();
         }
