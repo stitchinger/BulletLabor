@@ -14,7 +14,7 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGame {
 
-    // am arsch
+    // am Tisch
 	// Fenster Einstellungen  +++++++++++++
 	static int width = 1200;
     static int height = 800;
