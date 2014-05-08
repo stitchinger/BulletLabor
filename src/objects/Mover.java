@@ -110,10 +110,7 @@ public class Mover extends GameObject{
     	return this.posY + this.height >= 690 && this.velocityY > 0;
     }
     
-    public boolean isGrounded(){
-    	
-    	return this.posY + this.height >= 690;
-    }
+    
        
     
 }
