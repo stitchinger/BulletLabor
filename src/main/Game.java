@@ -1,5 +1,8 @@
 package main;
 
+import static main.Game.bulletSprite;
+import static main.Game.bullet_list;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,7 +62,7 @@ public class Game extends BasicGame {
        
         player = new Player(playerSprite, 50, 600, 32, 60);
        
-        for (int i = 0; i < 10; i += 1) {
+        for (int i = 0; i < 1; i += 1) {
             Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 40);
         	enemy_list.add(enemy);
         }
@@ -97,18 +100,16 @@ public class Game extends BasicGame {
        
         for (Bullet bullet : bullet_list) {
         	bullet.update();
-        	int index = 0;
+        	
         	for(Enemy enemy : enemy_list){
         		
         		if(bullet.getHitbox().intersects(enemy.getHitbox())){
         			
         			bullet.setPosition(100000, 1000000);
         			enemy.setDamage(bullet.getDamage());
-        			//enemy = null;
-        			//enemy_list.remove(enemy);
-        			//break;
+        			
         		}
-        		index++;
+        		
         	}
         	
 
@@ -157,7 +158,6 @@ public class Game extends BasicGame {
         g.drawString("Kills: " + killCount, 10, 130);
         g.drawString("Health: "+ (player.getHealth()), 10, 150);
         
-      
 
     }
 

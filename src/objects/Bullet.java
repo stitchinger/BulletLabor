@@ -46,6 +46,8 @@ public class Bullet extends GameObject{
         
         velX =  ((vecX / hypo) * speed) + this.spreading();
         velY =  ((vecY / hypo) * speed) + this.spreading();
+        
+        
     }
     
     // Update Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
