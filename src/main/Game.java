@@ -85,7 +85,7 @@ public class Game extends BasicGame {
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
     			
-    			player.setDamage(1);
+    			player.receiveDamage(1);
 
             }
         }
@@ -103,7 +103,7 @@ public class Game extends BasicGame {
         		if(bullet.getHitbox().intersects(enemy.getHitbox())){
         			
         			bullet.setPosition(100000, 1000000);
-        			enemy.setDamage(bullet.getDamage());
+        			enemy.receiveDamage(bullet.getDamage());
         			
         		}
         		

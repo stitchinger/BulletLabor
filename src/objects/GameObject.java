@@ -47,7 +47,7 @@ public class GameObject {
     public void render(Graphics g){
     	
     	 g.setColor(Color.red);
-         this.getImg().draw(this.getX(), this.getY());
+         this.getImage().draw(this.getX(), this.getY());
          
          if (Game.showHitbox) {
              
@@ -56,7 +56,7 @@ public class GameObject {
     }
     
     // getImage ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public Image getImg(){
+    public Image getImage(){
         return this.sprite;
     }
     
@@ -86,7 +86,7 @@ public class GameObject {
     	
     }
     
-    public void setDamage(int damage){
+    public void receiveDamage(int damage){
     	this.health -= damage;
     	
     }
