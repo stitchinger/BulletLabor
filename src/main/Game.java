@@ -97,16 +97,7 @@ public class Game extends BasicGame {
         		}
         		
         	}
-        	for(GameObject tile : tile_list){
-        		
-        		if(bullet.getHitbox().intersects(tile.getHitbox())){
-        			
-        			bullet.setPosition(100000, 1000000);
-        			tile.receiveDamage(bullet.getDamage());
-        			
-        		}
-        		
-        	}
+        	
         	
 
         }
