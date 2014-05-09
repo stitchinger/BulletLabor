@@ -33,12 +33,6 @@ public class Player extends Mover{
     // Update Methode --- Wird jedes Frame aufgerufen +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void update(Input in){
     	 
-    	if (this.health <= 0){
-         	this.die();
-         	
-         	Game.killCount = 0;
-         }
-    	
     	playerControl(in);
     	super.update();
     	
@@ -95,4 +89,8 @@ public class Player extends Mover{
        
     }
 
+    public void die(){
+    	Game.killCount =0;
+    	super.die();
+    }
 }

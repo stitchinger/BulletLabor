@@ -45,9 +45,7 @@ public class Enemy extends Mover{
         	this.jump();
         }
       
-        if (this.health <= 0){
-        	this.die();
-        }
+       
         
         super.update();
        

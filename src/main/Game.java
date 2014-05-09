@@ -18,7 +18,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static String title = "Shoot'em Up";
     static int fpslimit = 60;
-    public static final boolean showHitbox = true;
+    public static final boolean showHitbox = false;
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;
@@ -93,6 +93,16 @@ public class Game extends BasicGame {
         			
         			bullet.setPosition(100000, 1000000);
         			enemy.receiveDamage(bullet.getDamage());
+        			
+        		}
+        		
+        	}
+        	for(GameObject tile : tile_list){
+        		
+        		if(bullet.getHitbox().intersects(tile.getHitbox())){
+        			
+        			bullet.setPosition(100000, 1000000);
+        			tile.receiveDamage(bullet.getDamage());
         			
         		}
         		

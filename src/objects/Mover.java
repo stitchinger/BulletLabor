@@ -35,6 +35,10 @@ public class Mover extends GameObject {
 	// Update Methode
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void update() {
+		if (this.health <= 0){
+	        	this.die();
+	    }
+		
 		if (!this.isOnGround()) {
 			this.fall();
 		}
