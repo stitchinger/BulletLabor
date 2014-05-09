@@ -15,13 +15,11 @@ public class GameObject {
 	protected Image sprite;
     protected float posX;
     protected float posY;
- 
-    protected Shape hitbox;
     protected int width;
     protected int height;
-    
-    
     protected int health;
+    protected Shape hitbox;
+    
     
     // Konstruktor Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public GameObject(Image sprite, float x, float y, int width, int height){

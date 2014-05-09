@@ -25,8 +25,10 @@ public class Mover extends GameObject {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
-		this.jumpCount = 0;
+		this.gravity = 0.38f;  
 		this.maxFallSpeed = 20;
+		this.jumpCount = 0;
+		
 		
 	}
 

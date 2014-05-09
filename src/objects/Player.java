@@ -25,8 +25,7 @@ public class Player extends Mover{
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
-        this.gravity = 0.38f;		// Gravitation
-        this.shootRate = 100;		// Feuerrate
+       	this.shootRate = 80;		// Feuerrate
         this.health = 100;			// Gesundheitspunkte
         
     }
@@ -64,7 +63,7 @@ public class Player extends Mover{
         	this.jump();
         }
         
-        if(in.isKeyDown(Input.KEY_E)){
+        if(in.isKeyDown(Input.KEY_W) && ((System.currentTimeMillis() - currentTime) >= shootRate / 3)){
            
         	this.shoot();
         }
@@ -78,7 +77,7 @@ public class Player extends Mover{
     // Methode zum schieﬂen +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void shoot(){
     	currentTime = System.currentTimeMillis();
-    	bullet_list.add(new Bullet(bulletSprite, this.posX, this.posY, 40, 40, direction));
+    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, direction));
     }
     
     // Mehode um in Mausrichtung zu schieﬂen ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
