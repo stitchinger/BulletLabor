@@ -13,8 +13,8 @@ import static main.Game.bullet_list;
 
 public class Player extends Mover{
 	
-	private long currentTime; 
-	private int shootRate;
+	private long millisSinceLastShot; 
+	private float shotsPerMin;
 	
     // Konstrukor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public Player(Image img, int x, int y, int width, int height) {
@@ -25,9 +25,9 @@ public class Player extends Mover{
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
-       	this.shootRate = 80;		// Feuerrate
+       	this.shotsPerMin = 600;		// Feuerrate
         this.health = 100;			// Gesundheitspunkte
-        
+        //(shotsPerMinute / 60) * 1000
     }
 
     // Update Methode --- Wird jedes Frame aufgerufen +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -63,26 +63,28 @@ public class Player extends Mover{
         	this.jump();
         }
         
-        if(in.isKeyDown(Input.KEY_W) && ((System.currentTimeMillis() - currentTime) >= shootRate / 3)){
-           
-        	this.shoot();
+        if(in.isKeyDown(Input.KEY_W)){
+        	if((System.currentTimeMillis() - millisSinceLastShot) >= ((60 / this.shotsPerMin) * 1000f) / 3){
+        		this.directionShot();		
+        	}
         }
         
-        if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && ((System.currentTimeMillis() - currentTime) >= shootRate)){
-        	
-        	this.mouseShot();
+        if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+        	if((System.currentTimeMillis() - millisSinceLastShot) >= (60 / this.shotsPerMin) * 1000f){
+        		this.mouseShot();		
+        	}
         }
     }
     
-    // Methode zum schieﬂen +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public void shoot(){
-    	currentTime = System.currentTimeMillis();
+    // Methode zum schieﬂen in Blickrichtung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public void directionShot(){
+    	millisSinceLastShot = System.currentTimeMillis();
     	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, direction));
     }
     
     // Mehode um in Mausrichtung zu schieﬂen ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void mouseShot(){
-    	currentTime = System.currentTimeMillis();
+    	millisSinceLastShot = System.currentTimeMillis();
         float mouseX = Mouse.getX();
         float mouseY = (Game.getWindowHeight() - Mouse.getY());
         float vecX = mouseX - (this.posX+this.width/2);
