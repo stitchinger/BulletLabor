@@ -26,11 +26,8 @@ public class Player extends Mover{
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 13;		// Sprungkraft
         this.gravity = 0.35f;		// Gravitation
-        this.isInAir = true;		// Ist der Player in der Luft?
         this.shootRate = 100;		// Feuerrate
         this.health = 100;			// Gesundheitspunkte
-        
-        
         
     }
 
@@ -39,7 +36,7 @@ public class Player extends Mover{
     	 
     	if (this.health <= 0){
          	this.die();
-         	this.isInAir = true;
+         	
          	Game.killCount = 0;
          }
     	

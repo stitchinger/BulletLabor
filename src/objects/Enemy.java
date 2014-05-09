@@ -16,7 +16,6 @@ public class Enemy extends Mover{
         this.jumpHeight = 8;
         this.gravity = 0.30f;
         this.isRunning = false;
-        this.isInAir = true;
         this.health = 100;
     }
     
@@ -41,7 +40,7 @@ public class Enemy extends Mover{
         } else if(this.posX <= 0){
         	this.direction = "right";
         }
-        if(Math.random() < 0.1f && !this.isInAir){
+        if(Math.random() < 0.1f && this.isOnGround()){
         	
         	this.jump();
         }

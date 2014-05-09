@@ -7,7 +7,7 @@ public class Mover extends GameObject{
 
     
     // Diese Variablen haben alle Objekte gemeinsam, die sich bewegen können
-	protected String direction;
+	
     protected float velocityX;
     protected float velocityY;
     protected float maxSpeed;
@@ -16,10 +16,9 @@ public class Mover extends GameObject{
     protected float gravity;
     protected int jumpCount;
     
+    // Zustände
+    protected String direction;
     protected boolean isRunning;
-    protected boolean isInAir;
-   
-    
     
     // Konstruktor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Mover(Image img, int x, int y, int width, int height) {
@@ -32,16 +31,10 @@ public class Mover extends GameObject{
     // Update Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void update(){
     	
-    	if(this.isLanded()){
-            this.isInAir = false;
-            this.velocityY = 0;
-            this.jumpCount = 0;
-        }
-        if(isInAir){
-            this.fall();
-        }
-      
-        
+    	if(!this.isOnGround()){
+    		this.fall();
+    	}
+    	
         this.velocityX = getLimitedVelocityX();
         
         this.posX += this.velocityX;        // Auswirkung der horizontalen Beschleunigung auf die X-Position
@@ -112,14 +105,19 @@ public class Mover extends GameObject{
     // Sprung Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void jump(){
         this.velocityY = this.jumpHeight * (-1);
-        this.isInAir = true;
         this.jumpCount++;
     }
     
-    // ist gelandet? Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public boolean isLanded(){
+    // Checkt ob das Objekt auf dem Boden steht +++++++++++++++++++++++++++++++++++++++++++++++++++
+    public boolean isOnGround(){
+    	if(this.posY + this.height >= 700 && this.velocityY >= 0){
+    		this.velocityY = 0;
+            this.jumpCount = 0;
+            return true;
+    	}else{
+    		return false;
+    	}
     	
-    	return this.posY + this.height >= 700 && this.velocityY > 0;
     }
     
  
