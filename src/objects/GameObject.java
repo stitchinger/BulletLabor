@@ -19,6 +19,8 @@ public class GameObject {
     protected int height;
     protected int health;
     protected Shape hitbox;
+    protected long timeOfLastHit;
+    protected int flashTimeInMillis;
     
     
     // Konstruktor Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -29,11 +31,17 @@ public class GameObject {
         this.width = width;
         this.height = height;
         this.hitbox = new Rectangle(x,y,width, height);
+        this.flashTimeInMillis = 150;
     }
     
     public void render(Graphics g){
-    	this.getImage().draw(this.getX(), this.getY());
-         if (Game.showHitbox) {
+    	if(this.timeOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
+    		this.getImage().drawFlash(this.getX(), this.getY());
+    	}else{
+    		this.getImage().draw(this.getX(), this.getY());
+    	}
+    
+        if (Game.showHitbox) {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
         }
@@ -73,6 +81,7 @@ public class GameObject {
     // Verletzt werden ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void receiveDamage(int damage){
     	this.health -= damage;
+    	this.timeOfLastHit = System.currentTimeMillis();
     }
     
     // Verhalten bei Zerstörung des Objekts +++++++++++++++++++++++++++++++++++++++
