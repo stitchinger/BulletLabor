@@ -71,7 +71,6 @@ public class Game extends BasicGame {
        
         
     }
-    
 
     // update +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
@@ -165,7 +164,6 @@ public class Game extends BasicGame {
         app.start();
     }
 
-   
     // Breite des Fensters +++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static int getWindowWidth() {
         return width;
