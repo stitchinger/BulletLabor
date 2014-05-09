@@ -84,14 +84,22 @@ public class Player extends Mover{
         float mouseY = (Game.getWindowHeight() - Mouse.getY());
         float vecX = mouseX - (this.posX+this.width/2);
         float vecY= mouseY - (this.posY+this.height/2);
+        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, vecX, vecY));
-       
-       
-       
+        this.addForce(normalizedVector[0]*2 * (-1), 0);
     }
 
     public void die(){
     	Game.killCount =0;
     	super.die();
+    }
+    
+    private float[] getNormalizedVector2(float vecX, float vecY){
+    	
+    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
+        float[] vector2 = new float[2];
+    	vector2[0] = (float)(vecX / hypo);
+        vector2[1] = (float)(vecY / hypo);
+        return vector2;
     }
 }
