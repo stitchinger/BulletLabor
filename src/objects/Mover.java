@@ -40,13 +40,9 @@ public class Mover extends GameObject{
         if(isInAir){
             this.fall();
         }
-       
-        // Maximale Geschwindigkeit begrenzen
-        if(this.velocityX >= this.maxSpeed){
-            this.velocityX = this.maxSpeed;
-        } else if(this.velocityX <= maxSpeed * (-1)){
-            this.velocityX = this.maxSpeed * (-1);
-        }
+      
+        
+        this.velocityX = getLimitedVelocityX();
         
         this.posX += this.velocityX;        // Auswirkung der horizontalen Beschleunigung auf die X-Position
         this.posY += this.velocityY;		// Auswirkung der horizontalen Beschleunigung auf die X-Position
@@ -64,7 +60,23 @@ public class Mover extends GameObject{
     	
     }
     
-    // Horizontale Beschleunigung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // Begrenzt die maximale horizontale Geschwindigkeit +++++++++++++++++++++++++++++++++++++
+    private float getLimitedVelocityX() {
+    	 
+        
+        if(this.velocityX >= this.maxSpeed){
+            return this.maxSpeed;
+        } else if(this.velocityX <= maxSpeed * (-1)){
+            return this.maxSpeed * (-1);
+        } else{
+        	return this.velocityX;
+        	
+        }
+		
+        
+	}
+
+	// Horizontale Beschleunigung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public double getVelocityX(){
     	
     	return this.velocityX;
@@ -109,6 +121,8 @@ public class Mover extends GameObject{
     	
     	return this.posY + this.height >= 700 && this.velocityY > 0;
     }
+    
+ 
     
     
        
