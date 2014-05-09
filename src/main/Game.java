@@ -58,7 +58,7 @@ public class Game extends BasicGame {
         player = new Player(playerSprite, 50, 600, 32, 60);
        
         for (int i = 0; i < 2; i += 1) {
-            Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 40);
+            Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 34);
         	enemy_list.add(enemy);
         }
         
@@ -138,10 +138,9 @@ public class Game extends BasicGame {
         g.setColor(Color.white);
         g.drawString("Velocity X: " + player.getVelocityX(), 10, 50);
         g.drawString("Velocity Y: " + player.getVelocityY(), 10, 70);
-        g.drawString("Vektor X: " + Mouse.getX(), 10, 90);
-        g.drawString("Vektor Y: " + (Game.getWindowHeight() - Mouse.getY()), 10, 110);
-        g.drawString("Kills: " + killCount, 10, 130);
-        g.drawString("Health: "+ (player.getHealth()), 10, 150);
+      
+        g.drawString("Kills: " + killCount, Game.getWindowWidth() - 100, Game.getWindowHeight() - 40);
+        g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
         
     }
 
