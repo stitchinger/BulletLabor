@@ -14,8 +14,7 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGame {
 
-    
-	// Fenster Einstellungen  +++++++++++++
+    // Fenster Einstellungen  +++++++++++++
 	static int width = 1200;
     static int height = 800;
     static boolean fullscreen = false;
@@ -42,7 +41,6 @@ public class Game extends BasicGame {
     // Konstruktor +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Game(String title) {
         super(title);
-        
     }
 
     // init ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -69,9 +67,6 @@ public class Game extends BasicGame {
             GameObject tile = new GameObject(tileSprite, i, 700, 50, 50);
         	tile_list.add(tile);
         }
-       
-        
-
     }
 
     // update +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -90,10 +85,7 @@ public class Game extends BasicGame {
             }
         }
         
-        for (GameObject tile : tile_list) {
-            tile.update();
-
-        }
+       
        
         for (Bullet bullet : bullet_list) {
         	bullet.update();
@@ -126,8 +118,7 @@ public class Game extends BasicGame {
         
         // Tile rendern
         for (GameObject tile : tile_list) {
-
-            tile.render(g);
+        	tile.render(g);
         }
         
         // Player rendern
@@ -135,17 +126,14 @@ public class Game extends BasicGame {
         
         // Gegner rendern
         for (Enemy enemy : enemy_list) {
-
-           enemy.render(g);
+        	enemy.render(g);
         }
         
         // Bullets rendern
         for (Bullet bullet : bullet_list) {
-
-           bullet.render(g);
+        	bullet.render(g);
         }
        
-
         // Text ausgeben
         g.setColor(Color.white);
         g.drawString("Velocity X: " + player.getVelocityX(), 10, 50);
@@ -155,9 +143,6 @@ public class Game extends BasicGame {
         g.drawString("Kills: " + killCount, 10, 130);
         g.drawString("Health: "+ (player.getHealth()), 10, 150);
         
-        
-        
-
     }
 
     // main +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

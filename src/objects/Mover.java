@@ -36,10 +36,8 @@ public class Mover extends GameObject {
 
 		this.velocityX = getLimitedVelocityX();
 
-		this.posX += this.velocityX; // Auswirkung der horizontalen
-										// Beschleunigung auf die X-Position
-		this.posY += this.velocityY; // Auswirkung der horizontalen
-										// Beschleunigung auf die X-Position
+		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
+		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
 
 		if (!this.isRunning && this.isOnGround()) {
 			this.velocityX = (this.velocityX * 0.2f);
