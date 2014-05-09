@@ -2,10 +2,13 @@ package main;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import objects.AnimatedObject;
 import objects.Bullet;
 import objects.Enemy;
 import objects.GameObject;
 import objects.Player;
+
 import org.newdawn.slick.*;
 
 
@@ -25,15 +28,14 @@ public class Game extends BasicGame {
 
     // Game Objekte ++++++++++++++++++++++
     public static Player player;
-    public static Enemy enemy;
+    public static AnimatedObject aniOb;
     public static List<GameObject> tile_list = new LinkedList<GameObject>();
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
 
     public static Image bulletSprite;
-    
     public static int killCount = 0;
-   
+    
 
     // Konstruktor +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Game(String title) {
@@ -51,7 +53,7 @@ public class Game extends BasicGame {
         
         bulletSprite = new Image("img/bullet.png");
 
-       
+        aniOb = new AnimatedObject();
         player = new Player(playerSprite, 50, 600, 32, 60);
        
         for (int i = 0; i < 2; i += 1) {
@@ -64,6 +66,10 @@ public class Game extends BasicGame {
             GameObject tile = new GameObject(tileSprite, i, 700, 50, 50);
         	tile_list.add(tile);
         }
+        
+        
+       
+        
     }
 
     // update +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -102,6 +108,8 @@ public class Game extends BasicGame {
 
         }
         
+        aniOb.update(delta);
+        
         
         
         
@@ -139,6 +147,10 @@ public class Game extends BasicGame {
       
         g.drawString("Kills: " + killCount, Game.getWindowWidth() - 100, Game.getWindowHeight() - 40);
         g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
+        
+        
+        aniOb.render();
+        
         
     }
 
