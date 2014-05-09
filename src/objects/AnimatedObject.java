@@ -1,5 +1,7 @@
 package objects;
 
+import main.Game;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -11,8 +13,8 @@ public class AnimatedObject {
     
     public AnimatedObject() throws SlickException{
     	
-    	 this.walkSprite = new SpriteSheet("img/walkspritesheet.png", 32, 64);
-         this.walkAnimation = new Animation(walkSprite,100);
+    	 this.walkSprite = new SpriteSheet("img/mario.png", 78, 80);
+         this.walkAnimation = new Animation(walkSprite,300);
     }
 	
     public void update(int delta){
@@ -21,8 +23,9 @@ public class AnimatedObject {
     }
     
     public void render(){
-    	
-    	walkAnimation.draw(100,100);
+    	int posX = Game.getWindowWidth()-100;
+    	int posY = 20;
+    	walkAnimation.draw(posX,posY);
     }
     
     
