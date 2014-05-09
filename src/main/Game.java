@@ -99,6 +99,7 @@ public class Game extends BasicGame {
         			
         			bullet.setPosition(100000, 1000000);
         			enemy.receiveDamage(bullet.getDamage());
+        			enemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
         			
         		}
         		

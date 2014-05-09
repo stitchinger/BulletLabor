@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 
 public class Bullet extends GameObject{
     
-    private double velocityX;
-    private double velocityY;
+    private float velocityX;
+    private float velocityY;
     private int spreadRange;
     private int speed;
     public int bulletDamage;
@@ -18,7 +18,7 @@ public class Bullet extends GameObject{
         
         this.spreadRange = 30;
         this.speed = 50;
-        this.bulletDamage = 10;
+        this.bulletDamage = 2;
         
         if(direction == "left"){
             velocityX = -speed;
@@ -40,12 +40,12 @@ public class Bullet extends GameObject{
         
         this.spreadRange = 3;
         this.speed = 35;
-        this.bulletDamage = 10;
+        this.bulletDamage = 2;
         
         float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
         
-        velocityX =  ((vecX / hypo) * speed) + this.spreading();
-        velocityY =  ((vecY / hypo) * speed) + this.spreading();
+        velocityX = (float) ((vecX / hypo) * speed) + this.spreading();
+        velocityY = (float) ((vecY / hypo) * speed) + this.spreading();
         
         
     }
@@ -56,6 +56,16 @@ public class Bullet extends GameObject{
         this.posY += velocityY;
         hitbox.setLocation(this.posX, this.posY);
     }
+    
+    public float getVelocityX() {
+		return this.velocityX;
+	}
+
+	// Vertikale Beschleunigung
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public float getVelocityY() {
+		return this.velocityY;
+	}
     
     // Berechnet die Streuung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public float spreading(){

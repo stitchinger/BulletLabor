@@ -1,13 +1,15 @@
 package objects;
 
 import main.Game;
+
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 
 public class Enemy extends Mover{
 
 	// Konstruktor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public Enemy(Image img, int x, int y, int width, int height) {
+    public Enemy(Image img, int x, int y, int width, int height) throws SlickException {
         super(img, x, y, width, height);
         
         this.direction = "right";

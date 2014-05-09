@@ -1,6 +1,10 @@
 package objects;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 public class Mover extends GameObject {
 
@@ -18,16 +22,23 @@ public class Mover extends GameObject {
 	// Zustände
 	protected String direction;
 	protected boolean isRunning;
+	
+	
+	protected SpriteSheet idleSprite;
+	protected Animation idleAnimation;
 
 	// Konstruktor Methode
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public Mover(Image img, int x, int y, int width, int height) {
+	public Mover(Image img, int x, int y, int width, int height) throws SlickException {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
 		this.gravity = 0.38f;  
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
+		
+		this.idleSprite = new SpriteSheet("img/mario.png", 78, 80);
+        this.idleAnimation = new Animation(idleSprite,100);
 		
 		
 	}
@@ -54,9 +65,16 @@ public class Mover extends GameObject {
 				this.velocityX = 0;
 			}
 		}
+		
 
 		hitbox.setLocation(this.posX, this.posY); // Position der Hitbox
 													// anpassen
+	}
+	
+	public void render(Graphics g){
+		
+	//	idleAnimation.draw(this.posX, this.posY);
+		super.render(g);
 	}
 
 	// Nach rechts gehen
@@ -90,15 +108,20 @@ public class Mover extends GameObject {
 		this.velocityY = Math.min(this.maxFallSpeed, this.velocityY += this.gravity);
 	}
 
+	public void addForce(float velocityX, float velocityY){
+		this.velocityX += velocityX;
+		this.velocityY += velocityY;
+	}
+	
 	// Horizontale Beschleunigung
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public double getVelocityX() {
+	public float getVelocityX() {
 		return this.velocityX;
 	}
 
 	// Vertikale Beschleunigung
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public double getVelocityY() {
+	public float getVelocityY() {
 		return this.velocityY;
 	}
 

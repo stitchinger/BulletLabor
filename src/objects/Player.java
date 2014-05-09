@@ -5,6 +5,7 @@ import main.Game;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
@@ -17,7 +18,7 @@ public class Player extends Mover{
 	private float shotsPerMin;
 	
     // Konstrukor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public Player(Image img, int x, int y, int width, int height) {
+	public Player(Image img, int x, int y, int width, int height) throws SlickException {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
         // dieses sind speziell für den Player gesetzte Variablen
