@@ -2,13 +2,10 @@ package main;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import objects.Bullet;
 import objects.Enemy;
 import objects.GameObject;
 import objects.Player;
-
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 
 
