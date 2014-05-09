@@ -57,7 +57,7 @@ public class Game extends BasicGame {
        
         player = new Player(playerSprite, 50, 600, 32, 60);
        
-        for (int i = 0; i < 1; i += 1) {
+        for (int i = 0; i < 10; i += 1) {
             Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 40);
         	enemy_list.add(enemy);
         }

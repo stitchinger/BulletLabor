@@ -107,14 +107,18 @@ public class Mover extends GameObject {
 	// Checkt ob das Objekt auf dem Boden steht
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public boolean isOnGround() {
-		if (this.posY + this.height >= 700 && this.velocityY >= 0) {
+		float distanceToGround = 700 - (this.posY + this.height);
+		
+		if(distanceToGround <= 0 && this.velocityY >= 0){
 			this.velocityY = 0;
 			this.jumpCount = 0;
 			return true;
 		} else {
+			if(this.velocityY > distanceToGround){
+				this.velocityY = distanceToGround;
+			}
 			return false;
 		}
-
 	}
 
 }
