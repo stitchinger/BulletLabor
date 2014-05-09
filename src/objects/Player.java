@@ -22,7 +22,7 @@ public class Player extends Mover{
         
         // dieses sind speziell für den Player gesetzte Variablen
         this.direction = "right";  	// Blickrichtung
-        this.maxSpeed = 6;         	// Maximale Laufgeschwindigkeit
+        this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
         this.gravity = 0.38f;		// Gravitation

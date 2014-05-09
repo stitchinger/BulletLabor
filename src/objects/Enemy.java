@@ -11,7 +11,7 @@ public class Enemy extends Mover{
         super(img, x, y, width, height);
         
         this.direction = "right";
-        this.maxSpeed = 5;
+        this.maxWalkSpeed = 5;
         this.acceleration = 0.25f;
         this.jumpHeight = 8;
         this.gravity = 0.30f;

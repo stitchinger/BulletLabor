@@ -8,7 +8,8 @@ public class Mover extends GameObject {
 
 	protected float velocityX;
 	protected float velocityY;
-	protected float maxSpeed;
+	protected float maxWalkSpeed;
+	protected float maxFallSpeed;
 	protected float acceleration;
 	protected float jumpHeight;
 	protected float gravity;
@@ -25,6 +26,8 @@ public class Mover extends GameObject {
 		this.velocityX = 0;
 		this.velocityY = 0;
 		this.jumpCount = 0;
+		this.maxFallSpeed = 20;
+		
 	}
 
 	// Update Methode
@@ -77,7 +80,8 @@ public class Mover extends GameObject {
 	// Fall Methode
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void fall() {
-		this.velocityY += this.gravity;
+		//this.velocityY += this.gravity;
+		this.velocityY = Math.min(this.maxFallSpeed, this.velocityY += this.gravity);
 	}
 
 	// Horizontale Beschleunigung
@@ -95,10 +99,10 @@ public class Mover extends GameObject {
 	// Begrenzt die maximale horizontale Geschwindigkeit
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	private float getLimitedVelocityX() {
-		if (this.velocityX >= this.maxSpeed) {
-			return this.maxSpeed;
-		} else if (this.velocityX <= maxSpeed * (-1)) {
-			return this.maxSpeed * (-1);
+		if (this.velocityX >= this.maxWalkSpeed) {
+			return this.maxWalkSpeed;
+		} else if (this.velocityX <= maxWalkSpeed * (-1)) {
+			return this.maxWalkSpeed * (-1);
 		} else {
 			return this.velocityX;
 		}

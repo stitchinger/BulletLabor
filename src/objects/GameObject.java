@@ -79,7 +79,7 @@ public class GameObject {
     
     // Verhalten bei Zerstörung des Objekts +++++++++++++++++++++++++++++++++++++++
     public void die(){
-    	this.posY = -50;
+    	this.posY = -500;
     	this.health = 100;
     	Game.killCount++;
     	
