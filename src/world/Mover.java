@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.tiled.TiledMap;
 
 
 public class Mover extends GameObject {
@@ -59,6 +60,12 @@ public class Mover extends GameObject {
 
 		this.velocityX = getLimitedVelocityX();
 
+		if(this.isLeftSideCollided()){
+			this.velocityX = Math.max(0, this.velocityX);
+		}
+		if(this.isRightSideCollided()){
+			this.velocityX = Math.min(0, this.velocityX);
+		}
 		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
 		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
 
@@ -143,27 +150,28 @@ public class Mover extends GameObject {
 	// Checkt ob das Objekt auf dem Boden steht
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public boolean isOnGround() {
+		TiledMap tm = Game.level1.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		
-		
-		int collisionLayer = Game.level1.getTiledMap().getLayerIndex("CollisionLayer");
-		int tileCollideLeft = 1;
-    	int tileCollideRight = 1;
-    
-    	if(this.posX >= 0 && this.posX+this.width <= Game.getWindowWidth() && this.posY >= 0 && this.posY <= Game.getWindowHeight()){
-    		tileCollideLeft = (Game.level1.getTiledMap().getTileId((int)((this.posX)/32), (int)((this.posY + this.height)/32), collisionLayer));
-    		tileCollideRight = (Game.level1.getTiledMap().getTileId((int)((this.posX + this.width)/32), (int)((this.posY + this.height)/32), collisionLayer));
+    	
+    	int bottomLeftX = (int)((this.posX)/32);
+    	int bottomLeftY = (int)((this.posY-20)/32);
+    	
+    	int bottomRightX = (int)((this.posX)/32);
+    	int bottomRightY = (int)((this.posY+ this.height-20)/32);
+    			
+    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
     		
-    	}
-		
-		
-		if((tileCollideLeft > 0 || tileCollideRight > 0)  && this.velocityY >= 0){
-			this.velocityY = 0;
+    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
+    		this.velocityY = 0;
 			this.jumpCount = 0;
 			return true;
 		} else{
 			
 			return false;
 		}
+		
 		/*float distanceToGround = 500 - (this.posY + this.height);
 		
 		if(distanceToGround <= 0 && this.velocityY >= 0){
@@ -178,4 +186,66 @@ public class Mover extends GameObject {
 		}   */
 	}
 
+	public boolean isLeftSideCollided(){
+		TiledMap tm = Game.level1.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		
+    	
+    	int topLeftX = (int)((this.posX)/32);
+    	int topLeftY = (int)((this.posY-20)/32);
+    	
+    	int bottomLeftX = (int)((this.posX)/32);
+    	int bottomLeftY = (int)((this.posY+ this.height-20)/32);
+    			
+    	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
+    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    		
+    	if((topLeftCornerCollision > 0 || bottomLeftCornerCollision > 0)){
+			
+			return true;
+		} else{
+			
+			return false;
+		}
+		
+		
+	}	
+	
+	private boolean isRightSideCollided(){
+		
+		TiledMap tm = Game.level1.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		
+    	
+    	int topRightX = (int)((this.posX + this.width)/32);
+    	int topRightY = (int)((this.posY-20)/32);
+    	
+    	int bottomRightX = (int)((this.posX + this.width)/32);
+    	int bottomRightY = (int)((this.posY+ this.height-20)/32);
+    			
+    	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
+    		
+    	if((topRightCornerCollision > 0 || bottomRightCornerCollision > 0)){
+			
+			return true;
+		} else{
+			
+			return false;
+		}
+		
+	}
+	
+	private boolean isTopSideCollided(){
+	
+		return false;
+	}
+	
+	private boolean isBottomSideCollided(){
+	
+		return false;
+	}
+	
+
 }
+
