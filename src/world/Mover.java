@@ -66,6 +66,9 @@ public class Mover extends GameObject {
 		if(this.isRightSideCollided()){
 			this.velocityX = Math.min(0, this.velocityX);
 		}
+		if(this.isTopSideCollided()){
+			this.velocityY = Math.max(0, this.velocityY);
+		}
 		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
 		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
 
@@ -237,8 +240,26 @@ public class Mover extends GameObject {
 	}
 	
 	private boolean isTopSideCollided(){
-	
-		return false;
+		TiledMap tm = Game.level1.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		
+    	
+    	int topLeftX = (int)((this.posX + 10)/32);
+    	int topLeftY = (int)((this.posY)/32);
+    	
+    	int topRightX = (int)((this.posX + this.width - 10)/32);
+    	int topRightY = (int)((this.posY)/32);
+    			
+    	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
+    	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
+    		
+    	if((topLeftCornerCollision > 0 || topRightCornerCollision > 0)){
+    		
+			return true;
+		} else{
+			
+			return false;
+		}
 	}
 	
 	private boolean isBottomSideCollided(){
