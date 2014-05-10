@@ -3,13 +3,17 @@ package main;
 import java.util.LinkedList;
 import java.util.List;
 
-import objects.AnimatedObject;
-import objects.Bullet;
-import objects.Enemy;
-import objects.GameObject;
-import objects.Player;
 
 import org.newdawn.slick.*;
+
+import enemy.Enemy;
+
+import player.Bullet;
+import player.Player;
+
+import world.AnimatedObject;
+import world.GameObject;
+import world.World;
 
 
 public class Game extends BasicGame {
@@ -47,11 +51,11 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
-        Image playerSprite = new Image("Player/player.png");
-        Image enemySprite = new Image("Enemy/enemy.png");
-        Image tileSprite = new Image("World/tile.png");
+        Image playerSprite = new Image("Images/Player/player.png");
+        Image enemySprite = new Image("Images/Enemies/enemy.png");
+        Image tileSprite = new Image("Map/tile.png");
         
-        bulletSprite = new Image("Player/bullet.png");
+        bulletSprite = new Image("Images/Player/bullet.png");
 
         level1 = new World();
         aniOb = new AnimatedObject();
