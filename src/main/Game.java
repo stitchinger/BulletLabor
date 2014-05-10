@@ -159,7 +159,7 @@ public class Game extends BasicGame {
 
 	private void renderGameObjects(Graphics g) {
    	  
-       player.render(g);
+       //player.render(g);  // Dafür Animated Mario hinzugefügt
        
        // Gegner rendern
        for (Enemy enemy : enemy_list) {
@@ -184,7 +184,7 @@ public class Game extends BasicGame {
         g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
         
         
-        aniOb.render();
+        aniOb.render(player.getX()-20, player.getY()-5);
     	
     }
 
