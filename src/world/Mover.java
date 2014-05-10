@@ -195,7 +195,7 @@ public class Mover extends GameObject {
 		
     	
     	int topLeftX = (int)((this.posX)/32);
-    	int topLeftY = (int)((this.posY-20)/32);
+    	int topLeftY = (int)((this.posY+20)/32);
     	
     	int bottomLeftX = (int)((this.posX)/32);
     	int bottomLeftY = (int)((this.posY+ this.height-20)/32);
@@ -221,7 +221,7 @@ public class Mover extends GameObject {
 		
     	
     	int topRightX = (int)((this.posX + this.width)/32);
-    	int topRightY = (int)((this.posY-20)/32);
+    	int topRightY = (int)((this.posY+20)/32);
     	
     	int bottomRightX = (int)((this.posX + this.width)/32);
     	int bottomRightY = (int)((this.posY+ this.height-20)/32);
