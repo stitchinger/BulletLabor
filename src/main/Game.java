@@ -25,7 +25,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static String title = "Shoot'em Up";
     static int fpslimit = 60;
-    public static final boolean showHitbox = false;
+    public static final boolean showHitbox = true;
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;
@@ -61,7 +61,7 @@ public class Game extends BasicGame {
         aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 0, 32, 60);
        
-        for (int i = 0; i < 30; i += 1) {
+        for (int i = 0; i < 1; i += 1) {
             Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 34);
         	enemy_list.add(enemy);
         }
@@ -76,7 +76,7 @@ public class Game extends BasicGame {
 
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
-
+    	level1.update();
         player.update(in);
        
         for (Enemy enemy : enemy_list) {
