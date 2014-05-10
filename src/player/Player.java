@@ -86,8 +86,8 @@ public class Player extends Mover{
     // Mehode um in Mausrichtung zu schieﬂen ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void mouseShot(){
     	timeOfLastShot = System.currentTimeMillis();
-        float mouseX = Mouse.getX();
-        float mouseY = (Game.getWindowHeight() - Mouse.getY());
+        float mouseX = Mouse.getX() + Game.cam.getX()*(-1);
+        float mouseY = ((Game.getWindowHeight() - Mouse.getY()) + Game.cam.getY()*(-1));
         float vecX = mouseX - (this.posX+this.width/2);
         float vecY= mouseY - (this.posY+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);

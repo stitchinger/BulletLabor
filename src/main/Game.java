@@ -63,8 +63,8 @@ public class Game extends BasicGame {
         aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 0, 32, 60);
        
-        for (int i = 0; i < 5; i += 1) {
-            Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 34);
+        for (int i = 0; i < 15; i += 1) {
+            Enemy enemy = new Enemy(enemySprite, 600, 400, 40, 34);
         	enemy_list.add(enemy);
         }
         
@@ -86,7 +86,7 @@ public class Game extends BasicGame {
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
     			
-    			player.receiveDamage(1);
+    			player.receiveDamage(5);
 
             }
         }

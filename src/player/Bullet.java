@@ -20,7 +20,7 @@ public class Bullet extends GameObject{
         
         this.spreadRange = 30;
         this.speed = 50;
-        this.bulletDamage = 2;
+        this.bulletDamage = 20;
         
         if(direction == "left"){
             velocityX = -speed;

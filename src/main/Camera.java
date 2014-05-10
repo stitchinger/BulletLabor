@@ -28,6 +28,7 @@ public class Camera {
 		
 		this.posX = Game.player.getX() * (-1) +  this.viewportWidth/2;
 		this.posY = Game.player.getY() * (-1) +  this.viewportHeight/2;
+	
 		
 		//target.setPosition(x, y);
 	}
@@ -42,6 +43,17 @@ public class Camera {
 		this.posY = this.target.getY() - this.viewportHeight / 2;
 		
 	}
+	
+	public float getX(){
+		
+		return this.posX;
+	}
+	
+	public float getY(){
+		
+		return this.posY;
+	}
+	
 	
 	public boolean isInViewport(float x, float y){
 		float tx = translateX(x);

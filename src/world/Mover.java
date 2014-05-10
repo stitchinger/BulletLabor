@@ -214,7 +214,7 @@ public class Mover extends GameObject {
 		
 	}	
 	
-	private boolean isRightSideCollided(){
+	public boolean isRightSideCollided(){
 		
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
@@ -239,7 +239,7 @@ public class Mover extends GameObject {
 		
 	}
 	
-	private boolean isTopSideCollided(){
+	public boolean isTopSideCollided(){
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		

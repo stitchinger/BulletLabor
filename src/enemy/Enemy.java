@@ -44,11 +44,13 @@ public class Enemy extends Mover{
         } else if(this.posX <= 0){
         	this.direction = "right";
         }
-        if(Math.random() < 0.01f && this.isBottomSideCollided()){
+        if(Math.random() < 0.02f && this.isBottomSideCollided()){
         	
         	this.jump();
         }
-      
+        
+        
+       
        
         
         super.update();
