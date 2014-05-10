@@ -13,7 +13,7 @@ public class AnimatedObject {
     
     public AnimatedObject() throws SlickException{
     	
-    	 this.walkSprite = new SpriteSheet("img/mario.png", 78, 80);
+    	 this.walkSprite = new SpriteSheet("Player/mario.png", 78, 80);
          this.walkAnimation = new Animation(walkSprite,300);
     }
 	

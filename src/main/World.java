@@ -8,7 +8,7 @@ public class World {
 	private TiledMap level1;
 	
 	public World() throws SlickException{
-		level1 = new TiledMap("res/Level1.tmx");
+		level1 = new TiledMap("World/Level1.tmx");
 		
 	}
 	

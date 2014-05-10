@@ -47,11 +47,11 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
-        Image playerSprite = new Image("img/player.png");
-        Image enemySprite = new Image("img/enemy.png");
-        Image tileSprite = new Image("img/tile.png");
+        Image playerSprite = new Image("Player/player.png");
+        Image enemySprite = new Image("Enemy/enemy.png");
+        Image tileSprite = new Image("World/tile.png");
         
-        bulletSprite = new Image("img/bullet.png");
+        bulletSprite = new Image("Player/bullet.png");
 
         level1 = new World();
         aniOb = new AnimatedObject();

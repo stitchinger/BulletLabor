@@ -39,7 +39,7 @@ public class Mover extends GameObject {
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
 		
-		this.idleSprite = new SpriteSheet("img/mario.png", 78, 80);
+		this.idleSprite = new SpriteSheet("Player/mario.png", 78, 80);
         this.idleAnimation = new Animation(idleSprite,100);
 		
 		
