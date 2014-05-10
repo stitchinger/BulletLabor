@@ -16,9 +16,10 @@ public class World {
 		tiledMap = new TiledMap("Map/Level2.tmx");
 		this.posX = 0;
 		this.posY = 0;
-		this.width = tiledMap.getWidth();
-		this.height = tiledMap.getWidth();
+		
 		this.tileSize = tiledMap.getTileHeight();
+		this.width = tiledMap.getWidth() * this.tileSize;
+		this.height = tiledMap.getHeight() * this.tileSize;
 	}
 	
 	public void update(){
@@ -40,5 +41,13 @@ public class World {
 	public int getTileSize(){
 		
 		return this.tileSize;
+	}
+	
+	public int getWidth(){
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
 	}
 }

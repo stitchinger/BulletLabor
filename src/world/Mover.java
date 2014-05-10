@@ -140,7 +140,7 @@ public class Mover extends GameObject {
 	}
 
 	public boolean isBottomSideCollided() {
-		TiledMap tm = Game.level1.getTiledMap();
+		TiledMap tm = Game.gameworld.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
@@ -176,7 +176,7 @@ public class Mover extends GameObject {
 	}
 
 	public boolean isLeftSideCollided(){
-		TiledMap tm = Game.level1.getTiledMap();
+		TiledMap tm = Game.gameworld.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
@@ -202,7 +202,7 @@ public class Mover extends GameObject {
 	
 	public boolean isRightSideCollided(){
 		
-		TiledMap tm = Game.level1.getTiledMap();
+		TiledMap tm = Game.gameworld.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
@@ -226,7 +226,7 @@ public class Mover extends GameObject {
 	}
 	
 	public boolean isTopSideCollided(){
-		TiledMap tm = Game.level1.getTiledMap();
+		TiledMap tm = Game.gameworld.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	

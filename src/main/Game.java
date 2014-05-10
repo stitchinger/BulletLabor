@@ -31,7 +31,7 @@ public class Game extends BasicGame {
     public static Input in;
 
     // Game Objekte ++++++++++++++++++++++
-    public static World level1;
+    public static World gameworld;
     public static Camera cam;
     public static Player player;
     public static AnimatedObject aniOb;
@@ -58,7 +58,7 @@ public class Game extends BasicGame {
         
         bulletSprite = new Image("Images/Player/bullet.png");
 
-        level1 = new World();
+        gameworld = new World();
         cam = new Camera();
         aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 0, 32, 60);
@@ -78,7 +78,7 @@ public class Game extends BasicGame {
 
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
-    	level1.update();
+    	gameworld.update();
         player.update(in);
        
         for (Enemy enemy : enemy_list) {
@@ -150,7 +150,7 @@ public class Game extends BasicGame {
     
     private void renderWorld(Graphics g) {
    	
-        level1.render(g);
+        gameworld.render(g);
 		
 	}
 
@@ -180,12 +180,15 @@ public class Game extends BasicGame {
     public void renderGui(Graphics g){
     	  
         g.setColor(Color.white);
-        g.drawString("Velocity X: " + player.getVelocityX(), 10, 50);
-        g.drawString("Velocity Y: " + player.getVelocityY(), 10, 70);
+        g.drawString("Velocity X: " + player.getVelocityX(), cam.getX() + 10, cam.getY() + 50);
+        g.drawString("Velocity Y: " + player.getVelocityY(), cam.getX() + 10, cam.getY() + 70);
        // g.drawString("Type: " + player.type, 10, 70);
       
-        g.drawString("Kills: " + killCount, Game.getWindowWidth() - 100, Game.getWindowHeight() - 40);
-        g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
+        g.drawString("Kills: " + killCount           , cam.getX() + 10, cam.getY() + 100);
+        g.drawString("Health: "+ (player.getHealth()), cam.getX() + 10, cam.getY() + 120);
+        
+        g.drawString("World w: " + gameworld.getWidth(), cam.getX() + 10, cam.getY() + 140);
+        g.drawString("World h: "+ gameworld.getHeight(), cam.getX() + 10, cam.getY() + 160 );
         
         
         aniOb.render(player.getX()-20, player.getY()-5);

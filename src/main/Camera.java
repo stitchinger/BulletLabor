@@ -3,6 +3,7 @@ package main;
 import org.newdawn.slick.Graphics;
 
 import world.Mover;
+import world.World;
 
 public class Camera {
 	private float posX;
@@ -25,7 +26,7 @@ public class Camera {
 	public void update(){
 		
 		this.followTarget();
-	
+		this.avoidLeavingWorld();
 		
 		
 	}
@@ -41,14 +42,29 @@ public class Camera {
 		
 	}
 	
+	private void avoidLeavingWorld(){
+		  if(this.getX() < 0){
+			this.posX = 0;
+		}else if(this.getX() + this.viewportWidth > Game.gameworld.getWidth()){
+			this.posX = (Game.gameworld.getWidth() - this.viewportWidth) * -1;
+		}
+		
+		if(this.getY() < 0){
+			this.posY = 0;
+		}else if(this.getY() + this.viewportHeight > Game.gameworld.getHeight()){
+			this.posY = (Game.gameworld.getHeight() - this.viewportHeight) * -1; 
+		}
+		
+	}
+	
 	public float getX(){
 		
-		return this.posX;
+		return this.posX * -1;
 	}
 	
 	public float getY(){
 		
-		return this.posY;
+		return this.posY * -1;
 	}
 	
 	public boolean isInViewport(float x, float y){
