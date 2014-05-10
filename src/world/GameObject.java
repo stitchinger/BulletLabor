@@ -47,22 +47,18 @@ public class GameObject {
         }
     }
     
-    // getImage ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Image getImage(){
         return this.sprite;
     }
     
-    // getHitbox +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Shape getHitbox(){
         return this.hitbox;
     }
     
-    // getX +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public float getX(){
          return this.posX;
     }
     
-    // getY +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public float getY(){
         return this.posY;
     }
@@ -71,14 +67,12 @@ public class GameObject {
     	return this.health;
     }
     
-    // Position verändern +++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void setPosition(float x, float y){
     	this.posX = x;
     	this.posY = y;
     	
     }
     
-    // Verletzt werden ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void receiveDamage(int damage){
     	if(System.currentTimeMillis() - this.timeOfLastHit > 500){
     		this.health -= damage;
@@ -87,7 +81,6 @@ public class GameObject {
     	
     }
     
-    // Verhalten bei Zerstörung des Objekts +++++++++++++++++++++++++++++++++++++++
     public void die(){
     	this.posY = 50;
     	this.health = 100;

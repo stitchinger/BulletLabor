@@ -20,7 +20,7 @@ public class Player extends Mover{
 	private long timeOfLastShot; 
 	private float shotsPerMin;
 	
-    // Konstrukor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
 	public Player(Image img, int x, int y, int width, int height) throws SlickException {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
@@ -31,10 +31,10 @@ public class Player extends Mover{
         this.jumpHeight = 9;		// Sprungkraft
        	this.shotsPerMin = 600;		// Feuerrate
         this.health = 100;			// Gesundheitspunkte
-        //(shotsPerMinute / 60) * 1000
+       
     }
 
-    // Update Methode --- Wird jedes Frame aufgerufen +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
     public void update(Input in){
     	 
     	playerControl(in);
@@ -45,7 +45,6 @@ public class Player extends Mover{
     	
     }
     
-    // Steuerung des Spielers +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void playerControl(Input in){
        this.isRunning = false;
         
@@ -77,13 +76,11 @@ public class Player extends Mover{
         }
     }
     
-    // Methode zum schieﬂen in Blickrichtung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void directionShot(){
     	timeOfLastShot = System.currentTimeMillis();
     	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, direction));
     }
     
-    // Mehode um in Mausrichtung zu schieﬂen ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void mouseShot(){
     	timeOfLastShot = System.currentTimeMillis();
         float mouseX = Mouse.getX() + Game.cam.getX()*(-1);

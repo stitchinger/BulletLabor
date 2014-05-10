@@ -14,13 +14,13 @@ public class Bullet extends GameObject{
     public int bulletDamage;
     
     
-    // 1. Konstruktor +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // 1. Konstruktor 
     public Bullet(Image sprite, float x, float y, int width, int height, String direction) {
     	super(sprite, x-width/2, y-height/2, width, height);
         
         this.spreadRange = 30;
         this.speed = 50;
-        this.bulletDamage = 20;
+        this.bulletDamage = 50;
         
         if(direction == "left"){
             velocityX = -speed;
@@ -35,7 +35,7 @@ public class Bullet extends GameObject{
        
     }
     
-    // 2. Konstruktor ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // 2. Konstruktor
     public Bullet(Image sprite, float x, float y, int width, int height, double vecX, double vecY) {
         
     	super(sprite, x-width/2, y-height/2, width, height);
@@ -46,13 +46,13 @@ public class Bullet extends GameObject{
         
         float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
         
-        velocityX = (float) ((vecX / hypo) * speed) + this.spreading();
-        velocityY = (float) ((vecY / hypo) * speed) + this.spreading();
+        velocityX = (float) ((vecX / hypo) * speed) + this.getSpreading();
+        velocityY = (float) ((vecY / hypo) * speed) + this.getSpreading();
         
         
     }
     
-    // Update Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     public void update(){
         this.posX += velocityX;
         this.posY += velocityY;
@@ -63,19 +63,15 @@ public class Bullet extends GameObject{
 		return this.velocityX;
 	}
 
-	// Vertikale Beschleunigung
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public float getVelocityY() {
+    public float getVelocityY() {
 		return this.velocityY;
 	}
     
-    // Berechnet die Streuung +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public float spreading(){
+    private float getSpreading(){
     	
     	return (float) ((Math.random() * this.spreadRange )- (this.spreadRange/2));
     }
     
-    // GetDAmage
     public int getDamage(){
     	return this.bulletDamage;
     }

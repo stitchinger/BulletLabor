@@ -12,8 +12,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Mover extends GameObject {
 
-	// Diese Variablen haben alle Objekte gemeinsam, die sich bewegen können
-
+	
+	// Instanzvariablen
 	protected float velocityX;
 	protected float velocityY;
 	protected float maxWalkSpeed;
@@ -31,8 +31,7 @@ public class Mover extends GameObject {
 	protected SpriteSheet idleSprite;
 	protected Animation idleAnimation;
 
-	// Konstruktor Methode
-	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
 	public Mover(Image img, int x, int y, int width, int height) throws SlickException {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
@@ -47,16 +46,13 @@ public class Mover extends GameObject {
 		
 	}
 
-	// Update Methode
-	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
 	public void update() {
+		
 		if (this.health <= 0){
 	        	this.die();
 	    }
 		
-		if (!this.isBottomSideCollided()) {
-			this.fall();
-		}
 
 		this.velocityX = getLimitedVelocityX();
 
@@ -69,6 +65,13 @@ public class Mover extends GameObject {
 		if(this.isTopSideCollided()){
 			this.velocityY = Math.max(0, this.velocityY);
 		}
+		if(this.isBottomSideCollided()){
+			this.velocityY = Math.min(0, this.velocityY);
+			this.jumpCount = 0;
+		} else{
+			this.fall();
+		}
+		
 		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
 		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
 
@@ -90,8 +93,6 @@ public class Mover extends GameObject {
 		super.render(g);
 	}
 
-	// Nach rechts gehen
-	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void moveRight() {
 		this.isRunning = true;
 		this.velocityX += this.acceleration;
@@ -99,25 +100,19 @@ public class Mover extends GameObject {
 
 	}
 
-	// Nach Links gehen
-	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void moveLeft() {
 		this.isRunning = true;
 		this.velocityX -= this.acceleration;
 		this.direction = "left";
 	}
 
-	// Sprung Methode
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void jump() {
 		this.velocityY = this.jumpHeight * (-1);
 		this.jumpCount++;
 	}
 
-	// Fall Methode
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void fall() {
-		//this.velocityY += this.gravity;
+		
 		this.velocityY = Math.min(this.maxFallSpeed, this.velocityY += this.gravity);
 	}
 
@@ -126,20 +121,14 @@ public class Mover extends GameObject {
 		this.velocityY += velocityY;
 	}
 	
-	// Horizontale Beschleunigung
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public float getVelocityX() {
 		return this.velocityX;
 	}
 
-	// Vertikale Beschleunigung
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public float getVelocityY() {
 		return this.velocityY;
 	}
 
-	// Begrenzt die maximale horizontale Geschwindigkeit
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	private float getLimitedVelocityX() {
 		if (this.velocityX >= this.maxWalkSpeed) {
 			return this.maxWalkSpeed;
@@ -150,25 +139,22 @@ public class Mover extends GameObject {
 		}
 	}
 
-	// Checkt ob das Objekt auf dem Boden steht
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public boolean isBottomSideCollided() {
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
-		
+		int tileSize = tm.getTileHeight();
     	
-    	int bottomLeftX = (int)((this.posX + 10)/32);
-    	int bottomLeftY = (int)((this.posY+ this.height)/32);
+    	int bottomLeftX = (int)((this.posX + 10)/tileSize);
+    	int bottomLeftY = (int)((this.posY+ this.height)/tileSize);
     	
-    	int bottomRightX = (int)((this.posX + this.width - 10)/32);
-    	int bottomRightY = (int)((this.posY + this.height)/32);
+    	int bottomRightX = (int)((this.posX + this.width - 10)/tileSize);
+    	int bottomRightY = (int)((this.posY + this.height)/tileSize);
     			
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
     		
     	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
-    		this.velocityY = 0;
-			this.jumpCount = 0;
+    	
 			return true;
 		} else{
 			
@@ -192,13 +178,13 @@ public class Mover extends GameObject {
 	public boolean isLeftSideCollided(){
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
-		
+		int tileSize = tm.getTileHeight();
     	
-    	int topLeftX = (int)((this.posX)/32);
-    	int topLeftY = (int)((this.posY+20)/32);
+    	int topLeftX = (int)((this.posX)/tileSize);
+    	int topLeftY = (int)((this.posY+20)/tileSize);
     	
-    	int bottomLeftX = (int)((this.posX)/32);
-    	int bottomLeftY = (int)((this.posY+ this.height-20)/32);
+    	int bottomLeftX = (int)((this.posX)/tileSize);
+    	int bottomLeftY = (int)((this.posY+ this.height-20)/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
@@ -218,13 +204,13 @@ public class Mover extends GameObject {
 		
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
-		
+		int tileSize = tm.getTileHeight();
     	
-    	int topRightX = (int)((this.posX + this.width)/32);
-    	int topRightY = (int)((this.posY+20)/32);
+    	int topRightX = (int)((this.posX + this.width)/tileSize);
+    	int topRightY = (int)((this.posY+20)/tileSize);
     	
-    	int bottomRightX = (int)((this.posX + this.width)/32);
-    	int bottomRightY = (int)((this.posY+ this.height-20)/32);
+    	int bottomRightX = (int)((this.posX + this.width)/tileSize);
+    	int bottomRightY = (int)((this.posY+ this.height-20)/tileSize);
     			
     	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
@@ -242,13 +228,13 @@ public class Mover extends GameObject {
 	public boolean isTopSideCollided(){
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
-		
+		int tileSize = tm.getTileHeight();
     	
-    	int topLeftX = (int)((this.posX + 10)/32);
-    	int topLeftY = (int)((this.posY)/32);
+    	int topLeftX = (int)((this.posX + 10)/tileSize);
+    	int topLeftY = (int)((this.posY)/tileSize);
     	
-    	int topRightX = (int)((this.posX + this.width - 10)/32);
-    	int topRightY = (int)((this.posY)/32);
+    	int topRightX = (int)((this.posX + this.width - 10)/tileSize);
+    	int topRightY = (int)((this.posY)/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
     	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);

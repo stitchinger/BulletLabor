@@ -18,19 +18,16 @@ public class Camera {
 		this.target = Game.player;
 		this.viewportWidth = Game.getWindowWidth();
 		this.viewportHeight = Game.getWindowHeight();
-		//this.posX = this.target.getX() + this.viewportWidth / 2;
-		//this.posY = this.target.getY() - this.viewportHeight / 2;
 		this.posX = 0;
 		this.posY = 0;
 	}
 	
 	public void update(){
 		
-		this.posX = Game.player.getX() * (-1) +  this.viewportWidth/2;
-		this.posY = Game.player.getY() * (-1) +  this.viewportHeight/2;
+		this.followTarget();
 	
 		
-		//target.setPosition(x, y);
+		
 	}
 	
 	public void render(Graphics g){
@@ -39,8 +36,8 @@ public class Camera {
 	}
 	
 	public void followTarget(){
-		this.posX = this.target.getX() - this.viewportWidth / 2;
-		this.posY = this.target.getY() - this.viewportHeight / 2;
+		this.posX = Game.player.getX() * (-1) +  this.viewportWidth/2;
+		this.posY = Game.player.getY() * (-1) +  this.viewportHeight/2;
 		
 	}
 	
@@ -53,7 +50,6 @@ public class Camera {
 		
 		return this.posY;
 	}
-	
 	
 	public boolean isInViewport(float x, float y){
 		float tx = translateX(x);
