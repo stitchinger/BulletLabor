@@ -5,16 +5,20 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class World {
-	private TiledMap level1;
+	private TiledMap tiledMap;
 	private int tileSize;
 	private float posX;
 	private float posY;
+	private int width;
+	private int height;
 	
 	public World() throws SlickException{
-		level1 = new TiledMap("Map/Level1.tmx");
+		tiledMap = new TiledMap("Map/Level2.tmx");
 		this.posX = 0;
 		this.posY = 0;
-		this.tileSize = level1.getTileHeight();
+		this.width = tiledMap.getWidth();
+		this.height = tiledMap.getWidth();
+		this.tileSize = tiledMap.getTileHeight();
 	}
 	
 	public void update(){
@@ -24,13 +28,13 @@ public class World {
 	}
 	
 	public void render(Graphics g){
-		level1.render((int)this.posX, (int)this.posY);
+		tiledMap.render((int)this.posX, (int)this.posY);
 		
 	}
 	
 	public TiledMap getTiledMap(){
 		
-		return this.level1;
+		return this.tiledMap;
 	}
 	
 	public int getTileSize(){
