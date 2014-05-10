@@ -59,16 +59,16 @@ public class Player extends Mover{
         	this.moveRight();
         }
         
-        if(in.isKeyPressed(Input.KEY_SPACE) && this.jumpCount < 2){
+        if((in.isKeyPressed(Input.KEY_SPACE)||in.isKeyPressed(Input.KEY_W)) && this.jumpCount < 2){
            
         	this.jump();
         }
         
-        if(in.isKeyDown(Input.KEY_W)){
+        /*if(in.isKeyDown(Input.KEY_W)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= ((60 / this.shotsPerMin) * 1000f) / 3){
         		this.directionShot();		
         	}
-        }
+        }*/
         
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
