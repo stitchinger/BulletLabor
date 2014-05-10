@@ -22,9 +22,9 @@ public class AnimatedObject {
     	walkAnimation.update(delta);
     }
     
-    public void render(){
-    	int posX = Game.getWindowWidth()-100;
-    	int posY = 20;
+    public void render(float posX, float posY){
+    	//int posX = Game.getWindowWidth()-100;
+    	//int posY = 20;
     	walkAnimation.draw(posX,posY);
     }
     
