@@ -32,6 +32,7 @@ public class Game extends BasicGame {
 
     // Game Objekte ++++++++++++++++++++++
     public static World level1;
+    public static Camera cam;
     public static Player player;
     public static AnimatedObject aniOb;
     public static List<GameObject> tile_list = new LinkedList<GameObject>();
@@ -58,10 +59,11 @@ public class Game extends BasicGame {
         bulletSprite = new Image("Images/Player/bullet.png");
 
         level1 = new World();
+        cam = new Camera();
         aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 0, 32, 60);
        
-        for (int i = 0; i < 0; i += 1) {
+        for (int i = 0; i < 5; i += 1) {
             Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 34);
         	enemy_list.add(enemy);
         }
@@ -111,6 +113,7 @@ public class Game extends BasicGame {
         }
         
         aniOb.update(delta);
+        cam.update();
         
         
         
@@ -118,6 +121,7 @@ public class Game extends BasicGame {
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
+    	cam.render(g);
     	renderBackground(g);
     	renderWorld(g);
     	renderGameObjects(g);
@@ -143,9 +147,7 @@ public class Game extends BasicGame {
     }
     
     private void renderWorld(Graphics g) {
-   	 for (GameObject tile : tile_list) {
-        	tile.render(g);
-        }
+   	
         level1.render(g);
 		
 	}
