@@ -155,13 +155,13 @@ public class Mover extends GameObject {
 		
     	
     	int bottomLeftX = (int)((this.posX)/32);
-    	int bottomLeftY = (int)((this.posY-20)/32);
+    	int bottomLeftY = (int)((this.posY+ this.height)/32);
     	
-    	int bottomRightX = (int)((this.posX)/32);
-    	int bottomRightY = (int)((this.posY+ this.height-20)/32);
+    	int bottomRightX = (int)((this.posX + this.width)/32);
+    	int bottomRightY = (int)((this.posY+ this.height + this.height)/32);
     			
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
-    	int bottomRightCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
     		
     	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
     		this.velocityY = 0;
