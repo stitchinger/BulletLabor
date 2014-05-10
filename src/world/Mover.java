@@ -54,7 +54,7 @@ public class Mover extends GameObject {
 	        	this.die();
 	    }
 		
-		if (!this.isOnGround()) {
+		if (!this.isBottomSideCollided()) {
 			this.fall();
 		}
 
@@ -72,7 +72,7 @@ public class Mover extends GameObject {
 		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
 		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
 
-		if (!this.isRunning && this.isOnGround()) {
+		if (!this.isRunning && this.isBottomSideCollided()) {
 			this.velocityX = (this.velocityX * 0.2f);
 			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
 				this.velocityX = 0;
@@ -152,7 +152,7 @@ public class Mover extends GameObject {
 
 	// Checkt ob das Objekt auf dem Boden steht
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public boolean isOnGround() {
+	public boolean isBottomSideCollided() {
 		TiledMap tm = Game.level1.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		
@@ -262,10 +262,6 @@ public class Mover extends GameObject {
 		}
 	}
 	
-	private boolean isBottomSideCollided(){
-	
-		return false;
-	}
 	
 
 }
