@@ -80,8 +80,11 @@ public class GameObject {
     
     // Verletzt werden ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void receiveDamage(int damage){
-    	this.health -= damage;
-    	this.timeOfLastHit = System.currentTimeMillis();
+    	if(System.currentTimeMillis() - this.timeOfLastHit > 1000){
+    		this.health -= damage;
+        	this.timeOfLastHit = System.currentTimeMillis();
+    	}
+    	
     }
     
     // Verhalten bei Zerstörung des Objekts +++++++++++++++++++++++++++++++++++++++

@@ -35,7 +35,10 @@ public class Player extends Mover{
     public void update(Input in){
     	 
     	playerControl(in);
+    	
     	super.update();
+    	
+    	
     	
     }
     
@@ -90,7 +93,7 @@ public class Player extends Mover{
     }
 
     public void die(){
-    	Game.killCount =0;
+    	Game.killCount = 0;
     	super.die();
     }
     

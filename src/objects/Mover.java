@@ -1,5 +1,7 @@
 package objects;
 
+import main.Game;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -23,7 +25,7 @@ public class Mover extends GameObject {
 	protected String direction;
 	protected boolean isRunning;
 	
-	
+	// Sprites und Animationen
 	protected SpriteSheet idleSprite;
 	protected Animation idleAnimation;
 
@@ -140,7 +142,28 @@ public class Mover extends GameObject {
 	// Checkt ob das Objekt auf dem Boden steht
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public boolean isOnGround() {
-		float distanceToGround = 700 - (this.posY + this.height);
+		
+		
+		int collisionLayer = Game.level1.getTiledMap().getLayerIndex("CollisionLayer");
+		int tileCollideLeft = 1;
+    	int tileCollideRight = 1;
+    
+    	if(this.posX >= 0 && this.posX+this.width <= Game.getWindowWidth() && this.posY >= 0 && this.posY <= Game.getWindowHeight()){
+    		tileCollideLeft = (Game.level1.getTiledMap().getTileId((int)((this.posX)/32), (int)((this.posY + this.height)/32), collisionLayer));
+    		tileCollideRight = (Game.level1.getTiledMap().getTileId((int)((this.posX + this.width)/32), (int)((this.posY + this.height)/32), collisionLayer));
+    		
+    	}
+		
+		
+		if((tileCollideLeft > 0 || tileCollideRight > 0)  && this.velocityY >= 0){
+			this.velocityY = 0;
+			this.jumpCount = 0;
+			return true;
+		} else{
+			
+			return false;
+		}
+		/*float distanceToGround = 500 - (this.posY + this.height);
 		
 		if(distanceToGround <= 0 && this.velocityY >= 0){
 			this.velocityY = 0;
@@ -151,7 +174,7 @@ public class Mover extends GameObject {
 				this.velocityY = distanceToGround;
 			}
 			return false;
-		}
+		}   */
 	}
 
 }

@@ -27,6 +27,7 @@ public class Game extends BasicGame {
     public static Input in;
 
     // Game Objekte ++++++++++++++++++++++
+    public static World level1;
     public static Player player;
     public static AnimatedObject aniOb;
     public static List<GameObject> tile_list = new LinkedList<GameObject>();
@@ -36,15 +37,14 @@ public class Game extends BasicGame {
     public static Image bulletSprite;
     public static int killCount = 0;
     
-
-    // Konstruktor +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Game(String title) {
         super(title);
     }
 
-    // init ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public void init(GameContainer gc) throws SlickException {
+  	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
         Image playerSprite = new Image("img/player.png");
@@ -53,10 +53,11 @@ public class Game extends BasicGame {
         
         bulletSprite = new Image("img/bullet.png");
 
+        level1 = new World();
         aniOb = new AnimatedObject();
-        player = new Player(playerSprite, 50, 600, 32, 60);
+        player = new Player(playerSprite, 400, 0, 32, 60);
        
-        for (int i = 0; i < 2; i += 1) {
+        for (int i = 0; i < 30; i += 1) {
             Enemy enemy = new Enemy(enemySprite, (int)(Math.random()* width), 400, 40, 34);
         	enemy_list.add(enemy);
         }
@@ -67,12 +68,8 @@ public class Game extends BasicGame {
         	tile_list.add(tile);
         }
         
-        
-       
-        
     }
 
-    // update +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
 
@@ -116,46 +113,14 @@ public class Game extends BasicGame {
         
     }
 
-    // render +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void render(GameContainer gc, Graphics g) throws SlickException {
-    	
-    	// Hintergrund rendern
-    	g.setColor(Color.blue);
-        g.fillRect(0, 0, width, height);
-        
-        // Tile rendern
-        for (GameObject tile : tile_list) {
-        	tile.render(g);
-        }
-        
-        // Player rendern
-        player.render(g);
-        
-        // Gegner rendern
-        for (Enemy enemy : enemy_list) {
-        	enemy.render(g);
-        }
-        
-        // Bullets rendern
-        for (Bullet bullet : bullet_list) {
-        	bullet.render(g);
-        }
+    	renderBackground(g);
+    	renderWorld(g);
+    	renderGameObjects(g);
+        renderGui(g);
        
-        // Text ausgeben
-        g.setColor(Color.white);
-        g.drawString("Velocity X: " + player.getVelocityX(), 10, 50);
-        g.drawString("Velocity Y: " + player.getVelocityY(), 10, 70);
-      
-        g.drawString("Kills: " + killCount, Game.getWindowWidth() - 100, Game.getWindowHeight() - 40);
-        g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
-        
-        
-        aniOb.render();
-        
-        
     }
 
-    // main +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new Game(title));
         app.setDisplayMode(width, height, fullscreen);
@@ -165,14 +130,58 @@ public class Game extends BasicGame {
         app.start();
     }
 
-    // Breite des Fensters +++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static int getWindowWidth() {
         return width;
     }
 
-    // Höhe des Fensters ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static int getWindowHeight() {
         return height;
+    }
+    
+    private void renderWorld(Graphics g) {
+   	 for (GameObject tile : tile_list) {
+        	tile.render(g);
+        }
+        level1.render(g);
+		
+	}
+
+	private void renderBackground(Graphics g) {
+   	
+   	g.setColor(Color.blue);
+       g.fillRect(0, 0, width, height);
+		
+	}
+
+	private void renderGameObjects(Graphics g) {
+   	  
+       player.render(g);
+       
+       // Gegner rendern
+       for (Enemy enemy : enemy_list) {
+       	enemy.render(g);
+       }
+       
+       // Bullets rendern
+       for (Bullet bullet : bullet_list) {
+       	bullet.render(g);
+       }
+		
+	}
+    
+    public void renderGui(Graphics g){
+    	  
+        g.setColor(Color.white);
+        g.drawString("Velocity X: " + player.getVelocityX(), 10, 50);
+        g.drawString("Velocity Y: " + player.getVelocityY(), 10, 70);
+       // g.drawString("Type: " + player.type, 10, 70);
+      
+        g.drawString("Kills: " + killCount, Game.getWindowWidth() - 100, Game.getWindowHeight() - 40);
+        g.drawString("Health: "+ (player.getHealth()), 10, Game.getWindowHeight() - 40);
+        
+        
+        aniOb.render();
+    	
     }
 
 }
