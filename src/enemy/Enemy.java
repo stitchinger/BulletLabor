@@ -2,6 +2,8 @@ package enemy;
 
 import main.Game;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -38,12 +40,7 @@ public class Enemy extends Mover{
         	
         	this.changeDirection();
         }
-        if(this.posX >= Game.getWindowWidth()){
-        	this.direction = "left";
-        	
-        } else if(this.posX <= 0){
-        	this.direction = "right";
-        }
+       
         if(Math.random() < 0.02f && this.isBottomSideCollided()){
         	
         	this.jump();
@@ -56,6 +53,12 @@ public class Enemy extends Mover{
         super.update();
        
         
+    }
+    
+    public void render(Graphics g){
+    	g.setColor(Color.white); 
+    	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
+    	super.render(g);
     }
     
     // Richtung ändern +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

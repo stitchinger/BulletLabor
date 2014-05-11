@@ -42,7 +42,7 @@ public class Bullet extends GameObject{
         
         this.spreadRange = 3;
         this.speed = 35;
-        this.bulletDamage = 2;
+        this.bulletDamage = 20;
         
         float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
         

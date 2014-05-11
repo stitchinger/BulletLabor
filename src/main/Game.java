@@ -63,8 +63,11 @@ public class Game extends BasicGame {
         aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 0, 32, 60);
        
-        for (int i = 0; i < 15; i += 1) {
-            Enemy enemy = new Enemy(enemySprite, 600, 400, 40, 34);
+        for (int i = 0; i < 5; i += 1) {
+            int minDistance = 300;
+            int randomX = (int) (Math.random()* gameworld.getWidth());
+            randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
+        	Enemy enemy = new Enemy(enemySprite,randomX, 400, 40, 34);
         	enemy_list.add(enemy);
         }
         
