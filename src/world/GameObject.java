@@ -34,6 +34,12 @@ public class GameObject {
         this.flashTimeInMillis = 150;
     }
     
+    public void update(){
+    	if (this.health <= 0){
+        	this.die();
+		}
+    }
+    
     public void render(Graphics g){
     	
     	if(this.timeOfLastHit + flashTimeInMillis > System.currentTimeMillis()){

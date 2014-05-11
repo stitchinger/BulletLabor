@@ -39,22 +39,16 @@ public class Mover extends GameObject {
 		this.gravity = 0.38f;  
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
-		
-		//this.idleSprite = new SpriteSheet("Images/Player/mario.png", 78, 80);
-        //this.idleAnimation = new Animation(idleSprite,100);
-		
-		
+	
 	}
 
 	
 	public void update() {
 		
-		if (this.health <= 0){
-        	this.die();
-		}
+		super.update();
+		
 		
 		this.velocityX = getLimitedVelocityX();
-		
 		this.detectWorldCollision();
 		this.actualMovement();
 		this.movementSlide();
