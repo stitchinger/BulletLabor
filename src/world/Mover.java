@@ -54,15 +54,15 @@ public class Mover extends GameObject {
 		}
 		
 		this.velocityX = getLimitedVelocityX();
-		this.actualMovement();
+		
 		this.detectWorldCollision();
+		this.actualMovement();
 		this.movementSlide();
 			
 	}
 	
 	public void render(Graphics g){
 		
-	//	idleAnimation.draw(this.posX, this.posY);
 		super.render(g);
 	}
 	

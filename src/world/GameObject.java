@@ -35,13 +35,14 @@ public class GameObject {
     }
     
     public void render(Graphics g){
+    	
     	if(this.timeOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
     		this.getImage().drawFlash(this.getX(), this.getY());
     	}else{
     		this.getImage().draw(this.getX(), this.getY());
     	}
     
-        if (Game.showHitbox) {
+        if (Game.debugModus) {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
         	g.setColor(Color.white); 
