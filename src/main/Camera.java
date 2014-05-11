@@ -1,6 +1,7 @@
 package main;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 
 import world.Mover;
 import world.World;
@@ -12,6 +13,7 @@ public class Camera {
 	private float velocityY;
 	private float viewportWidth;
 	private float viewportHeight;
+	private boolean freeMode;
 	
 	private Mover target;
 	
@@ -21,12 +23,21 @@ public class Camera {
 		this.viewportHeight = Game.getWindowHeight();
 		this.posX = 0;
 		this.posY = 0;
+		this.freeMode = false;
 	}
 	
-	public void update(){
+	public void update(Input in){
+		 if(in.isKeyDown(Input.KEY_F)){
+             
+	         	this.toggleLockPosition();
+	         }
+		if(!freeMode){
+			this.followTarget();
+			this.avoidLeavingWorld();
+		}else{
+			
+		}
 		
-		this.followTarget();
-		this.avoidLeavingWorld();
 		
 		
 	}
@@ -86,6 +97,14 @@ public class Camera {
 	public float translateY(float y){
 		
 		return y - this.posY; 
+	}
+	
+	public void toggleLockPosition(){
+		if(this.freeMode){
+			this.freeMode = false;
+		} else{
+			this.freeMode = true;
+		}
 	}
 	
 	

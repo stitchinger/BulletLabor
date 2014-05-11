@@ -4,13 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+
 import org.newdawn.slick.*;
 
 import enemy.Enemy;
-
 import player.Bullet;
 import player.Player;
-
 import world.AnimatedObject;
 import world.GameObject;
 import world.World;
@@ -81,6 +80,7 @@ public class Game extends BasicGame {
 
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
+    	
     	gameworld.update();
         player.update(in);
        
@@ -116,7 +116,8 @@ public class Game extends BasicGame {
         }
         
         aniOb.update(delta);
-        cam.update();
+        cam.update(in);
+        
         
         
         
