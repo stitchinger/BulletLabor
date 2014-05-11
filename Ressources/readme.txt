@@ -3,7 +3,7 @@ Projekt-A
 
 Projekt A
 
-Hier kÃ¶nnen wir alle noch anstehenden Aufgaben sammeln und gemeinsam in kleinere Teilaufgaben zerlegen.
+Hier können wir alle noch anstehenden Aufgaben sammeln und gemeinsam in kleinere Teilaufgaben zerlegen.
 
 ToDo:
 
