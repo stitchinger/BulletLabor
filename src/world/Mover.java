@@ -47,7 +47,6 @@ public class Mover extends GameObject {
 		
 		super.update();
 		
-		
 		this.velocityX = getLimitedVelocityX();
 		this.detectWorldCollision();
 		this.actualMovement();

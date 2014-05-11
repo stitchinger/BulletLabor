@@ -27,7 +27,7 @@ public class Camera {
 	}
 	
 	public void update(Input in){
-		 if(in.isKeyDown(Input.KEY_F)){
+		 if(in.isKeyPressed(Input.KEY_F)){
              
 	         	this.toggleLockPosition();
 	         }
