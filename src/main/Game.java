@@ -189,7 +189,7 @@ public class Game extends BasicGame {
         g.drawString("Kills: " + killCount           , cam.getX() + 10, cam.getY() + 100);
         g.drawString("Health: "+ (player.getHealth()), cam.getX() + 10, cam.getY() + 120);
         
-      
+        g.drawString("MouseDirectionAngle: "+ (player.getMouseAngle()), cam.getX() + 10, cam.getY() + 150);
         
         aniOb.render(player.getX()-20, player.getY()-5);
     	

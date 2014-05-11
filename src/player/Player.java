@@ -30,7 +30,8 @@ public class Player extends Mover{
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
-       	this.shotsPerMin = 600;		// Feuerrate
+       	// die shotsPerMin Variable sollten wir früher oder später von hier entfernen und die Bullet/Waffen verschieben
+        this.shotsPerMin = 600;		// Feuerrate 
         this.health = 100;			// Gesundheitspunkte
        
     }
@@ -96,6 +97,21 @@ public class Player extends Mover{
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, vecX, vecY));
         this.addForce(normalizedVector[0]*2 * (-1), 0);
+    }
+    
+    public float getMouseAngle(){
+    	float mouseX = Mouse.getX() + Game.cam.getX();
+        float mouseY = ((Game.getWindowHeight() - Mouse.getY()) + Game.cam.getY());
+        float vecX = mouseX - (this.posX+this.width/2);
+        float vecY= mouseY - (this.posY+this.height/2);
+        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
+        
+        return (float)Math.atan2(normalizedVector[0], normalizedVector[1]);
+    	
+    }
+    
+    public void degreeShot(int degree){
+   // 	 bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, degree));
     }
 
     public void die(){
