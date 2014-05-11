@@ -9,7 +9,7 @@ public class Bullet extends GameObject{
     
     private float velocityX;
     private float velocityY;
-    private int spreadRange;
+    private float spreadRange;
     private int speed;
     public int bulletDamage;
     
@@ -18,10 +18,10 @@ public class Bullet extends GameObject{
     public Bullet(Image sprite, float x, float y, int width, int height, float angle) {
     	super(sprite, x-width/2, y-height/2, width, height);
         
-        this.spreadRange = 30;
+        this.spreadRange = 0.02f;
         this.speed = 50;
         this.bulletDamage = 50;
-        
+        angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
        
         float vecY = (float)Math.cos(angle);
         float vecX = (float)Math.sin(angle);
@@ -33,24 +33,7 @@ public class Bullet extends GameObject{
        
     }
     
-    // 2. Konstruktor
-    public Bullet(Image sprite, float x, float y, int width, int height, double vecX, double vecY) {
-        
-    	super(sprite, x-width/2, y-height/2, width, height);
-        
-        this.spreadRange = 3;
-        this.speed = 35;
-        this.bulletDamage = 20;
-        
-        float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
-        
-        velocityX = (float) ((vecX / hypo) * speed) + this.getSpreading();
-        velocityY = (float) ((vecY / hypo) * speed) + this.getSpreading();
-        
-        
-    }
-    
-
+  
     public void update(){
         this.posX += velocityX;
         this.posY += velocityY;
