@@ -42,8 +42,6 @@ public class Player extends Mover{
     	
     	super.update();
     	
-    	
-    	
     }
     
     public void playerControl(Input in){
