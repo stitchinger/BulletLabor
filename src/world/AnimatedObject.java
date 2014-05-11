@@ -9,23 +9,35 @@ import org.newdawn.slick.SpriteSheet;
 
 public class AnimatedObject {
 	
-    private SpriteSheet walkSprite;
-    private Animation walkAnimation;
+    private SpriteSheet charakterSpritesheet;
+    private Animation goLeft, goRight, idleLeft, idleRight, jumpLeft, jumpRight,fallLeft,fallRight, walkAnimation;
     private Image walkR;
+    
     
     public AnimatedObject() throws SlickException{
     	
-    	 this.walkSprite = new SpriteSheet("Images/Player/mario.png", 78, 80);
-         this.walkAnimation = new Animation(walkSprite,300);
+    	 this.charakterSpritesheet = new SpriteSheet("Images/Player/mario.png", 78, 80);
+         this.walkAnimation = new Animation(charakterSpritesheet,300);
          this.walkR = this.walkAnimation.getImage(3);
          
+         this.idleLeft = new Animation(charakterSpritesheet,4,0,4,0,true,300,false);
+         this.idleRight = new Animation(charakterSpritesheet,5,0,5,0,true,300, false);
          
+         this.goLeft = new Animation(charakterSpritesheet,0,0,1,0,true,150,true);
+         this.goRight = new Animation(charakterSpritesheet,8,0,9,0,true,150,true);
+
+         this.jumpLeft = new Animation(charakterSpritesheet,4,1,4,1,true,300,false);
+         this.jumpRight = new Animation(charakterSpritesheet,5,1,5,1,true,300,false);
+         
+         this.fallLeft = new Animation(charakterSpritesheet,3,1,3,1,true,300,false);
+         this.fallRight = new Animation(charakterSpritesheet,6,1,6,1,true,300,false);
         	 
     }
 	
     public void update(int delta){
     	
     	walkAnimation.update(delta);
+    	
     }
     
     public void render(float posX, float posY){
@@ -44,8 +56,18 @@ public class AnimatedObject {
        	 	this.walkR = this.walkAnimation.getImage(3);
     	}
     	
+    	if(Game.player.velocityX > 0){
+    		goRight.draw(posX,posY);
+    	}else if(Game.player.velocityX < 0){
+    		goLeft.draw(posX,posY);
+    	}else{
+    		idleLeft.draw(posX,posY);
+    	}
     	
-    	walkR.draw(posX,posY);
+    	
+    	//walkR.draw(posX,posY);
+    	
+    
     }
     
     
