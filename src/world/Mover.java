@@ -22,6 +22,7 @@ public class Mover extends GameObject {
 	protected float jumpHeight;
 	protected float gravity;
 	protected int jumpCount;
+	protected float friction;
 
 	// Zustände
 	protected String direction;
@@ -30,6 +31,7 @@ public class Mover extends GameObject {
 	// Sprites und Animationen
 	protected SpriteSheet idleSprite;
 	protected Animation idleAnimation;
+	
 
 	
 	public Mover(Image img, int x, int y, int width, int height) throws SlickException {
@@ -39,6 +41,7 @@ public class Mover extends GameObject {
 		this.gravity = 0.38f;  
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
+		this.friction = 0.8f;
 	
 	}
 
@@ -67,20 +70,17 @@ public class Mover extends GameObject {
 	}
 	
 	public void applyFriction(){
-	/*	if (!this.isRunning && this.isBottomSideCollided()) {
-			this.velocityX = (this.velocityX * 0.2f);
-			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
-				this.velocityX = 0;
-			}
-		}*/
 		
-		if(velocityX > 0 - this.acceleration && velocityX < 0 + this.acceleration){
-			this.velocityX = 0;
-		}else if(velocityX > 0){
-			this.velocityX -= this.acceleration/2;
-		}else if(velocityX < 0){
-			this.velocityX += this.acceleration/2;
+		if(!this.isRunning && this.isBottomSideCollided()){
+			if(velocityX > 0 - this.friction && velocityX < 0 + this.friction){
+				this.velocityX = 0;
+			}else if(velocityX > 0){
+				this.velocityX -= this.friction;
+			}else if(velocityX < 0){
+				this.velocityX += this.friction;
+			}
 		}
+		
 		
 	}
 
