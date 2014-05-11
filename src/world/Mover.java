@@ -50,7 +50,7 @@ public class Mover extends GameObject {
 		this.velocityX = getLimitedVelocityX();
 		this.detectWorldCollision();
 		this.actualMovement();
-		this.movementSlide();
+		this.applyFriction();
 			
 	}
 	
@@ -66,7 +66,7 @@ public class Mover extends GameObject {
 
 	}
 	
-	public void movementSlide(){
+	public void applyFriction(){
 		if (!this.isRunning && this.isBottomSideCollided()) {
 			this.velocityX = (this.velocityX * 0.2f);
 			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
