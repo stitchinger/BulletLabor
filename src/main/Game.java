@@ -24,7 +24,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static String title = "Shoot'em Up";
     static int fpslimit = 60;
-    public static final boolean debugModus = false;
+    public static final boolean debugModus = true;
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;

@@ -20,7 +20,7 @@ public class Bullet extends GameObject{
         
         this.spreadRange = 0.07f;
         this.speed = 44;
-        this.bulletDamage = 50;
+        this.bulletDamage = 15;
         angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
        
        
