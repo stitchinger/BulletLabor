@@ -70,34 +70,16 @@ public class Player extends Mover{
         	this.jump();
         }
         
-        /*if(in.isKeyDown(Input.KEY_W)){
-        	if((System.currentTimeMillis() - timeOfLastShot) >= ((60 / this.shotsPerMin) * 1000f) / 3){
-        		this.directionShot();		
-        	}
-        }*/
-        
-        if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+      
+          if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
-        		this.mouseShot();		
+        		//this.mouseShot();
+        		this.degreeShot(this.getMouseAngle());
         	}
         }
     }
     
-    public void directionShot(){
-    	timeOfLastShot = System.currentTimeMillis();
-    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, direction));
-    }
-    
-    public void mouseShot(){
-    	timeOfLastShot = System.currentTimeMillis();
-        float mouseX = Mouse.getX() + Game.cam.getX();
-        float mouseY = ((Game.getWindowHeight() - Mouse.getY()) + Game.cam.getY());
-        float vecX = mouseX - (this.posX+this.width/2);
-        float vecY= mouseY - (this.posY+this.height/2);
-        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
-        bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, vecX, vecY));
-        this.addForce(normalizedVector[0]*2 * (-1), 0);
-    }
+   
     
     public float getMouseAngle(){
     	float mouseX = Mouse.getX() + Game.cam.getX();
@@ -110,8 +92,10 @@ public class Player extends Mover{
     	
     }
     
-    public void degreeShot(int degree){
-   // 	 bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, degree));
+    public void degreeShot(float degree){
+    	timeOfLastShot = System.currentTimeMillis();
+    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, degree));
+    	//this.addForce(normalizedVector[0]*2 * (-1), 0);
     }
 
     public void die(){

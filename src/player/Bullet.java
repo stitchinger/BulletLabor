@@ -15,21 +15,19 @@ public class Bullet extends GameObject{
     
     
     // 1. Konstruktor 
-    public Bullet(Image sprite, float x, float y, int width, int height, String direction) {
+    public Bullet(Image sprite, float x, float y, int width, int height, float angle) {
     	super(sprite, x-width/2, y-height/2, width, height);
         
         this.spreadRange = 30;
         this.speed = 50;
         this.bulletDamage = 50;
         
-        if(direction == "left"){
-            velocityX = -speed;
-        }else if(direction == "right"){
-            velocityX = speed;
-        }
-        
+       
+        float vecY = (float)Math.cos(angle);
+        float vecX = (float)Math.sin(angle);
          
-       velocityY = (int)(Math.random()* this.spreadRange - this.spreadRange/2);
+        velocityX = (float) (vecX * speed);
+        velocityY = (float) (vecY * speed);
        
        
        
