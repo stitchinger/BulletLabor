@@ -14,6 +14,7 @@ public class Camera {
 	private float viewportWidth;
 	private float viewportHeight;
 	private boolean freeMode;
+	private float inertia;
 	
 	private Mover target;
 	
@@ -24,6 +25,7 @@ public class Camera {
 		this.posX = 0;
 		this.posY = 0;
 		this.freeMode = false;
+		this.inertia = 0.1f;
 	}
 	
 	public void update(Input in){
@@ -48,8 +50,12 @@ public class Camera {
 	}
 	
 	public void followTarget(){
-		this.posX = Game.player.getX() * (-1) +  this.viewportWidth/2;
-		this.posY = Game.player.getY() * (-1) +  this.viewportHeight/2;
+		float targetX = Game.player.getX() * (-1) +  this.viewportWidth/2;
+		float targetY = Game.player.getY() * (-1) +  this.viewportHeight/2;
+		float distanceX = targetX - this.posX;
+		float distanceY = targetY - this.posY;
+		this.posX += distanceX * this.inertia;
+		this.posY += distanceY * this.inertia;
 		
 	}
 	
