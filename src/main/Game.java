@@ -127,7 +127,7 @@ public class Game extends BasicGame {
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
     	cam.render(g);
-    	// renderBackground(g);
+    	renderBackground(g);
     	renderWorld(g);
     	renderGameObjects(g);
         renderGui(g);
@@ -160,7 +160,7 @@ public class Game extends BasicGame {
 	private void renderBackground(Graphics g) {
    	
    	g.setColor(Color.blue);
-       g.fillRect(0, 0, width, height);
+       g.fillRect(0, 0, gameworld.getWidth(), gameworld.getHeight());
 		
 	}
 
