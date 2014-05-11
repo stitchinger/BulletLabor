@@ -38,7 +38,11 @@ public class Enemy extends Mover{
         
         if(Math.random() < 0.005f){
         	
-        	this.changeDirection();
+        	//this.changeDirection();
+        	if (Game.player.getX() < this.getX())
+        		this.moveLeft();
+        	else
+        		this.moveRight();
         }
        
         if(Math.random() < 0.02f && this.isBottomSideCollided()){
