@@ -67,12 +67,21 @@ public class Mover extends GameObject {
 	}
 	
 	public void applyFriction(){
-		if (!this.isRunning && this.isBottomSideCollided()) {
+	/*	if (!this.isRunning && this.isBottomSideCollided()) {
 			this.velocityX = (this.velocityX * 0.2f);
 			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
 				this.velocityX = 0;
 			}
+		}*/
+		
+		if(velocityX > 0 - this.acceleration && velocityX < 0 + this.acceleration){
+			this.velocityX = 0;
+		}else if(velocityX > 0){
+			this.velocityX -= this.acceleration/2;
+		}else if(velocityX < 0){
+			this.velocityX += this.acceleration/2;
 		}
+		
 	}
 
 	public void moveRight() {

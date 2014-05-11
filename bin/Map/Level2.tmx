@@ -9,7 +9,7 @@
  </tileset>
  <layer name="Background" width="100" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Zb27CMAzF841J3ABp3YUoV5i0cgi20y+WZuF5TUiKnSXwftL7UkST+vlPCiEAAAAAAAAAAAAAAAAAAAD85T3q1GitXdS+0Voj8xE1B19fyIsp6uy4xqNAfnjH6rXBGo8C+0HyqhH2g4SelYb7iJS1J8eoRa0BT35DPtDM0F5Y95RD4jr61pW1mvCuEc1oNZLKq3shL5YCnR33wEwN1ugdmt0c8ymk/ZC1Anwo6VNrqu0rtTn/bDWSm92lou979vsePaFzoeUctfDh3loZFfKi9GxzK5csfPj8UY0nVjlucR+K54tQbZ7Ld2Sap1t/T9o6I6S+Evtin+TnTE/9hnNb51RpPGVtyPPMsnE/NTWgr72pe0k/RnmH089xCfn9r+WS1dmy1AfO8UtI+6HzZBQ/CB1Lfs6anmPlib5fLv8J7ckc0vOHZ0dP/akUrvVW//dobs0GiZ4TOc2uu/ZjbSb0hMzxUj9AG3Lxhxf/A2qhT57dC+RjH6A39AF8sOEbhaQUlYA+AAA=
+   H4sIAAAAAAAAC+2ZTW7DIBCF2bVSblCpzmGyrXuFSnUOkfaCuVY8UkedjgCDzWCo3ye9DU4M5s0PTpwDAAAAAAAAWHDZewE70uKzX5TunrGQlj4bur51jtDYfeHevmsASGQMAQAAABruEdwvwLH5mPVeaa6nWadKc/XM56zR2fpCXgyzroZz/BfID+u9eq0wxxLyXbNl2A+SVY6wHyTUrDBcR6RKe/I2a1JzwJO/kA/UM7QXpWvKS2AcfeQXX05Y54imtxwJxdVWyIspQVfDNTBDhTlah3o37/ngwn7IXAE2pNQpn3LrSm7MHy1HYr07VfR9y3rfoid0LizZR0v4sDVXeoW8SD3bLMVSCR++fpTjSakYL3Ef2s9nodw4l+/I1E/X/p60tkdIfQfWxT7J60xL9YZjW8dU6n7K3JDnmWnlenJyQI+d1b2kH728w+nnuLn4+n2xVOpsmeoDx/jNhf3QcdKLH4TeS37OnJpTyhN9v1j8E9qT0YX7D/eOlupTKpzrtf7v0Sz1BonuEzGNpqu2w9cTWkLGeKofoA6x/YcX+4BcaJOje4F4bAPUhjaAD2V4AD5Tm5qAPgAA
   </data>
  </layer>
  <layer name="CollisionLayer" width="100" height="40">
