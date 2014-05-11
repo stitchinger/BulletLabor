@@ -203,7 +203,9 @@ public class Mover extends GameObject {
 	public boolean isRightSideCollided(){
 		
 		TiledMap tm = Game.gameworld.getTiledMap();
+		
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		
 		int tileSize = tm.getTileHeight();
     	
     	int topRightX = (int)((this.posX + this.width)/tileSize);
