@@ -158,8 +158,8 @@ public class Game extends BasicGame {
 	}
 
 	private void renderBackground(Graphics g) {
-   	
-   	g.setColor(Color.blue);
+   	Color bgc = new Color(50,100,200);
+   	g.setColor(bgc);
        g.fillRect(0, 0, gameworld.getWidth(), gameworld.getHeight());
 		
 	}
