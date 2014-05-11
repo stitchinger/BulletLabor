@@ -40,8 +40,8 @@ public class Mover extends GameObject {
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
 		
-		this.idleSprite = new SpriteSheet("Images/Player/mario.png", 78, 80);
-        this.idleAnimation = new Animation(idleSprite,100);
+		//this.idleSprite = new SpriteSheet("Images/Player/mario.png", 78, 80);
+        //this.idleAnimation = new Animation(idleSprite,100);
 		
 		
 	}
@@ -50,8 +50,8 @@ public class Mover extends GameObject {
 	public void update() {
 		
 		if (this.health <= 0){
-	        	this.die();
-	    }
+        	this.die();
+		}
 		
 
 		this.velocityX = getLimitedVelocityX();
@@ -72,9 +72,8 @@ public class Mover extends GameObject {
 			this.fall();
 		}
 		
-		this.posX += this.velocityX;   	 	 // Auswirkung der horizontalen Beschleunigung auf die X-Position
-		this.posY += this.velocityY; 	   	// Auswirkung der vertikalen Beschleunigung auf die Y-Position
-
+		this.actualMovement();
+		
 		if (!this.isRunning && this.isBottomSideCollided()) {
 			this.velocityX = (this.velocityX * 0.2f);
 			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
@@ -91,6 +90,12 @@ public class Mover extends GameObject {
 		
 	//	idleAnimation.draw(this.posX, this.posY);
 		super.render(g);
+	}
+	
+	public void actualMovement(){
+		this.posX += this.velocityX;   	 	 
+		this.posY += this.velocityY; 	   	
+
 	}
 
 	public void moveRight() {
