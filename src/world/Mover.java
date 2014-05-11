@@ -53,37 +53,11 @@ public class Mover extends GameObject {
         	this.die();
 		}
 		
-
 		this.velocityX = getLimitedVelocityX();
-
-		if(this.isLeftSideCollided()){
-			this.velocityX = Math.max(0, this.velocityX);
-		}
-		if(this.isRightSideCollided()){
-			this.velocityX = Math.min(0, this.velocityX);
-		}
-		if(this.isTopSideCollided()){
-			this.velocityY = Math.max(0, this.velocityY);
-		}
-		if(this.isBottomSideCollided()){
-			this.velocityY = Math.min(0, this.velocityY);
-			this.jumpCount = 0;
-		} else{
-			this.fall();
-		}
-		
 		this.actualMovement();
-		
-		if (!this.isRunning && this.isBottomSideCollided()) {
-			this.velocityX = (this.velocityX * 0.2f);
-			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
-				this.velocityX = 0;
-			}
-		}
-		
-
-		hitbox.setLocation(this.posX, this.posY); // Position der Hitbox
-													// anpassen
+		this.detectWorldCollision();
+		this.movementSlide();
+			
 	}
 	
 	public void render(Graphics g){
@@ -94,8 +68,18 @@ public class Mover extends GameObject {
 	
 	public void actualMovement(){
 		this.posX += this.velocityX;   	 	 
-		this.posY += this.velocityY; 	   	
+		this.posY += this.velocityY; 	
+		hitbox.setLocation(this.posX, this.posY); 
 
+	}
+	
+	public void movementSlide(){
+		if (!this.isRunning && this.isBottomSideCollided()) {
+			this.velocityX = (this.velocityX * 0.2f);
+			if (this.velocityX <= 0.1 && this.velocityX >= -0.1) {
+				this.velocityX = 0;
+			}
+		}
 	}
 
 	public void moveRight() {
@@ -141,6 +125,24 @@ public class Mover extends GameObject {
 			return this.maxWalkSpeed * (-1);
 		} else {
 			return this.velocityX;
+		}
+	}
+	
+	public void detectWorldCollision(){
+		if(this.isLeftSideCollided()){
+			this.velocityX = Math.max(0, this.velocityX);
+		}
+		if(this.isRightSideCollided()){
+			this.velocityX = Math.min(0, this.velocityX);
+		}
+		if(this.isTopSideCollided()){
+			this.velocityY = Math.max(0, this.velocityY);
+		}
+		if(this.isBottomSideCollided()){
+			this.velocityY = Math.min(0, this.velocityY);
+			this.jumpCount = 0;
+		} else{
+			this.fall();
 		}
 	}
 
