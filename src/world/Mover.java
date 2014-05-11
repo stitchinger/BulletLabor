@@ -42,7 +42,7 @@ public class Mover extends GameObject {
 	
 	}
 
-	//test
+	
 	public void update() {
 		
 		super.update();
