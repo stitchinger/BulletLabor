@@ -32,10 +32,18 @@ public class AnimatedObject {
     	//int posX = Game.getWindowWidth()-100;
     	//int posY = 20;
     	//walkAnimation.draw(posX,posY);
-    	if (Game.player.walkdirection == 1)
+    	if (Game.player.walkdirection == 1){
        	 	this.walkR = this.walkAnimation.getImage(1);
-    	if (Game.player.walkdirection == 2)
+    	}
+    	
+    	if (Game.player.walkdirection == 2){
        	 	this.walkR = this.walkAnimation.getImage(8);
+    	}
+    	
+    	if (Game.player.walkdirection == 0){
+       	 	this.walkR = this.walkAnimation.getImage(3);
+    	}
+    	
     	
     	walkR.draw(posX,posY);
     }

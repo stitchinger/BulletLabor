@@ -54,12 +54,17 @@ public class Player extends Mover{
         	this.moveLeft();
         	this.walkdirection = 1;
         }
+
         
         if(in.isKeyDown(Input.KEY_D)){
             
         	this.moveRight();
         	this.walkdirection = 2;
         }
+        
+        if (!in.isKeyDown(Input.KEY_D) && !in.isKeyDown(Input.KEY_A))
+        	Game.player.walkdirection = 0;
+        
         
         if((in.isKeyPressed(Input.KEY_SPACE)||in.isKeyPressed(Input.KEY_W)) && this.jumpCount < 2){
            
