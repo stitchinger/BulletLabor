@@ -23,7 +23,9 @@ public class Bullet extends GameObject{
         this.bulletDamage = 50;
         angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
        
-        float vecY = (float)Math.cos(angle);
+       
+        
+        float vecY = -(float)Math.cos(angle);
         float vecX = (float)Math.sin(angle);
          
         velocityX = (float) (vecX * speed);

@@ -88,8 +88,8 @@ public class Player extends Mover{
         float vecY= mouseY - (this.posY+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         
-        return (float)Math.atan2(normalizedVector[0], normalizedVector[1]);
-    	
+      
+        return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
     }
     
     public void degreeShot(float degree){
