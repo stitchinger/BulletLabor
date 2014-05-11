@@ -189,9 +189,7 @@ public class Game extends BasicGame {
         g.drawString("Kills: " + killCount           , cam.getX() + 10, cam.getY() + 100);
         g.drawString("Health: "+ (player.getHealth()), cam.getX() + 10, cam.getY() + 120);
         
-        g.drawString("World w: " + gameworld.getWidth(), cam.getX() + 10, cam.getY() + 140);
-        g.drawString("World h: "+ gameworld.getHeight(), cam.getX() + 10, cam.getY() + 160 );
-        
+      
         
         aniOb.render(player.getX()-20, player.getY()-5);
     	
