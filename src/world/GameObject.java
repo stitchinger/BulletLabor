@@ -91,7 +91,7 @@ public class GameObject {
     }
     
     public void die(){
-    	this.posY = 50;
+    	this.posY = 100;
     	this.health = 100;
     	Game.killCount++;
     	

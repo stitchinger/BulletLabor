@@ -13,7 +13,7 @@ public class World {
 	private int height;
 	
 	public World() throws SlickException{
-		tiledMap = new TiledMap("Map/Level2.tmx");
+		tiledMap = new TiledMap("Map/Level3.tmx");
 		this.posX = 0;
 		this.posY = 0;
 		
