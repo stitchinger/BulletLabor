@@ -143,46 +143,13 @@ public class Mover extends GameObject {
 		if(this.isBottomSideCollided()){
 			this.velocityY = Math.min(0, this.velocityY);
 			this.jumpCount = 0;
+			
 		} else{
 			this.fall();
 		}
 	}
 
-	public boolean isBottomSideCollided() {
-		TiledMap tm = Game.gameworld.getTiledMap();
-		int collisionLayer = tm.getLayerIndex("CollisionLayer");
-		int tileSize = tm.getTileHeight();
-    	
-    	int bottomLeftX = (int)((this.posX + 10)/tileSize);
-    	int bottomLeftY = (int)((this.posY+ this.height)/tileSize);
-    	
-    	int bottomRightX = (int)((this.posX + this.width - 10)/tileSize);
-    	int bottomRightY = (int)((this.posY + this.height)/tileSize);
-    			
-    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
-    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
-    		
-    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
-    	
-			return true;
-		} else{
-			
-			return false;
-		}
-		
-		/*float distanceToGround = 500 - (this.posY + this.height);
-		
-		if(distanceToGround <= 0 && this.velocityY >= 0){
-			this.velocityY = 0;
-			this.jumpCount = 0;
-			return true;
-		} else {
-			if(this.velocityY > distanceToGround){
-				this.velocityY = distanceToGround;
-			}
-			return false;
-		}   */
-	}
+	
 
 	public boolean isLeftSideCollided(){
 		TiledMap tm = Game.gameworld.getTiledMap();
@@ -257,6 +224,43 @@ public class Mover extends GameObject {
 			
 			return false;
 		}
+	}
+	
+	public boolean isBottomSideCollided() {
+		TiledMap tm = Game.gameworld.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		int tileSize = tm.getTileHeight();
+    	
+    	int bottomLeftX = (int)((this.posX + 10)/tileSize);
+    	int bottomLeftY = (int)((this.posY+ this.height)/tileSize);
+    	
+    	int bottomRightX = (int)((this.posX + this.width - 10)/tileSize);
+    	int bottomRightY = (int)((this.posY + this.height)/tileSize);
+    			
+    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
+    		
+    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
+    		//this.posY = ((bottomLeftY) * 32) - this.height; // Anpassung der Kollisionsabfrage
+    		
+			return true;
+		} else{
+			
+			return false;
+		}
+		
+		/*float distanceToGround = 500 - (this.posY + this.height);
+		
+		if(distanceToGround <= 0 && this.velocityY >= 0){
+			this.velocityY = 0;
+			this.jumpCount = 0;
+			return true;
+		} else {
+			if(this.velocityY > distanceToGround){
+				this.velocityY = distanceToGround;
+			}
+			return false;
+		}   */
 	}
 	
 	
