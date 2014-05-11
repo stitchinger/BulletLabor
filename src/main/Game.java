@@ -55,7 +55,7 @@ public class Game extends BasicGame {
         Image enemySprite = new Image("Images/Enemies/enemy.png");
         Image tileSprite = new Image("Map/tile.png");
         
-        bulletSprite = new Image("Images/Player/bullet.png");
+        bulletSprite = new Image("Images/Player/bullet2.png");
 
         gameworld = new World();
         cam = new Camera();
