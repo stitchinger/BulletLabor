@@ -55,11 +55,7 @@ public class Enemy extends Mover{
         
     }
     
-    public void render(Graphics g){
-    	g.setColor(Color.white); 
-    	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
-    	super.render(g);
-    }
+   
     
     // Richtung ändern +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public void changeDirection(){

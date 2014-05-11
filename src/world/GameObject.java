@@ -44,6 +44,8 @@ public class GameObject {
         if (Game.showHitbox) {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
+        	g.setColor(Color.white); 
+        	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
         }
     }
     
