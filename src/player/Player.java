@@ -3,13 +3,13 @@ package player;
 import main.Game;
 
 
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import world.Mover;
-
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
@@ -72,11 +72,17 @@ public class Player extends Mover{
         }
         
       
-          if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+        if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
-        		//this.mouseShot();
+        		
         		this.angleShot(this.getMouseAngle());
         	}
+        }
+        if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
+        	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
+         		
+          		this.clusterShot(this.getMouseAngle());
+          	}
         }
     }
     
@@ -95,6 +101,16 @@ public class Player extends Mover{
     	timeOfLastShot = System.currentTimeMillis();
     	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, angle));
     	//this.addForce(normalizedVector[0]*2 * (-1), 0);
+    }
+    
+    public void clusterShot(float angle){
+    	timeOfLastShot = System.currentTimeMillis();
+    	float spreadRange = 0.7f;
+    	for(int i = 0; i < 20; i++){
+    		angle = (float) (angle - 0.5f + Math.random()*0.5f);
+    		
+    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, (float) angle));
+    	}
     }
 
     public void die(){
