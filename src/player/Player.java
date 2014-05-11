@@ -19,6 +19,7 @@ public class Player extends Mover{
 	
 	private long timeOfLastShot; 
 	private float shotsPerMin;
+	public int walkdirection;
 	
    
 	public Player(Image img, int x, int y, int width, int height) throws SlickException {
@@ -51,11 +52,13 @@ public class Player extends Mover{
         if(in.isKeyDown(Input.KEY_A)){
             
         	this.moveLeft();
+        	this.walkdirection = 1;
         }
         
         if(in.isKeyDown(Input.KEY_D)){
             
         	this.moveRight();
+        	this.walkdirection = 2;
         }
         
         if((in.isKeyPressed(Input.KEY_SPACE)||in.isKeyPressed(Input.KEY_W)) && this.jumpCount < 2){

@@ -167,7 +167,7 @@ public class Game extends BasicGame {
 
 	private void renderGameObjects(Graphics g) {
    	  
-       player.render(g);  // Dafür Animated Mario hinzugefügt
+       //player.render(g);  // Dafür Animated Mario hinzugefügt
        
        // Gegner rendern
        for (Enemy enemy : enemy_list) {
