@@ -12,6 +12,7 @@ ToDo:
   - Umwandlung von Vector2 nach Grad
   - Vektoren addieren
   - Vektoren subrahieren
+  - Vektor invertieren
 
 - Kollisionsabfrage mit der Welt optimieren und "durchrutschen" verhindern.
 
