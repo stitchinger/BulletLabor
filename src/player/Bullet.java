@@ -18,8 +18,8 @@ public class Bullet extends GameObject{
     public Bullet(Image sprite, float x, float y, int width, int height, float angle) {
     	super(sprite, x-width/2, y-height/2, width, height);
         
-        this.spreadRange = 0.02f;
-        this.speed = 50;
+        this.spreadRange = 0.07f;
+        this.speed = 44;
         this.bulletDamage = 50;
         angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
        
