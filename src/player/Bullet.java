@@ -7,8 +7,7 @@ import world.Mover;
 
 public class Bullet extends Mover{
     
-    private float velocityX;
-    private float velocityY;
+   
     private float spreadRange;
     private int speed;
     public int bulletDamage;
@@ -22,10 +21,10 @@ public class Bullet extends Mover{
         
     	this.angle = angle;
         this.spreadRange = 0.07f;
-        this.speed = 40;
+        this.speed = 18;
         this.bulletDamage = 15;
-        this.gravity = 0.5f;
-        this.maxFallSpeed = 20;
+        this.gravity = 0.38f;
+        this.maxFallSpeed = 100;
         angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
         this.enemyBullet = playerBullet;
        
@@ -43,11 +42,11 @@ public class Bullet extends Mover{
     
   
     public void update(){
-    	//this.fall();
-        //this.actualMovement(delta);
-    	this.posX += velocityX;
-        this.posY += velocityY;
-        hitbox.setLocation(this.posX, this.posY);
+    	this.fall();
+        this.actualMovement();
+    	//this.posX += velocityX;
+        //this.posY += velocityY;
+        //hitbox.setLocation(this.posX, this.posY);
     }
     
     public void render(Graphics g){

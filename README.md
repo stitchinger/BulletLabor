@@ -20,29 +20,33 @@ ToDo:
 - Kamera Implementierung
 	- ScreenShake
 
+- GUI implementieren
+	- Fadenkreuz das um den Spieler rotiert
+	- Lebensbalken oder Lebensdisc
+	
 - Kollisionsabfrage mit der Welt optimieren und "durchrutschen" verhindern.
 
 - Animationen implementieren
-  - Wohin mit den ganzen Bilddatein?
-  - Auf Events reagieren 
+  	- Wohin mit den ganzen Bilddatein?
+  	- Auf Events reagieren 
 
 - Hintergrund-System implementieren
-  - mehrere Ebenen die sich je nach Distanz unterschiedlich schnell bewegen --> Parallax-Effekt
+  	- mehrere Ebenen die sich je nach Distanz unterschiedlich schnell bewegen --> Parallax-Effekt
 
 - Waffensystem implementieren
-  - Rotation des Bullet-Image an die Schussrichtung anpassen.
-  - mehrere Waffentypen
-  - Waffenwechsel
-  - variables Verhalten
-  - ShotsPerMin der Waffenklasse hinzufügen
-  - 
+  	- Rotation des Bullet-Image an die Schussrichtung anpassen.
+  	- mehrere Waffentypen
+  	- Waffenwechsel
+  	- variables Verhalten
+  	- ShotsPerMin der Waffenklasse hinzufügen
+  	- 
   
 - Soundsystem implementieren
-  - Waffensounds
-  - Explosionen
-  - Animationssounds
-  - Musik
-  - Hintergrundsounds
+  	- Waffensounds
+  	- Explosionen
+  	- Animationssounds
+  	- Musik
+  	- Hintergrundsounds
 
  - Feinde
  	- Gegner, die nicht mit der Welt koordinieren
