@@ -81,7 +81,6 @@ public class Camera {
 		}else if(this.getX() + this.viewportWidth > Game.gameworld.getWidth()){
 			this.posX = (Game.gameworld.getWidth() - this.viewportWidth) * -1;
 		}
-		
 		if(this.getY() < 0){
 			this.posY = 0;
 		}else if(this.getY() + this.viewportHeight > Game.gameworld.getHeight()){
