@@ -14,12 +14,13 @@ import world.World;
 public class Game extends BasicGame {
 
     // Fenster Einstellungen  +++++++++++++
+	static String title = "Shoot'em Up";
 	static int width = 1200;
     static int height = 800;
     static boolean fullscreen = false;
     static boolean showFPS = true;
-    static String title = "Shoot'em Up";
     static int fpslimit = 60;
+    
     public static final boolean debugModus = false;
     
     // Input Instanz ++++++++++++++++++++
@@ -28,8 +29,10 @@ public class Game extends BasicGame {
     // Game Objekte ++++++++++++++++++++++
     public static World gameworld;
     public static Camera cam;
+    public static Gui gui;
+    
+    // Entitis
     public static Player player;
-    //public static AnimatedObject aniOb;
     public static List<GameObject> tile_list = new LinkedList<GameObject>();
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
@@ -48,15 +51,16 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
+        // Bilder initialisieren
         Image playerSprite = new Image("Images/Player/player.png");
         Image enemySprite = new Image("Images/Enemies/enemy.png");
         Image heartSprite = new Image("Images/Powerups/heart.png");
-        
         bulletSprite = new Image("Images/Player/bullet2.png");
 
         gameworld = new World();
         cam = new Camera();
-       // aniOb = new AnimatedObject();
+        gui = new Gui();
+     
         player = new Player(playerSprite, 400, 100, 32, 60);
        
         for (int i = 0; i < 5; i += 1) {
@@ -133,6 +137,7 @@ public class Game extends BasicGame {
        
         //aniOb.update(delta);
         cam.update(in);
+        gui.update();
 
         
     }
@@ -142,7 +147,7 @@ public class Game extends BasicGame {
     	renderBackground(g);
     	renderWorld(g);
     	renderGameObjects(g);
-        renderGui(g);
+        gui.render(g);
        
     }
 
@@ -197,20 +202,6 @@ public class Game extends BasicGame {
 		
 	}
     
-    public void renderGui(Graphics g){
-    	  
-        g.setColor(Color.white);
-        g.drawString("Velocity X: " + player.getVelocityX(), cam.getX() + 10, cam.getY() + 50);
-        g.drawString("Velocity Y: " + player.getVelocityY(), cam.getX() + 10, cam.getY() + 70);
-       // g.drawString("Type: " + player.type, 10, 70);
-      
-        g.drawString("Kills: " + killCount           , cam.getX() + 10, cam.getY() + 100);
-        g.drawString("Health: "+ (player.getHealth()), cam.getX() + 10, cam.getY() + 120);
-        
-        g.drawString("MouseDirectionAngle: "+ (player.getMouseAngle()), cam.getX() + 10, cam.getY() + 150);
-        
-       // aniOb.render(player.getX()-20, player.getY()-5);
-    	
-    }
+   
 
 }

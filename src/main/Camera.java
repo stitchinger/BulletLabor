@@ -11,8 +11,8 @@ public class Camera {
 	private float posY;
 	private float velocityX;
 	private float velocityY;
-	private float viewportWidth;
-	private float viewportHeight;
+	private int viewportWidth;
+	private int viewportHeight;
 	private boolean followMode;
 	private boolean smoothFollowMode;
 	private float inertia;
@@ -132,6 +132,15 @@ public class Camera {
 	public void toggleSmoothFollowMode(){
 		this.smoothFollowMode = !this.smoothFollowMode;
 	}
+	
+	public int getViewportWidth(){
+		return this.viewportWidth;
+	}
+	
+	public int getViewportHeight(){
+		return this.viewportHeight;
+	}
+	
 	
 	
 	
