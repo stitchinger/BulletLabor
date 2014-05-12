@@ -5,6 +5,7 @@ import main.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -18,6 +19,7 @@ public class GameObject {
     protected int width;
     protected int height;
     protected int health;
+    protected int maxHealth;
     protected Shape hitbox;
     protected long timeOfLastHit;
     protected int flashTimeInMillis;
@@ -32,9 +34,10 @@ public class GameObject {
         this.height = height;
         this.hitbox = new Rectangle(x,y,width, height);
         this.flashTimeInMillis = 150;
+        this.maxHealth = 100;
     }
     
-    public void update(int delta){
+    public void update(int delta) throws SlickException{
     	if (this.health <= 0){
         	this.die();
 		}
@@ -95,6 +98,13 @@ public class GameObject {
     	this.health = 100;
     	Game.killCount++;
     	
+    }
+    
+    public void addHealth(int hp){
+    	this.health += hp; 
+    	if(this.health > this.maxHealth){
+    		this.health = this.maxHealth;
+    	}
     }
     
     

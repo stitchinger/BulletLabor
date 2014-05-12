@@ -15,6 +15,7 @@ public class Camera {
 	private float viewportHeight;
 	private boolean freeMode;
 	private float inertia;
+	private boolean isShaking;
 	
 	private Mover target;
 	
@@ -39,6 +40,9 @@ public class Camera {
 		}else{
 			
 		}
+		if(isShaking){
+			this.cameraShake();
+		}
 		
 		
 		
@@ -62,7 +66,7 @@ public class Camera {
 	}
 	
 	private void avoidLeavingWorld(){
-		  if(this.getX() < 0){
+		 if(this.getX() < 0){
 			this.posX = 0;
 		}else if(this.getX() + this.viewportWidth > Game.gameworld.getWidth()){
 			this.posX = (Game.gameworld.getWidth() - this.viewportWidth) * -1;
@@ -112,6 +116,16 @@ public class Camera {
 			this.freeMode = false;
 		} else{
 			this.freeMode = true;
+		}
+	}
+	
+	
+	public void cameraShake(){
+		int range = 20;
+		float accelaration = 0.4f;
+		this.velocityY += accelaration;
+		if(velocityY >= range){
+			this.velocityY -= accelaration;
 		}
 	}
 	

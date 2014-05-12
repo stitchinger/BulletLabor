@@ -2,11 +2,13 @@ package player;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import world.GameObject;
+import world.Mover;
 
 
-public class Bullet extends GameObject{
+public class Bullet extends Mover{
     
     private float velocityX;
     private float velocityY;
@@ -14,17 +16,21 @@ public class Bullet extends GameObject{
     private int speed;
     public int bulletDamage;
     public float angle;
+    public boolean enemyBullet;
     
     
     // 1. Konstruktor 
-    public Bullet(Image sprite, float x, float y, int width, int height, float angle) {
-    	super(sprite, x-width/2, y-height/2, width, height);
+    public Bullet(Image sprite, float x, float y, int width, int height, float angle, boolean playerBullet) throws SlickException {
+    	super(sprite, (int)(x-width/2), (int)(y-height/2), width, height);
         
     	this.angle = angle;
         this.spreadRange = 0.07f;
-        this.speed = 35;
+        this.speed = 40;
         this.bulletDamage = 15;
+        this.gravity = 0.5f;
+        this.maxFallSpeed = 20;
         angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
+        this.enemyBullet = playerBullet;
        
        
         
@@ -40,8 +46,9 @@ public class Bullet extends GameObject{
     
   
     public void update(int delta){
-    	
-        this.posX += velocityX * delta/15;
+    	//this.fall();
+        //this.actualMovement(delta);
+    	this.posX += velocityX * delta/15;
         this.posY += velocityY * delta/15;
         hitbox.setLocation(this.posX, this.posY);
     }

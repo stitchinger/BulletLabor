@@ -26,32 +26,10 @@ public class Enemy extends Mover{
     }
     
     // Update Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public void update(int delta){
-        if(direction == "right"){
-        	
-        	this.moveRight();
-        }
-        if(direction == "left"){
-        	
-        	this.moveLeft();
-        }
-        
-        if(Math.random() < 0.005f){
-        	
-        	//this.changeDirection();
-        	if (Game.player.getX() < this.getX())
-        		this.moveLeft();
-        	else
-        		this.moveRight();
-        }
+    public void update(int delta) throws SlickException{
        
-        if(Math.random() < 0.02f && this.isBottomSideCollided()){
-        	
-        	this.jump();
-        }
         
-        
-       
+       this.behavior();
        
         
         super.update(delta);
@@ -72,5 +50,32 @@ public class Enemy extends Mover{
     	} else{
     		direction = "right";
     	}
+    }
+    
+    public void behavior() throws SlickException{
+    	 if(direction == "right"){
+         	
+         	this.moveRight();
+         }
+         if(direction == "left"){
+         	
+         	this.moveLeft();
+         }
+         
+         if(Math.random() < 0.005f){
+         	this.angleShot(this.getTargetAngle((int)Game.player.getX()+ 16, (int)Game.player.getY()+32), true);
+         	
+         	//this.changeDirection();
+         	if (Game.player.getX() < this.getX())
+         		this.moveLeft();
+         	else
+         		this.moveRight();
+         }
+        
+         if(Math.random() < 0.02f && this.isBottomSideCollided()){
+         	
+         	this.jump();
+         }
+         
     }
 }

@@ -1,13 +1,18 @@
 package world;
 
+import static main.Game.bulletSprite;
+import static main.Game.bullet_list;
 import main.Game;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
+
+import player.Bullet;
 
 
 public class Mover extends GameObject {
@@ -23,6 +28,7 @@ public class Mover extends GameObject {
 	protected float gravity;
 	protected int jumpCount;
 	protected float friction;
+	public long timeOfLastShot; 
 
 	// Zustände
 	protected String direction;
@@ -46,7 +52,7 @@ public class Mover extends GameObject {
 	}
 
 	
-	public void update(int delta) {
+	public void update(int delta) throws SlickException {
 		
 		super.update(delta);
 		
@@ -119,6 +125,32 @@ public class Mover extends GameObject {
 	public float getVelocityY() {
 		return this.velocityY;
 	}
+	
+	public float getTargetAngle(int x, int y){
+    	float mouseX = x;
+        float mouseY = y;
+        float vecX = x - (this.posX+this.width/2);
+        float vecY= y - (this.posY+this.height/2);
+        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
+        
+      
+        return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
+    }
+	
+	 private float[] getNormalizedVector2(float vecX, float vecY){
+	    	
+	    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
+	        float[] vector2 = new float[2];
+	    	vector2[0] = (float)(vecX / hypo);
+	        vector2[1] = (float)(vecY / hypo);
+	        return vector2;
+	    }
+	 public void angleShot(float angle, boolean playerBullet) throws SlickException{
+	    	timeOfLastShot = System.currentTimeMillis();
+	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, angle, playerBullet));
+	    
+	    	//this.addForce(normalizedVector[0] * (-2), normalizedVector[1]*(-2));
+	    }
 
 	private float getLimitedVelocityX() {
 		if (this.velocityX >= this.maxWalkSpeed) {

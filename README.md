@@ -14,6 +14,12 @@ ToDo:
   - Vektoren subrahieren
   - Vektor invertieren
 
+- Charakter Steuerung
+	- Mid-Air-control verbessern
+	
+- Kamera Implementierung
+	- ScreenShake
+
 - Kollisionsabfrage mit der Welt optimieren und "durchrutschen" verhindern.
 
 - Animationen implementieren
@@ -28,6 +34,8 @@ ToDo:
   - mehrere Waffentypen
   - Waffenwechsel
   - variables Verhalten
+  - ShotsPerMin der Waffenklasse hinzufügen
+  - 
   
 - Soundsystem implementieren
   - Waffensounds
@@ -35,3 +43,16 @@ ToDo:
   - Animationssounds
   - Musik
   - Hintergrundsounds
+
+ - Feinde
+ 	- Gegner, die nicht mit der Welt koordinieren
+ 	- kleine Slimes -- laufen und springen random rum
+ 	- Stationärer Schütze	-- steht und schießt auf Player
+ 	- große langsame Gegner -- Wechselns Richtung bei Kollision
+ 	- Kamikaze gegner -- sehen Gegner und laufen auf einen zu
+ 	
+ - Stationäre Objekte die Schaden zufügen
+ 	- Tropfende Säure
+ 	- Fallloch
+ 	- Katapult
+ 	- Riesige Kreissäge
