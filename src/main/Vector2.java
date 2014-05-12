@@ -14,30 +14,41 @@ public class Vector2 {
 		this.x = y;
 	}
 	
-	public float[] getNormalizedVector2(float vecX, float vecY){
-    	
-    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
-        float[] vector2 = new float[2];
-    	vector2[0] = (float)(vecX / hypo);
-        vector2[1] = (float)(vecY / hypo);
-        return vector2;
-    }
-	
-	public Vector2 getNormalizedVector(Vector2 oriV){
-		float vx = oriV.getX();
-		float vy = oriV.getY();
-		
-		float length = (float) Math.sqrt((x * x) + (y * y));
-		vx = (float)(vx / length);
-        vy = (float)(vy / length);
-		
-        return new Vector2(vx, vy);
-	}
-	
-	public float getX(){
+	public float x(){
 		return this.x;
 	}
-	public float getY(){
+	
+	public float y(){
 		return this.y;
 	}
+
+	public void add(Vector2 v){
+		this.x += v.x;
+		this.y += v.y;
+	}
+	
+	public void subtract(Vector2 v){
+		this.x -= v.x;
+		this.y -= v.y;
+	}
+	
+	public Vector2 normalized(){
+		float length = (float) Math.sqrt((this.x * this.x) + (this.y * this.y));
+		float nx = (float)(x / length);
+        float ny = (float)(y / length);
+		
+        return new Vector2(nx, ny);
+	}
+	
+	public Vector2 inverted(){
+		
+		return new Vector2(this.x * -1, this.y * -1);
+	}
+	
+	public String toString(){
+		return "Vector2 --> x: " + this.x + ", y: " + this.y; 
+	}
+
+	
 }
+
