@@ -18,6 +18,7 @@ public class Mover extends GameObject {
 	// Instanzvariablen
 	protected float velocityX;
 	protected float velocityY;
+	
 	protected float maxWalkSpeed;
 	protected float maxFallSpeed;
 	protected float acceleration;

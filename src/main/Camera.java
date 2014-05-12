@@ -16,6 +16,7 @@ public class Camera {
 	private boolean followMode;
 	private boolean smoothFollowMode;
 	private float inertia;
+	
 
 	
 	
@@ -57,8 +58,9 @@ public class Camera {
 	}
 	
 	public void render(Graphics g){
-		
+	
 		g.translate(posX, posY);
+	
 	}
 	
 	public void follow(Mover target){
