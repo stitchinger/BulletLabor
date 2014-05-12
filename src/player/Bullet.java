@@ -39,10 +39,10 @@ public class Bullet extends GameObject{
     }
     
   
-    public void update(){
+    public void update(int delta){
     	
-        this.posX += velocityX;
-        this.posY += velocityY;
+        this.posX += velocityX * delta/15;
+        this.posY += velocityY * delta/15;
         hitbox.setLocation(this.posX, this.posY);
     }
     

@@ -26,7 +26,7 @@ public class Enemy extends Mover{
     }
     
     // Update Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public void update(){
+    public void update(int delta){
         if(direction == "right"){
         	
         	this.moveRight();
@@ -54,7 +54,7 @@ public class Enemy extends Mover{
        
        
         
-        super.update();
+        super.update(delta);
        
         
     }

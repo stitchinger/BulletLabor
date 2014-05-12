@@ -82,10 +82,10 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
     	
     	gameworld.update();
-        player.update(in);
+        player.update(delta, in);
        
         for (Enemy enemy : enemy_list) {
-            enemy.update();
+            enemy.update(delta);
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
     			
@@ -97,7 +97,7 @@ public class Game extends BasicGame {
        
        
         for (Bullet bullet : bullet_list) {
-        	bullet.update();
+        	bullet.update(delta);
         	
         	for(Enemy enemy : enemy_list){
         		

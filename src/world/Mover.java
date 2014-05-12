@@ -46,13 +46,13 @@ public class Mover extends GameObject {
 	}
 
 	
-	public void update() {
+	public void update(int delta) {
 		
-		super.update();
+		super.update(delta);
 		
 		this.velocityX = getLimitedVelocityX();
 		this.detectWorldCollision();
-		this.actualMovement();
+		this.actualMovement(delta);
 		this.applyFriction();
 			
 	}
@@ -62,9 +62,9 @@ public class Mover extends GameObject {
 		super.render(g);
 	}
 	
-	public void actualMovement(){
-		this.posX += this.velocityX;   	 	 
-		this.posY += this.velocityY; 	
+	public void actualMovement(int delta){
+		this.posX += this.velocityX * delta/15;   	 	 
+		this.posY += this.velocityY * delta/15; 	
 		hitbox.setLocation(this.posX, this.posY); 
 
 	}

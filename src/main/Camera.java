@@ -25,7 +25,7 @@ public class Camera {
 		this.posX = 0;
 		this.posY = 0;
 		this.freeMode = false;
-		this.inertia = 0.1f;
+		this.inertia = 0.07f;
 	}
 	
 	public void update(Input in){
@@ -52,6 +52,8 @@ public class Camera {
 	public void followTarget(){
 		float targetX = Game.player.getX() * (-1) +  this.viewportWidth/2;
 		float targetY = Game.player.getY() * (-1) +  this.viewportHeight/2;
+		targetX += Game.player.getVelocityX() *(-25);
+		targetY += Game.player.getVelocityY() *(0);
 		float distanceX = targetX - this.posX;
 		float distanceY = targetY - this.posY;
 		this.posX += distanceX * this.inertia;

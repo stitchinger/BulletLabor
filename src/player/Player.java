@@ -38,11 +38,11 @@ public class Player extends Mover{
     }
 
   
-    public void update(Input in){
+    public void update(int delta, Input in){
     	 
     	playerControl(in);
     	
-    	super.update();
+    	super.update(delta);
     	
     }
     

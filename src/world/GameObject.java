@@ -34,7 +34,7 @@ public class GameObject {
         this.flashTimeInMillis = 150;
     }
     
-    public void update(){
+    public void update(int delta){
     	if (this.health <= 0){
         	this.die();
 		}
