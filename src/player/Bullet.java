@@ -50,7 +50,7 @@ public class Bullet extends Mover{
     }
     
     public void render(Graphics g){
-    	this.getImage().setRotation(angle*120); 
+    	this.getImage().setRotation(angle*60); 
     	super.render(g);
     }
     

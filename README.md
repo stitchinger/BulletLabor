@@ -34,7 +34,7 @@ ToDo:
   	- mehrere Ebenen die sich je nach Distanz unterschiedlich schnell bewegen --> Parallax-Effekt
 
 - Waffensystem implementieren
-  	- Rotation des Bullet-Image an die Schussrichtung anpassen.
+  	- Rotation des Bullet-Image an die aktuelle Flugbahn anpassen.
   	- mehrere Waffentypen
   	- Waffenwechsel
   	- variables Verhalten
