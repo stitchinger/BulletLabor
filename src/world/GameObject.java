@@ -5,7 +5,6 @@ import main.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -37,7 +36,7 @@ public class GameObject {
         this.maxHealth = 100;
     }
     
-    public void update(int delta) throws SlickException{
+    public void update(){
     	if (this.health <= 0){
         	this.die();
 		}
@@ -107,9 +106,4 @@ public class GameObject {
     	}
     }
     
-    
-    
-  
-     
-     
 }

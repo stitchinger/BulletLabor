@@ -22,7 +22,7 @@ public class Player extends Mover{
 	
 	
    
-	public Player(Image img, int x, int y, int width, int height) throws SlickException {
+	public Player(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
         // dieses sind speziell für den Player gesetzte Variablen
@@ -37,11 +37,11 @@ public class Player extends Mover{
     }
 
   
-    public void update(int delta, Input in) throws SlickException{
+    public void update(Input in) throws SlickException{
     	 
     	playerControl(in);
     	
-    	super.update(delta);
+    	super.update();
     	
     }
     
@@ -105,9 +105,9 @@ public class Player extends Mover{
     }
     */
     
-    public void clusterShot(float angle, boolean enemyBullet) throws SlickException{
+    public void clusterShot(float angle, boolean enemyBullet){
     	timeOfLastShot = System.currentTimeMillis();
-    	float spreadRange = 0.7f;
+    	
     	for(int i = 0; i < 20; i++){
     		angle = (float) (angle - 0.5f + Math.random()*0.5f);
     		

@@ -2,17 +2,10 @@ package main;
 
 import java.util.LinkedList;
 import java.util.List;
-
-
-
-
-
 import org.newdawn.slick.*;
-
 import enemy.Enemy;
 import player.Bullet;
 import player.Player;
-import world.AnimatedObject;
 import world.GameObject;
 import world.Powerup;
 import world.World;
@@ -36,7 +29,7 @@ public class Game extends BasicGame {
     public static World gameworld;
     public static Camera cam;
     public static Player player;
-    public static AnimatedObject aniOb;
+    //public static AnimatedObject aniOb;
     public static List<GameObject> tile_list = new LinkedList<GameObject>();
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
@@ -57,14 +50,13 @@ public class Game extends BasicGame {
        
         Image playerSprite = new Image("Images/Player/player.png");
         Image enemySprite = new Image("Images/Enemies/enemy.png");
-        Image tileSprite = new Image("Map/tile.png");
         Image heartSprite = new Image("Images/Powerups/heart.png");
         
         bulletSprite = new Image("Images/Player/bullet2.png");
 
         gameworld = new World();
         cam = new Camera();
-        aniOb = new AnimatedObject();
+       // aniOb = new AnimatedObject();
         player = new Player(playerSprite, 400, 100, 32, 60);
        
         for (int i = 0; i < 5; i += 1) {
@@ -92,10 +84,10 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
     	
     	gameworld.update();
-        player.update(delta, in);
+        player.update(in);
        
         for (Enemy enemy : enemy_list) {
-            enemy.update(delta);
+            enemy.update();
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
     			
@@ -114,10 +106,10 @@ public class Game extends BasicGame {
             }
         }
         
-        List<Integer> removable_bullets = new LinkedList<Integer>();
+       
        
         for (Bullet bullet : bullet_list) {
-        	bullet.update(delta);
+        	bullet.update();
         	
         	for(Enemy enemy : enemy_list){
         		
@@ -139,7 +131,7 @@ public class Game extends BasicGame {
         }
 
        
-        aniOb.update(delta);
+        //aniOb.update(delta);
         cam.update(in);
 
         
@@ -217,7 +209,7 @@ public class Game extends BasicGame {
         
         g.drawString("MouseDirectionAngle: "+ (player.getMouseAngle()), cam.getX() + 10, cam.getY() + 150);
         
-        aniOb.render(player.getX()-20, player.getY()-5);
+       // aniOb.render(player.getX()-20, player.getY()-5);
     	
     }
 

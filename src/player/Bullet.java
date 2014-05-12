@@ -2,9 +2,6 @@ package player;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-
-import world.GameObject;
 import world.Mover;
 
 
@@ -20,7 +17,7 @@ public class Bullet extends Mover{
     
     
     // 1. Konstruktor 
-    public Bullet(Image sprite, float x, float y, int width, int height, float angle, boolean playerBullet) throws SlickException {
+    public Bullet(Image sprite, float x, float y, int width, int height, float angle, boolean playerBullet){
     	super(sprite, (int)(x-width/2), (int)(y-height/2), width, height);
         
     	this.angle = angle;
@@ -45,11 +42,11 @@ public class Bullet extends Mover{
     }
     
   
-    public void update(int delta){
+    public void update(){
     	//this.fall();
         //this.actualMovement(delta);
-    	this.posX += velocityX * delta/15;
-        this.posY += velocityY * delta/15;
+    	this.posX += velocityX;
+        this.posY += velocityY;
         hitbox.setLocation(this.posX, this.posY);
     }
     
@@ -65,11 +62,6 @@ public class Bullet extends Mover{
     public float getVelocityY() {
 		return this.velocityY;
 	}
-    
-    private float getSpreading(){
-    	
-    	return (float) ((Math.random() * this.spreadRange )- (this.spreadRange/2));
-    }
     
     public int getDamage(){
     	return this.bulletDamage;

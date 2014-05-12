@@ -13,38 +13,46 @@ public class Camera {
 	private float velocityY;
 	private float viewportWidth;
 	private float viewportHeight;
-	private boolean freeMode;
+	private boolean followMode;
+	private boolean smoothFollowMode;
 	private float inertia;
-	private boolean isShaking;
+
 	
-	private Mover target;
+	
 	
 	public Camera(){
-		this.target = Game.player;
+		
 		this.viewportWidth = Game.getWindowWidth();
 		this.viewportHeight = Game.getWindowHeight();
 		this.posX = 0;
 		this.posY = 0;
-		this.freeMode = false;
+		this.followMode = true;
+		this.smoothFollowMode = true;
 		this.inertia = 0.07f;
 	}
 	
 	public void update(Input in){
-		 if(in.isKeyPressed(Input.KEY_F)){
-             
-	         	this.toggleLockPosition();
-	         }
-		if(!freeMode){
-			this.followTarget();
-			this.avoidLeavingWorld();
-		}else{
+		 if(in.isKeyPressed(Input.KEY_1)){
+             this.toggleFollowMode();
+		 }
+		 if(in.isKeyPressed(Input.KEY_2)){
+             this.toggleSmoothFollowMode();
+		 }
+		
+		 
+		 
+		 if(this.followMode){
+			this.follow(Game.player);
+		 }
+		
+		 if(this.smoothFollowMode){
+			 this.smoothMovement();
+		 }
+		 
+		
+		 this.actualMovement();
+		 this.avoidLeavingWorld();
 			
-		}
-		if(isShaking){
-			this.cameraShake();
-		}
-		
-		
 		
 	}
 	
@@ -53,20 +61,27 @@ public class Camera {
 		g.translate(posX, posY);
 	}
 	
-	public void followTarget(){
-		float targetX = Game.player.getX() * (-1) +  this.viewportWidth/2;
-		float targetY = Game.player.getY() * (-1) +  this.viewportHeight/2;
-		targetX += Game.player.getVelocityX() *(-25);
-		targetY += Game.player.getVelocityY() *(0);
-		float distanceX = targetX - this.posX;
-		float distanceY = targetY - this.posY;
-		this.posX += distanceX * this.inertia;
-		this.posY += distanceY * this.inertia;
+	
+	public void follow(Mover target){
+		float targetX = target.getX() * (-1) +  this.viewportWidth/2;
+		float targetY = target.getY() * (-1) +  this.viewportHeight/2;
+		this.velocityX = targetX - this.posX;
+		this.velocityY = targetY - this.posY;
+		
 		
 	}
 	
+	
+	public void smoothMovement(){
+		this.velocityX *= this.inertia;
+		this.velocityY *= this.inertia;
+	}
+	
+	
+	
+	
 	private void avoidLeavingWorld(){
-		 if(this.getX() < 0){
+		if(this.getX() < 0){
 			this.posX = 0;
 		}else if(this.getX() + this.viewportWidth > Game.gameworld.getWidth()){
 			this.posX = (Game.gameworld.getWidth() - this.viewportWidth) * -1;
@@ -78,6 +93,11 @@ public class Camera {
 			this.posY = (Game.gameworld.getHeight() - this.viewportHeight) * -1; 
 		}
 		
+	}
+	
+	public void actualMovement(){
+		this.posX += velocityX;
+		this.posY += velocityY;
 	}
 	
 	public float getX(){
@@ -101,33 +121,28 @@ public class Camera {
 		}
 	}
 	
+	
 	public float translateX(float x){
 		
 		return x - this.posX; 
 	}
+	
 	
 	public float translateY(float y){
 		
 		return y - this.posY; 
 	}
 	
-	public void toggleLockPosition(){
-		if(this.freeMode){
-			this.freeMode = false;
-		} else{
-			this.freeMode = true;
-		}
+	
+	public void toggleFollowMode(){
+		this.followMode = !this.followMode;
+	}
+	
+	public void toggleSmoothFollowMode(){
+		this.smoothFollowMode = !this.smoothFollowMode;
 	}
 	
 	
-	public void cameraShake(){
-		int range = 20;
-		float accelaration = 0.4f;
-		this.velocityY += accelaration;
-		if(velocityY >= range){
-			this.velocityY -= accelaration;
-		}
-	}
 	
 	
 }

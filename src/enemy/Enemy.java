@@ -1,19 +1,14 @@
 package enemy;
 
 import main.Game;
-
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-
 import world.Mover;
 
 
 public class Enemy extends Mover{
 
 	// Konstruktor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public Enemy(Image img, int x, int y, int width, int height) throws SlickException {
+    public Enemy(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height);
         
         this.direction = "right";
@@ -26,13 +21,13 @@ public class Enemy extends Mover{
     }
     
     // Update Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public void update(int delta) throws SlickException{
+    public void update(){
        
         
        this.behavior();
        
         
-        super.update(delta);
+        super.update();
        
         
     }
@@ -52,7 +47,7 @@ public class Enemy extends Mover{
     	}
     }
     
-    public void behavior() throws SlickException{
+    public void behavior(){
     	 if(direction == "right"){
          	
          	this.moveRight();
@@ -63,7 +58,7 @@ public class Enemy extends Mover{
          }
          
          if(Math.random() < 0.005f){
-         	this.angleShot(this.getTargetAngle((int)Game.player.getX()+ 16, (int)Game.player.getY()+32), true);
+         	//this.angleShot(this.getTargetAngle((int)Game.player.getX()+ 16, (int)Game.player.getY()+32), true);
          	
          	//this.changeDirection();
          	if (Game.player.getX() < this.getX())

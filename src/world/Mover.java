@@ -3,15 +3,12 @@ package world;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 import main.Game;
-
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
-
 import player.Bullet;
 
 
@@ -40,7 +37,7 @@ public class Mover extends GameObject {
 	
 
 	
-	public Mover(Image img, int x, int y, int width, int height) throws SlickException {
+	public Mover(Image img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
@@ -52,13 +49,13 @@ public class Mover extends GameObject {
 	}
 
 	
-	public void update(int delta) throws SlickException {
+	public void update() {
 		
-		super.update(delta);
+		super.update();
 		
 		this.velocityX = getLimitedVelocityX();
 		this.detectWorldCollision();
-		this.actualMovement(delta);
+		this.actualMovement();
 		this.applyFriction();
 			
 	}
@@ -68,9 +65,9 @@ public class Mover extends GameObject {
 		super.render(g);
 	}
 	
-	public void actualMovement(int delta){
-		this.posX += this.velocityX * delta/15;   	 	 
-		this.posY += this.velocityY * delta/15; 	
+	public void actualMovement(){
+		this.posX += this.velocityX;   	 	 
+		this.posY += this.velocityY; 	
 		hitbox.setLocation(this.posX, this.posY); 
 
 	}
@@ -127,8 +124,7 @@ public class Mover extends GameObject {
 	}
 	
 	public float getTargetAngle(int x, int y){
-    	float mouseX = x;
-        float mouseY = y;
+    	
         float vecX = x - (this.posX+this.width/2);
         float vecY= y - (this.posY+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
@@ -137,7 +133,7 @@ public class Mover extends GameObject {
         return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
     }
 	
-	 private float[] getNormalizedVector2(float vecX, float vecY){
+	private float[] getNormalizedVector2(float vecX, float vecY){
 	    	
 	    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
 	        float[] vector2 = new float[2];
@@ -145,7 +141,8 @@ public class Mover extends GameObject {
 	        vector2[1] = (float)(vecY / hypo);
 	        return vector2;
 	    }
-	 public void angleShot(float angle, boolean playerBullet) throws SlickException{
+	 
+	public void angleShot(float angle, boolean playerBullet) throws SlickException{
 	    	timeOfLastShot = System.currentTimeMillis();
 	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, angle, playerBullet));
 	    
@@ -180,8 +177,6 @@ public class Mover extends GameObject {
 			this.fall();
 		}
 	}
-
-	
 
 	public boolean isLeftSideCollided(){
 		TiledMap tm = Game.gameworld.getTiledMap();

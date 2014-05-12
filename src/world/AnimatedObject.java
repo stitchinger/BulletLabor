@@ -17,7 +17,7 @@ public class AnimatedObject {
     public AnimatedObject() throws SlickException{
     	
     	 this.charakterSpritesheet = new SpriteSheet("Images/Player/mario.png", 78, 80);
-         this.walkAnimation = new Animation(charakterSpritesheet,300);
+       
          this.walkR = this.walkAnimation.getImage(3);
          
          this.idleLeft = new Animation(charakterSpritesheet,4,0,4,0,true,300,false);
@@ -44,7 +44,7 @@ public class AnimatedObject {
     	//int posX = Game.getWindowWidth()-100;
     	//int posY = 20;
     	//walkAnimation.draw(posX,posY);
-    	if (Game.player.walkdirection == 1){
+    	/*if (Game.player.walkdirection == 1){
        	 	this.walkR = this.walkAnimation.getImage(1);
     	}
     	
@@ -54,18 +54,18 @@ public class AnimatedObject {
     	
     	if (Game.player.walkdirection == 0){
        	 	this.walkR = this.walkAnimation.getImage(3);
-    	}
+    	}*/
     	
-    	if(Game.player.velocityX > 0){
+    	/*if(Game.player.velocityX > 0){
     		goRight.draw(posX,posY);
     	}else if(Game.player.velocityX < 0){
     		goLeft.draw(posX,posY);
     	}else{
     		idleLeft.draw(posX,posY);
-    	}
+    	}*/
     	
     	
-    	//walkR.draw(posX,posY);
+    	
     	
     
     }
