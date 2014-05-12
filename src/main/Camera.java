@@ -4,7 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import world.Mover;
-import world.World;
+
 
 public class Camera {
 	private float posX;
@@ -61,24 +61,19 @@ public class Camera {
 		g.translate(posX, posY);
 	}
 	
-	
 	public void follow(Mover target){
-		float targetX = target.getX() * (-1) +  this.viewportWidth/2;
-		float targetY = target.getY() * (-1) +  this.viewportHeight/2;
+		float targetX = (target.getX() + target.getWidth()/2) * (-1) +   this.viewportWidth/2;
+		float targetY = (target.getY() + target.getHeight()/2) * (-1) +  this.viewportHeight/2;
 		this.velocityX = targetX - this.posX;
 		this.velocityY = targetY - this.posY;
 		
 		
 	}
 	
-	
 	public void smoothMovement(){
 		this.velocityX *= this.inertia;
 		this.velocityY *= this.inertia;
 	}
-	
-	
-	
 	
 	private void avoidLeavingWorld(){
 		if(this.getX() < 0){
@@ -121,18 +116,15 @@ public class Camera {
 		}
 	}
 	
-	
 	public float translateX(float x){
 		
 		return x - this.posX; 
 	}
 	
-	
 	public float translateY(float y){
 		
 		return y - this.posY; 
 	}
-	
 	
 	public void toggleFollowMode(){
 		this.followMode = !this.followMode;

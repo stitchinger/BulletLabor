@@ -1,6 +1,7 @@
 package world;
 
 import main.Game;
+import main.Vector2;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -72,6 +73,14 @@ public class GameObject {
     
     public float getY(){
         return this.posY;
+    }
+    
+    public int getWidth(){
+    	return this.width;
+    }
+    
+    public int getHeight(){
+    	return this.height;
     }
     
     public int getHealth(){
