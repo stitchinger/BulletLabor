@@ -25,7 +25,7 @@ public class Player extends MovedObject{
         // dieses sind speziell für den Player gesetzte Variablen
         this.direction = "right";  	// Blickrichtung
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
-        this.acceleration = 0.1f;  	// Beschleunigung beim Laufen
+        this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
        	// die shotsPerMin Variable sollten wir früher oder später von hier entfernen und die Bullet/Waffen verschieben
         this.shotsPerMin = 550;		// Feuerrate 

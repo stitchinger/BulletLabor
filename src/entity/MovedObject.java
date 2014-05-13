@@ -277,7 +277,7 @@ public class MovedObject extends GameObject {
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
     		
     	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
-    		//this.posY = ((bottomLeftY) * 32) - this.height; // Anpassung der Kollisionsabfrage
+    		
     		
 			return true;
 		} else{
@@ -285,18 +285,7 @@ public class MovedObject extends GameObject {
 			return false;
 		}
 		
-		/*float distanceToGround = 500 - (this.posY + this.height);
 		
-		if(distanceToGround <= 0 && this.velocityY >= 0){
-			this.velocityY = 0;
-			this.jumpCount = 0;
-			return true;
-		} else {
-			if(this.velocityY > distanceToGround){
-				this.velocityY = distanceToGround;
-			}
-			return false;
-		}   */
 	}
 	
 	

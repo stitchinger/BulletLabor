@@ -8,12 +8,14 @@ import entity.MovedObject;
 
 public class Bullet extends MovedObject{
     
-   
+	private boolean isAlive = true;
     private float spreadRange;
     private int speed;
+    private float bouncyness = 0.0f;
     public int bulletDamage;
     public float angle;
     public boolean enemyBullet;
+    
     
     
     // 1. Konstruktor 
@@ -22,7 +24,7 @@ public class Bullet extends MovedObject{
         
     	this.angle = angle;
         this.spreadRange = 0.07f;
-        this.speed = 18;
+        this.speed = 24;
         this.bulletDamage = 15;
         this.gravity = 0.38f;
         this.maxFallSpeed = 100;
@@ -43,11 +45,16 @@ public class Bullet extends MovedObject{
     
   
     public void update(){
-    	this.fall();
-        this.actualMovement();
-    	//this.posX += velocityX;
-        //this.posY += velocityY;
-        //hitbox.setLocation(this.posX, this.posY);
+    	if(this.isAlive){
+    		this.fall();
+        	if(this.bouncyness > 0){
+        		this.bounce();
+        	}
+    		
+          
+    	}
+    	  this.actualMovement();
+    	
     }
     
     public void render(Graphics g){
@@ -65,6 +72,33 @@ public class Bullet extends MovedObject{
     
     public int getDamage(){
     	return this.bulletDamage;
+    }
+    
+    public void bounce(){
+    	
+    	if(this.isBottomSideCollided()){
+    		this.velocityY = this.velocityY * -this.bouncyness;
+    			
+   		} 
+    	
+    	if(this.isTopSideCollided()){
+    		this.velocityY = this.velocityY * -this.bouncyness;
+   		}
+  
+    	if(this.isLeftSideCollided()){
+    		this.velocityX = this.velocityX * -this.bouncyness;	
+    	}
+    	
+    	if(this.isRightSideCollided()){
+    		this.velocityX = this.velocityX * -this.bouncyness;
+   		}
+    		
+    		
+    	}
+    	
+    public void die(){
+    	this.setPosition(10000, 10000);
+    	this.isAlive = false;
     }
     
 }

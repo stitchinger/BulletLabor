@@ -65,7 +65,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 0; i += 1) {
+        for (int i = 0; i < 150; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
@@ -120,10 +120,11 @@ public class Game extends BasicGame {
         	for(Enemy enemy : enemy_list){
         		
         		if((bullet.getHitbox().intersects(enemy.getHitbox()) && bullet.enemyBullet == false)){
-        			bullet.setPosition(100000, 1000000);
+        			
 
         			enemy.receiveDamage(bullet.getDamage());
         			enemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
+        			bullet.die();
         		}	
         	}
         	
@@ -132,6 +133,7 @@ public class Game extends BasicGame {
         		bullet.setPosition(100000, 1000000);
         		player.receiveDamage(bullet.getDamage());
         		player.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
+        		bullet.die();
         	}
 
         }
