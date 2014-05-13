@@ -1,15 +1,12 @@
 package player;
 
 import main.Game;
-
-
-
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import world.MovedObject;
+import entity.MovedObject;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 

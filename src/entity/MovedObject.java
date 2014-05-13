@@ -1,4 +1,4 @@
-package world;
+package entity;
 
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;

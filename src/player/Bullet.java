@@ -2,7 +2,8 @@ package player;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import world.MovedObject;
+
+import entity.MovedObject;
 
 
 public class Bullet extends MovedObject{

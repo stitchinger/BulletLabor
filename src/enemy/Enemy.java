@@ -1,8 +1,10 @@
 package enemy;
 
 import main.Game;
+
 import org.newdawn.slick.Image;
-import world.MovedObject;
+
+import entity.MovedObject;
 
 
 public class Enemy extends MovedObject{

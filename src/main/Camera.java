@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import world.MovedObject;
+import entity.MovedObject;
 
 
 public class Camera {

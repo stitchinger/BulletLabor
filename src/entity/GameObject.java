@@ -1,4 +1,4 @@
-package world;
+package entity;
 
 import main.Game;
 import main.Vector2;

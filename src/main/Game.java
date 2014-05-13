@@ -2,12 +2,14 @@ package main;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import org.newdawn.slick.*;
+
 import enemy.Enemy;
+import entity.GameObject;
+import entity.Powerup;
 import player.Bullet;
 import player.Player;
-import world.GameObject;
-import world.Powerup;
 import world.World;
 
 
