@@ -82,16 +82,20 @@ public class Bullet extends MovedObject{
     	if(this.isBottomSideCollided()){
     		this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
     		this.velocityY = this.velocityY * -this.bouncyness;
+    		this.velocityX *= 0.8;
     			
    		} else if(this.isTopSideCollided()){
    			this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
    			this.velocityY = this.velocityY * -this.bouncyness;
+   			this.velocityX *= 0.8;
+   			
     		
    		}
   
     	if(this.isLeftSideCollided()){
     		this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
     		this.velocityX = this.velocityX * -this.bouncyness;	
+    	
     	}else if(this.isRightSideCollided()){
     		this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
     		this.velocityX = this.velocityX * -this.bouncyness;
