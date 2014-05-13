@@ -2,10 +2,10 @@ package enemy;
 
 import main.Game;
 import org.newdawn.slick.Image;
-import world.Mover;
+import world.MovedObject;
 
 
-public class Enemy extends Mover{
+public class Enemy extends MovedObject{
 
 	// Konstruktor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Enemy(Image img, int x, int y, int width, int height) {

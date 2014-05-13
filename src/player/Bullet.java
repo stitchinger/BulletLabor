@@ -2,10 +2,10 @@ package player;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import world.Mover;
+import world.MovedObject;
 
 
-public class Bullet extends Mover{
+public class Bullet extends MovedObject{
     
    
     private float spreadRange;

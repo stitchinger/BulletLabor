@@ -9,13 +9,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import world.Mover;
+import world.MovedObject;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
 
 
-public class Player extends Mover{
+public class Player extends MovedObject{
 	
 	private float shotsPerMin;
 	public int walkdirection;

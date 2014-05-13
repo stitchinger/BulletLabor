@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import world.Mover;
+import world.MovedObject;
 
 
 public class Camera {
@@ -63,7 +63,7 @@ public class Camera {
 	
 	}
 	
-	public void follow(Mover target){
+	public void follow(MovedObject target){
 		float targetX = (target.getX() + target.getWidth()/2) * (-1) +   this.viewportWidth/2;
 		float targetY = (target.getY() + target.getHeight()/2) * (-1) +  this.viewportHeight/2;
 		this.velocityX = targetX - this.posX;

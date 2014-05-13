@@ -12,7 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import player.Bullet;
 
 
-public class Mover extends GameObject {
+public class MovedObject extends GameObject {
 
 	
 	// Instanzvariablen
@@ -38,7 +38,7 @@ public class Mover extends GameObject {
 	
 
 	
-	public Mover(Image img, int x, int y, int width, int height) {
+	public MovedObject(Image img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
