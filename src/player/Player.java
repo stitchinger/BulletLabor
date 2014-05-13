@@ -33,8 +33,7 @@ public class Player extends MovedObject{
        
     }
 
-  
-    public void update(Input in) throws SlickException{
+	public void update(Input in) throws SlickException{
     	 
     	playerControl(in);
     	
@@ -92,15 +91,6 @@ public class Player extends MovedObject{
       
         return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
     }
-    
-    /*
-    public void angleShot(float angle) throws SlickException{
-    	timeOfLastShot = System.currentTimeMillis();
-    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, angle, true));
-    
-    	//this.addForce(normalizedVector[0] * (-2), normalizedVector[1]*(-2));
-    }
-    */
     
     public void clusterShot(float angle, boolean enemyBullet){
     	timeOfLastShot = System.currentTimeMillis();

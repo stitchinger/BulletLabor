@@ -1,5 +1,7 @@
 package player;
 
+import main.Game;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
@@ -9,35 +11,38 @@ import entity.MovedObject;
 public class Bullet extends MovedObject{
     
 	private boolean isAlive = true;
-    private float spreadRange;
-    private int speed;
-    private float bouncyness = 0.0f;
-    public int bulletDamage;
-    public float angle;
+	private float spreadRange = 0.07f;
+    private int speed = 24;
+    private int bulletDamage = 15;
+    private float bouncyness = 0.5f;
+	private int lifeTimeMillis = 3000;
+	
+    private long timestampOfBirth;
+    private float rotation;
+	
+    
+  
     public boolean enemyBullet;
     
     
     
+    
     // 1. Konstruktor 
-    public Bullet(Image sprite, float x, float y, int width, int height, float angle, boolean playerBullet){
+    public Bullet(Image sprite, float x, float y, int width, int height, float rotation, boolean playerBullet){
     	super(sprite, (int)(x-width/2), (int)(y-height/2), width, height);
         
-    	this.angle = angle;
-        this.spreadRange = 0.07f;
-        this.speed = 24;
-        this.bulletDamage = 15;
-        this.gravity = 0.38f;
-        this.maxFallSpeed = 100;
-        angle = (float) ((angle - (angle*spreadRange)) + Math.random()*(angle * spreadRange));
+    	this.timestampOfBirth = System.currentTimeMillis();
+    	this.rotation = rotation;
+    	this.maxFallSpeed = 100;
+        this.rotation = (float) ((rotation - (rotation*spreadRange)) + Math.random()*(rotation * spreadRange));
         this.enemyBullet = playerBullet;
-       
-       
         
-        float vecY = -(float)Math.cos(angle);
-        float vecX = (float)Math.sin(angle);
+       
+        float vecY = -(float)Math.cos(rotation);
+        float vecX = (float)Math.sin(rotation);
          
-        velocityX = (float) (vecX * speed);
-        velocityY = (float) (vecY * speed);
+        this.velocityX = (float) (vecX * this.speed);
+        this.velocityY = (float) (vecY * this.speed);
        
        
        
@@ -45,6 +50,9 @@ public class Bullet extends MovedObject{
     
   
     public void update(){
+    	if(System.currentTimeMillis() > this.timestampOfBirth + this.lifeTimeMillis){
+    		this.die();
+    	}
     	if(this.isAlive){
     		this.fall();
         	if(this.bouncyness > 0){
@@ -58,17 +66,9 @@ public class Bullet extends MovedObject{
     }
     
     public void render(Graphics g){
-    	this.getImage().setRotation(angle*60); 
+    	this.getImage().setRotation(rotation*60); 
     	super.render(g);
     }
-    
-    public float getVelocityX() {
-		return this.velocityX;
-	}
-
-    public float getVelocityY() {
-		return this.velocityY;
-	}
     
     public int getDamage(){
     	return this.bulletDamage;
@@ -76,20 +76,24 @@ public class Bullet extends MovedObject{
     
     public void bounce(){
     	
+		
+		
+		
     	if(this.isBottomSideCollided()){
+    		this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
     		this.velocityY = this.velocityY * -this.bouncyness;
     			
-   		} 
-    	
-    	if(this.isTopSideCollided()){
-    		this.velocityY = this.velocityY * -this.bouncyness;
+   		} else if(this.isTopSideCollided()){
+   			this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
+   			this.velocityY = this.velocityY * -this.bouncyness;
+    		
    		}
   
     	if(this.isLeftSideCollided()){
+    		this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
     		this.velocityX = this.velocityX * -this.bouncyness;	
-    	}
-    	
-    	if(this.isRightSideCollided()){
+    	}else if(this.isRightSideCollided()){
+    		this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
     		this.velocityX = this.velocityX * -this.bouncyness;
    		}
     		
@@ -99,6 +103,7 @@ public class Bullet extends MovedObject{
     public void die(){
     	this.setPosition(10000, 10000);
     	this.isAlive = false;
+    	Game.toRemove.add(this);
     }
     
 }

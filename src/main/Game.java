@@ -27,6 +27,7 @@ public class Game extends BasicGame {
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;
+    public static List<Bullet> toRemove = new LinkedList<Bullet>();
 
     // Game Objekte ++++++++++++++++++++++
     public static World gameworld;
@@ -65,7 +66,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 150; i += 1) {
+        for (int i = 0; i < 5; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
@@ -124,6 +125,7 @@ public class Game extends BasicGame {
 
         			enemy.receiveDamage(bullet.getDamage());
         			enemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
+        			//toRemove.add(bullet);
         			bullet.die();
         		}	
         	}
@@ -133,10 +135,16 @@ public class Game extends BasicGame {
         		bullet.setPosition(100000, 1000000);
         		player.receiveDamage(bullet.getDamage());
         		player.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
+        		//toRemove.add(bullet);
         		bullet.die();
         	}
 
         }
+        
+        for (Object o : toRemove) {
+        	   bullet_list.remove(o);
+        }
+        toRemove.clear();
 
        
         //aniOb.update(delta);
