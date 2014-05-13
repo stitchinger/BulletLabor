@@ -23,7 +23,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static int fpslimit = 60;
     
-    public static final boolean debugModus = false;
+    public static final boolean debugModus = true;
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;
@@ -65,7 +65,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 5; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);

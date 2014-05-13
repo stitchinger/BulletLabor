@@ -17,6 +17,16 @@ public class Camera {
 	private boolean smoothFollowMode;
 	private float inertia;
 	
+	private float shakeDecay = 0.03f;
+	private int shakeDelay = 45;
+	private boolean shakeSnap = false;
+	private int shakeInstensity = 15;
+	
+	private int shakeTime = shakeDelay;
+	private float shakeAmt = 0f;
+	private float shakeX = 0f;
+	private float shakeY = 0f;
+	
 
 	
 	
@@ -33,14 +43,8 @@ public class Camera {
 	}
 	
 	public void update(Input in){
-		 if(in.isKeyPressed(Input.KEY_1)){
-             this.toggleFollowMode();
-		 }
-		 if(in.isKeyPressed(Input.KEY_2)){
-             this.toggleSmoothFollowMode();
-		 }
 		
-		 
+		 this.cameraControl(in);
 		 
 		 if(this.followMode){
 			this.follow(Game.player);
@@ -50,6 +54,8 @@ public class Camera {
 			 this.smoothMovement();
 		 }
 		 
+		 
+		 
 		
 		 this.actualMovement();
 		 this.avoidLeavingWorld();
@@ -58,7 +64,7 @@ public class Camera {
 	}
 	
 	public void render(Graphics g){
-	
+		
 		g.translate(posX, posY);
 	
 	}
@@ -69,6 +75,16 @@ public class Camera {
 		this.velocityX = targetX - this.posX;
 		this.velocityY = targetY - this.posY;
 		
+		
+	}
+	
+	private void cameraControl(Input in){
+		 if(in.isKeyPressed(Input.KEY_1)){
+             this.toggleFollowMode();
+		 }
+		 if(in.isKeyPressed(Input.KEY_2)){
+             this.toggleSmoothFollowMode();
+		 }
 		
 	}
 	

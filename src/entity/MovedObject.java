@@ -55,8 +55,9 @@ public class MovedObject extends GameObject {
 		super.update();
 		
 		this.velocityX = getLimitedVelocityX();
-		this.detectWorldCollision();
+		
 		this.actualMovement();
+		this.detectWorldCollision();
 		this.applyFriction();
 			
 	}
@@ -161,22 +162,29 @@ public class MovedObject extends GameObject {
 	}
 	
 	public void detectWorldCollision(){
-		if(this.isLeftSideCollided()){
-			this.velocityX = Math.max(0, this.velocityX);
-		}
-		if(this.isRightSideCollided()){
-			this.velocityX = Math.min(0, this.velocityX);
-		}
-		if(this.isTopSideCollided()){
-			this.velocityY = Math.max(0, this.velocityY);
-		}
 		if(this.isBottomSideCollided()){
 			this.velocityY = Math.min(0, this.velocityY);
+			this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
 			this.jumpCount = 0;
 			
 		} else{
 			this.fall();
 		}
+		if(this.isTopSideCollided()){
+			this.velocityY = Math.max(0, this.velocityY);
+			this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
+		}
+		if(this.isLeftSideCollided()){
+			this.velocityX = Math.max(0, this.velocityX);
+			this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
+			
+		}
+		if(this.isRightSideCollided()){
+			this.velocityX = Math.min(0, this.velocityX);
+			this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
+		}
+		
+		
 	}
 
 	public boolean isLeftSideCollided(){
@@ -185,10 +193,10 @@ public class MovedObject extends GameObject {
 		int tileSize = tm.getTileHeight();
     	
     	int topLeftX = (int)((this.posX)/tileSize);
-    	int topLeftY = (int)((this.posY+20)/tileSize);
+    	int topLeftY = (int)((this.posY+10)/tileSize);
     	
     	int bottomLeftX = (int)((this.posX)/tileSize);
-    	int bottomLeftY = (int)((this.posY+ this.height-20)/tileSize);
+    	int bottomLeftY = (int)((this.posY+ this.height-10)/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
@@ -213,10 +221,10 @@ public class MovedObject extends GameObject {
 		int tileSize = tm.getTileHeight();
     	
     	int topRightX = (int)((this.posX + this.width)/tileSize);
-    	int topRightY = (int)((this.posY+20)/tileSize);
+    	int topRightY = (int)((this.posY+10)/tileSize);
     	
     	int bottomRightX = (int)((this.posX + this.width)/tileSize);
-    	int bottomRightY = (int)((this.posY+ this.height-20)/tileSize);
+    	int bottomRightY = (int)((this.posY+ this.height-10)/tileSize);
     			
     	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
@@ -236,10 +244,10 @@ public class MovedObject extends GameObject {
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
-    	int topLeftX = (int)((this.posX + 10)/tileSize);
+    	int topLeftX = (int)((this.posX + 5)/tileSize);
     	int topLeftY = (int)((this.posY)/tileSize);
     	
-    	int topRightX = (int)((this.posX + this.width - 10)/tileSize);
+    	int topRightX = (int)((this.posX + this.width - 5)/tileSize);
     	int topRightY = (int)((this.posY)/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
@@ -259,10 +267,10 @@ public class MovedObject extends GameObject {
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
-    	int bottomLeftX = (int)((this.posX + 10)/tileSize);
+    	int bottomLeftX = (int)((this.posX + 5)/tileSize);
     	int bottomLeftY = (int)((this.posY+ this.height)/tileSize);
     	
-    	int bottomRightX = (int)((this.posX + this.width - 10)/tileSize);
+    	int bottomRightX = (int)((this.posX + this.width - 5)/tileSize);
     	int bottomRightY = (int)((this.posY + this.height)/tileSize);
     			
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
