@@ -125,17 +125,18 @@ public class MovingObject extends GameObject {
 		return this.velocityY;
 	}
 	
-	public float getTargetAngle(int x, int y){
+	public float getTargetAngle(float mouseX, float mouseY){
     	
-        float vecX = x - (this.posX+this.width/2);
-        float vecY= y - (this.posY+this.height/2);
+        float vecX = mouseX - (this.posX+this.width/2);
+        float vecY= mouseY - (this.posY+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         
-      
-        return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
+        
+        
+        return (float) Math.toDegrees(Math.atan2(normalizedVector[0], -normalizedVector[1]));
     }
 	
-	private float[] getNormalizedVector2(float vecX, float vecY){
+	protected float[] getNormalizedVector2(float vecX, float vecY){
 	    	
 	    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
 	        float[] vector2 = new float[2];
@@ -144,7 +145,7 @@ public class MovingObject extends GameObject {
 	        return vector2;
 	    }
 	 
-	public void angleShot(float angle, boolean playerBullet) throws SlickException{
+	public void angleShot(float angle, boolean playerBullet){
 	    	timeOfLastShot = System.currentTimeMillis();
 	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, angle, playerBullet));
 	    
@@ -186,7 +187,7 @@ public class MovingObject extends GameObject {
 		
 		
 	}
-
+	
 	public boolean isLeftSideCollided(){
 		TiledMap tm = Game.gameworld.getTiledMap();
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");

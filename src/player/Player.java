@@ -77,7 +77,7 @@ public class Player extends MovingObject{
         if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
          		
-          		this.clusterShot(this.getMouseAngle(), false);
+          		this.clusterShot( false);
           	}
         }
     }
@@ -85,21 +85,17 @@ public class Player extends MovingObject{
     public float getMouseAngle(){
     	float mouseX = Mouse.getX() + Game.cam.getX();
         float mouseY = ((Game.getWindowHeight() - Mouse.getY()) + Game.cam.getY());
-        float vecX = mouseX - (this.posX+this.width/2);
-        float vecY= mouseY - (this.posY+this.height/2);
-        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
-        
+        return this.getTargetAngle(mouseX, mouseY);
        
-        return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
     }
     
-    public void clusterShot(float angle, boolean enemyBullet){
+    public void clusterShot( boolean enemyBullet){
     	timeOfLastShot = System.currentTimeMillis();
     	
     	for(int i = 0; i < 20; i++){
-    		angle = (float) (angle - 0.5f + Math.random()*0.5f);
     		
-    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, (float) angle, false));
+    		
+    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, (float)(-3.1f + 6/20*i), false));
     	}
     }
 
@@ -107,13 +103,5 @@ public class Player extends MovingObject{
     	Game.killCount = 0;
     	super.die();
     }
-    
-    private float[] getNormalizedVector2(float vecX, float vecY){
-    	
-    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
-        float[] vector2 = new float[2];
-    	vector2[0] = (float)(vecX / hypo);
-        vector2[1] = (float)(vecY / hypo);
-        return vector2;
-    }
+   
 }

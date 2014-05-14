@@ -4,6 +4,7 @@ import main.Game;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 
 import entity.MovingObject;
 
@@ -34,13 +35,19 @@ public class Bullet extends MovingObject{
     	this.timestampOfBirth = System.currentTimeMillis();
     	this.rotation = rotation;
     	this.maxFallSpeed = 100;
-        this.rotation = (float) ((rotation - (rotation*spreadRange)) + Math.random()*(rotation * spreadRange));
-        this.rotation = (float) ((rotation - (spreadRange)) + Math.random()*(spreadRange));
+        //this.rotation = (float) ((rotation - (rotation*spreadRange)) + Math.random()*(rotation * spreadRange));
+        //this.rotation = (float) ((rotation - (spreadRange)) + Math.random()*(spreadRange));
         this.enemyBullet = playerBullet;
         
+     
+
+        float radians = (float) (rotation * (Math.PI / 180));
+
        
-        float vecY = -(float)Math.cos(this.rotation);
-        float vecX = (float)Math.sin(this.rotation);
+        
+        float vecX = (float)Math.sin(radians);
+        float vecY = -(float)Math.cos(radians);
+       
          
         this.velocityX = (float) (vecX  * this.speed);
         this.velocityY = (float) (vecY * this.speed);
