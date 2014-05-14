@@ -12,23 +12,17 @@ import entity.MovingObject;
 public class Bullet extends MovingObject{
     
 	private boolean isAlive = true;
-	private float spreadRange = 5f;
+	private float spreadRange = 10f;
     private int speed = 20;
     private int bulletDamage = 15;
-    private float bouncyness = 0.0f;
-	private int lifeTimeMillis = 3000;
+    private float bouncyness = 0.3f;
+	private int lifeTimeMillis = 30000;
 	
     private long timestampOfBirth;
     private float rotation;
 	
-    
-  
     public boolean enemyBullet;
     
-    
-    
-    
-    // 1. Konstruktor 
     public Bullet(Image sprite, float x, float y, int width, int height, float rotation, boolean playerBullet){
     	super(sprite, (int)(x-width/2), (int)(y-height/2), width, height);
         
@@ -36,14 +30,11 @@ public class Bullet extends MovingObject{
     	this.rotation = rotation;
     	this.maxFallSpeed = 100;
         //this.rotation = (float) ((rotation - (rotation*spreadRange)) + Math.random()*(rotation * spreadRange));
-        this.rotation = (float) ((rotation - (spreadRange)) + Math.random()*(spreadRange));
-        if(this.rotation < -180){
-        	this.rotation = 180 - (-this.rotation - 180);
-        } else if(this.rotation > 180){
-        	this.rotation = -180 + (this.rotation - 180);
-        }
+       
+    	
         this.enemyBullet = playerBullet;
         
+        this.addSpreadingToStartRotation();
      
 
         float radians = (float) (this.rotation * (Math.PI / 180));
@@ -61,7 +52,6 @@ public class Bullet extends MovingObject{
        
     }
     
-  
     public void update(){
     	if(System.currentTimeMillis() > this.timestampOfBirth + this.lifeTimeMillis){
     		this.die();
@@ -74,26 +64,41 @@ public class Bullet extends MovingObject{
     		
           
     	}
-    	this.rotation = (float) new Vector2f(this.velocityX, this.velocityY).getTheta() + 90;
-    	//this.rotation = this.getTargetAngle(this.velocityX, this.velocityY);
+    	this.adjustRotationToFlightpath();
+    	
     	this.actualMovement();
     	
     }
-    
+
     public void render(Graphics g){
     	this.getImage().setRotation(rotation); 
     	super.render(g);
     }
     
-    public int getDamage(){
-    	return this.bulletDamage;
+    public void addSpreadingToStartRotation(){
+    	 this.rotation = (float) ((rotation - (spreadRange)) + Math.random()*(spreadRange));
+         if(this.rotation < -180){
+         	this.rotation = 180 - (-this.rotation - 180);
+         } else if(this.rotation > 180){
+         	this.rotation = -180 + (this.rotation - 180);
+         }
+    }
+    
+    public void adjustRotationToFlightpath(){
+    	this.rotation = (float) new Vector2f(this.velocityX, this.velocityY).getTheta() + 90;
     }
     
     public void bounce(){
+    	if(this.isLeftSideCollided()){
+    		this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
+    		this.velocityX = this.velocityX * -this.bouncyness;	
     	
-		
-		
-		
+    	}else if(this.isRightSideCollided()){
+    		this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
+    		this.velocityX = this.velocityX * -this.bouncyness;
+   		}
+    	
+    	
     	if(this.isBottomSideCollided()){
     		this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
     		this.velocityY = this.velocityY * -this.bouncyness;
@@ -115,14 +120,7 @@ public class Bullet extends MovingObject{
    		}
     	
   
-    	if(this.isLeftSideCollided()){
-    		this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
-    		this.velocityX = this.velocityX * -this.bouncyness;	
     	
-    	}else if(this.isRightSideCollided()){
-    		this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
-    		this.velocityX = this.velocityX * -this.bouncyness;
-   		}
     		
     		
     	}
@@ -133,4 +131,7 @@ public class Bullet extends MovingObject{
     	Game.toRemove.add(this);
     }
     
+    public int getDamage(){
+    	return this.bulletDamage;
+    }
 }

@@ -3,12 +3,14 @@ package entity;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 import main.Game;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
+
 import player.Bullet;
 
 
@@ -145,13 +147,23 @@ public class MovingObject extends GameObject {
 	        return vector2;
 	    }
 	 
-	public void angleShot(float angle, boolean playerBullet){
+	public void angleShot(float angle){
 	    	timeOfLastShot = System.currentTimeMillis();
-	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, angle, playerBullet));
+	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, angle, false));
 	    
-	    	//this.addForce(normalizedVector[0] * (-2), normalizedVector[1]*(-2));
+	    	
 	    }
 
+	public void clusterShot(float angle){
+	    	timeOfLastShot = System.currentTimeMillis();
+	    	int roundCount = 10;
+	    	for(int i = -(roundCount); i < roundCount; i += 2){
+	    		
+	    		this.angleShot(angle + i);
+	    		
+	    	}
+	    }
+	 
 	private float getLimitedVelocityX() {
 		if (this.velocityX >= this.maxWalkSpeed) {
 			return this.maxWalkSpeed;

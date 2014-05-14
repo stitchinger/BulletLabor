@@ -66,7 +66,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 0; i += 1) {
+        for (int i = 0; i < 1; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);

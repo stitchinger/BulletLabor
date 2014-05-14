@@ -71,13 +71,13 @@ public class Player extends MovingObject{
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
         		
-        		angleShot(this.getMouseAngle(), false);
+        		angleShot(this.getMouseAngle());
         	}
         }
         if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
         	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
          		
-          		this.clusterShot( false);
+          		this.clusterShot(this.getMouseAngle());
           	}
         }
     }
@@ -89,15 +89,7 @@ public class Player extends MovingObject{
        
     }
     
-    public void clusterShot( boolean enemyBullet){
-    	timeOfLastShot = System.currentTimeMillis();
-    	
-    	for(int i = 0; i < 20; i++){
-    		
-    		
-    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, (float)(-3.1f + 6/20*i), false));
-    	}
-    }
+   
 
     public void die(){
     	Game.killCount = 0;
