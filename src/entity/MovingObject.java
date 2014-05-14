@@ -149,7 +149,7 @@ public class MovingObject extends GameObject {
 	 
 	public void angleShot(float angle){
 	    	timeOfLastShot = System.currentTimeMillis();
-	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, angle, false));
+	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 25, 30, angle, false));
 	    
 	    	
 	    }
