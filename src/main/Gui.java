@@ -32,7 +32,7 @@ public class Gui {
 	        g.drawString("Score: " + Game.killCount           , posX + this.width - 120, posY + 50);
 	        g.drawString("Health: "+ (Game.player.getHealth()), posX + this.width - 120, posY + 70);
 	        
-	        g.drawString("MouseDirectionAngle: "+ (Game.player.getMouseAngle()), posX + 10, posY + 150);
+	        g.drawString("MouseDirectionAngle: "+ (Math.toDegrees(Game.player.getMouseAngle())+ 180), posX + 10, posY + 150);
 	        
 	       
 	}

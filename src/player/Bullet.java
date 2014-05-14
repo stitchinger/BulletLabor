@@ -5,16 +5,16 @@ import main.Game;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import entity.MovedObject;
+import entity.MovingObject;
 
 
-public class Bullet extends MovedObject{
+public class Bullet extends MovingObject{
     
 	private boolean isAlive = true;
-	private float spreadRange = 0.07f;
-    private int speed = 24;
+	private float spreadRange = 0.1f;
+    private int speed = 20;
     private int bulletDamage = 15;
-    private float bouncyness = 0.5f;
+    private float bouncyness = 0.0f;
 	private int lifeTimeMillis = 3000;
 	
     private long timestampOfBirth;
@@ -35,13 +35,14 @@ public class Bullet extends MovedObject{
     	this.rotation = rotation;
     	this.maxFallSpeed = 100;
         this.rotation = (float) ((rotation - (rotation*spreadRange)) + Math.random()*(rotation * spreadRange));
+        this.rotation = (float) ((rotation - (spreadRange)) + Math.random()*(spreadRange));
         this.enemyBullet = playerBullet;
         
        
-        float vecY = -(float)Math.cos(rotation);
-        float vecX = (float)Math.sin(rotation);
+        float vecY = -(float)Math.cos(this.rotation);
+        float vecX = (float)Math.sin(this.rotation);
          
-        this.velocityX = (float) (vecX * this.speed);
+        this.velocityX = (float) (vecX  * this.speed);
         this.velocityY = (float) (vecY * this.speed);
        
        

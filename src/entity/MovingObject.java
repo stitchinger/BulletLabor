@@ -12,7 +12,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import player.Bullet;
 
 
-public class MovedObject extends GameObject {
+public class MovingObject extends GameObject {
 
 	
 	// Instanzvariablen
@@ -38,7 +38,7 @@ public class MovedObject extends GameObject {
 	
 
 	
-	public MovedObject(Image img, int x, int y, int width, int height) {
+	public MovingObject(Image img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
@@ -146,7 +146,7 @@ public class MovedObject extends GameObject {
 	 
 	public void angleShot(float angle, boolean playerBullet) throws SlickException{
 	    	timeOfLastShot = System.currentTimeMillis();
-	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, angle, playerBullet));
+	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, angle, playerBullet));
 	    
 	    	//this.addForce(normalizedVector[0] * (-2), normalizedVector[1]*(-2));
 	    }

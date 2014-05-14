@@ -6,14 +6,14 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import entity.MovedObject;
+import entity.MovingObject;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
 
 
-public class Player extends MovedObject{
-	
+public class Player extends MovingObject{
+
 	private float shotsPerMin;
 	public int walkdirection;
 	
@@ -38,6 +38,7 @@ public class Player extends MovedObject{
     	playerControl(in);
     	
     	super.update();
+    	
     	
     }
     
@@ -88,7 +89,7 @@ public class Player extends MovedObject{
         float vecY= mouseY - (this.posY+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         
-      
+       
         return (float)Math.atan2(normalizedVector[0], -normalizedVector[1]);
     }
     
@@ -98,7 +99,7 @@ public class Player extends MovedObject{
     	for(int i = 0; i < 20; i++){
     		angle = (float) (angle - 0.5f + Math.random()*0.5f);
     		
-    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 40, 40, (float) angle, false));
+    		bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 20, 24, (float) angle, false));
     	}
     }
 

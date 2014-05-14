@@ -23,7 +23,7 @@ public class Game extends BasicGame {
     static boolean showFPS = true;
     static int fpslimit = 60;
     
-    public static final boolean debugModus = true;
+    public static final boolean debugModus = false;
     
     // Input Instanz ++++++++++++++++++++
     public static Input in;
@@ -58,7 +58,7 @@ public class Game extends BasicGame {
         Image playerSprite = new Image("Images/Player/player.png");
         Image enemySprite = new Image("Images/Enemies/enemy.png");
         Image heartSprite = new Image("Images/Powerups/heart.png");
-        bulletSprite = new Image("Images/Player/bullet2.png");
+        bulletSprite = new Image("Images/Player/bullet3.png");
 
         gameworld = new World();
         cam = new Camera();
@@ -66,7 +66,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 15; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
