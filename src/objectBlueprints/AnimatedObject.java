@@ -1,4 +1,4 @@
-package entity;
+package objectBlueprints;
 
 import main.Game;
 

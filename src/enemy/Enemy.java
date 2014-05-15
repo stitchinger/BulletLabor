@@ -1,13 +1,14 @@
 package enemy;
 
+
 import main.Game;
+import objectBlueprints.AdvancedObject;
+import objectBlueprints.PhysicsObject;
 
 import org.newdawn.slick.Image;
 
-import entity.MovingObject;
 
-
-public class Enemy extends MovingObject{
+public class Enemy extends AdvancedObject{
 
 	// Konstruktor Methode +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public Enemy(Image img, int x, int y, int width, int height) {

@@ -1,12 +1,12 @@
 package player;
 
-import entity.GameObject;
+import objectBlueprints.StaticObject;
 
 
 
 public class Crosshair {
 	
 	
-	private GameObject target;
+	private StaticObject target;
 	
 }

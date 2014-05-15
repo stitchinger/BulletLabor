@@ -5,11 +5,13 @@ import items.Powerup;
 import java.util.LinkedList;
 import java.util.List;
 
+import objectBlueprints.StaticObject;
+
 import org.newdawn.slick.*;
 
 import enemy.Enemy;
-import entity.GameObject;
 import player.Player;
+import util.Settings;
 import weapons.Bullet;
 import world.World;
 
@@ -17,7 +19,7 @@ import world.World;
 public class Game extends BasicGame {
 
     // Fenster Einstellungen  +++++++++++++
-	static String title = "Shoot'em Up";
+	/*static String title = "Shoot'em Up";
 	static int width = 1200;
     static int height = 800;
     static boolean fullscreen = false;
@@ -25,7 +27,7 @@ public class Game extends BasicGame {
     static int fpslimit = 60;
     
     public static final boolean debugModus = false;
-    
+    */
     // Input Instanz ++++++++++++++++++++
     public static Input in;
     public static List<Bullet> toRemove = new LinkedList<Bullet>();
@@ -37,7 +39,7 @@ public class Game extends BasicGame {
     
     // Entitis
     public static Player player;
-    public static List<GameObject> tile_list = new LinkedList<GameObject>();
+    public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
@@ -67,7 +69,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 1; i += 1) {
+        for (int i = 0; i < 50; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
@@ -167,21 +169,15 @@ public class Game extends BasicGame {
     }
 
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new Game(title));
-        app.setDisplayMode(width, height, fullscreen);
+        AppGameContainer app = new AppGameContainer(new Game(Settings.TITLE));
+        app.setDisplayMode(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT, Settings.FULLSCREEN);
         app.setSmoothDeltas(true);
-        app.setTargetFrameRate(fpslimit);
-        app.setShowFPS(showFPS);
+        app.setTargetFrameRate(Settings.FPS_LIMIT);
+        app.setShowFPS(Settings.SHOW_FPS);
         app.start();
     }
 
-    public static int getWindowWidth() {
-        return width;
-    }
-
-    public static int getWindowHeight() {
-        return height;
-    }
+   
     
     private void renderWorld(Graphics g) {
    	

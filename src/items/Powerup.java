@@ -1,10 +1,10 @@
 package items;
 
+import objectBlueprints.StaticObject;
+
 import org.newdawn.slick.Image;
 
-import entity.GameObject;
-
-public class Powerup extends GameObject{
+public class Powerup extends StaticObject{
 
 	private String id;
 	private int healthAmount;

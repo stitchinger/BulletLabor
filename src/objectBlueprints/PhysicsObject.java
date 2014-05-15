@@ -1,4 +1,5 @@
-package entity;
+package objectBlueprints;
+
 
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
@@ -14,7 +15,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import weapons.Bullet;
 
 
-public class MovingObject extends GameObject {
+public class PhysicsObject extends StaticObject {
 
 	
 	// Instanzvariablen
@@ -28,7 +29,8 @@ public class MovingObject extends GameObject {
 	protected float gravity;
 	protected int jumpCount;
 	protected float friction;
-	public long timeOfLastShot; 
+	
+	protected int maxHealth;
 
 	// Zustände
 	protected String direction;
@@ -40,7 +42,7 @@ public class MovingObject extends GameObject {
 	
 
 	
-	public MovingObject(Image img, int x, int y, int width, int height) {
+	public PhysicsObject(Image img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		this.velocityX = 0;
 		this.velocityY = 0;
@@ -48,6 +50,7 @@ public class MovingObject extends GameObject {
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
 		this.friction = 0.8f;
+		this.maxHealth = 100;
 	
 	}
 
@@ -55,7 +58,9 @@ public class MovingObject extends GameObject {
 	public void update() {
 		
 		super.update();
-		
+		if (this.health <= 0){
+        	this.die();
+		}
 		this.velocityX = getLimitedVelocityX();
 		
 		this.actualMovement();
@@ -127,44 +132,8 @@ public class MovingObject extends GameObject {
 		return this.velocityY;
 	}
 	
-	public float getTargetAngle(float mouseX, float mouseY){
-    	
-        float vecX = mouseX - (this.posX+this.width/2);
-        float vecY= mouseY - (this.posY+this.height/2);
-        float[] normalizedVector = getNormalizedVector2(vecX, vecY);
-        
-        
-        
-        return (float) Math.toDegrees(Math.atan2(normalizedVector[0], -normalizedVector[1]));
-    }
 	
-	protected float[] getNormalizedVector2(float vecX, float vecY){
-	    	
-	    	float hypo = (float) Math.sqrt((vecX * vecX) + (vecY * vecY));
-	        float[] vector2 = new float[2];
-	    	vector2[0] = (float)(vecX / hypo);
-	        vector2[1] = (float)(vecY / hypo);
-	        return vector2;
-	    }
-	 
-	public void angleShot(float angle){
-	    	timeOfLastShot = System.currentTimeMillis();
-	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 25, 30, angle, false));
-	    
-	    	
-	    }
-
-	public void clusterShot(float angle){
-	    	timeOfLastShot = System.currentTimeMillis();
-	    	int roundCount = 10;
-	    	for(int i = -(roundCount); i < roundCount; i += 2){
-	    		
-	    		this.angleShot(angle + i);
-	    		
-	    	}
-	    }
-	 
-	private float getLimitedVelocityX() {
+	 private float getLimitedVelocityX() {
 		if (this.velocityX >= this.maxWalkSpeed) {
 			return this.maxWalkSpeed;
 		} else if (this.velocityX <= maxWalkSpeed * (-1)) {
@@ -300,6 +269,20 @@ public class MovingObject extends GameObject {
 		
 		
 	}
+	
+	  public void die(){
+	    	this.posY = 100;
+	    	this.health = 100;
+	    	Game.killCount++;
+	    	
+	    }
+	    
+	    public void addHealth(int hp){
+	    	this.health += hp; 
+	    	if(this.health > this.maxHealth){
+	    		this.health = this.maxHealth;
+	    	}
+	    }
 	
 	
 

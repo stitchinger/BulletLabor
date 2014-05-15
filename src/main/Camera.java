@@ -1,9 +1,11 @@
 package main;
 
+import objectBlueprints.PhysicsObject;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import entity.MovingObject;
+import util.Settings;
 
 
 public class Camera {
@@ -33,8 +35,8 @@ public class Camera {
 	
 	public Camera(){
 		
-		this.viewportWidth = Game.getWindowWidth();
-		this.viewportHeight = Game.getWindowHeight();
+		this.viewportWidth = Settings.WINDOW_WIDTH;
+		this.viewportHeight = Settings.WINDOW_HEIGHT;
 		this.posX = 0;
 		this.posY = 0;
 		this.followMode = true;
@@ -69,7 +71,7 @@ public class Camera {
 	
 	}
 	
-	public void follow(MovingObject target){
+	public void follow(PhysicsObject target){
 		float targetX = (target.getX() + target.getWidth()/2) * (-1) +   this.viewportWidth/2;
 		float targetY = (target.getY() + target.getHeight()/2) * (-1) +  this.viewportHeight/2;
 		this.velocityX = targetX - this.posX;

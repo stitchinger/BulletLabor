@@ -1,4 +1,5 @@
-package entity;
+package objectBlueprints;
+
 
 import main.Game;
 
@@ -8,10 +9,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+import util.Settings;
 import util.Vector2;
 
 
-public class GameObject {
+public class StaticObject {
    
     // Diese Variablen haben alle Objekte gemeinsam, die auf dem Fenster gezeichnet werden und eine Hitbox besitzen
 	protected Image sprite;
@@ -20,14 +22,14 @@ public class GameObject {
     protected int width;
     protected int height;
     protected int health;
-    protected int maxHealth;
+   
     protected Shape hitbox;
     protected long timeOfLastHit;
     protected int flashTimeInMillis;
     
     
     // Konstruktor Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public GameObject(Image sprite, float x, float y, int width, int height){
+    public StaticObject(Image sprite, float x, float y, int width, int height){
         this.sprite = sprite;
         this.posY = y;
         this.posX = x;
@@ -35,13 +37,11 @@ public class GameObject {
         this.height = height;
         this.hitbox = new Rectangle(x,y,width, height);
         this.flashTimeInMillis = 150;
-        this.maxHealth = 100;
+       
     }
     
     public void update(){
-    	if (this.health <= 0){
-        	this.die();
-		}
+    	
     }
     
     public void render(Graphics g){
@@ -52,7 +52,7 @@ public class GameObject {
     		this.getImage().draw(this.getX(), this.getY());
     	}
     
-        if (Game.debugModus) {
+        if (Settings.DEBUG_MODUS) {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
         	g.setColor(Color.white); 
@@ -102,18 +102,6 @@ public class GameObject {
     	
     }
     
-    public void die(){
-    	this.posY = 100;
-    	this.health = 100;
-    	Game.killCount++;
-    	
-    }
-    
-    public void addHealth(int hp){
-    	this.health += hp; 
-    	if(this.health > this.maxHealth){
-    		this.health = this.maxHealth;
-    	}
-    }
+  
     
 }

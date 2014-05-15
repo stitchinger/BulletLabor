@@ -1,15 +1,14 @@
 package weapons;
 
 import main.Game;
+import objectBlueprints.PhysicsObject;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import entity.MovingObject;
 
-
-public class Bullet extends MovingObject{
+public class Bullet extends PhysicsObject{
     
 	private boolean isAlive = true;
 	private float spreadRange = 10f;

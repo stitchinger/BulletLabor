@@ -1,18 +1,21 @@
 package player;
 
+
 import main.Game;
+import objectBlueprints.AdvancedObject;
+import objectBlueprints.PhysicsObject;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import entity.MovingObject;
-import static main.Game.bulletSprite;
+import util.Settings;import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
 
 
-public class Player extends MovingObject{
+public class Player extends AdvancedObject{
 
 	private float shotsPerMin;
 	public int walkdirection;
@@ -22,13 +25,13 @@ public class Player extends MovingObject{
 	public Player(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
-        // dieses sind speziell für den Player gesetzte Variablen
+      
         this.direction = "right";  	// Blickrichtung
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
         this.jumpHeight = 9;		// Sprungkraft
-       	// die shotsPerMin Variable sollten wir früher oder später von hier entfernen und die Bullet/Waffen verschieben
-        this.shotsPerMin = 550;		// Feuerrate 
+    
+     
         this.health = 100;			// Gesundheitspunkte
        
     }
@@ -84,7 +87,7 @@ public class Player extends MovingObject{
     
     public float getMouseAngle(){
     	float mouseX = Mouse.getX() + Game.cam.getX();
-        float mouseY = ((Game.getWindowHeight() - Mouse.getY()) + Game.cam.getY());
+        float mouseY = ((Settings.WINDOW_HEIGHT - Mouse.getY()) + Game.cam.getY());
         return this.getTargetAngle(mouseX, mouseY);
        
     }
