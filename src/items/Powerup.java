@@ -1,6 +1,8 @@
-package entity;
+package items;
 
 import org.newdawn.slick.Image;
+
+import entity.GameObject;
 
 public class Powerup extends GameObject{
 

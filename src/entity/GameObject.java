@@ -1,13 +1,14 @@
 package entity;
 
 import main.Game;
-import main.Vector2;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
+
+import util.Vector2;
 
 
 public class GameObject {

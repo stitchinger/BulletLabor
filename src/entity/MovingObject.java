@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 
-import player.Bullet;
+import weapons.Bullet;
 
 
 public class MovingObject extends GameObject {
