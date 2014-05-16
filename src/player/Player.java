@@ -38,6 +38,12 @@ public class Player extends AdvancedObject{
         	this.moveLeft();
         
         }
+        
+        if(in.isKeyPressed(Input.KEY_Q)){
+            
+        	this.dropWeapon();
+        }
+
 
         
         if(in.isKeyDown(Input.KEY_D)){
@@ -55,7 +61,10 @@ public class Player extends AdvancedObject{
       
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	
-        	this.weapon.trigger(this.getMouseVector());
+        	if(this.weapon != null){
+        		this.weapon.trigger();
+        	}
+        	
         	
         }
         if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){

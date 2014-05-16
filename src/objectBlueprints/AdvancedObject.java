@@ -31,8 +31,26 @@ public class AdvancedObject extends LivingObject {
         float vecY= targetPosition.y() - (this.getY()+this.height/2);
         Vector2 vecNorm = new Vector2(vecX, vecY).normalize();
         return vecNorm;
-        //return (float) Math.toDegrees(Math.atan2(vecNorm.x(), -vecNorm.y()));
+       
     }
+	
+	 public void dropWeapon(){
+	    	if(this.weapon != null){
+	    		this.weapon.drop();
+		    	this.weapon = null;
+	    	}
+	    	
+	 }
+	    
+	 public void setWeapon(Weapon weapon){
+	    	this.weapon = weapon;
+	 }
+	    
+	 public Weapon getWeapon(){
+	    	return this.weapon;
+	 } 
+	    
+
 	
 	
 	

@@ -2,9 +2,12 @@ package weapons;
 
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
+import main.Game;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+
 import objectBlueprints.StaticObject;
 import util.Settings;
 import util.Vector2;
@@ -26,6 +29,7 @@ public class Weapon extends StaticObject {
 		this.rotation = 0;
 		this.bulletsLeft = 100;
 		this.shotsPerMinute = 600;
+		this.spreadRange = 5;
 	
 	}
 	
@@ -58,20 +62,33 @@ public class Weapon extends StaticObject {
           }
 	}
 	
-	public void trigger(Vector2 direction){
+	public void trigger(){
 		if(this.canShoot()){
-			this.angleShot(direction);
+			this.angleShot();
 		}
 	}
 	
-	public void angleShot(Vector2 direction){
+	public void angleShot(){
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.bulletsLeft--;
     	Bullet bullet = new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
-    	bullet.addForce(new Vector2(this.rotation).mult(this.power));
+    	bullet.addForce(new Vector2(this.getSpreadRotation()).mult(this.power));
     	bullet_list.add(bullet);
     	
     }
+	
+	public float getSpreadRotation(){
+	 
+	   float spreadRotation = (this.rotation-this.spreadRange/2) + (int)(Math.random() * (((this.rotation+this.spreadRange/2) - (this.rotation-this.spreadRange/2)) + 1));
+	    if(this.rotation < -180){
+	    	this.rotation = 180 - (-this.rotation - 180);
+	    } else if(this.rotation > 180){
+	        this.rotation = -180 + (this.rotation - 180);
+	    }
+	    return spreadRotation;
+	         
+	}
+
 	
 	public boolean canShoot(){
 		boolean inFireRate = (System.currentTimeMillis() - this.timeOfLastShot) >= (60f / this.shotsPerMinute) * 1000f;
@@ -87,6 +104,14 @@ public class Weapon extends StaticObject {
 	         	this.rotation = -180 + (this.rotation - 180);
 	         }
 	    }
+	
+	public void drop(){
+		Weapon weapon = new Weapon(Game.weaponSprite,this.getX()-50, this.getY());
+		
+		Game.weapon_list.add(this);
+    	
+	}
+
 	
 	public int getBulletsLeft(){
 		return this.bulletsLeft;

@@ -13,6 +13,7 @@ import enemy.Enemy;
 import player.Player;
 import util.Settings;
 import weapons.Bullet;
+import weapons.Weapon;
 import world.World;
 
 
@@ -33,6 +34,7 @@ public class Game extends BasicGame {
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
+    public static List<Weapon> weapon_list = new LinkedList<Weapon>();
 
     public static Image bulletSprite;
     public static Image weaponSprite;
@@ -76,6 +78,12 @@ public class Game extends BasicGame {
         	powerup_list.add(powerup);
         }
         
+        for (int i = 0; i < 1; i += 1) {
+            Weapon weapon = new Weapon(weaponSprite,250 , 200);
+        	weapon_list.add(weapon);
+        }
+        
+        
         
         
         
@@ -105,6 +113,20 @@ public class Game extends BasicGame {
     			powerup.setX(10000);
     			powerup.setY(10000);
     			player.addHealth(powerup.getHealthAmount());
+
+            }
+        }
+        
+        for (Weapon weapon : weapon_list) {
+            
+            if(weapon.getHitbox().intersects(player.getHitbox())){
+            	if(in.isKeyDown(Input.KEY_E)){
+                    
+            		player.setWeapon(weapon);
+                	
+                }
+            	
+    			
 
             }
         }
@@ -198,6 +220,10 @@ public class Game extends BasicGame {
        for (Powerup powerup : powerup_list) {
        	powerup.render(g);
        }
+       
+       for (Weapon weapon : weapon_list) {
+          	weapon.render(g);
+          }
 		
 	}
     
