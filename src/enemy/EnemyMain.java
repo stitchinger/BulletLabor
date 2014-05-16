@@ -48,4 +48,14 @@ public class EnemyMain extends AdvancedObject{
          	this.jump();
          }
     }
+    
+    public static int randomX() throws SlickException {
+		
+		World gameworld = new World();
+		
+        int minDistance = 300;
+        int randomX = (int) (Math.random()* gameworld.getWidth());
+        randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
+        return randomX;
+	}
 }

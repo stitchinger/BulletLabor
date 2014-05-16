@@ -31,8 +31,6 @@ public class Game extends BasicGame {
     public static Gui gui;
     public static Settings settings;
     
-    public static int randomX;
-    
   
     public static Player player;
     public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
@@ -60,7 +58,7 @@ public class Game extends BasicGame {
         player = new Player(Settings.playerSprite, 400, 100);
         
         for (int i = 0; i < 5; i += 1) {
-        	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, this.randomX, 100);
+        	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, SlimeEnemy.randomX(), 100);
         	enemy_list.add(enemy);
         }
         
@@ -240,13 +238,6 @@ public class Game extends BasicGame {
 		
 	}
     
-	public static void randomX() throws SlickException {
-		
-		World gameworld = new World();
-		
-        int minDistance = 300;
-        randomX = (int) (Math.random()* gameworld.getWidth());
-        randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-	}
+   
 
 }
