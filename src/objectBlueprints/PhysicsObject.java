@@ -56,7 +56,12 @@ public class PhysicsObject extends StaticObject {
 	}
 
 	public void fall() {
+		
+		
+		//this.velocity.add(0, gravity);
 		this.addForce(0, this.gravity);
+		 
+	
 	}
 	
 	public void limitFallSpeed(){

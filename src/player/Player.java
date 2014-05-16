@@ -29,7 +29,6 @@ public class Player extends AdvancedObject{
     	
     	
     }
-	
     
     public void playerControl(Input in) throws SlickException{
        this.isRunning = false;
@@ -53,17 +52,10 @@ public class Player extends AdvancedObject{
         	this.jump();
         }
         
-        if(in.isKeyPressed(Input.KEY_E)){
-            
-        	this.dropWeapon();
-        }
-        
       
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-        	if(this.weapon != null){
-        		this.weapon.trigger();
-        	}
         	
+        	this.weapon.trigger(this.getMouseVector());
         	
         }
         if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
@@ -79,7 +71,6 @@ public class Player extends AdvancedObject{
        
     }
     
-   
     public void die(){
     	
     }

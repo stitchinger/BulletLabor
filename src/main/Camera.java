@@ -33,7 +33,7 @@ public class Camera {
 		 this.cameraControl(in);
 		 
 		 if(this.followMode){
-			this.follow(Game.gameworld.player);
+			this.follow(Game.player);
 		 }
 		
 		 if(this.smoothFollowMode){

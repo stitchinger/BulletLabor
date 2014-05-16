@@ -107,8 +107,4 @@ public class Bullet extends PhysicsObject{
     public int getDamage(){
     	return this.bulletDamage;
     }
-    
-    public void explode(){
-    	
-    }
 }
