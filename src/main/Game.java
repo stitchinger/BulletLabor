@@ -56,7 +56,6 @@ public class Game extends BasicGame {
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
-        
      
         player = new Player(Settings.playerSprite, 400, 100);
         
@@ -122,6 +121,9 @@ public class Game extends BasicGame {
         }
         
         
+        
+       
+       
         for (Bullet bullet : bullet_list) {
         	bullet.update(delta);
         	
