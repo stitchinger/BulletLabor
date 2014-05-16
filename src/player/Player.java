@@ -26,7 +26,7 @@ public class Player extends AdvancedObject{
 	public Player(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
-        this.weapon = new Weapon(Game.weaponSprite, this.posX, this.posY, 17, 60);
+        this.weapon = new Weapon(Game.weaponSprite, this.getX(), this.getY(), 17, 60);
         this.direction = "right";  	// Blickrichtung
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen

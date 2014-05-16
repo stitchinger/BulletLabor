@@ -14,7 +14,7 @@ public class Bullet extends PhysicsObject{
 	private float spreadRange = 10f;
     private int speed = 25;
     private int bulletDamage = 15;
-    private float bouncyness = 0.3f;
+    private float bouncyness = 0.0f;
 	private int lifeTimeMillis = 4000;
 	
     private long timestampOfBirth;
@@ -44,8 +44,10 @@ public class Bullet extends PhysicsObject{
         float vecY = -(float)Math.cos(radians);
        
          
-        this.velocityX = (float) (vecX  * this.speed);
-        this.velocityY = (float) (vecY * this.speed);
+       
+        
+        this.setVelocityX((float) (vecX  * this.speed));
+        this.setVelocityY((float) (vecY * this.speed));
        
        
        
@@ -84,36 +86,44 @@ public class Bullet extends PhysicsObject{
     }
     
     public void adjustRotationToFlightpath(){
-    	this.rotation = (float) new Vector2f(this.velocityX, this.velocityY).getTheta() + 90;
+    	this.rotation = (float) new Vector2f(this.getVelocityX(), this.getVelocityY()).getTheta() + 90;
     }
     
     public void bounce(){
     	if(this.isLeftSideCollided()){
-    		this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
-    		this.velocityX = this.velocityX * -this.bouncyness;	
+    		//this.posX = ((int)(this.getX()/32)+1)*32; 
+    		this.setX(((int)(this.getX()/32)+1)*32);
+    		//this.velocityX = this.getVelocityX() * -this.bouncyness;	
+    		this.setVelocityX(this.getVelocityX() * -this.bouncyness);
     	
     	}else if(this.isRightSideCollided()){
-    		this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
-    		this.velocityX = this.velocityX * -this.bouncyness;
+    		//this.posX  = ((int)((this.getX()+this.width)/32))*32 - this.width; 
+    		this.setX(((int)((this.getX()+this.width)/32))*32 - this.width);
+    		//this.velocityX = this.getVelocityX() * -this.bouncyness;
+    		this.setVelocityX(this.getVelocityX() * -this.bouncyness);
    		}
     	
     	
     	if(this.isBottomSideCollided()){
-    		this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
-    		this.velocityY = this.velocityY * -this.bouncyness;
-    		if(velocityY > -1 && velocityY < 1){
-        		velocityY = 0;
+    		//this.posY  = ((int)((this.getY()+this.height)/32))*32 - this.height;
+    		this.setX(((int)((this.getY()+this.height)/32))*32 - this.height);
+    		this.setVelocityY( this.getVelocityY() * -this.bouncyness);
+    		if(this.getVelocityY() > -1 && this.getVelocityY() < 1){
+        		this.setVelocityY(0);
         	}
-    		this.velocityX *= 0.8;
+    		
+    		
     			
    		} else if(this.isTopSideCollided()){
-   			this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
-   			this.velocityY = this.velocityY * -this.bouncyness;
-   			if(velocityY > -1 && velocityY < 1){
-   	    		velocityY = 0;
+   			//this.posY  = ((int)(this.getY()/32)+1)*32; 
+   			this.setX(((int)(this.getY()/32)+1)*32);
+   			//this.velocityY = this.getVelocityY() * -this.bouncyness;
+   			this.setVelocityY(this.getVelocityY() * -this.bouncyness);
+   			if(this.getVelocityY() > -1 && this.getVelocityY() < 1){
+   	    		this.setVelocityY(0);
    	    	} 
    			
-   			this.velocityX *= 0.8;
+   		
    			
     		
    		}

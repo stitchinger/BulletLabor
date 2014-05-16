@@ -17,8 +17,9 @@ public class StaticObject {
    
     // Diese Variablen haben alle Objekte gemeinsam, die auf dem Fenster gezeichnet werden und eine Hitbox besitzen
 	protected Image sprite;
-    protected float posX;
-    protected float posY;
+    protected Vector2 position;
+	//protected float posX;
+    //protected float posY;
     protected int width;
     protected int height;
     protected int health;
@@ -31,8 +32,9 @@ public class StaticObject {
     // Konstruktor Methode ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public StaticObject(Image sprite, float x, float y, int width, int height){
         this.sprite = sprite;
-        this.posY = y;
-        this.posX = x;
+        this.position = new Vector2(x,y);
+      //  this.posY = y;
+      //  this.posX = x;
         this.width = width;
         this.height = height;
         this.hitbox = new Rectangle(x,y,width, height);
@@ -54,7 +56,7 @@ public class StaticObject {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
         	g.setColor(Color.white); 
-        	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
+        	g.drawString("hp: "+ this.getHealth(), this.getX(), this.getY()+ this.getHeight() );
         }
     }
     
@@ -67,11 +69,23 @@ public class StaticObject {
     }
     
     public float getX(){
-         return this.posX;
+        //return this.posX;
+    	return this.position.x();
     }
     
     public float getY(){
-        return this.posY;
+        //return this.posY;
+    	return this.position.y();
+    }
+    
+    public void setX(float x){
+    	//this.posX = x;
+    	this.position.setX(x);
+    }
+    
+    public void setY(float y){
+    	//this.posX = y;
+    	this.position.setY(y);
     }
     
     public int getWidth(){
@@ -87,8 +101,9 @@ public class StaticObject {
     }
     
     public void setPosition(float x, float y){
-    	this.posX = x;
-    	this.posY = y;
+    	//this.posX = x;
+    	//this.posY = y;
+    	this.position.set(x, y);
     	
     }
     

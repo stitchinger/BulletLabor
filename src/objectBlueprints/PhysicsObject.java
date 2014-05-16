@@ -12,6 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 
+import util.Vector2;
 import weapons.Bullet;
 
 
@@ -19,8 +20,9 @@ public class PhysicsObject extends StaticObject {
 
 	
 	// Instanzvariablen
-	protected float velocityX;
-	protected float velocityY;
+//	protected float velocityX;
+	//protected float velocityY;
+	protected Vector2 velocity;
 	
 	protected float maxWalkSpeed;
 	protected float maxFallSpeed;
@@ -44,8 +46,9 @@ public class PhysicsObject extends StaticObject {
 	
 	public PhysicsObject(Image img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		this.velocityX = 0;
-		this.velocityY = 0;
+		//this.velocityX = 0;
+		//this.velocityY = 0;
+		this.velocity = new Vector2(0,0);
 		this.gravity = 0.38f;  
 		this.maxFallSpeed = 20;
 		this.jumpCount = 0;
@@ -61,10 +64,10 @@ public class PhysicsObject extends StaticObject {
 		if (this.health <= 0){
         	this.die();
 		}
-		this.velocityX = getLimitedVelocityX();
+		this.setVelocityX(getLimitedVelocityX());
 		
 		this.actualMovement();
-		this.detectWorldCollision();
+		this.resolveWorldCollision();
 		this.applyFriction();
 			
 	}
@@ -75,21 +78,25 @@ public class PhysicsObject extends StaticObject {
 	}
 	
 	public void actualMovement(){
-		this.posX += this.velocityX;   	 	 
-		this.posY += this.velocityY; 	
-		hitbox.setLocation(this.posX, this.posY); 
+		//this.posX += this.velocityX;   	 	 
+		//this.posY += this.velocityY; 	
+		this.position.add(velocity);
+		//hitbox.setLocation(this.getX(), this.getY()); 
+		hitbox.setLocation(this.position.x(), this.position.y());
 
 	}
 	
 	public void applyFriction(){
 		
 		if(!this.isRunning && this.isBottomSideCollided()){
-			if(velocityX > 0 - this.friction && velocityX < 0 + this.friction){
-				this.velocityX = 0;
-			}else if(velocityX > 0){
-				this.velocityX -= this.friction;
-			}else if(velocityX < 0){
-				this.velocityX += this.friction;
+			if(this.getVelocityX() > 0 - this.friction && this.getVelocityX() < 0 + this.friction){
+				this.setVelocityX(0);
+			}else if(this.getVelocityX() > 0){
+				
+				this.addForce(-this.friction, 0);
+			}else if(this.getVelocityX() < 0){
+				
+				this.addForce(this.friction, 0);
 			}
 		}
 		
@@ -98,72 +105,109 @@ public class PhysicsObject extends StaticObject {
 
 	public void moveRight() {
 		this.isRunning = true;
-		this.velocityX += this.acceleration;
+		//this.velocityX += this.acceleration;
+		this.velocity.add(this.acceleration, 0);
 		this.direction = "right";
 
 	}
 
 	public void moveLeft() {
 		this.isRunning = true;
-		this.velocityX -= this.acceleration;
+		//this.velocityX -= this.acceleration;
+		this.velocity.add(-this.acceleration, 0);
 		this.direction = "left";
 	}
 
 	public void jump() {
-		this.velocityY = this.jumpHeight * (-1);
+		//this.velocityY = this.jumpHeight * (-1);
+		//this.velocity.add(0, -jumpHeight );
+		this.setVelocityY(-this.jumpHeight);
 		this.jumpCount++;
 	}
 
 	public void fall() {
 		
-		this.velocityY = Math.min(this.maxFallSpeed, this.velocityY += this.gravity);
+		//dthis.velocityY = Math.min(this.maxFallSpeed, this.velocityY += this.gravity);
+		this.velocity.add(0, gravity);
+		 
+		//this.setVelocityY(Math.min(this.maxFallSpeed, this.velocityY += this.gravity));
 	}
 
 	public void addForce(float velocityX, float velocityY){
-		this.velocityX += velocityX;
-		this.velocityY += velocityY;
+		//this.velocityX += velocityX;
+		//this.velocityY += velocityY; 
+		this.velocity.add(velocityX, velocityY);
 	}
 	
 	public float getVelocityX() {
-		return this.velocityX;
+		//return this.velocityX;
+		return this.velocity.x();
 	}
 
 	public float getVelocityY() {
-		return this.velocityY;
+		//return this.velocityY;
+		return this.velocity.y();
 	}
 	
+	public void setVelocityX(float x){
+		//this.velocityX = x;
+		this.velocity.setX(x);
+	}
+	public void setVelocityY(float y){
+		//this.velocityY = y;
+		this.velocity.setY(y);
+	}
 	
 	 private float getLimitedVelocityX() {
-		if (this.velocityX >= this.maxWalkSpeed) {
+		if (this.getVelocityX() >= this.maxWalkSpeed) {
 			return this.maxWalkSpeed;
-		} else if (this.velocityX <= maxWalkSpeed * (-1)) {
+		} else if (this.getVelocityX() <= maxWalkSpeed * (-1)) {
 			return this.maxWalkSpeed * (-1);
 		} else {
-			return this.velocityX;
+			return this.getVelocityX();
 		}
+		/*
+		if (this.getVelocityX() >= this.maxWalkSpeed) {
+			return this.maxWalkSpeed;
+		} else if (this.getVelocityX() <= maxWalkSpeed * (-1)) {
+			return this.maxWalkSpeed * (-1);
+		} else {
+			return this.getVelocityX();
+			
+		}
+		*/
+		
 	}
 	
-	public void detectWorldCollision(){
+	public void resolveWorldCollision(){
 		if(this.isBottomSideCollided()){
-			this.velocityY = Math.min(0, this.velocityY);
-			this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
+			//this.velocityY = Math.min(0, this.velocityY);
+			this.setVelocityY(Math.min(0, this.getVelocityY()));
+			//this.posY  = ((int)((posY+this.height)/32))*32 - this.height; //pixel to tiles + 1 to pixel
+			this.setY(((int)((this.getY()+this.height)/32))*32 - this.height);
 			this.jumpCount = 0;
 			
 		} else{
 			this.fall();
 		}
 		if(this.isTopSideCollided()){
-			this.velocityY = Math.max(0, this.velocityY);
-			this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
+			//this.velocityY = Math.max(0, this.velocityY);
+			this.setVelocityY(Math.max(0, this.getVelocityY()));
+			//this.posY  = ((int)(posY/32)+1)*32; //pixel to tiles + 1 to pixel
+			this.setY( ((int)(this.getY()/32)+1)*32);
 		}
 		if(this.isLeftSideCollided()){
-			this.velocityX = Math.max(0, this.velocityX);
-			this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
+			//this.velocityX = Math.max(0, this.velocityX);
+			//this.posX = ((int)(posX/32)+1)*32; //pixel to tiles + 1 to pixel
+			this.setVelocityX(Math.max(0, this.getVelocityX()));
+			this.setX( ((int)(this.getX()/32)+1)*32);
 			
 		}
 		if(this.isRightSideCollided()){
-			this.velocityX = Math.min(0, this.velocityX);
-			this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
+			//this.velocityX = Math.min(0, this.velocityX);
+			//this.posX  = ((int)((posX+this.width)/32))*32 - this.width; //pixel to tiles + 1 to pixel
+			this.setVelocityX(Math.min(0, this.getVelocityX()));
+			this.setX(((int)((this.getX()+this.width)/32))*32 - this.width);
 		}
 		
 		
@@ -174,11 +218,11 @@ public class PhysicsObject extends StaticObject {
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
-    	int topLeftX = (int)((this.posX)/tileSize);
-    	int topLeftY = (int)((this.posY+10)/tileSize);
+    	int topLeftX = (int)((this.getX())/tileSize);
+    	int topLeftY = (int)((this.getY()+10)/tileSize);
     	
-    	int bottomLeftX = (int)((this.posX)/tileSize);
-    	int bottomLeftY = (int)((this.posY+ this.height-10)/tileSize);
+    	int bottomLeftX = (int)((this.getX())/tileSize);
+    	int bottomLeftY = (int)((this.getY()+ this.height-10)/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
@@ -202,11 +246,11 @@ public class PhysicsObject extends StaticObject {
 		
 		int tileSize = tm.getTileHeight();
     	
-    	int topRightX = (int)((this.posX + this.width)/tileSize);
-    	int topRightY = (int)((this.posY+10)/tileSize);
+    	int topRightX = (int)((this.getX() + this.width)/tileSize);
+    	int topRightY = (int)((this.getY()+10)/tileSize);
     	
-    	int bottomRightX = (int)((this.posX + this.width)/tileSize);
-    	int bottomRightY = (int)((this.posY+ this.height-10)/tileSize);
+    	int bottomRightX = (int)((this.getX() + this.width)/tileSize);
+    	int bottomRightY = (int)((this.getY()+ this.height-10)/tileSize);
     			
     	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
@@ -226,11 +270,11 @@ public class PhysicsObject extends StaticObject {
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
-    	int topLeftX = (int)((this.posX + 5)/tileSize);
-    	int topLeftY = (int)((this.posY)/tileSize);
+    	int topLeftX = (int)((this.getX() + 5)/tileSize);
+    	int topLeftY = (int)((this.getY())/tileSize);
     	
-    	int topRightX = (int)((this.posX + this.width - 5)/tileSize);
-    	int topRightY = (int)((this.posY)/tileSize);
+    	int topRightX = (int)((this.getX() + this.width - 5)/tileSize);
+    	int topRightY = (int)((this.getY())/tileSize);
     			
     	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
     	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
@@ -249,16 +293,16 @@ public class PhysicsObject extends StaticObject {
 		int collisionLayer = tm.getLayerIndex("CollisionLayer");
 		int tileSize = tm.getTileHeight();
     	
-    	int bottomLeftX = (int)((this.posX + 5)/tileSize);
-    	int bottomLeftY = (int)((this.posY+ this.height)/tileSize);
+    	int bottomLeftX = (int)((this.getX() + 5)/tileSize);
+    	int bottomLeftY = (int)((this.getY()+ this.height)/tileSize);
     	
-    	int bottomRightX = (int)((this.posX + this.width - 5)/tileSize);
-    	int bottomRightY = (int)((this.posY + this.height)/tileSize);
+    	int bottomRightX = (int)((this.getX() + this.width - 5)/tileSize);
+    	int bottomRightY = (int)((this.getY() + this.height)/tileSize);
     			
     	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
     	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
     		
-    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && velocityY >= 0){
+    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && this.getVelocityY() >= 0){
     		
     		
 			return true;
@@ -271,7 +315,9 @@ public class PhysicsObject extends StaticObject {
 	}
 	
 	  public void die(){
-	    	this.posY = 100;
+	    //	this.posY = 100;
+	    	
+	    	this.setY(100);
 	    	this.health = 100;
 	    	Game.killCount++;
 	    	

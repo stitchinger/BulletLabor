@@ -21,11 +21,31 @@ public class Vector2 {
 	public float y(){
 		return this.y;
 	}
+	
+	public void setX(float x){
+		this.x = x;
+	}
+	
+	public void setY(float y){
+		this.y = y;
+	}
+	
+	public void set(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
 
 	public void add(Vector2 v){
 		this.x += v.x;
 		this.y += v.y;
 	}
+	
+	public void add(float x, float y){
+		this.x += x;
+		this.y += y;
+	}
+	
+	
 	
 	public void subtract(Vector2 v){
 		this.x -= v.x;

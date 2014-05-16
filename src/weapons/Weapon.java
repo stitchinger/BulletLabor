@@ -21,7 +21,9 @@ public class Weapon extends StaticObject {
 	private float rotation;
 	private int bulletsLeft;
 	private int shotsPerMinute;
+	private float power;
 	private long timeOfLastShot;
+	private boolean equipped;
 	
 	
 	public Weapon(Image sprite, float x, float y, int width, int height) {
@@ -34,10 +36,12 @@ public class Weapon extends StaticObject {
 	}
 	
 	public void update(float x, float y, float rotation){
-		this.posX = x - this.width/2;
-		this.posY = y - this.height/2;
+		//this.posX = x - this.width/2;
+		//this.posY = y - this.height/2;
+		this.setX(x - this.width/2);
+		this.setY(y - this.height/2);
 		this.rotation = rotation;
-		this.hitbox.setLocation(this.posX, this.posY);
+		this.hitbox.setLocation(this.getX(), this.getY());
 	}
 	
 	public void render(Graphics g){
@@ -76,7 +80,7 @@ public class Weapon extends StaticObject {
 	public void angleShot(float angle){
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.bulletsLeft--;
-    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 25, 30, angle, false));
+    	bullet_list.add(new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2), 25, 30, angle, false));
     }
 
 	public void clusterShot(float angle){

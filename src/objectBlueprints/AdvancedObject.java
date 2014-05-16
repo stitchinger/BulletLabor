@@ -40,8 +40,8 @@ public class AdvancedObject extends PhysicsObject {
 
 	public float getTargetAngle(float mouseX, float mouseY){
     	
-        float vecX = mouseX - (this.posX+this.width/2);
-        float vecY= mouseY - (this.posY+this.height/2);
+        float vecX = mouseX - (this.getX()+this.width/2);
+        float vecY= mouseY - (this.getY()+this.height/2);
         float[] normalizedVector = getNormalizedVector2(vecX, vecY);
         
         
@@ -60,7 +60,7 @@ public class AdvancedObject extends PhysicsObject {
 	 
 	public void angleShot(float angle){
 	    	timeOfLastShot = System.currentTimeMillis();
-	    	bullet_list.add(new Bullet(bulletSprite, (this.posX+this.width/2), (this.posY+this.height/2), 25, 30, angle, false));
+	    	bullet_list.add(new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2), 25, 30, angle, false));
 	    
 	    	
 	    }
