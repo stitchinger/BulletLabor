@@ -8,7 +8,6 @@ import org.newdawn.slick.geom.Shape;
 import util.Settings;
 import util.Vector2;
 
-
 public class StaticObject {
    
 	protected Vector2 position;
@@ -17,8 +16,8 @@ public class StaticObject {
  
     protected Image sprite;
     protected Shape hitbox;
-    protected long timeOfLastHit;
-    protected int flashTimeInMillis;
+    protected long timestampOfLastHit;
+    protected int flashTimeInMillis = 150;
     
     public StaticObject(Image sprite, float x, float y){
         this.sprite = sprite;
@@ -26,11 +25,11 @@ public class StaticObject {
         this.width = this.sprite.getWidth();
         this.height = this.sprite.getHeight();
         this.hitbox = new Rectangle(x,y,width, height);
-        this.flashTimeInMillis = 150;
+       
     }
     
     public void render(Graphics g){
-    	if(this.timeOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
+    	if(this.timestampOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
     		this.getImage().drawFlash(this.getX(), this.getY());
     	}else{
     		this.getImage().draw(this.getX(), this.getY());
@@ -52,13 +51,16 @@ public class StaticObject {
         return this.hitbox;
     }
     
+    public Vector2 getPosition(){
+    	return this.position;
+    }
+    
     public float getX(){
-   
     	return this.position.x();
     }
     
     public float getY(){
-      return this.position.y();
+    	return this.position.y();
     }
     
     public void setX(float x){

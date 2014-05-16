@@ -22,7 +22,7 @@ public class Weapon extends StaticObject {
 	public Weapon(Image sprite, float x, float y) {
 		super(sprite, x, y);
 		
-		this.power = 25;
+		this.power = 30;
 		this.rotation = 0;
 		this.bulletsLeft = 100;
 		this.shotsPerMinute = 600;

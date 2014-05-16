@@ -32,8 +32,10 @@ public class Gui {
 	        g.drawString("Score: " + Game.killCount           , posX + this.width - 120, posY + 50);
 	        g.drawString("Health: "+ (Game.player.getHealth()), posX + this.width - 120, posY + 70);
 	        
-	        g.drawString("MouseDirectionAngle: "+ ((Game.player.getMouseVector())), posX + 10, posY + 150);
+	        g.drawString("CameraX: "+ (Game.cam.getX()), posX + 10, posY + 100);
+	        g.drawString("CameraY: "+ (Game.cam.getY()), posX + 10, posY + 120);
 	        
+	        //g.drawLine(posX + Game.cam.getViewportWidth()/2, posY + 0, posX + Game.cam.getViewportWidth()/2, posY + Game.cam.getViewportHeight());
 	       
 	}
 }

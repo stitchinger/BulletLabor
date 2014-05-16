@@ -16,7 +16,6 @@ public class AdvancedObject extends LivingObject {
 	public void update(){
 		super.update();
 	
-		
 	}
 	
 	public void render(Graphics g){

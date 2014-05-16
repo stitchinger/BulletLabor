@@ -16,11 +16,6 @@ public class Player extends AdvancedObject{
         super(img, x, y); 
         
         this.weapon = new Weapon(Game.weaponSprite, this.getX(), this.getY());
-        this.direction = "right";  	
-        this.maxWalkSpeed = 6;      
-        this.acceleration = 0.4f;  	
-        this.jumpHeight = 9;		
-        this.health = 100;			
     }
 
 	public void update(Input in) throws SlickException{

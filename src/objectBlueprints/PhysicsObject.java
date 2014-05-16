@@ -1,31 +1,21 @@
 package objectBlueprints;
 
 import main.Game;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 import util.Vector2;
 
 public class PhysicsObject extends StaticObject {
 
-	protected Vector2 velocity;
-	protected float gravity;
-	protected float maxFallSpeed;
-	protected float friction;
-	protected boolean isRunning;
-	
-	protected SpriteSheet idleSprite;
-	protected Animation idleAnimation;
+	protected Vector2 velocity = new Vector2(0,0);
+	protected float gravity = 0.38f;
+	protected float maxFallSpeed = 20;
+	protected float friction = 0.8f;
+	protected boolean isRunning = false;
 	
 	public PhysicsObject(Image img, int x, int y) {
 		super(img, x, y);
-		
-		this.velocity = new Vector2(0,0);
-		this.gravity = 0.38f;  
-		this.maxFallSpeed = 20;
-		this.friction = 0.8f;
 	}
 
 	public void update() {
@@ -128,6 +118,10 @@ public class PhysicsObject extends StaticObject {
 		this.velocity.setY(y);
 	}
 
+	public Vector2 getVelocity(){
+		return this.velocity;
+	}	
+	
 	public float getVelocityX() {
 	
 		return this.velocity.x();

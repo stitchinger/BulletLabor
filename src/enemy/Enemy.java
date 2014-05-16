@@ -8,14 +8,6 @@ public class Enemy extends AdvancedObject{
 	
 	public Enemy(Image img, int x, int y) {
         super(img, x, y);
-        
-        this.direction = "right";
-        this.maxWalkSpeed = 5;
-        this.acceleration = 0.25f;
-        this.jumpHeight = 8;
-        this.gravity = 0.30f;
-        this.isRunning = false;
-        this.health = 100;
     }
     
     public void update(){

@@ -6,42 +6,28 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import util.Settings;
+import util.Vector2;
 
 
 public class Camera {
-	private float posX;
-	private float posY;
-	private float velocityX;
-	private float velocityY;
+	
+	private Vector2 position;
+	private Vector2 velocity;
 	private int viewportWidth;
 	private int viewportHeight;
 	private boolean followMode;
 	private boolean smoothFollowMode;
 	private float inertia;
 	
-	private float shakeDecay = 0.03f;
-	private int shakeDelay = 45;
-	private boolean shakeSnap = false;
-	private int shakeInstensity = 15;
-	
-	private int shakeTime = shakeDelay;
-	private float shakeAmt = 0f;
-	private float shakeX = 0f;
-	private float shakeY = 0f;
-	
-
-	
-	
-	
 	public Camera(){
 		
 		this.viewportWidth = Settings.WINDOW_WIDTH;
 		this.viewportHeight = Settings.WINDOW_HEIGHT;
-		this.posX = 0;
-		this.posY = 0;
+		this.position = new Vector2(0,0);
+		this.velocity = new Vector2(0,0);
 		this.followMode = true;
 		this.smoothFollowMode = true;
-		this.inertia = 0.07f;
+		this.inertia = 0.2f;
 	}
 	
 	public void update(Input in){
@@ -56,28 +42,24 @@ public class Camera {
 			 this.smoothMovement();
 		 }
 		 
-		 
-		 
-		
 		 this.actualMovement();
 		 this.avoidLeavingWorld();
 			
-		
+		 System.out.println("X: " + this.getX() + ", Y: " +  this.getY());
 	}
 	
 	public void render(Graphics g){
-		
-		g.translate(posX, posY);
-	
+		g.translate(-this.getX(), -this.getY());
 	}
 	
 	public void follow(PhysicsObject target){
-		float targetX = (target.getX() + target.getWidth()/2) * (-1) +   this.viewportWidth/2;
-		float targetY = (target.getY() + target.getHeight()/2) * (-1) +  this.viewportHeight/2;
-		this.velocityX = targetX - this.posX;
-		this.velocityY = targetY - this.posY;
+		float targetX = target.getX() + target.getWidth()/2 - this.viewportWidth/2;
+		float targetY = target.getY() + target.getHeight()/2 - this.viewportHeight/2;
 		
+		targetX += target.getVelocityX()*10;
 		
+		this.velocity.setX(targetX - this.getX());
+		this.velocity.setY(targetY - this.getY()); 
 	}
 	
 	private void cameraControl(Input in){
@@ -87,46 +69,55 @@ public class Camera {
 		 if(in.isKeyPressed(Input.KEY_2)){
              this.toggleSmoothFollowMode();
 		 }
+		 if(in.isKeyDown(Input.KEY_UP)){
+             this.position.add(0, -10);
+		 }
+		 if(in.isKeyDown(Input.KEY_DOWN)){
+			 this.position.add(0, 10);
+		 }
+		 if(in.isKeyDown(Input.KEY_LEFT)){
+			 this.position.add(-10, 0);
+		 }
+		 if(in.isKeyDown(Input.KEY_RIGHT)){
+			 this.position.add(10, 0);
+		 }
 		
 	}
 	
 	public void smoothMovement(){
-		this.velocityX *= this.inertia;
-		this.velocityY *= this.inertia;
+		
+		this.velocity.mult(this.inertia);
 	}
 	
 	private void avoidLeavingWorld(){
-		if(this.getX() < 0){
-			this.posX = 0;
-		}else if(this.getX() + this.viewportWidth > Game.gameworld.getWidth()){
-			this.posX = (Game.gameworld.getWidth() - this.viewportWidth) * -1;
-		}
-		if(this.getY() < 0){
-			this.posY = 0;
-		}else if(this.getY() + this.viewportHeight > Game.gameworld.getHeight()){
-			this.posY = (Game.gameworld.getHeight() - this.viewportHeight) * -1; 
-		}
+		float maxX = Game.gameworld.getWidth() - this.viewportWidth - 32;
+		float minX = 32;
+		float maxY = Game.gameworld.getHeight() - this.viewportHeight - 32;
+		float minY = 32;
+		
+		float posX = Math.min(Math.max(minX, this.getX()), maxX);
+		float posY = Math.min(Math.max(minY, this.getY()), maxY);
+		
+		this.position.set(posX, posY);
 		
 	}
 	
 	public void actualMovement(){
-		this.posX += velocityX;
-		this.posY += velocityY;
+		this.position.add(this.velocity);
 	}
 	
 	public float getX(){
-		
-		return this.posX * -1;
+		return this.position.x();
 	}
 	
 	public float getY(){
+		return this.position.y();
 		
-		return this.posY * -1;
 	}
 	
-	public boolean isInViewport(float x, float y){
-		float tx = translateX(x);
-		float ty = translateY(y);
+	public boolean isInViewport(Vector2 position){
+		float tx = translateX(position.x());
+		float ty = translateY(position.y());
 		
 		if(tx < this.viewportWidth && tx > 0 && ty < this.viewportHeight && ty > 0){
 			return true;
@@ -137,12 +128,12 @@ public class Camera {
 	
 	public float translateX(float x){
 		
-		return x - this.posX; 
+		return x - this.getX(); 
 	}
 	
 	public float translateY(float y){
 		
-		return y - this.posY; 
+		return y - this.getY(); 
 	}
 	
 	public void toggleFollowMode(){
