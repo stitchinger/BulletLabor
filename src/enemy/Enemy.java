@@ -34,7 +34,7 @@ public class Enemy extends AdvancedObject{
          	this.moveLeft();
          }
          if(Math.random() < 0.005f){
-        	 if (Game.gameworld.player.getX() < this.getX())
+        	 if (Game.player.getX() < this.getX())
          		this.moveLeft();
          	else
          		this.moveRight();

@@ -73,7 +73,7 @@ public class Weapon extends StaticObject {
     	
     	Bullet bullet = new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
     	bullet.addForce(new Vector2(this.getSpreadRotation()).mult(this.power));
-    	Game.gameworld.bullet_list.add(bullet);
+    	Game.bullet_list.add(bullet);
     	
     }
 	
@@ -97,7 +97,7 @@ public class Weapon extends StaticObject {
 	
 	public void drop(){
 		Weapon weapon = new Weapon(Game.weaponSprite,this.getX()-50, this.getY());
-    	Game.gameworld.weapon_list.add(weapon);
+    	Game.weapon_list.add(weapon);
 	}
 	
 	public int getBulletsLeft(){

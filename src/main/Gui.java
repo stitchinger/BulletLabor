@@ -26,13 +26,13 @@ public class Gui {
 
 	public void render(Graphics g){
 		g.setColor(this.textColor);
-	    g.drawString("Velocity X: " + Game.gameworld.player.getVelocityX(), posX + 10, posY + 50);
-	    g.drawString("Velocity Y: " + Game.gameworld.player.getVelocityY(), posX + 10, posY + 70);
+	    g.drawString("Velocity X: " + Game.player.getVelocityX(), posX + 10, posY + 50);
+	    g.drawString("Velocity Y: " + Game.player.getVelocityY(), posX + 10, posY + 70);
 	    
 	    g.drawString("Score: " + Game.killCount           , posX + this.width - 120, posY + 50);
-	    g.drawString("Health: "+ (Game.gameworld.player.getHealth()), posX + this.width - 120, posY + 70);	
+	    g.drawString("Health: "+ (Game.player.getHealth()), posX + this.width - 120, posY + 70);	
 	    
-	    g.drawString("Weapon: "+ (Game.gameworld.player.getWeapon()), posX + 10, posY + 100);	       
+	    g.drawString("Weapon: "+ (Game.player.getWeapon()), posX + 10, posY + 100);	       
 	}
 }
 
