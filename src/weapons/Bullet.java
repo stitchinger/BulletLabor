@@ -101,7 +101,7 @@ public class Bullet extends PhysicsObject{
     public void die(){
     	
     	this.isAlive = false;
-    	Game.toRemove.add(this);
+    	Game.toRemoveBullets.add(this);
     }
     
     public int getDamage(){

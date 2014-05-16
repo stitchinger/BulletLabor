@@ -8,12 +8,15 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+import objectBlueprints.AdvancedObject;
+import objectBlueprints.PhysicsObject;
 import objectBlueprints.StaticObject;
 import util.Settings;
 import util.Vector2;
 
-public class Weapon extends StaticObject {
+public class Weapon extends PhysicsObject {
 
+	private AdvancedObject owner;
 	private float rotation;
 	private int bulletsLeft;
 	private int shotsPerMinute;
@@ -34,11 +37,18 @@ public class Weapon extends StaticObject {
 	}
 	
 	public void update(float x, float y, float rotation){
+		if(this.owner != null){
+			
+			this.setX(x - this.width/2);
+			this.setY(y - this.height/2);
+			this.rotation = rotation;
+			this.hitbox.setLocation(this.getX(), this.getY());
+			
+		}else{
+			super.update();
+		}
 		
-		this.setX(x - this.width/2);
-		this.setY(y - this.height/2);
-		this.rotation = rotation;
-		this.hitbox.setLocation(this.getX(), this.getY());
+		
 	}
 	
 	public void render(Graphics g){
@@ -58,7 +68,8 @@ public class Weapon extends StaticObject {
           	g.setColor(Color.red);
           	g.draw(this.getHitbox());
           	g.setColor(Color.white); 
-          //	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
+          	g.drawString("Ammo: "+ this.bulletsLeft, this.getX(), this.getY()+ this.height );
+        	g.drawString("VY: "+ this.getVelocityY(), this.getX(), this.getY()+ this.height + 20 );
           }
 	}
 	
@@ -73,6 +84,7 @@ public class Weapon extends StaticObject {
     	this.bulletsLeft--;
     	Bullet bullet = new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
     	bullet.addForce(new Vector2(this.getSpreadRotation()).mult(this.power));
+    	owner.addForce(new Vector2(this.rotation).mult(-this.power/20));
     	bullet_list.add(bullet);
     	
     }
@@ -106,14 +118,20 @@ public class Weapon extends StaticObject {
 	    }
 	
 	public void drop(){
-		Weapon weapon = new Weapon(Game.weaponSprite,this.getX()-50, this.getY());
 		
-		Game.weapon_list.add(this);
+		
+		this.owner = null;
+		
+		
     	
 	}
 
 	
 	public int getBulletsLeft(){
 		return this.bulletsLeft;
+	}
+	
+	public void newOwner(AdvancedObject owner){
+		this.owner = owner;
 	}
 }

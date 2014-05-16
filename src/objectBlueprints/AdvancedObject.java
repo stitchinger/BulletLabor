@@ -1,7 +1,10 @@
 package objectBlueprints;
 
+import main.Game;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+
 import util.Vector2;
 import weapons.Weapon;
 
@@ -37,13 +40,23 @@ public class AdvancedObject extends LivingObject {
 	 public void dropWeapon(){
 	    	if(this.weapon != null){
 	    		this.weapon.drop();
-		    	this.weapon = null;
+	    		Game.weapon_list.add(this.weapon);
+	    		this.velocity.set(this.getVelocity());
+	    		this.weapon.addForce(-1.8f, -7);
+	    		this.weapon = null;
+		    	
+				
+				
+				
 	    	}
 	    	
 	 }
 	    
 	 public void setWeapon(Weapon weapon){
 	    	this.weapon = weapon;
+	    	Game.toRemoveWeapons.add(weapon);
+	    	this.weapon.newOwner(this);
+	    	
 	 }
 	    
 	 public Weapon getWeapon(){

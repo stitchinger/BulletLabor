@@ -21,7 +21,8 @@ public class Game extends BasicGame {
 
    
     public static Input in;
-    public static List<Bullet> toRemove = new LinkedList<Bullet>();
+    public static List<Bullet> toRemoveBullets = new LinkedList<Bullet>();
+    public static List<Weapon> toRemoveWeapons = new LinkedList<Weapon>();
 
     // Game Objekte ++++++++++++++++++++++
     public static World gameworld;
@@ -118,7 +119,7 @@ public class Game extends BasicGame {
         }
         
         for (Weapon weapon : weapon_list) {
-            
+            weapon.update();
             if(weapon.getHitbox().intersects(player.getHitbox())){
             	if(in.isKeyDown(Input.KEY_E)){
                     
@@ -183,10 +184,15 @@ public class Game extends BasicGame {
     }
 
    public void removeObjects(){
-	   for (Object o : toRemove) {
+	   for (Object o : toRemoveBullets) {
     	   bullet_list.remove(o);
 	   }
-	   toRemove.clear();
+	   toRemoveBullets.clear();
+	  
+	   for (Object o : toRemoveWeapons) {
+    	   weapon_list.remove(o);
+	   }
+	   toRemoveWeapons.clear();
    }
     
     private void renderWorld(Graphics g) {

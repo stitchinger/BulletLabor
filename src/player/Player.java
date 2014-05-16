@@ -16,6 +16,7 @@ public class Player extends AdvancedObject{
         super(img, x, y); 
         
         this.weapon = new Weapon(Game.weaponSprite, this.getX(), this.getY());
+        this.weapon.newOwner(this);
     }
 
 	public void update(Input in) throws SlickException{
@@ -63,6 +64,9 @@ public class Player extends AdvancedObject{
         	
         	if(this.weapon != null){
         		this.weapon.trigger();
+        		if(this.weapon.getBulletsLeft() <= 0){
+        			this.dropWeapon();
+        		}
         	}
         	
         	
