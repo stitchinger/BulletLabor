@@ -9,8 +9,8 @@ public class Powerup extends StaticObject{
 	private String id;
 	private int healthAmount;
 	
-	public Powerup(Image sprite, float x, float y, int width, int height, String id) {
-		super(sprite, x, y, width, height);
+	public Powerup(Image sprite, float x, float y, String id) {
+		super(sprite, x, y);
 	
 		this.id = id;
 		if(id.equals("healthItem")){

@@ -18,17 +18,7 @@ import world.World;
 
 public class Game extends BasicGame {
 
-    // Fenster Einstellungen  +++++++++++++
-	/*static String title = "Shoot'em Up";
-	static int width = 1200;
-    static int height = 800;
-    static boolean fullscreen = false;
-    static boolean showFPS = true;
-    static int fpslimit = 60;
-    
-    public static final boolean debugModus = false;
-    */
-    // Input Instanz ++++++++++++++++++++
+   
     public static Input in;
     public static List<Bullet> toRemove = new LinkedList<Bullet>();
 
@@ -62,27 +52,27 @@ public class Game extends BasicGame {
         Image playerSprite = new Image("Images/Player/player.png");
         Image enemySprite = new Image("Images/Enemies/enemy.png");
         Image heartSprite = new Image("Images/Powerups/heart.png");
-        bulletSprite = new Image("Images/Player/bullet3.png");
-        weaponSprite = new Image("Images/Player/weapon.png");
+        bulletSprite = new Image("Images/Weapon/bullet3.png");
+        weaponSprite = new Image("Images/Weapon/weapon.png");
 
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
      
-        player = new Player(playerSprite, 400, 100, 32, 60);
+        player = new Player(playerSprite, 400, 100);
        
         for (int i = 0; i < 2; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-        	Enemy enemy = new Enemy(enemySprite,randomX, 100, 40, 34);
+        	Enemy enemy = new Enemy(enemySprite,randomX, 100);
         	enemy_list.add(enemy);
         }
         
         
         
         for (int i = 0; i < 1; i += 1) {
-            Powerup powerup = new Powerup(heartSprite,200 , 200, 32, 32, "healthItem");
+            Powerup powerup = new Powerup(heartSprite,200 , 200, "healthItem");
         	powerup_list.add(powerup);
         }
         
@@ -112,7 +102,8 @@ public class Game extends BasicGame {
            
             if(powerup.getHitbox().intersects(player.getHitbox())){
     			
-    			powerup.setPosition(100000, 100000);
+    			powerup.setX(10000);
+    			powerup.setY(10000);
     			player.addHealth(powerup.getHealthAmount());
 
             }
@@ -125,34 +116,24 @@ public class Game extends BasicGame {
         	
         	for(Enemy enemy : enemy_list){
         		
-        		if((bullet.getHitbox().intersects(enemy.getHitbox()) && bullet.enemyBullet == false)){
+        		if(bullet.getHitbox().intersects(enemy.getHitbox())){
         			
 
         			enemy.receiveDamage(bullet.getDamage());
         			enemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
-        			//toRemove.add(bullet);
+        			
         			bullet.die();
         		}	
         	}
+        	  	
         	
-        	
-        	if((bullet.getHitbox().intersects(player.getHitbox()) && bullet.enemyBullet == true)){
-        		bullet.setPosition(100000, 1000000);
-        		player.receiveDamage(bullet.getDamage());
-        		player.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
-        		//toRemove.add(bullet);
-        		bullet.die();
-        	}
 
         }
         
-        for (Object o : toRemove) {
-        	   bullet_list.remove(o);
-        }
-        toRemove.clear();
-
        
-        //aniOb.update(delta);
+        removeObjects();
+       
+       
         cam.update(in);
         gui.update();
 
@@ -179,7 +160,12 @@ public class Game extends BasicGame {
         app.start();
     }
 
-   
+   public void removeObjects(){
+	   for (Object o : toRemove) {
+    	   bullet_list.remove(o);
+	   }
+	   toRemove.clear();
+   }
     
     private void renderWorld(Graphics g) {
    	
