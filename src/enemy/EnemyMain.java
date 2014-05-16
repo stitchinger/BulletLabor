@@ -12,18 +12,7 @@ public class EnemyMain extends AdvancedObject{
 	
 	public EnemyMain(Image img, int x, int y) {
         super(img, x, y);
-        
     }
-	
-	public static int randomX() throws SlickException {
-		
-		World gameworld = new World();
-		
-        int minDistance = 300;
-        int randomX = (int) (Math.random()* gameworld.getWidth());
-        randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-        return randomX;
-	}
     
     public void update(int delta){
        this.behavior();
@@ -58,6 +47,5 @@ public class EnemyMain extends AdvancedObject{
          	
          	this.jump();
          }
-         
     }
 }
