@@ -15,19 +15,17 @@ public class Camera {
 	private Vector2 velocity;
 	private int viewportWidth;
 	private int viewportHeight;
-	private boolean followMode;
-	private boolean smoothFollowMode;
-	private float inertia;
+	private int offsetCenterX = 0;
+	private int offsetCenterY = -80;
+	private boolean followMode = true;
+	private boolean smoothFollowMode = true;
+	private float inertia = 0.2f;
 	
 	public Camera(){
-		
-		this.viewportWidth = Settings.WINDOW_WIDTH;
-		this.viewportHeight = Settings.WINDOW_HEIGHT;
 		this.position = new Vector2(0,0);
 		this.velocity = new Vector2(0,0);
-		this.followMode = true;
-		this.smoothFollowMode = true;
-		this.inertia = 0.2f;
+		this.viewportWidth = Settings.WINDOW_WIDTH;
+		this.viewportHeight = Settings.WINDOW_HEIGHT;
 	}
 	
 	public void update(Input in){
@@ -45,7 +43,7 @@ public class Camera {
 		 this.actualMovement();
 		 this.avoidLeavingWorld();
 			
-		 System.out.println("X: " + this.getX() + ", Y: " +  this.getY());
+		
 	}
 	
 	public void render(Graphics g){
@@ -53,8 +51,8 @@ public class Camera {
 	}
 	
 	public void follow(PhysicsObject target){
-		float targetX = target.getX() + target.getWidth()/2 - this.viewportWidth/2;
-		float targetY = target.getY() + target.getHeight()/2 - this.viewportHeight/2;
+		float targetX = target.getX() + target.getWidth()/2 - this.viewportWidth/2 + this.offsetCenterX;
+		float targetY = target.getY() + target.getHeight()/2 - this.viewportHeight/2 + this.offsetCenterY;
 		
 		targetX += target.getVelocityX()*10;
 		
