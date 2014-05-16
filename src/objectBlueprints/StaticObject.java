@@ -40,9 +40,7 @@ public class StaticObject {
        
     }
     
-    public void update(){
-    	
-    }
+   
     
     public void render(Graphics g){
     	

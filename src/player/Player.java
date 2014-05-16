@@ -10,14 +10,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import util.Settings;import static main.Game.bulletSprite;
+import util.Settings;import weapons.Weapon;
+import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
 
 
 public class Player extends AdvancedObject{
 
-	private float shotsPerMin;
+	
 	public int walkdirection;
 	
 	
@@ -25,7 +26,7 @@ public class Player extends AdvancedObject{
 	public Player(Image img, int x, int y, int width, int height) {
         super(img, x, y, width, height); // Hier wird die Konstruktor Methode der Elternklasse aufgerufen und die Werte werden weitergegeben
         
-      
+        this.weapon = new Weapon(Game.weaponSprite, this.posX, this.posY, 14, 50);
         this.direction = "right";  	// Blickrichtung
         this.maxWalkSpeed = 6;      // Maximale Laufgeschwindigkeit
         this.acceleration = 0.4f;  	// Beschleunigung beim Laufen
@@ -41,6 +42,9 @@ public class Player extends AdvancedObject{
     	playerControl(in);
     	
     	super.update();
+    	if(this.weapon != null){
+			this.weapon.update(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2, this.getMouseAngle());
+		}
     	
     	
     }
@@ -72,16 +76,11 @@ public class Player extends AdvancedObject{
         
       
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-        	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
-        		
-        		angleShot(this.getMouseAngle());
-        	}
+        	
+        	this.weapon.trigger(this.getMouseAngle());
         }
         if(in.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
-        	if((System.currentTimeMillis() - timeOfLastShot) >= (60 / this.shotsPerMin) * 1000f){
-         		
-          		this.clusterShot(this.getMouseAngle());
-          	}
+        
         }
     }
     

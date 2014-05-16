@@ -12,7 +12,7 @@ public class Bullet extends PhysicsObject{
     
 	private boolean isAlive = true;
 	private float spreadRange = 10f;
-    private int speed = 15;
+    private int speed = 25;
     private int bulletDamage = 15;
     private float bouncyness = 0.3f;
 	private int lifeTimeMillis = 4000;

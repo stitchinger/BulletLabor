@@ -57,7 +57,7 @@ public class PhysicsObject extends StaticObject {
 	
 	public void update() {
 		
-		super.update();
+	
 		if (this.health <= 0){
         	this.die();
 		}

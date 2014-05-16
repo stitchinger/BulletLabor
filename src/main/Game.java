@@ -45,6 +45,7 @@ public class Game extends BasicGame {
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
 
     public static Image bulletSprite;
+    public static Image weaponSprite;
     public static int killCount = 0;
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +63,7 @@ public class Game extends BasicGame {
         Image enemySprite = new Image("Images/Enemies/enemy.png");
         Image heartSprite = new Image("Images/Powerups/heart.png");
         bulletSprite = new Image("Images/Player/bullet3.png");
+        weaponSprite = new Image("Images/Player/weapon.png");
 
         gameworld = new World();
         cam = new Camera();
@@ -69,7 +71,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100, 32, 60);
        
-        for (int i = 0; i < 50; i += 1) {
+        for (int i = 0; i < 2; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
