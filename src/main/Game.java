@@ -29,6 +29,7 @@ public class Game extends BasicGame {
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
+    public static Enemy enemy;
     
   
     public static Player player;
@@ -55,12 +56,9 @@ public class Game extends BasicGame {
         gui = new Gui();
      
         player = new Player(Settings.playerSprite, 400, 100);
-       
+        
         for (int i = 0; i < 0; i += 1) {
-            int minDistance = 300;
-            int randomX = (int) (Math.random()* gameworld.getWidth());
-            randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-        	Enemy enemy = new Enemy(Settings.enemySprite,randomX, 100);
+        	Enemy enemy = new Enemy(Settings.enemySprite, Enemy.randomX(), 100);
         	enemy_list.add(enemy);
         }
         

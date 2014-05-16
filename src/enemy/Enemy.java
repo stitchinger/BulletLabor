@@ -2,13 +2,28 @@ package enemy;
 
 import main.Game;
 import objectBlueprints.AdvancedObject;
+
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
+import world.World;
 
 public class Enemy extends AdvancedObject{
 	
 	public Enemy(Image img, int x, int y) {
         super(img, x, y);
+        
     }
+	
+	public static int randomX() throws SlickException {
+		
+		World gameworld = new World();
+		
+        int minDistance = 300;
+        int randomX = (int) (Math.random()* gameworld.getWidth());
+        randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
+        return randomX;
+	}
     
     public void update(int delta){
        this.behavior();
