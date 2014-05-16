@@ -51,13 +51,15 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
         
+        settings = new Settings();
+        
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
      
         player = new Player(Settings.playerSprite, 400, 100);
         
-        for (int i = 0; i < 5; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
         	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, SlimeEnemy.randomX(), 100);
         	enemy_list.add(enemy);
         }
