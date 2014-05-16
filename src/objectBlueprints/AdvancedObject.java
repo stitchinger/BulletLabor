@@ -55,9 +55,12 @@ public class AdvancedObject extends LivingObject {
 	 }
 	    
 	 public void setWeapon(Weapon weapon){
-	    	this.weapon = weapon;
-	    	Game.removeObject(weapon);
-	    	this.weapon.setOwner(this);
+	    	if(this.weapon == null){
+	    		this.weapon = weapon;
+		    	Game.removeObject(weapon);
+		    	this.weapon.setOwner(this);
+	    	}
+		 	
 	    	
 	 }
 	    
