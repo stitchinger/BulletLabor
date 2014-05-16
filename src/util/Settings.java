@@ -20,6 +20,7 @@ public class Settings {
     public static Image heartSprite;
     public static Image bulletSprite;
     public static Image weaponSprite;
+    public static Image shellSprite;
     
     public Settings() throws SlickException {
     	
@@ -28,6 +29,7 @@ public class Settings {
 	    heartSprite = new Image("Images/Powerups/heart.png");
 	    bulletSprite = new Image("Images/Weapon/bullet.png");
 	    weaponSprite = new Image("Images/Weapon/weapon.png");
+	    weaponSprite = new Image("Images/Weapon/shell.png");
     
     }
 }
