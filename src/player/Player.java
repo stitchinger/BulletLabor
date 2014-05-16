@@ -19,19 +19,19 @@ public class Player extends AdvancedObject{
         this.weapon.setOwner(this);
     }
 
-	public void update(Input in) throws SlickException{
+	public void update(int delta, Input in){
     	 
     	playerControl(in);
     	
-    	super.update();
+    	super.update(delta);
     	if(this.weapon != null){
-			this.weapon.update(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2, this.getMouseVector().toDegee());
+			this.weapon.update(delta, this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2, this.getMouseVector().toDegee());
 		}
     	
     	
     }
     
-    public void playerControl(Input in) throws SlickException{
+    public void playerControl(Input in){
        this.isRunning = false;
         
         if(in.isKeyDown(Input.KEY_A)){

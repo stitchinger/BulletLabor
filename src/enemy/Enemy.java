@@ -10,9 +10,9 @@ public class Enemy extends AdvancedObject{
         super(img, x, y);
     }
     
-    public void update(){
+    public void update(int delta){
        this.behavior();
-       super.update();
+       super.update(delta);
     }
     
     public void changeDirection(){

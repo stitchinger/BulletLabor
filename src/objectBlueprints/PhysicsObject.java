@@ -18,12 +18,14 @@ public class PhysicsObject extends StaticObject {
 		super(img, x, y);
 	}
 
-	public void update() {
-		this.fall();
+	public void update(int delta) {
+		this.fall(delta);
 		this.limitFallSpeed();
 		this.applyFriction();
-		this.actualMovement();
+		
+		this.actualMovement(delta);
 		this.resolveWorldCollision();
+		//this.resolveWorldCollision();
 	}
 	
 	public void render(Graphics g){
@@ -31,9 +33,9 @@ public class PhysicsObject extends StaticObject {
 		super.render(g);
 	}
 	
-	public void actualMovement(){
+	public void actualMovement(int delta){
 	
-		this.position.add(velocity);
+		this.position.add(this.velocity);
 	
 		hitbox.setLocation(this.position.x(), this.position.y());
 
@@ -55,10 +57,10 @@ public class PhysicsObject extends StaticObject {
 		
 	}
 
-	public void fall() {
+	public void fall(int delta) {
 		
 		
-		//this.velocity.add(0, gravity);
+		
 		this.addForce(0, this.gravity);
 		 
 	
@@ -97,6 +99,7 @@ public class PhysicsObject extends StaticObject {
 		
 		
 	}
+	
 	
 	public void addForce(float velocityX, float velocityY){
 	
@@ -231,9 +234,108 @@ public class PhysicsObject extends StaticObject {
 		}
 		
 		
+	} 
+	/*public boolean isLeftSideCollided(){
+		TiledMap tm = Game.gameworld.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		int tileSize = tm.getTileHeight();
+    	
+    	int topLeftX = (int)((this.getX()+this.getVelocityX())/tileSize);
+    	int topLeftY = (int)((this.getY()+this.getVelocityY()+10)/tileSize);
+    	
+    	int bottomLeftX = (int)((this.getX()+this.getVelocityX())/tileSize);
+    	int bottomLeftY = (int)((this.getY()+this.getVelocityY()+ this.height-10)/tileSize);
+    			
+    	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
+    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    		
+    	if((topLeftCornerCollision > 0 || bottomLeftCornerCollision > 0)){
+			
+			return true;
+		} else{
+			
+			return false;
+		}
+		
+		
+	}	
+	
+	public boolean isRightSideCollided(){
+		
+		TiledMap tm = Game.gameworld.getTiledMap();
+		
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		
+		int tileSize = tm.getTileHeight();
+    	
+    	int topRightX = (int)((this.getX()+this.getVelocityX() + this.width)/tileSize);
+    	int topRightY = (int)((this.getY()+this.getVelocityY()+10)/tileSize);
+    	
+    	int bottomRightX = (int)((this.getX()+this.getVelocityX() + this.width)/tileSize);
+    	int bottomRightY = (int)((this.getY()+this.getVelocityY()+ this.height-10)/tileSize);
+    			
+    	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
+    		
+    	if((topRightCornerCollision > 0 || bottomRightCornerCollision > 0)){
+			
+			return true;
+		} else{
+			
+			return false;
+		}
+		
 	}
 	
+	public boolean isTopSideCollided(){
+		TiledMap tm = Game.gameworld.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		int tileSize = tm.getTileHeight();
+    	
+    	int topLeftX = (int)((this.getX() +this.getVelocityX()+ 5)/tileSize);
+    	int topLeftY = (int)((this.getY()+this.getVelocityY())/tileSize);
+    	
+    	int topRightX = (int)((this.getX()+this.getVelocityX() + this.width - 5)/tileSize);
+    	int topRightY = (int)((this.getY()+this.getVelocityY())/tileSize);
+    			
+    	int topLeftCornerCollision = tm.getTileId(topLeftX, topLeftY, collisionLayer);
+    	int topRightCornerCollision = tm.getTileId(topRightX, topRightY, collisionLayer);
+    		
+    	if((topLeftCornerCollision > 0 || topRightCornerCollision > 0)){
+    		
+			return true;
+		} else{
+			
+			return false;
+		}
+	}
 	
+	public boolean isBottomSideCollided() {
+		TiledMap tm = Game.gameworld.getTiledMap();
+		int collisionLayer = tm.getLayerIndex("CollisionLayer");
+		int tileSize = tm.getTileHeight();
+    	
+    	int bottomLeftX = (int)((this.getX()+this.getVelocityX() + 5)/tileSize);
+    	int bottomLeftY = (int)((this.getY()+this.getVelocityY()+ this.height)/tileSize);
+    	
+    	int bottomRightX = (int)((this.getX()+this.getVelocityX() + this.width - 5)/tileSize);
+    	int bottomRightY = (int)((this.getY()+this.getVelocityY() + this.height)/tileSize);
+    			
+    	int bottomLeftCornerCollision = tm.getTileId(bottomLeftX, bottomLeftY, collisionLayer);
+    	int bottomRightCornerCollision = tm.getTileId(bottomRightX, bottomRightY, collisionLayer);
+    		
+    	if((bottomLeftCornerCollision > 0 || bottomRightCornerCollision > 0) && this.getVelocityY() >= 0){
+    		
+    		
+			return true;
+		} else{
+			
+			return false;
+		}
+		
+		
+	}
+	*/
 	
 	
 

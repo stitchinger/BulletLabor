@@ -21,16 +21,15 @@ public class Game extends BasicGame {
 
    
     public static Input in;
-   // public static List<Bullet> toRemoveBullets = new LinkedList<Bullet>();
-   // public static List<Weapon> toRemoveWeapons = new LinkedList<Weapon>();
+  
     public static List<StaticObject> toRemoveObjects = new LinkedList<StaticObject>();
 
-    // Game Objekte ++++++++++++++++++++++
+ 
     public static World gameworld;
     public static Camera cam;
     public static Gui gui;
     
-    // Entitis
+  
     public static Player player;
     public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
@@ -42,8 +41,7 @@ public class Game extends BasicGame {
     public static Image weaponSprite;
     public static int killCount = 0;
     
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public Game(String title) {
         super(title);
     }
@@ -65,7 +63,7 @@ public class Game extends BasicGame {
      
         player = new Player(playerSprite, 400, 100);
        
-        for (int i = 0; i < 2; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
@@ -94,10 +92,10 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
     	
     	gameworld.update();
-        player.update(in);
+        player.update(delta,in);
        
         for (Enemy enemy : enemy_list) {
-            enemy.update();
+            enemy.update(delta);
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
     			
@@ -118,11 +116,12 @@ public class Game extends BasicGame {
         }
         
         for (Weapon weapon : weapon_list) {
-            weapon.update();
+            weapon.update(delta);
             if(weapon.getHitbox().intersects(player.getHitbox())){
             	if(in.isKeyDown(Input.KEY_E)){
                     
             		player.setWeapon(weapon);
+            		break;
                 	
                 }
             	
@@ -134,7 +133,7 @@ public class Game extends BasicGame {
        
        
         for (Bullet bullet : bullet_list) {
-        	bullet.update();
+        	bullet.update(delta);
         	
         	for(Enemy enemy : enemy_list){
         		

@@ -25,6 +25,7 @@ public class Weapon extends PhysicsObject {
 	private long timeOfLastShot;
 	private boolean equipped;
 	private float spreadRange;
+	private float inertia;
 	
 	public Weapon(Image sprite, float x, float y) {
 		super(sprite, x, y);
@@ -35,19 +36,20 @@ public class Weapon extends PhysicsObject {
 		this.bulletsLeft = 100;
 		this.shotsPerMinute = 600;
 		this.spreadRange = 5;
+		this.inertia = 0.2f;
 	
 	}
 	
-	public void update(float x, float y, float rotation){
+	public void update(int delta, float x, float y, float rotation){
 		if(this.owner != null){
 			
 			this.setX(x - this.width/2);
 			this.setY(y - this.height/2);
-			this.rotation = rotation;
+			this.rotation += (rotation - this.rotation)*this.inertia;
 			this.hitbox.setLocation(this.getX(), this.getY());
 			
 		}else{
-			super.update();
+			super.update(delta);
 		}
 		
 		
@@ -71,7 +73,7 @@ public class Weapon extends PhysicsObject {
           	g.draw(this.getHitbox());
           	g.setColor(Color.white); 
           	g.drawString("Ammo: "+ this.bulletsLeft, this.getX(), this.getY()+ this.height );
-        	g.drawString("VY: "+ this.getVelocityY(), this.getX(), this.getY()+ this.height + 20 );
+       
           }
 	}
 	

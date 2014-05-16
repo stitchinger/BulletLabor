@@ -28,19 +28,19 @@ public class Bullet extends PhysicsObject{
     	this.timestampOfBirth = System.currentTimeMillis();
     }
     
-    public void update(){
+    public void update(int delta){
     	if(System.currentTimeMillis() > this.timestampOfBirth + this.lifeTimeMillis){
     		this.die();
     	}
     	if(this.isAlive){
-    		this.fall();
+    		this.fall(delta);
         	if(this.bouncyness > 0){
         		this.bounce();
         	}
     		
         }
     	this.adjustRotationToFlightpath();
-    	this.actualMovement();
+    	this.actualMovement(delta);
     	
     }
 

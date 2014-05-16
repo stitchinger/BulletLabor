@@ -6,9 +6,9 @@ import org.newdawn.slick.Image;
 
 public class LivingObject extends PhysicsObject {
 
-	protected float acceleration = 0.5f;
+	protected float acceleration = 0.35f;
 	protected int maxWalkSpeed = 6;
-	protected int jumpHeight = 9;
+	protected int jumpHeight = 8;
 	protected int jumpCount = 2;
 	protected String direction = "right";
 	protected int health = 100;
@@ -18,9 +18,9 @@ public class LivingObject extends PhysicsObject {
 		super(img, x, y);
 	}
 
-	public void update(){
+	public void update(int delta){
 		 this.limitWalkVelocity();
-		 super.update();
+		 super.update(delta);
 		 if(this.isBottomSideCollided()){
 			 this.jumpCount= 0;
 		 }

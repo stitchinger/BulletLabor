@@ -16,8 +16,8 @@ public class AdvancedObject extends LivingObject {
 		super(img, x, y);
 	}
 
-	public void update(){
-		super.update();
+	public void update(int delta){
+		super.update(delta);
 	
 	}
 	
