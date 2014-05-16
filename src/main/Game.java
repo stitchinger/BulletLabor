@@ -51,7 +51,6 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
         
-        settings = new Settings();
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
@@ -180,7 +179,7 @@ public class Game extends BasicGame {
     	toRemoveObjects.add(obj);
     }
 
-   public void removeObjects(){
+    public void removeObjects(){
 	   for (Object o : toRemoveObjects) {
     	   if(o instanceof Bullet){
     		   bullet_list.remove(o);

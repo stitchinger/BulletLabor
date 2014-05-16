@@ -22,8 +22,8 @@ public class StaticObject {
     public StaticObject(Image sprite, float x, float y){
         this.sprite = sprite;
         this.position = new Vector2(x,y);
-        this.width = this.sprite.getWidth();
-        this.height = this.sprite.getHeight();
+        this.width = 40;
+        this.height = 40;
         this.hitbox = new Rectangle(x,y,width, height);
        
     }
