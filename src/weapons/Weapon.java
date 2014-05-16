@@ -3,11 +3,13 @@ package weapons;
 import static main.Game.bulletSprite;
 import static main.Game.bullet_list;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import objectBlueprints.StaticObject;
+import util.Settings;
 
 
 
@@ -39,8 +41,24 @@ public class Weapon extends StaticObject {
 	}
 	
 	public void render(Graphics g){
-		this.getImage().setRotation(rotation); 
-    	super.render(g);
+		
+		Image sprite;
+		if(rotation < 0){
+			sprite = this.getImage().getFlippedCopy(true, false);
+		
+		} else{
+			sprite = this.getImage();
+			
+		}
+		sprite.setRotation(rotation); 
+		sprite.draw(this.getX(), this.getY());
+    	
+    	if (Settings.DEBUG_MODUS) {
+          	g.setColor(Color.red);
+          	g.draw(this.getHitbox());
+          	g.setColor(Color.white); 
+          	g.drawString("hp: "+ this.health, this.getX(), this.getY()+ this.height );
+          }
 	}
 	
 	public void trigger(float rotation){
