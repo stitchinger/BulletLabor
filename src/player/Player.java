@@ -15,7 +15,7 @@ public class Player extends AdvancedObject{
 	public Player(Image img, int x, int y) {
         super(img, x, y); 
         
-        this.weapon = new Weapon(Game.weaponSprite, this.getX(), this.getY());
+        this.weapon = new Weapon(Settings.weaponSprite, this.getX(), this.getY());
         this.weapon.setOwner(this);
     }
 

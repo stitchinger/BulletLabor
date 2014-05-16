@@ -1,6 +1,6 @@
 package weapons;
 
-import static main.Game.bulletSprite;
+import static util.Settings.bulletSprite;
 import static main.Game.bullet_list;
 import main.Game;
 
@@ -87,7 +87,7 @@ public class Weapon extends PhysicsObject {
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.bulletsLeft--;
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
-    	Bullet bullet = new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
+    	Bullet bullet = new Bullet(Settings.bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	owner.addForce(spreadRotation.mult(-this.recoil));

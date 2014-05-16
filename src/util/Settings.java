@@ -2,6 +2,8 @@
 
 package util;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class Settings {
 	
@@ -12,4 +14,20 @@ public class Settings {
     public static final boolean SHOW_FPS = true;
     public static final int FPS_LIMIT = 60;
     public static final boolean DEBUG_MODUS = true;
+    
+    public static Image playerSprite;
+    public static Image enemySprite;
+    public static Image heartSprite;
+    public static Image bulletSprite;
+    public static Image weaponSprite;
+    
+    public Settings() throws SlickException {
+    	
+    	playerSprite = new Image("Images/Player/player.png");
+	    enemySprite = new Image("Images/Enemies/enemy.png");
+	    heartSprite = new Image("Images/Powerups/heart.png");
+	    bulletSprite = new Image("Images/Weapon/bullet.png");
+	    weaponSprite = new Image("Images/Weapon/weapon.png");
+    
+    }
 }

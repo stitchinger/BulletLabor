@@ -28,6 +28,7 @@ public class Game extends BasicGame {
     public static World gameworld;
     public static Camera cam;
     public static Gui gui;
+    public static Settings settings;
     
   
     public static Player player;
@@ -37,8 +38,6 @@ public class Game extends BasicGame {
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
 
-    public static Image bulletSprite;
-    public static Image weaponSprite;
     public static int killCount = 0;
     
 
@@ -49,45 +48,35 @@ public class Game extends BasicGame {
     @Override
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
-       
-        // Bilder initialisieren
-        Image playerSprite = new Image("Images/Player/player.png");
-        Image enemySprite = new Image("Images/Enemies/enemy.png");
-        Image heartSprite = new Image("Images/Powerups/heart.png");
-        bulletSprite = new Image("Images/Weapon/bullet.png");
-        weaponSprite = new Image("Images/Weapon/weapon.png");
-
+        
+        settings = new Settings();
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
      
-        player = new Player(playerSprite, 400, 100);
+        player = new Player(Settings.playerSprite, 400, 100);
        
         for (int i = 0; i < 0; i += 1) {
             int minDistance = 300;
             int randomX = (int) (Math.random()* gameworld.getWidth());
             randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-        	Enemy enemy = new Enemy(enemySprite,randomX, 100);
+        	Enemy enemy = new Enemy(Settings.enemySprite,randomX, 100);
         	enemy_list.add(enemy);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Powerup powerup = new Powerup(heartSprite,200 , 200, "healthItem");
+            Powerup powerup = new Powerup(Settings.heartSprite,200 , 200, "healthItem");
         	powerup_list.add(powerup);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Weapon weapon = new Weapon(weaponSprite,250 , 200);
+            Weapon weapon = new Weapon(Settings.weaponSprite,250 , 200);
         	weapon_list.add(weapon);
         }
-        
-        
-        
-        
-        
-        
+         
     }
 
+    
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	
