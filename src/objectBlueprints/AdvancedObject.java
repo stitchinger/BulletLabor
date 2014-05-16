@@ -34,6 +34,20 @@ public class AdvancedObject extends LivingObject {
         //return (float) Math.toDegrees(Math.atan2(vecNorm.x(), -vecNorm.y()));
     }
 	
+	 public void dropWeapon(){
+	    	
+	    	this.weapon.drop();
+	    	this.weapon = null;
+	 }
+	    
+	 public void setWeapon(Weapon weapon){
+	    	this.weapon = weapon;
+	 }
+	    
+	 public Weapon getWeapon(){
+	    	return this.weapon;
+	 } 
+	    
 	
 	
 }

@@ -13,6 +13,7 @@ import enemy.Enemy;
 import player.Player;
 import util.Settings;
 import weapons.Bullet;
+import weapons.Weapon;
 import world.World;
 
 
@@ -22,24 +23,27 @@ public class Game extends BasicGame {
     public static Input in;
     public static List<Bullet> toRemove = new LinkedList<Bullet>();
 
-    // Game Objekte ++++++++++++++++++++++
+   
     public static World gameworld;
     public static Camera cam;
     public static Gui gui;
     
-    // Entitis
-    public static Player player;
-    public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
+   
+   /* public static Player player;
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
+    public static List<Weapon> weapon_list = new LinkedList<Weapon>();
+    */
 
-    public static Image bulletSprite;
-    public static Image weaponSprite;
+    public static Image playerSprite ;
+    public static Image enemySprite ;
+    public static Image heartSprite ;
+    public static Image bulletSprite ;
+    public static Image weaponSprite ;
     public static int killCount = 0;
     
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public Game(String title) {
         super(title);
     }
@@ -48,18 +52,19 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
-        // Bilder initialisieren
-        Image playerSprite = new Image("Images/Player/player.png");
-        Image enemySprite = new Image("Images/Enemies/enemy.png");
-        Image heartSprite = new Image("Images/Powerups/heart.png");
+        playerSprite = new Image("Images/Player/player.png");
+        enemySprite = new Image("Images/Enemies/enemy.png");
+        heartSprite = new Image("Images/Powerups/heart.png");
         bulletSprite = new Image("Images/Weapon/bullet.png");
         weaponSprite = new Image("Images/Weapon/weapon.png");
+        
 
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
+        
      
-        player = new Player(playerSprite, 400, 100);
+        /*player = new Player(playerSprite, 400, 100);
        
         for (int i = 0; i < 2; i += 1) {
             int minDistance = 300;
@@ -76,8 +81,10 @@ public class Game extends BasicGame {
         	powerup_list.add(powerup);
         }
         
-        
-        
+        for (int i = 0; i < 1; i += 1) {
+        	Weapon weapon = new Weapon(weaponSprite,200 , 200);
+        	weapon_list.add(weapon);
+        }*/
         
         
     }
@@ -85,8 +92,8 @@ public class Game extends BasicGame {
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	
-    	gameworld.update();
-        player.update(in);
+    	
+       /* player.update(in);
        
         for (Enemy enemy : enemy_list) {
             enemy.update();
@@ -105,6 +112,16 @@ public class Game extends BasicGame {
     			powerup.setX(10000);
     			powerup.setY(10000);
     			player.addHealth(powerup.getHealthAmount());
+
+            }
+        }
+        
+        for (Weapon weapon : weapon_list) {
+            
+            if(weapon.getHitbox().intersects(player.getHitbox())){
+    			
+    			
+    			player.setWeapon(weapon);
 
             }
         }
@@ -131,9 +148,9 @@ public class Game extends BasicGame {
         }
         
        
-        removeObjects();
-       
-       
+        removeObjects();*/
+    	
+    	gameworld.update(in);
         cam.update(in);
         gui.update();
 
@@ -145,7 +162,8 @@ public class Game extends BasicGame {
     	cam.render(g);
     	renderBackground(g);
     	renderWorld(g);
-    	renderGameObjects(g);
+    	//renderGameObjects(g);
+    	
         gui.render(g);
       
        
@@ -160,12 +178,12 @@ public class Game extends BasicGame {
         app.start();
     }
 
-   public void removeObjects(){
+  /* public void removeObjects(){
 	   for (Object o : toRemove) {
     	   bullet_list.remove(o);
 	   }
 	   toRemove.clear();
-   }
+   }*/
     
     private void renderWorld(Graphics g) {
    	
@@ -180,26 +198,28 @@ public class Game extends BasicGame {
 		
 	}
 
-	private void renderGameObjects(Graphics g) {
+	/*private void renderGameObjects(Graphics g) {
    	  
-       player.render(g);  // Dafür Animated Mario hinzugefügt
+       player.render(g);  
        
-       // Gegner rendern
-       for (Enemy enemy : enemy_list) {
-       	enemy.render(g);
+      for (Enemy enemy : enemy_list) {
+    	   enemy.render(g);
        }
        
-       // Bullets rendern
+     
        for (Bullet bullet : bullet_list) {
-       	bullet.render(g);
+       		bullet.render(g);
        }
        
-    // Powerups rendern
        for (Powerup powerup : powerup_list) {
-       	powerup.render(g);
+    	   powerup.render(g);
+       }
+       
+       for (Weapon weapon : weapon_list) {
+          	weapon.render(g);
        }
 		
-	}
+	}*/
     
    
 
