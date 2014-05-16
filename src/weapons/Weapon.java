@@ -1,6 +1,5 @@
 package weapons;
 
-import static util.Settings.bulletSprite;
 import static main.Game.bullet_list;
 import main.Game;
 
