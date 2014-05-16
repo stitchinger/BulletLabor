@@ -87,11 +87,11 @@ public class Weapon extends PhysicsObject {
     	this.bulletsLeft--;
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
     	Bullet bullet = new Bullet(Settings.bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
-    	PhysicsObject shell = new PhysicsObject(Settings.shellSprite, (this.getX()+this.width/2),(this.getY()+this.height/2));
+    	//PhysicsObject shell = new PhysicsObject(Settings.shellSprite, (this.getX()+this.width/2),(this.getY()+this.height/2));
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
-    	shell.addForce(-spreadRotation.x(), -1);
+    	//shell.addForce(-spreadRotation.x(), -1);
     	Game.bullet_list.add(bullet);
     	
     	
