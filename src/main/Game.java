@@ -9,7 +9,7 @@ import objectBlueprints.StaticObject;
 
 import org.newdawn.slick.*;
 
-import enemy.Enemy;
+import enemy.EnemyMain;
 import player.Player;
 import util.Settings;
 import weapons.Bullet;
@@ -29,12 +29,11 @@ public class Game extends BasicGame {
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
-    public static Enemy enemy;
     
   
     public static Player player;
     public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
-    public static List<Enemy> enemy_list = new LinkedList<Enemy>();
+    public static List<EnemyMain> enemy_list = new LinkedList<EnemyMain>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
@@ -58,7 +57,7 @@ public class Game extends BasicGame {
         player = new Player(Settings.playerSprite, 400, 100);
         
         for (int i = 0; i < 0; i += 1) {
-        	Enemy enemy = new Enemy(Settings.enemySprite, Enemy.randomX(), 100);
+        	EnemyMain enemy = new EnemyMain(Settings.enemySprite, EnemyMain.randomX(), 100);
         	enemy_list.add(enemy);
         }
         
@@ -81,7 +80,7 @@ public class Game extends BasicGame {
     	gameworld.update();
         player.update(delta,in);
        
-        for (Enemy enemy : enemy_list) {
+        for (EnemyMain enemy : enemy_list) {
             enemy.update(delta);
             if(enemy.getHitbox().intersects(player.getHitbox())){
     			
@@ -122,7 +121,7 @@ public class Game extends BasicGame {
         for (Bullet bullet : bullet_list) {
         	bullet.update(delta);
         	
-        	for(Enemy enemy : enemy_list){
+        	for(EnemyMain enemy : enemy_list){
         		
         		if(bullet.getHitbox().intersects(enemy.getHitbox())){
         			
@@ -176,7 +175,7 @@ public class Game extends BasicGame {
 	   for (Object o : toRemoveObjects) {
     	   if(o instanceof Bullet){
     		   bullet_list.remove(o);
-    	   }else if(o instanceof Enemy){
+    	   }else if(o instanceof EnemyMain){
     		   enemy_list.remove(o);
     	   }
     	   else if(o instanceof Weapon){
@@ -208,7 +207,7 @@ public class Game extends BasicGame {
        player.render(g);  // Dafür Animated Mario hinzugefügt
        
        // Gegner rendern
-       for (Enemy enemy : enemy_list) {
+       for (EnemyMain enemy : enemy_list) {
        	enemy.render(g);
        }
        
