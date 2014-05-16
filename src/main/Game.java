@@ -5,6 +5,7 @@ import items.Powerup;
 import java.util.LinkedList;
 import java.util.List;
 
+import objectBlueprints.PhysicsObject;
 import objectBlueprints.StaticObject;
 
 import org.newdawn.slick.*;
@@ -38,6 +39,7 @@ public class Game extends BasicGame {
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
+    public static List<PhysicsObject> physics_list = new LinkedList<PhysicsObject>();
 
     public static int killCount = 0;
     
@@ -71,10 +73,11 @@ public class Game extends BasicGame {
             Weapon weapon = new Weapon(Settings.weaponSprite,250 , 200);
         	weapon_list.add(weapon);
         }
+        
+       
          
     }
 
-    
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	
@@ -117,6 +120,8 @@ public class Game extends BasicGame {
             }
         }
         
+        
+        
        
        
         for (Bullet bullet : bullet_list) {
@@ -136,6 +141,10 @@ public class Game extends BasicGame {
         	  	
         	
 
+        }
+        
+        for(PhysicsObject physicObj : physics_list){
+        	physicObj.update(delta);
         }
         
        
@@ -225,6 +234,9 @@ public class Game extends BasicGame {
        for (Weapon weapon : weapon_list) {
           	weapon.render(g);
           }
+       for (PhysicsObject physicsObj : physics_list) {
+         	physicsObj.render(g);
+       }
 		
 	}
     
