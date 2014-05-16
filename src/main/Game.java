@@ -181,7 +181,7 @@ public class Game extends BasicGame {
     	toRemoveObjects.add(obj);
     }
 
-   public void removeObjects(){
+    public void removeObjects(){
 	   for (Object o : toRemoveObjects) {
     	   if(o instanceof Bullet){
     		   bullet_list.remove(o);
