@@ -42,20 +42,22 @@ public class AdvancedObject extends LivingObject {
 	    		this.weapon.drop();
 	    		Game.weapon_list.add(this.weapon);
 	    		this.velocity.set(this.getVelocity());
-	    		this.weapon.addForce(-1.8f, -7);
+	    		this.weapon.addForce(this.getSomehowUp().mult(8));
 	    		this.weapon = null;
-		    	
-				
-				
-				
-	    	}
-	    	
+		    }
+	  }
+	 
+	 public Vector2 getSomehowUp(){
+		 int range = 30;
+		 float randomUp = (0-range/2) + (int)(Math.random() * (((0+range/2) - (0-range/2)) + 1));
+		 Vector2 upv = new Vector2(randomUp);
+		 return upv;
 	 }
 	    
 	 public void setWeapon(Weapon weapon){
 	    	this.weapon = weapon;
-	    	Game.toRemoveWeapons.add(weapon);
-	    	this.weapon.newOwner(this);
+	    	Game.removeObject(weapon);
+	    	this.weapon.setOwner(this);
 	    	
 	 }
 	    

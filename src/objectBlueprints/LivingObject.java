@@ -1,5 +1,7 @@
 package objectBlueprints;
 
+import main.Game;
+
 import org.newdawn.slick.Image;
 
 public class LivingObject extends PhysicsObject {
@@ -57,6 +59,9 @@ public class LivingObject extends PhysicsObject {
     	if(System.currentTimeMillis() - this.timestampOfLastHit > 500){
     		this.health -= damage;
         	this.timestampOfLastHit = System.currentTimeMillis();
+        	if(health <= 0){
+        		this.die();
+        	}
     	}
     	
     }
@@ -80,6 +85,10 @@ public class LivingObject extends PhysicsObject {
 		this.setVelocityX(value);
 	
 		
+	}
+	
+	public void die(){
+		Game.removeObject(this);
 	}
 }
 

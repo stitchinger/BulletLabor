@@ -21,6 +21,7 @@ public class Weapon extends PhysicsObject {
 	private int bulletsLeft;
 	private int shotsPerMinute;
 	private float power;
+	private float recoil;
 	private long timeOfLastShot;
 	private boolean equipped;
 	private float spreadRange;
@@ -29,6 +30,7 @@ public class Weapon extends PhysicsObject {
 		super(sprite, x, y);
 		
 		this.power = 30;
+		this.recoil = 0.05f;
 		this.rotation = 0;
 		this.bulletsLeft = 100;
 		this.shotsPerMinute = 600;
@@ -82,10 +84,12 @@ public class Weapon extends PhysicsObject {
 	public void angleShot(){
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.bulletsLeft--;
+    	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
     	Bullet bullet = new Bullet(bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
-    	bullet.addForce(new Vector2(this.getSpreadRotation()).mult(this.power));
-    	owner.addForce(new Vector2(this.rotation).mult(-this.power/20));
-    	bullet_list.add(bullet);
+    	
+    	bullet.addForce(spreadRotation.mult(this.power));
+    	owner.addForce(spreadRotation.mult(-this.recoil));
+    	Game.bullet_list.add(bullet);
     	
     }
 	
@@ -101,7 +105,6 @@ public class Weapon extends PhysicsObject {
 	         
 	}
 
-	
 	public boolean canShoot(){
 		boolean inFireRate = (System.currentTimeMillis() - this.timeOfLastShot) >= (60f / this.shotsPerMinute) * 1000f;
 		boolean notEmpty = this.bulletsLeft > 0;
@@ -126,12 +129,11 @@ public class Weapon extends PhysicsObject {
     	
 	}
 
-	
 	public int getBulletsLeft(){
 		return this.bulletsLeft;
 	}
 	
-	public void newOwner(AdvancedObject owner){
+	public void setOwner(AdvancedObject owner){
 		this.owner = owner;
 	}
 }

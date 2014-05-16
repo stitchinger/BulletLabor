@@ -16,7 +16,7 @@ public class Player extends AdvancedObject{
         super(img, x, y); 
         
         this.weapon = new Weapon(Game.weaponSprite, this.getX(), this.getY());
-        this.weapon.newOwner(this);
+        this.weapon.setOwner(this);
     }
 
 	public void update(Input in) throws SlickException{

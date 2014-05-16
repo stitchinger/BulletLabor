@@ -21,8 +21,9 @@ public class Game extends BasicGame {
 
    
     public static Input in;
-    public static List<Bullet> toRemoveBullets = new LinkedList<Bullet>();
-    public static List<Weapon> toRemoveWeapons = new LinkedList<Weapon>();
+   // public static List<Bullet> toRemoveBullets = new LinkedList<Bullet>();
+   // public static List<Weapon> toRemoveWeapons = new LinkedList<Weapon>();
+    public static List<StaticObject> toRemoveObjects = new LinkedList<StaticObject>();
 
     // Game Objekte ++++++++++++++++++++++
     public static World gameworld;
@@ -72,8 +73,6 @@ public class Game extends BasicGame {
         	enemy_list.add(enemy);
         }
         
-        
-        
         for (int i = 0; i < 1; i += 1) {
             Powerup powerup = new Powerup(heartSprite,200 , 200, "healthItem");
         	powerup_list.add(powerup);
@@ -111,9 +110,9 @@ public class Game extends BasicGame {
            
             if(powerup.getHitbox().intersects(player.getHitbox())){
     			
-    			powerup.setX(10000);
-    			powerup.setY(10000);
+    			
     			player.addHealth(powerup.getHealthAmount());
+    			Game.removeObject(powerup);
 
             }
         }
@@ -182,17 +181,27 @@ public class Game extends BasicGame {
         app.setShowFPS(Settings.SHOW_FPS);
         app.start();
     }
+    
+    public static void removeObject(StaticObject obj){
+    	toRemoveObjects.add(obj);
+    }
 
    public void removeObjects(){
-	   for (Object o : toRemoveBullets) {
-    	   bullet_list.remove(o);
+	   for (Object o : toRemoveObjects) {
+    	   if(o instanceof Bullet){
+    		   bullet_list.remove(o);
+    	   }else if(o instanceof Enemy){
+    		   enemy_list.remove(o);
+    	   }
+    	   else if(o instanceof Weapon){
+    		   weapon_list.remove(o);
+    	   }
+    	   else if(o instanceof Powerup){
+    		   powerup_list.remove(o);
+    	   }
 	   }
-	   toRemoveBullets.clear();
-	  
-	   for (Object o : toRemoveWeapons) {
-    	   weapon_list.remove(o);
-	   }
-	   toRemoveWeapons.clear();
+	   
+	   toRemoveObjects.clear();
    }
     
     private void renderWorld(Graphics g) {
