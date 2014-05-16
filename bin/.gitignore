@@ -1,11 +1,11 @@
-/main
-/player
-/world
-/enemy
 /Images
 /Map
-/entity
+/enemy
 /items
+/main
+/objectBlueprints
+/player
+/readme.txt
 /util
 /weapons
-/objectBlueprints
+/world
