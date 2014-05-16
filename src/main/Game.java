@@ -29,12 +29,12 @@ public class Game extends BasicGame {
     public static Gui gui;
     
    
-    public static Player player;
+   /* public static Player player;
     public static List<Enemy> enemy_list = new LinkedList<Enemy>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
-    
+    */
 
     public static Image playerSprite ;
     public static Image enemySprite ;
@@ -52,7 +52,11 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
        
-     
+        playerSprite = new Image("Images/Player/player.png");
+        enemySprite = new Image("Images/Enemies/enemy.png");
+        heartSprite = new Image("Images/Powerups/heart.png");
+        bulletSprite = new Image("Images/Weapon/bullet.png");
+        weaponSprite = new Image("Images/Weapon/weapon.png");
         
 
         gameworld = new World();
@@ -60,7 +64,7 @@ public class Game extends BasicGame {
         gui = new Gui();
         
      
-        player = new Player(playerSprite, 400, 100);
+        /*player = new Player(playerSprite, 400, 100);
        
         for (int i = 0; i < 2; i += 1) {
             int minDistance = 300;
@@ -80,7 +84,7 @@ public class Game extends BasicGame {
         for (int i = 0; i < 1; i += 1) {
         	Weapon weapon = new Weapon(weaponSprite,200 , 200);
         	weapon_list.add(weapon);
-        }
+        }*/
         
         
     }
@@ -89,7 +93,7 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
     	
     	
-       player.update(in);
+       /* player.update(in);
        
         for (Enemy enemy : enemy_list) {
             enemy.update();
@@ -144,7 +148,7 @@ public class Game extends BasicGame {
         }
         
        
-        removeObjects();
+        removeObjects();*/
     	
     	gameworld.update(in);
         cam.update(in);
@@ -158,7 +162,7 @@ public class Game extends BasicGame {
     	cam.render(g);
     	renderBackground(g);
     	renderWorld(g);
-    	renderGameObjects(g);
+    	//renderGameObjects(g);
     	
         gui.render(g);
       
@@ -174,12 +178,12 @@ public class Game extends BasicGame {
         app.start();
     }
 
-   public void removeObjects(){
+  /* public void removeObjects(){
 	   for (Object o : toRemove) {
     	   bullet_list.remove(o);
 	   }
 	   toRemove.clear();
-   }
+   }*/
     
     private void renderWorld(Graphics g) {
    	
@@ -194,7 +198,7 @@ public class Game extends BasicGame {
 		
 	}
 
-	private void renderGameObjects(Graphics g) {
+	/*private void renderGameObjects(Graphics g) {
    	  
        player.render(g);  
        
@@ -215,7 +219,7 @@ public class Game extends BasicGame {
           	weapon.render(g);
        }
 		
-	}
+	}*/
     
    
 
