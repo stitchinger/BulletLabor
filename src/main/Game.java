@@ -51,7 +51,6 @@ public class Game extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
         
-        settings = new Settings();
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
