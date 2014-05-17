@@ -1,24 +1,44 @@
 package enemy;
 
 import main.Game;
-import objectBlueprints.AdvancedObject;
+import objectBlueprints.LivingObject;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
-import world.World;
-
-public class EnemyMain extends AdvancedObject{
+public class EnemyMain extends LivingObject{
 	
-	public EnemyMain(Image img, int x, int y) {
-        super(img, x, y);
+	protected int aggrorange;
+	
+	public EnemyMain(Image img, int x, int y, int aggrorange, int health) {
+        super(img, x, y, health);
+        this.aggrorange = aggrorange;
     }
     
     public void update(int delta){
-       this.behavior();
+       this.behavior(this.aggrorange);
        super.update(delta);
     }
     
+    public void behavior(int aggrorange){
+    	if(direction == "right"){
+    		this.moveRight();
+        }
+        if(direction == "left"){
+        	this.moveLeft();
+        }
+        if((Math.abs(Game.player.getX() - this.getX()) > aggrorange)){
+        	if (Game.player.getX() < this.getX())
+        		this.moveLeft();
+        	else if (Game.player.getX() > this.getX())
+        		this.moveRight();
+        }
+        if(Math.random() < 0.01f && this.isBottomSideCollided()){
+        	this.jump();
+        }
+   	}
+    
+    /* wird nicht verwendet aktuell
+
     public void changeDirection(){
     	if(direction== "right"){
     		direction = "left";
@@ -29,23 +49,5 @@ public class EnemyMain extends AdvancedObject{
     		direction = "right";
     	}
     }
-    
-    public void behavior(){
-    	 if(direction == "right"){
-         	this.moveRight();
-         }
-         if(direction == "left"){
-         	this.moveLeft();
-         }
-         if(Math.random() < 0.005f){
-        	 if (Game.player.getX() < this.getX())
-         		this.moveLeft();
-         	else
-         		this.moveRight();
-         }
-         if(Math.random() < 0.02f && this.isBottomSideCollided()){
-         	
-         	this.jump();
-         }
-    }
+    */
 }

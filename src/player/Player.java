@@ -1,19 +1,20 @@
 package player;
 
 import main.Game;
-import objectBlueprints.AdvancedObject;
+import objectBlueprints.LivingObject;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
+
 import util.Settings;
 import util.Vector2;
 import weapons.Weapon;
 
-public class Player extends AdvancedObject{
-
-	public Player(Image img, int x, int y) {
-        super(img, x, y); 
+public class Player extends LivingObject{
+	
+	public Player(Image img, int x, int y, int health) {
+        super(img, x, y, health);
         
         this.weapon = new Weapon(Settings.weaponSprite, this.getX(), this.getY());
         this.weapon.setOwner(this);
@@ -87,5 +88,4 @@ public class Player extends AdvancedObject{
     public void die(){
     	
     }
-   
 }

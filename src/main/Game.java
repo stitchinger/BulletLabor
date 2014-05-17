@@ -57,10 +57,10 @@ public class Game extends BasicGame {
         cam = new Camera();
         gui = new Gui();
      
-        player = new Player(Settings.playerSprite, 400, 100);
+        player = new Player(Settings.playerSprite, 400, 100, 100);
         
-        for (int i = 0; i < 0; i += 1) {
-        	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, randomX(), 100);
+        for (int i = 0; i < 5; i += 1) {
+        	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, randomX(), 100, 150, 50);
         	enemy_list.add(enemy);
         }
         
@@ -84,9 +84,9 @@ public class Game extends BasicGame {
     	gameworld.update();
         player.update(delta,in);
        
-        for (SlimeEnemy enemy : enemy_list) {
-            enemy.update(delta);
-            if(enemy.getHitbox().intersects(player.getHitbox())){
+        for (SlimeEnemy slimeenemy : enemy_list) {
+        	slimeenemy.update(delta);
+            if(slimeenemy.getHitbox().intersects(player.getHitbox())){
     			
     			
     			player.receiveDamage(5);
@@ -127,13 +127,13 @@ public class Game extends BasicGame {
         for (Bullet bullet : bullet_list) {
         	bullet.update(delta);
         	
-        	for(SlimeEnemy enemy : enemy_list){
+        	for(SlimeEnemy slimeenemy : enemy_list){
         		
-        		if(bullet.getHitbox().intersects(enemy.getHitbox())){
+        		if(bullet.getHitbox().intersects(slimeenemy.getHitbox())){
         			
 
-        			enemy.receiveDamage(bullet.getDamage());
-        			enemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
+        			slimeenemy.receiveDamage(bullet.getDamage());
+        			slimeenemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
         			
         			bullet.die();
         		}	

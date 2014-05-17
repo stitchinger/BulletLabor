@@ -4,18 +4,19 @@ import main.Game;
 
 import org.newdawn.slick.Image;
 
-public class LivingObject extends PhysicsObject {
+public class LivingObject extends AdvancedObject {
 
 	protected float acceleration = 0.35f;
 	protected int maxWalkSpeed = 6;
 	protected int jumpHeight = 8;
 	protected int jumpCount = 2;
 	protected String direction = "right";
-	protected int health = 100;
+	protected int health;
 	protected int maxHealth = 100;
 	
-	public LivingObject(Image img, int x, int y) {
+	public LivingObject(Image img, int x, int y, int health) {
 		super(img, x, y);
+		this.health = health;
 	}
 
 	public void update(int delta){
@@ -57,7 +58,7 @@ public class LivingObject extends PhysicsObject {
 	
 	public void receiveDamage(int damage){
     	if(System.currentTimeMillis() - this.timestampOfLastHit > 500){
-    		this.health -= damage;
+    		health -= damage;
         	this.timestampOfLastHit = System.currentTimeMillis();
         	if(health <= 0){
         		this.die();
