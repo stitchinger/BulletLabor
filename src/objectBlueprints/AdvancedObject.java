@@ -63,10 +63,24 @@ public class AdvancedObject extends PhysicsObject {
 		 	
 	    	
 	 }
+	 
+	 public boolean hasWeapon(){
+		 return this.weapon != null;
+	 }
 	    
 	 public Weapon getWeapon(){
 	    	return this.weapon;
 	 } 
+	 
+	 public int getAmmo(){
+		 int leftAmmo;
+		 if(this.hasWeapon()){
+			 leftAmmo = this.weapon.getBulletsLeft();
+		 }else{
+			 leftAmmo = 0;
+		 }
+		 return leftAmmo;
+	 }
 	    
 
 	
