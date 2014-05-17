@@ -3,7 +3,6 @@ package objectBlueprints;
 import main.Game;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 
 import util.Vector2;
 import weapons.Weapon;

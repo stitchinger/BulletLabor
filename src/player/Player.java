@@ -34,11 +34,6 @@ public class Player extends LivingObject{
     	
     }
 	
-	public void setSprite(Image img){
-    	super.sprite = img;
-    	this.init();
-    }
-	
 	public void setHealth(int health){
     	super.health = health;
     }

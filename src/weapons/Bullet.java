@@ -33,11 +33,6 @@ public class Bullet extends PhysicsObject{
     	this.timestampOfBirth = System.currentTimeMillis();
     }
     
-    public void setSprite(Image img){
-    	super.sprite = img;
-    	this.init();
-    }
-    
     public void update(int delta){
     	if(System.currentTimeMillis() > this.timestampOfBirth + this.lifeTimeMillis){
     		this.die();

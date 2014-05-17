@@ -40,11 +40,6 @@ public class EnemyMain extends LivingObject{
     	super.health = health;
     }
     
-    public void setSprite(Image img){
-    	super.sprite = img;
-    	this.init();
-    }
-    
     /* wird nicht verwendet aktuell
 
     public void changeDirection(){

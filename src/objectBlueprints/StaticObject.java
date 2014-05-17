@@ -28,7 +28,7 @@ public class StaticObject {
         this.y = y;
     }
     
-    public void init(){
+    public void initSprite(){
     	this.width = this.sprite.getWidth();
         this.height = this.sprite.getHeight();
         this.hitbox = new Rectangle(x,y,width, height);
@@ -83,5 +83,10 @@ public class StaticObject {
     
     public int getHeight(){
     	return this.height;
+    }
+    
+    public void setSprite(Image img){
+    	this.sprite = img;
+    	this.initSprite();
     }
 }

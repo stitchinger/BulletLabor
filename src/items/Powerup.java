@@ -24,11 +24,6 @@ public class Powerup extends StaticObject{
 		
 	}
 	
-	public void setSprite(Image img){
-    	super.sprite = img;
-    	this.init();
-    }
-	
 	public int getHealthAmount(){
 		
 		return this.healthAmount;

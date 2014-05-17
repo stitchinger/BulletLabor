@@ -1,6 +1,5 @@
 package weapons;
 
-import static main.Game.bullet_list;
 import main.Game;
 
 import org.newdawn.slick.Color;
@@ -9,7 +8,6 @@ import org.newdawn.slick.Image;
 
 import objectBlueprints.AdvancedObject;
 import objectBlueprints.PhysicsObject;
-import objectBlueprints.StaticObject;
 import util.Settings;
 import util.Vector2;
 
@@ -55,11 +53,6 @@ public class Weapon extends PhysicsObject {
 		
 		
 	}
-	
-	public void setSprite(Image img){
-    	super.sprite = img;
-    	this.init();
-    }
 	
 	public void render(Graphics g){
 		

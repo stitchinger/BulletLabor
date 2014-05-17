@@ -1,7 +1,5 @@
 package enemy;
 
-import org.newdawn.slick.Image;
-
 import util.Settings;
 
 public class SlimeEnemy extends EnemyMain {
