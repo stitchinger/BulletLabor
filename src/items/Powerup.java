@@ -2,8 +2,6 @@ package items;
 
 import objectBlueprints.StaticObject;
 
-import org.newdawn.slick.Image;
-
 import util.Settings;
 
 public class Powerup extends StaticObject{

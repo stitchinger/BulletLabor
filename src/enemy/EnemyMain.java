@@ -3,8 +3,6 @@ package enemy;
 import main.Game;
 import objectBlueprints.LivingObject;
 
-import org.newdawn.slick.Image;
-
 public class EnemyMain extends LivingObject{
 	
 	protected int aggrorange;

@@ -4,7 +4,6 @@ import main.Game;
 import objectBlueprints.LivingObject;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 
 import util.Settings;
