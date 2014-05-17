@@ -39,21 +39,6 @@ public class Weapon extends PhysicsObject {
 	
 	}
 	
-	public void update(int delta, float x, float y, float rotation){
-		if(this.owner != null){
-			
-			this.setX(x - this.width/2);
-			this.setY(y - this.height/2);
-			this.rotation += (rotation - this.rotation)*this.inertia;
-			this.hitbox.setLocation(this.getX(), this.getY());
-			
-		}else{
-			super.update(delta);
-		}
-		
-		
-	}
-	
 	public void render(Graphics g){
 		
 		Image sprite;
@@ -74,6 +59,15 @@ public class Weapon extends PhysicsObject {
           	g.drawString("Ammo: "+ this.bulletsLeft, this.getX(), this.getY()+ this.height );
        
           }
+	}
+	
+	public void move(Vector2 position){
+		this.setX(position.x() - this.width/2);
+		this.setY(position.y() - this.height/2);
+	}
+	
+	public void setRotation(float rotation){
+		this.rotation += (rotation - this.rotation)*this.inertia;
 	}
 	
 	public void trigger(){

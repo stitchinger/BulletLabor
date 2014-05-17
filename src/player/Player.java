@@ -27,7 +27,10 @@ public class Player extends LivingObject{
     	
     	super.update(delta);
     	if(this.weapon != null){
-			this.weapon.update(delta, this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2, this.getMouseVector().toDegee());
+			//this.weapon.update(delta, this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2, this.getMouseVector().toDegee());
+			
+			this.weapon.setRotation(this.getMouseVector().toDegee());
+			this.weapon.move(new Vector2(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2));
 		}
     	
     	
