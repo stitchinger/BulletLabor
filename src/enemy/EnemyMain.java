@@ -34,10 +34,6 @@ public class EnemyMain extends LivingObject{
         }
    	}
     
-    public void setHealth(int health){
-    	super.health = health;
-    }
-    
     /* wird nicht verwendet aktuell
 
     public void changeDirection(){

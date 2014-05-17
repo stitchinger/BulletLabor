@@ -32,10 +32,6 @@ public class Player extends LivingObject{
     	
     	
     }
-	
-	public void setHealth(int health){
-    	super.health = health;
-    }
     
     public void playerControl(Input in){
        this.isRunning = false;

@@ -68,6 +68,10 @@ public class LivingObject extends AdvancedObject {
     	return this.health;
     }
 	
+	public void setHealth(int health){
+    	this.health = health;
+    }
+	
 	private void limitWalkVelocity() {
 		float value;
 		if (this.getVelocityX() >= this.maxWalkSpeed) {
