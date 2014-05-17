@@ -58,9 +58,9 @@ public class LivingObject extends AdvancedObject {
 	
 	public void receiveDamage(int damage){
     	if(System.currentTimeMillis() - this.timestampOfLastHit > 500){
-    		health -= damage;
+    		this.health -= damage;
         	this.timestampOfLastHit = System.currentTimeMillis();
-        	if(health <= 0){
+        	if(this.health <= 0){
         		this.die();
         	}
     	}
