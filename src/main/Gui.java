@@ -1,7 +1,9 @@
 package main;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.TrueTypeFont;
 
 public class Gui {
 
@@ -50,7 +52,8 @@ public class Gui {
 		g.setColor(new Color(211,88,50));
 		g.fillOval(this.posX+ this.width - 99, this.posY + this.height - 100, 60, 60);
 		
-		
+		g.setColor(Color.white);
+		g.drawString("" + Game.player.getAmmo(), px+40 , py+40);
 	}
 }
 
