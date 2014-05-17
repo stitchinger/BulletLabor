@@ -28,12 +28,6 @@ public class StaticObject {
         this.y = y;
     }
     
-    public void initSprite(){
-    	this.width = this.sprite.getWidth();
-        this.height = this.sprite.getHeight();
-        this.hitbox = new Rectangle(x,y,width, height);
-    }
-    
     public void render(Graphics g){
     	if(this.timestampOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
     		this.getImage().drawFlash(this.getX(), this.getY());
@@ -85,8 +79,10 @@ public class StaticObject {
     	return this.height;
     }
     
-    public void setSprite(Image img){
-    	this.sprite = img;
-    	this.initSprite();
+    public void setSprite(Image sprite){
+    	this.width = sprite.getWidth();
+        this.height = sprite.getHeight();
+        this.hitbox = new Rectangle(x,y,width, height);
+        this.sprite = sprite;
     }
 }
