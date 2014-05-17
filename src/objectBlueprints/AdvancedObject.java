@@ -58,6 +58,7 @@ public class AdvancedObject extends PhysicsObject {
 	    		this.weapon = weapon;
 		    	Game.removeObject(weapon);
 		    	this.weapon.setOwner(this);
+		    	this.weapon.getTaken();
 	    	}
 		 	
 	    	

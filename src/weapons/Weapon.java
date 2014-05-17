@@ -14,6 +14,7 @@ import util.Vector2;
 public class Weapon extends PhysicsObject {
 
 	private AdvancedObject owner;
+	private boolean isEquipped;
 	private float rotation;
 	private int bulletsLeft;
 	private int shotsPerMinute;
@@ -27,6 +28,7 @@ public class Weapon extends PhysicsObject {
 	public Weapon(float x, float y) {
 		super(x, y);
 		
+		this.isEquipped = false;
 		this.power = 30;
 		this.recoil = 0.05f;
 		this.rotation = 0;
@@ -122,9 +124,12 @@ public class Weapon extends PhysicsObject {
 		
 		
 		this.owner = null;
+		this.isEquipped = false;
 		
-		
-    	
+	}
+	
+	public void getTaken(){
+		this.isEquipped = true;
 	}
 
 	public int getBulletsLeft(){
@@ -133,5 +138,6 @@ public class Weapon extends PhysicsObject {
 	
 	public void setOwner(AdvancedObject owner){
 		this.owner = owner;
+		this.isEquipped = true;
 	}
 }

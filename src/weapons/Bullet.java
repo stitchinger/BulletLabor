@@ -26,9 +26,13 @@ public class Bullet extends PhysicsObject{
   
     
     public Bullet(float x, float y){
-    	super(x, y);
-    	//super((int)(x-sprite.getWidth()/2), (int)(y-sprite.getHeight()/2)); --> @ich hab dasa leider nicht hinbekommen zu fixen.
+    	
+    	super(x , y );
     	this.img = Settings.bulletSprite;
+    	this.setX(this.x - this.img.getWidth()/2);
+    	this.setY(this.y - this.img.getHeight()/2);
+    
+    	
     	this.setSprite(img);
     	this.timestampOfBirth = System.currentTimeMillis();
     }
