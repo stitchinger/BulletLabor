@@ -4,13 +4,16 @@ import objectBlueprints.StaticObject;
 
 import org.newdawn.slick.Image;
 
+import util.Settings;
+
 public class Powerup extends StaticObject{
 
 	private String id;
 	private int healthAmount;
 	
-	public Powerup(Image sprite, float x, float y, String id) {
-		super(sprite, x, y);
+	public Powerup(float x, float y, String id) {
+		super(x, y);
+		this.setSprite(Settings.heartSprite);
 	
 		this.id = id;
 		if(id.equals("healthItem")){
@@ -21,6 +24,10 @@ public class Powerup extends StaticObject{
 		
 	}
 	
+	public void setSprite(Image img){
+    	super.sprite = img;
+    	this.init();
+    }
 	
 	public int getHealthAmount(){
 		

@@ -14,8 +14,8 @@ public class PhysicsObject extends StaticObject {
 	protected float friction = 0.8f;
 	protected boolean isRunning = false;
 	
-	public PhysicsObject(Image img, float x, float y) {
-		super(img, x, y);
+	public PhysicsObject(float x, float y) {
+		super(x, y);
 	}
 
 	public void update(int delta) {

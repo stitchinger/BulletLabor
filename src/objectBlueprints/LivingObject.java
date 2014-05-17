@@ -2,8 +2,6 @@ package objectBlueprints;
 
 import main.Game;
 
-import org.newdawn.slick.Image;
-
 public class LivingObject extends AdvancedObject {
 
 	protected float acceleration = 0.35f;
@@ -14,9 +12,8 @@ public class LivingObject extends AdvancedObject {
 	protected int health;
 	protected int maxHealth = 100;
 	
-	public LivingObject(Image img, int x, int y, int health) {
-		super(img, x, y);
-		this.health = health;
+	public LivingObject(int x, int y) {
+		super(x, y);
 	}
 
 	public void update(int delta){

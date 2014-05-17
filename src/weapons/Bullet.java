@@ -7,6 +7,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
+import util.Settings;
+
 
 
 
@@ -19,13 +21,21 @@ public class Bullet extends PhysicsObject{
 	
     private long timestampOfBirth;
     private float rotation;
+    private Image img;
 	
   
     
-    public Bullet(Image sprite, float x, float y){
-    	super(sprite, (int)(x-sprite.getWidth()/2), (int)(y-sprite.getHeight()/2));
-        
+    public Bullet(float x, float y){
+    	super(x, y);
+    	//super((int)(x-sprite.getWidth()/2), (int)(y-sprite.getHeight()/2)); --> @ich hab dasa leider nicht hinbekommen zu fixen.
+    	this.img = Settings.bulletSprite;
+    	this.setSprite(img);
     	this.timestampOfBirth = System.currentTimeMillis();
+    }
+    
+    public void setSprite(Image img){
+    	super.sprite = img;
+    	this.init();
     }
     
     public void update(int delta){

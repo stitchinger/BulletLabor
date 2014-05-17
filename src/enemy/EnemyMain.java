@@ -9,9 +9,8 @@ public class EnemyMain extends LivingObject{
 	
 	protected int aggrorange;
 	
-	public EnemyMain(Image img, int x, int y, int aggrorange, int health) {
-        super(img, x, y, health);
-        this.aggrorange = aggrorange;
+	public EnemyMain(int x, int y) {
+        super(x, y);
     }
     
     public void update(int delta){
@@ -36,6 +35,15 @@ public class EnemyMain extends LivingObject{
         	this.jump();
         }
    	}
+    
+    public void setHealth(int health){
+    	super.health = health;
+    }
+    
+    public void setSprite(Image img){
+    	super.sprite = img;
+    	this.init();
+    }
     
     /* wird nicht verwendet aktuell
 

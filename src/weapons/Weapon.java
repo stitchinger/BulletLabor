@@ -26,8 +26,8 @@ public class Weapon extends PhysicsObject {
 	private float spreadRange;
 	private float inertia;
 	
-	public Weapon(Image sprite, float x, float y) {
-		super(sprite, x, y);
+	public Weapon(float x, float y) {
+		super(x, y);
 		
 		this.power = 30;
 		this.recoil = 0.05f;
@@ -36,6 +36,8 @@ public class Weapon extends PhysicsObject {
 		this.shotsPerMinute = 600;
 		this.spreadRange = 5;
 		this.inertia = 0.2f;
+		
+		this.setSprite(Settings.weaponSprite);
 	
 	}
 	
@@ -53,6 +55,11 @@ public class Weapon extends PhysicsObject {
 		
 		
 	}
+	
+	public void setSprite(Image img){
+    	super.sprite = img;
+    	this.init();
+    }
 	
 	public void render(Graphics g){
 		
@@ -86,7 +93,7 @@ public class Weapon extends PhysicsObject {
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.bulletsLeft--;
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
-    	Bullet bullet = new Bullet(Settings.bulletSprite, (this.getX()+this.width/2), (this.getY()+this.height/2));
+    	Bullet bullet = new Bullet((this.getX()+this.width/2), (this.getY()+this.height/2));
     	
     	
     	bullet.addForce(spreadRotation.mult(this.power));

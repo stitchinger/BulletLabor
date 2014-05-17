@@ -19,13 +19,19 @@ public class StaticObject {
     protected long timestampOfLastHit;
     protected int flashTimeInMillis = 150;
     
-    public StaticObject(Image sprite, float x, float y){
-        this.sprite = sprite;
+    protected float x;
+    protected float y;
+    
+    public StaticObject(float x, float y){
         this.position = new Vector2(x,y);
-        this.width = this.sprite.getWidth();
+        this.x = x;
+        this.y = y;
+    }
+    
+    public void init(){
+    	this.width = this.sprite.getWidth();
         this.height = this.sprite.getHeight();
         this.hitbox = new Rectangle(x,y,width, height);
-       
     }
     
     public void render(Graphics g){

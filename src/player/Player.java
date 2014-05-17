@@ -13,11 +13,13 @@ import weapons.Weapon;
 
 public class Player extends LivingObject{
 	
-	public Player(Image img, int x, int y, int health) {
-        super(img, x, y, health);
+	public Player(int x, int y) {
+        super(x, y);
+        this.setHealth(100);
         
-        this.weapon = new Weapon(Settings.weaponSprite, this.getX(), this.getY());
+        this.weapon = new Weapon(this.getX(), this.getY());
         this.weapon.setOwner(this);
+        this.setSprite(Settings.playerSprite);
     }
 
 	public void update(int delta, Input in){
@@ -30,6 +32,15 @@ public class Player extends LivingObject{
 		}
     	
     	
+    }
+	
+	public void setSprite(Image img){
+    	super.sprite = img;
+    	this.init();
+    }
+	
+	public void setHealth(int health){
+    	super.health = health;
     }
     
     public void playerControl(Input in){

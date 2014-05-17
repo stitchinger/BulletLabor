@@ -57,20 +57,20 @@ public class Game extends BasicGame {
         cam = new Camera();
         gui = new Gui();
      
-        player = new Player(Settings.playerSprite, 400, 100, 100);
+        player = new Player(400, 100);
         
         for (int i = 0; i < 5; i += 1) {
-        	SlimeEnemy enemy = new SlimeEnemy(Settings.enemySprite, randomX(), 100, 150, 50);
+        	SlimeEnemy enemy = new SlimeEnemy(randomX(), 100);
         	enemy_list.add(enemy);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Powerup powerup = new Powerup(Settings.heartSprite,200 , 200, "healthItem");
+            Powerup powerup = new Powerup(200 , 200, "healthItem");
         	powerup_list.add(powerup);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Weapon weapon = new Weapon(Settings.weaponSprite,250 , 200);
+            Weapon weapon = new Weapon(250 , 200);
         	weapon_list.add(weapon);
         }
         

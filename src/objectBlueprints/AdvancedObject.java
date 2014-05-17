@@ -12,8 +12,8 @@ public class AdvancedObject extends PhysicsObject {
 	
 	protected Weapon weapon;
 	
-	public AdvancedObject(Image img, int x, int y) {
-		super(img, x, y);
+	public AdvancedObject(int x, int y) {
+		super(x, y);
 	}
 
 	public void update(int delta){
