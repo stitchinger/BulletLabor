@@ -34,6 +34,10 @@ public class EnemyMain extends LivingObject{
         }
    	}
     
+    public void setAggrorange(int aggrorange){
+    	this.aggrorange = aggrorange;
+    }
+    
     /* wird nicht verwendet aktuell
 
     public void changeDirection(){
