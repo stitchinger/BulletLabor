@@ -23,7 +23,7 @@ public class EnemyMain extends LivingObject{
         if(direction == "left"){
         	this.moveLeft();
         }
-        if((Math.abs(Game.player.getX() - this.getX()) > aggrorange)){
+        if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
         	if (Game.player.getX() < this.getX())
         		this.moveLeft();
         	else if (Game.player.getX() > this.getX())
