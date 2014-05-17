@@ -82,7 +82,7 @@ public class StaticObject {
     public void setSprite(Image sprite){
     	this.width = sprite.getWidth();
         this.height = sprite.getHeight();
-        this.hitbox = new Rectangle(x,y,width, height);
+        this.hitbox = new Rectangle(x, y, this.width, this.height);
         this.sprite = sprite;
     }
 }
