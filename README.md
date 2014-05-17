@@ -7,13 +7,6 @@ Hier koennen wir alle noch anstehenden Aufgaben sammeln und gemeinsam in kleiner
 
 ToDo:
 
-- Vector2 Klasse implementieren welche hilft mit Koordinaten und Geschwindigkeits-Vektoren umzugehen
-  - Umwandlung von Grad nach Vector2
-  - Umwandlung von Vector2 nach Grad
-  - Vektoren addieren
-  - Vektoren subrahieren
-  - Vektor invertieren
-
 - Charakter Steuerung
 	- Mid-Air-control verbessern
 	
