@@ -13,7 +13,7 @@ public class Settings {
     public static final boolean FULLSCREEN = false;
     public static final boolean SHOW_FPS = true;
     public static final int FPS_LIMIT = 60;
-    public static final boolean DEBUG_MODUS = true;
+    public static final boolean DEBUG_MODUS = false;
     
     public static Image playerSprite;
     public static Image enemySprite;

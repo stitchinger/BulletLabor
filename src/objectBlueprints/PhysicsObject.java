@@ -24,7 +24,7 @@ public class PhysicsObject extends StaticObject {
 		
 		this.actualMovement(delta);
 		this.resolveWorldCollision();
-		//this.resolveWorldCollision();
+	
 	}
 	
 	public void render(Graphics g){
