@@ -27,13 +27,14 @@ public class EnemyMain extends LivingObject{
         if(direction == "left"){
         	this.moveLeft();
         }
+        
+        //Vorläufige Experimentelle Funktion bzgl. einem Aggro System
         if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
         	if(this.followTimer == 0){
         		this.follow = true;
         	}
         }
         
-        //Vorläufige Experimentelle Funktion bzgl. einem Aggro System
         if(this.follow == true){
         	this.followTimer++;
 	        if (Game.player.getX() < this.getX())
@@ -53,12 +54,16 @@ public class EnemyMain extends LivingObject{
         	if(this.followTimer == 0)
         		this.unfollow = false;
     	}
-        //Experimentelle Funktion Ende --> werde ich die Tage weiter bearbeiten
+        //Experimentelle Funktion Ende
         	
-        
         if(Math.random() < 0.01f && this.isBottomSideCollided()){
         	this.jump();
         }
+        
+        /* TO-DO
+         * System, womit die Gegner umdrehen, wenn diese gegen eine Wand laufen
+         * Weitere LivingObject Instanzvariablen lokal verfügbar machen + ggf. anpassen
+        */
    	}
     
     public void setAggrorange(int aggrorange){
@@ -70,13 +75,14 @@ public class EnemyMain extends LivingObject{
     }
     
     public void changeDirection(){
-    	if(direction== "right"){
-    		direction = "left";
+    	if(this.direction == "right"){
+    		this.direction = "left";
     	}
-    	else if(direction == "left"){
-    		direction = "right";
-    	} else{
-    		direction = "right";
+    	else if(this.direction == "left"){
+    		this.direction = "right";
+    	}
+    	else{
+    		this.direction = "right";
     	}
     }
 }
