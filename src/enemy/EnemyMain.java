@@ -6,6 +6,10 @@ import objectBlueprints.LivingObject;
 public class EnemyMain extends LivingObject{
 	
 	protected int aggrorange;
+	protected boolean follow = false;
+	protected int followTimer = 0;
+	protected boolean unfollow = false;
+	protected int persistent;
 	
 	public EnemyMain(float x, float y) {
         super(x, y);
@@ -24,11 +28,33 @@ public class EnemyMain extends LivingObject{
         	this.moveLeft();
         }
         if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
-        	if (Game.player.getX() < this.getX())
-        		this.moveLeft();
-        	else if (Game.player.getX() > this.getX())
-        		this.moveRight();
+        	if(this.followTimer == 0){
+        		this.follow = true;
+	        	if (Game.player.getX() < this.getX())
+	        		this.moveLeft();
+	        	else if (Game.player.getX() > this.getX())
+	        		this.moveRight();
+        	}
         }
+        
+        //Vorläufige Experimentelle Funktion bzgl. einem Aggro System
+        if(this.follow == true)
+        	this.followTimer++;
+        
+        if(this.followTimer == this.persistent){
+        	this.follow = false;
+        	this.changeDirection();
+        	this.unfollow = true;
+        }
+        
+        if((this.unfollow == true) && (this.followTimer > 0)){
+        	this.followTimer--;
+        	if(this.followTimer == 0)
+        		this.unfollow = false;
+    	}
+        //Experimentelle Funktion Ende --> werde ich die Tage weiter bearbeiten
+        	
+        
         if(Math.random() < 0.01f && this.isBottomSideCollided()){
         	this.jump();
         }
@@ -38,8 +64,10 @@ public class EnemyMain extends LivingObject{
     	this.aggrorange = aggrorange;
     }
     
-    /* wird nicht verwendet aktuell
-
+    public void setPersistent(int persistent){
+    	this.persistent = persistent;
+    }
+    
     public void changeDirection(){
     	if(direction== "right"){
     		direction = "left";
@@ -50,5 +78,4 @@ public class EnemyMain extends LivingObject{
     		direction = "right";
     	}
     }
-    */
 }
