@@ -30,16 +30,17 @@ public class EnemyMain extends LivingObject{
         if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
         	if(this.followTimer == 0){
         		this.follow = true;
-	        	if (Game.player.getX() < this.getX())
-	        		this.moveLeft();
-	        	else if (Game.player.getX() > this.getX())
-	        		this.moveRight();
         	}
         }
         
         //Vorläufige Experimentelle Funktion bzgl. einem Aggro System
-        if(this.follow == true)
+        if(this.follow == true){
         	this.followTimer++;
+	        if (Game.player.getX() < this.getX())
+	    		this.moveLeft();
+	    	else if (Game.player.getX() > this.getX())
+	    		this.moveRight();
+        }
         
         if(this.followTimer == this.persistent){
         	this.follow = false;
