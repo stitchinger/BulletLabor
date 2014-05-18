@@ -12,7 +12,7 @@ public class LivingObject extends AdvancedObject {
 	protected int health;
 	protected int maxHealth = 100;
 	
-	public LivingObject(int x, int y) {
+	public LivingObject(float x, float y) {
 		super(x, y);
 	}
 

@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
+import util.Vector2;
+
 public class World {
 	private TiledMap tiledMap;
 	private int collisionLayer;
@@ -62,5 +64,28 @@ public class World {
     	int collisionIndex = this.tiledMap.getTileId(tileX, tileY, this.collisionLayer);
     	return collisionIndex > 0;
 		
+	}
+	
+public boolean isCollidableTile(Vector2 coordinates){
+		
+		int tileX = (int)((coordinates.x())/tileSize);
+    	int tileY = (int)((coordinates.y())/tileSize);
+    	int collisionIndex = this.tiledMap.getTileId(tileX, tileY, this.collisionLayer);
+    	return collisionIndex > 0;
+		
+	}
+	
+	public Vector2 getRandomEmptyPosition(){
+		boolean found = false;
+		Vector2 randomPosition = new Vector2();
+		do{
+			float x = (float) (Math.random() * this.getWidth());
+			float y = (float) (Math.random() * this.getHeight());
+			randomPosition.set(x, y);
+			if(!isCollidableTile(randomPosition)){
+				found = true;
+			}
+		}while(!found);
+		return randomPosition;
 	}
 }

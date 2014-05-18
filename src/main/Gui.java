@@ -5,6 +5,8 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.TrueTypeFont;
 
+import util.Vector2;
+
 public class Gui {
 
 	private float posX;
@@ -30,6 +32,7 @@ public class Gui {
 		g.setColor(this.textColor);
 	
 	    this.drawTest(g);
+	    this.drawPointer(g);
 	}
 	
 	public void drawTest(Graphics g){
@@ -37,18 +40,26 @@ public class Gui {
 		float py = this.posY + this.height - 120;
 		
 		float healthToDegree =  (Game.player.getHealth() * 3.6f);
-		
+		System.out.println(healthToDegree);
 		g.setColor(Color.black);
 		g.fillOval(px, py, 100, 100);
 		
 		g.setColor(new Color(51,179,30));
-		g.fillArc(px, py, 100, 100, 270, healthToDegree - 90);
+		g.fillArc(px, py, 100, 100, -90, healthToDegree-90);
 		
 		g.setColor(new Color(211,88,50));
 		g.fillOval(this.posX+ this.width - 99, this.posY + this.height - 100, 60, 60);
 		
 		g.setColor(Color.white);
 		g.drawString("" + Game.player.getAmmo(), px+40 , py+40);
+	}
+	
+	public void drawPointer(Graphics g){
+		Vector2 mouseDirection = Game.player.getMousePosition();
+		Vector2 pointerPosition1 = new Vector2(Game.player.getCenteredPosition()).add(mouseDirection.mult(100));
+		g.setColor(Color.red);
+		g.fillOval(pointerPosition1.x()-5, pointerPosition1.y()-5, 10, 10);
+	
 	}
 }
 

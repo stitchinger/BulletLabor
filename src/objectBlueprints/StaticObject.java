@@ -39,7 +39,7 @@ public class StaticObject {
         	g.setColor(Color.red);
         	g.draw(this.getHitbox());
         	g.setColor(Color.white); 
-        	//g.drawString("hp: "+ this.getHealth(), this.getX(), this.getY()+ this.getHeight() );
+        
         }
     }
     
@@ -53,6 +53,12 @@ public class StaticObject {
     
     public Vector2 getPosition(){
     	return this.position;
+    }
+    
+    public Vector2 getCenteredPosition(){
+    	float centeredX = this.getX()+this.getWidth()/2;
+    	float centeredY = this.getY()+this.getHeight()/2;
+    	return new Vector2(centeredX,centeredY);
     }
     
     public float getX(){

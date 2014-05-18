@@ -13,6 +13,7 @@ import org.newdawn.slick.*;
 import enemy.SlimeEnemy;
 import player.Player;
 import util.Settings;
+import util.Vector2;
 import weapons.Bullet;
 import weapons.Weapon;
 import world.World;
@@ -39,7 +40,7 @@ public class Game extends BasicGame {
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
     public static List<PhysicsObject> physics_list = new LinkedList<PhysicsObject>();
-
+    public static float deltaTime;
     public static int killCount = 0;
     
 
@@ -59,18 +60,21 @@ public class Game extends BasicGame {
      
         player = new Player(400, 100);
         
-        for (int i = 0; i < 100; i += 1) {
-        	SlimeEnemy enemy = new SlimeEnemy(randomX(), 100);
+        for (int i = 0; i < 2; i += 1) {
+        	
+        	SlimeEnemy enemy = new SlimeEnemy(randomX(), 200);
         	enemy_list.add(enemy);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Powerup powerup = new Powerup(200 , 200, "healthItem");
+        	
+        	Powerup powerup = new Powerup(100, 100, "healthItem");
         	powerup_list.add(powerup);
         }
         
         for (int i = 0; i < 1; i += 1) {
-            Weapon weapon = new Weapon(250 , 200);
+        	
+        	Weapon weapon = new Weapon(randomX(), 200);
         	weapon_list.add(weapon);
         }
         
@@ -80,69 +84,41 @@ public class Game extends BasicGame {
 
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
-    	
     	gameworld.update();
         player.update(delta,in);
        
         for (SlimeEnemy slimeenemy : enemy_list) {
         	slimeenemy.update(delta);
             if(slimeenemy.getHitbox().intersects(player.getHitbox())){
-    			
-    			
     			player.receiveDamage(5);
-
-            }
+    		}
         }
-        
         for (Powerup powerup : powerup_list) {
-           
             if(powerup.getHitbox().intersects(player.getHitbox())){
-    			
-    			
     			player.addHealth(powerup.getHealthAmount());
     			Game.removeObject(powerup);
-
-            }
+    		}
         }
-        
         for (Weapon weapon : weapon_list) {
-            weapon.update(delta);
+        	weapon.update(delta);
             if(weapon.getHitbox().intersects(player.getHitbox())){
             	if(in.isKeyDown(Input.KEY_E)){
-                    
-            		player.setWeapon(weapon);
+                    player.setWeapon(weapon);
             		break;
-                	
                 }
-            	
-    			
-
             }
+           
         }
-        
-        
-        
-       
-       
         for (Bullet bullet : bullet_list) {
         	bullet.update(delta);
-        	
         	for(SlimeEnemy slimeenemy : enemy_list){
-        		
         		if(bullet.getHitbox().intersects(slimeenemy.getHitbox())){
-        			
-
         			slimeenemy.receiveDamage(bullet.getDamage());
         			slimeenemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
-        			
         			bullet.die();
         		}	
         	}
-        	  	
-        	
-
         }
-        
         for(PhysicsObject physicObj : physics_list){
         	physicObj.update(delta);
         }
@@ -240,6 +216,8 @@ public class Game extends BasicGame {
 		
 	}
     
+	
+	
 	public static int randomX() {
 
         int minDistance = 300;

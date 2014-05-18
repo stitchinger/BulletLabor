@@ -11,7 +11,7 @@ public class AdvancedObject extends PhysicsObject {
 	
 	protected Weapon weapon;
 	
-	public AdvancedObject(int x, int y) {
+	public AdvancedObject(float x, float y) {
 		super(x, y);
 	}
 
@@ -33,57 +33,50 @@ public class AdvancedObject extends PhysicsObject {
         float vecY= targetPosition.y() - (this.getY()+this.height/2);
         Vector2 vecNorm = new Vector2(vecX, vecY).normalize();
         return vecNorm;
-       
-    }
+	}
 	
-	 public void dropWeapon(){
-	    	if(this.weapon != null){
+	public Weapon getWeapon(){
+    	return this.weapon;
+	}    
+	
+	public void setWeapon(Weapon weapon){
+	    	if(this.hasWeapon()){
+	    		this.dropWeapon();
+	    	}
+	    	this.weapon = weapon;
+	    	Game.removeObject(weapon);
+	    	this.weapon.setOwner(this);
+	    	this.weapon.getTaken();
+	 }
+	 
+	public void dropWeapon(){
+	    	if(this.hasWeapon()){
 	    		this.weapon.drop();
 	    		Game.weapon_list.add(this.weapon);
-	    		this.velocity.set(this.getVelocity());
+	    		this.weapon.velocity.set(this.getVelocity().mult(0.5f));
 	    		this.weapon.addForce(this.getSomehowUp().mult(8));
 	    		this.weapon = null;
 		    }
 	  }
 	 
-	 public Vector2 getSomehowUp(){
-		 int range = 30;
-		 float randomUp = (0-range/2) + (int)(Math.random() * (((0+range/2) - (0-range/2)) + 1));
-		 Vector2 upv = new Vector2(randomUp);
-		 return upv;
-	 }
-	    
-	 public void setWeapon(Weapon weapon){
-	    	if(this.weapon == null){
-	    		this.weapon = weapon;
-		    	Game.removeObject(weapon);
-		    	this.weapon.setOwner(this);
-		    	this.weapon.getTaken();
-	    	}
-		 	
-	    	
-	 }
-	 
-	 public boolean hasWeapon(){
+	public boolean hasWeapon(){
 		 return this.weapon != null;
 	 }
 	    
-	 public Weapon getWeapon(){
-	    	return this.weapon;
-	 } 
-	 
-	 public int getAmmo(){
+	public int getAmmo(){
 		 int leftAmmo;
 		 if(this.hasWeapon()){
-			 leftAmmo = this.weapon.getBulletsLeft();
+			 leftAmmo = this.weapon.getAmmo();
 		 }else{
 			 leftAmmo = 0;
 		 }
 		 return leftAmmo;
 	 }
 	    
-
-	
-	
-	
+	private Vector2 getSomehowUp(){
+		 int range = 30;
+		 float randomUp = (0-range/2) + (int)(Math.random() * (((0+range/2) - (0-range/2)) + 1));
+		 Vector2 upv = new Vector2(randomUp);
+		 return upv;
+	}
 }

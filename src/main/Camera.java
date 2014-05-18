@@ -51,8 +51,8 @@ public class Camera {
 	}
 	
 	public void follow(PhysicsObject target){
-		float targetX = target.getX() + target.getWidth()/2 - this.viewportWidth/2 + this.offsetCenterX;
-		float targetY = target.getY() + target.getHeight()/2 - this.viewportHeight/2 + this.offsetCenterY;
+		float targetX = target.getCenteredPosition().x() - this.viewportWidth/2 + this.offsetCenterX;
+		float targetY = target.getCenteredPosition().y() - this.viewportHeight/2 + this.offsetCenterY;
 		
 		targetX += target.getVelocityX();
 		

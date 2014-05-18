@@ -4,7 +4,7 @@ import util.Settings;
 
 public class SlimeEnemy extends EnemyMain {
 	
-	public SlimeEnemy(int x, int y) {
+	public SlimeEnemy(float x, float y) {
 		super(x, y);
 		
 		this.setAggrorange(150);

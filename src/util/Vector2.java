@@ -6,6 +6,10 @@ public class Vector2 {
   
   private float x;
   private float y;
+  public static Vector2 NORTH = new Vector2(0,-1);
+  public static Vector2 SOUTH = new Vector2(0,1);
+  public static Vector2 EAST = new Vector2(1,0);
+  public static Vector2 WEST = new Vector2(-1,0);
   
   public Vector2() {
     this.x = 0;
@@ -14,6 +18,10 @@ public class Vector2 {
   
   public String toString() {
     return String.format("[%f, %f]", x, y);
+  }
+  public Vector2(Vector2 vector){
+	  this.x = vector.x();
+	  this.y = vector.y();
   }
   
   public Vector2(float x, float y) {
@@ -106,6 +114,11 @@ public class Vector2 {
     this.y *= multiplier;
     return this;
   }
+  public Vector2 mult(Vector2 multiplier) {
+	    this.x *= multiplier.x();
+	    this.y *= multiplier.y();
+	    return this;
+	  }
 
   public Vector2 sub(Vector2 other) {
     this.x -= other.x;
@@ -114,7 +127,7 @@ public class Vector2 {
   }
 
   public Vector2 normalize() {
-    return mult(1/length());
+    return this.mult(1/length());
   }
   
   public float lengthSquared() {

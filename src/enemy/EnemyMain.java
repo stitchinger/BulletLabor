@@ -7,7 +7,7 @@ public class EnemyMain extends LivingObject{
 	
 	protected int aggrorange;
 	
-	public EnemyMain(int x, int y) {
+	public EnemyMain(float x, float y) {
         super(x, y);
     }
     
