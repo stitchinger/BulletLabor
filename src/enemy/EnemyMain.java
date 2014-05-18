@@ -49,7 +49,7 @@ public class EnemyMain extends LivingObject{
         }
         
         if((this.unfollow == true) && (this.followTimer > 0)){
-        	this.followTimer--;
+        	this.followTimer -= 2;
         	if(this.followTimer == 0)
         		this.unfollow = false;
     	}
