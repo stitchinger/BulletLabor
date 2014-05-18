@@ -63,6 +63,11 @@ public class EnemyMain extends LivingObject{
         /* TO-DO
          * System, womit die Gegner umdrehen, wenn diese gegen eine Wand laufen
          * Weitere LivingObject Instanzvariablen lokal verfügbar machen + ggf. anpassen
+            * 	protected float acceleration;
+			*	protected int maxWalkSpeed;
+			*	protected int jumpHeight;
+			*	protected int jumpCount;
+			*	protected String direction;
         */
    	}
     
