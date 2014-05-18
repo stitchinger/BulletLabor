@@ -42,7 +42,7 @@ public class Gui {
 		g.fillOval(px, py, 100, 100);
 		
 		g.setColor(new Color(51,179,30));
-		g.fillArc(px, py, 100, 100, 0, healthToDegree);
+		g.fillArc(px, py, 100, 100, 270, healthToDegree - 90);
 		
 		g.setColor(new Color(211,88,50));
 		g.fillOval(this.posX+ this.width - 99, this.posY + this.height - 100, 60, 60);
