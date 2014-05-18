@@ -15,7 +15,7 @@ import util.Settings;
 public class Bullet extends PhysicsObject{
     
 	private boolean isAlive = true;
-    private int bulletDamage = 15;
+    private int bulletDamage = 10;
     private float bouncyness = 0.0f;
 	private int lifeTimeMillis = 4000;
 	

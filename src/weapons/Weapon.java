@@ -64,8 +64,16 @@ public class Weapon extends PhysicsObject {
 	}
 	
 	public void move(Vector2 position){
-		this.setX(position.x() - this.width/2);
-		this.setY(position.y() - this.height/2);
+		float inertia = 0.5f;
+		float armLength = 5;
+		float distanceX = (position.x() - this.getX() - this.width/2);
+		float distanceY = (position.y() - this.getY() - this.height/2);
+		
+		
+		this.velocity.set(new Vector2(distanceX,distanceY * inertia));
+		
+		this.position.add(this.velocity);
+		
 	}
 	
 	public void setRotation(float rotation){
@@ -87,6 +95,7 @@ public class Weapon extends PhysicsObject {
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
+    	//this.addForce(spreadRotation.mult(-this.recoil));
     	
     	Game.bullet_list.add(bullet);
     	

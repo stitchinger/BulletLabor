@@ -59,7 +59,7 @@ public class Game extends BasicGame {
      
         player = new Player(400, 100);
         
-        for (int i = 0; i < 5; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
         	SlimeEnemy enemy = new SlimeEnemy(randomX(), 100);
         	enemy_list.add(enemy);
         }

@@ -54,7 +54,7 @@ public class Camera {
 		float targetX = target.getX() + target.getWidth()/2 - this.viewportWidth/2 + this.offsetCenterX;
 		float targetY = target.getY() + target.getHeight()/2 - this.viewportHeight/2 + this.offsetCenterY;
 		
-		targetX += target.getVelocityX()*10;
+		targetX += target.getVelocityX();
 		
 		this.velocity.setX(targetX - this.getX());
 		this.velocity.setY(targetY - this.getY()); 
