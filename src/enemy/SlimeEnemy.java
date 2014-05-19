@@ -4,12 +4,14 @@ import util.Settings;
 
 public class SlimeEnemy extends EnemyMain {
 	
-	public SlimeEnemy(float x, float y) {
-		super(x, y);
+	public SlimeEnemy(float x, float y, float xEnd1, float xEnd2) {
+		super(x, y, xEnd1, xEnd2);
 		
 		//Setter von EnemyMain
 		this.setPersistent(100);
-		this.setAggrorange(150);
+		this.setAggrorange(50);
+		this.setXEnd1(xEnd1);
+		this.setXEnd2(xEnd2);
 		
 		//Setter von LivingObjects
 		this.setHealth(50);

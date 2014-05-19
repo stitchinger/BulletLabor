@@ -11,7 +11,10 @@ public class EnemyMain extends LivingObject{
 	protected boolean unfollow = false;
 	protected int persistent;
 	
-	public EnemyMain(float x, float y) {
+	private float xEnd1;
+	private float xEnd2;
+	
+	public EnemyMain(float x, float y, float xEnd1, float xEnd2) {
         super(x, y);
     }
     
@@ -29,10 +32,17 @@ public class EnemyMain extends LivingObject{
         }
         
         //Vorläufige Experimentelle Funktion bzgl. einem Aggro System
+        
+        if(this.getX() < this.xEnd1)
+        	this.moveRight();
+        	
+        if(this.getX() > this.xEnd2)
+        	this.moveLeft();
+	        
         if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
         	if(this.followTimer == 0){
-        		this.follow = true;
-        	}
+		        this.follow = true;
+		    }
         }
         
         if(this.follow == true){
@@ -59,16 +69,6 @@ public class EnemyMain extends LivingObject{
         if(Math.random() < 0.01f && this.isBottomSideCollided()){
         	this.jump();
         }
-        
-        /* TO-DO
-         * System, womit die Gegner umdrehen, wenn diese gegen eine Wand laufen
-         * Weitere LivingObject Instanzvariablen lokal verfügbar machen + ggf. anpassen
-            * 	protected float acceleration;
-			*	protected int maxWalkSpeed;
-			*	protected int jumpHeight;
-			*	protected int jumpCount;
-			*	protected String direction;
-        */
    	}
     
     public void setAggrorange(int aggrorange){
@@ -77,6 +77,14 @@ public class EnemyMain extends LivingObject{
     
     public void setPersistent(int persistent){
     	this.persistent = persistent;
+    }
+    
+    public void setXEnd1(float xEnd1){
+    	this.xEnd1 = xEnd1;
+    }
+    
+    public void setXEnd2(float xEnd2){
+    	this.xEnd2 = xEnd2;
     }
     
     public void changeDirection(){
