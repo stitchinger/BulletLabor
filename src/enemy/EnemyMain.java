@@ -20,8 +20,6 @@ public class EnemyMain extends LivingObject{
     
     public void update(int delta){
        super.update(delta);
-       
-       
        this.behavior(this.aggrorange);
     }
     
