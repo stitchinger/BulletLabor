@@ -33,7 +33,7 @@ public class Bullet extends PhysicsObject{
     	this.setY(this.y - this.img.getHeight()/2);
     
     	
-    	this.setSprite(img);
+    	this.setSpriteImage(img);
     	this.timestampOfBirth = System.currentTimeMillis();
     }
     
@@ -54,7 +54,7 @@ public class Bullet extends PhysicsObject{
     }
 
     public void render(Graphics g){
-    	this.getImage().setRotation(rotation); 
+    	this.getSpriteImage().setRotation(rotation); 
     	super.render(g);
     }
     

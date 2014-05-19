@@ -11,7 +11,7 @@ public class Powerup extends StaticObject{
 	
 	public Powerup(float x, float y, String id) {
 		super(x, y);
-		this.setSprite(Settings.heartSprite);
+		this.setSpriteImage(Settings.heartSprite);
 	
 		this.id = id;
 		if(id.equals("healthItem")){

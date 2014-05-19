@@ -28,7 +28,7 @@ public class Player extends LivingObject{
       	this.setMaxHealth(100);
       		
       	//Setter von StaticObjects
-      	this.setSprite(Settings.playerSprite);
+      	this.setSpriteImage(Settings.playerSprite);
     }
 
 	public void update(int delta, Input in){

@@ -30,9 +30,9 @@ public class StaticObject {
     
     public void render(Graphics g){
     	if(this.timestampOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
-    		this.getImage().drawFlash(this.getX(), this.getY());
+    		this.getSpriteImage().drawFlash(this.getX(), this.getY());
     	}else{
-    		this.getImage().draw(this.getX(), this.getY());
+    		this.getSpriteImage().draw(this.getX(), this.getY());
     	}
     
         if (Settings.DEBUG_MODUS) {
@@ -43,7 +43,14 @@ public class StaticObject {
         }
     }
     
-    public Image getImage(){
+    public void setSpriteImage(Image sprite){
+    	this.width = sprite.getWidth();
+        this.height = sprite.getHeight();
+        this.hitbox = new Rectangle(x, y, this.width, this.height);
+        this.sprite = sprite;
+    }
+    
+    public Image getSpriteImage(){
         return this.sprite;
     }
     
@@ -85,10 +92,5 @@ public class StaticObject {
     	return this.height;
     }
     
-    public void setSprite(Image sprite){
-    	this.width = sprite.getWidth();
-        this.height = sprite.getHeight();
-        this.hitbox = new Rectangle(x, y, this.width, this.height);
-        this.sprite = sprite;
-    }
+   
 }

@@ -38,7 +38,7 @@ public class Weapon extends PhysicsObject {
 		this.rotationInertia = 0.2f;
 		this.positionInertia = 0.49f;
 		
-		this.setSprite(Settings.weaponSprite);
+		this.setSpriteImage(Settings.weaponSprite);
 	
 	}
 	
@@ -46,10 +46,10 @@ public class Weapon extends PhysicsObject {
 		
 		Image sprite;
 		if(rotation < 0){
-			sprite = this.getImage().getFlippedCopy(true, false);
+			sprite = this.getSpriteImage().getFlippedCopy(true, false);
 		
 		} else{
-			sprite = this.getImage();
+			sprite = this.getSpriteImage();
 			
 		}
 		sprite.setRotation(rotation); 
