@@ -4,13 +4,13 @@ import main.Game;
 
 public class LivingObject extends AdvancedObject {
 
-	protected float acceleration = 0.35f;
-	protected int maxWalkSpeed = 6;
-	protected int jumpHeight = 8;
-	protected int jumpCount = 2;
-	protected String direction = "right";
+	protected float acceleration;
+	protected int maxWalkSpeed;
+	protected int jumpHeight;
+	protected int jumpCount;
+	protected String direction;
 	protected int health;
-	protected int maxHealth = 100;
+	protected int maxHealth;
 	
 	public LivingObject(float x, float y) {
 		super(x, y);
@@ -70,6 +70,30 @@ public class LivingObject extends AdvancedObject {
 	
 	public void setHealth(int health){
     	this.health = health;
+    }
+	
+	public void setMaxWalkSpeed(int maxWalkSpeed){
+    	this.maxWalkSpeed = maxWalkSpeed;
+    }
+	
+	public void setAcceleration(float acceleration){
+    	this.acceleration = acceleration;
+    }
+	
+	public void setJumpHeight(int jumpHeight){
+    	this.jumpHeight = jumpHeight;
+    }
+	
+	public void setJumpCount(int jumpCount){
+    	this.jumpCount = jumpCount;
+    }
+	
+	public void setDirection(String direction){
+    	this.direction = direction;
+    }
+	
+	public void setMaxHealth(int maxHealth){
+    	this.maxHealth = maxHealth;
     }
 	
 	private void limitWalkVelocity() {

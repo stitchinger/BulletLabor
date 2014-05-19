@@ -14,11 +14,21 @@ public class Player extends LivingObject{
 	
 	public Player(int x, int y) {
         super(x, y);
-        this.setHealth(100);
         
         this.weapon = new Weapon(this.getX(), this.getY());
         this.weapon.setOwner(this);
-        this.setSprite(Settings.playerSprite);
+        
+        //Setter von LivingObjects
+      	this.setHealth(100);
+      	this.setAcceleration(0.35f);
+      	this.setMaxWalkSpeed(6);
+      	this.setJumpHeight(8);
+      	this.setJumpCount(2);
+      	this.setDirection("right");
+      	this.setMaxHealth(100);
+      		
+      	//Setter von StaticObjects
+      	this.setSprite(Settings.playerSprite);
     }
 
 	public void update(int delta, Input in){
