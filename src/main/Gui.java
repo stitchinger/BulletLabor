@@ -40,7 +40,7 @@ public class Gui {
 		float py = this.posY + this.height - 120;
 		
 		float healthToDegree =  (Game.player.getHealth() * 3.6f);
-		System.out.println(healthToDegree);
+	
 		g.setColor(Color.black);
 		g.fillOval(px, py, 100, 100);
 		

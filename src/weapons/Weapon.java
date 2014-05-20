@@ -16,6 +16,7 @@ public class Weapon extends PhysicsObject {
 	private AdvancedObject owner;
 	private boolean isEquipped;
 	private float rotation;
+	
 	private int ammo;
 	private int shotsPerMinute;
 	private float power;
@@ -74,8 +75,11 @@ public class Weapon extends PhysicsObject {
 	}
 	
 	public void setRotation(float rotation){
-		float rotationVelocity = rotation - this.rotation;
-		this.rotation = this.rotation + rotationVelocity * this.rotationInertia;
+		
+		float rotationDistance = rotation - this.rotation;
+		
+		System.out.println(rotation);
+		this.rotation = this.rotation + rotationDistance * this.rotationInertia;
 	}
 	
 	public void trigger(){
