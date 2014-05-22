@@ -5,14 +5,14 @@ import objectBlueprints.LivingObject;
 
 public class EnemyMain extends LivingObject{
 	
-	protected int aggrorange;
-	protected boolean follow = false;
-	protected int followTimer = 0;
-	protected boolean unfollow = false;
-	protected int persistent;
+	private int aggrorange;
+	private boolean follow = false;
+	private int followTimer = 0;
+	private boolean unfollow = false;
+	private int persistent;
 	
-	protected float xEnd1;
-	protected float xEnd2;
+	private float xEnd1;
+	private float xEnd2;
 	
 	public EnemyMain(float x, float y, float xEnd1, float xEnd2) {
         super(x, y);
@@ -20,10 +20,10 @@ public class EnemyMain extends LivingObject{
     
     public void update(int delta){
        super.update(delta);
-       this.behavior(this.aggrorange);
+       this.behavior();
     }
     
-    public void behavior(int aggrorange){
+    public void behavior(){
     	this.enemyMove();
     	this.enemyArea();
     	
@@ -37,22 +37,22 @@ public class EnemyMain extends LivingObject{
     
     
     public void enemyJump(){
-    	if(Math.random() < 0.01f && this.isBottomSideCollided()){
-        	this.jump();
+    	if(Math.random() < 0.01f && super.isBottomSideCollided()){
+        	super.jump();
         }
     }
     
     public void enemyMove(){
-    	if(direction == "right"){
-    		this.moveRight();
+    	if(super.direction == "right"){
+    		super.moveRight();
         }
-        if(direction == "left"){
-        	this.moveLeft();
+        if(super.direction == "left"){
+        	super.moveLeft();
         }
     }
     
     public void enemyAggro(){
-    	if((Math.abs(Game.player.getX() - this.getX()) <= aggrorange)){
+    	if((Math.abs(Game.player.getX() - super.getX()) <= this.aggrorange)){
         	if(this.followTimer == 0){
 		        this.follow = true;
 		    }
@@ -62,10 +62,10 @@ public class EnemyMain extends LivingObject{
     public void follow(){
     	if(this.follow == true){
         	this.followTimer++;
-	        if (Game.player.getX() < this.getX())
-	    		this.moveLeft();
-	    	else if (Game.player.getX() > this.getX())
-	    		this.moveRight();
+	        if (Game.player.getX() < super.getX())
+	    		super.moveLeft();
+	    	else if (Game.player.getX() > super.getX())
+	    		super.moveRight();
         }
     }
     
@@ -86,38 +86,38 @@ public class EnemyMain extends LivingObject{
     }
     
     public void enemyArea(){
-    	if(this.getX() < this.xEnd1)
-        	this.moveRight();	
-        if(this.getX() > this.xEnd2)
-        	this.moveLeft();
+    	if(super.getX() < this.xEnd1)
+        	super.moveRight();	
+        if(super.getX() > this.xEnd2)
+        	super.moveLeft();
     }
     
     public void changeDirection(){
-    	if(this.direction == "right"){
-    		this.direction = "left";
+    	if(super.direction == "right"){
+    		super.direction = "left";
     	}
-    	else if(this.direction == "left"){
-    		this.direction = "right";
+    	else if(super.direction == "left"){
+    		super.direction = "right";
     	}
     	else {
-    		this.direction = "right";
+    		super.direction = "right";
     	}
     }
     
     //Setter-Methoden
-    public void setAggrorange(int aggrorange){
+    protected void setAggrorange(int aggrorange){
     	this.aggrorange = aggrorange;
     }
     
-    public void setPersistent(int persistent){
+    protected void setPersistent(int persistent){
     	this.persistent = persistent;
     }
     
-    public void setXEnd1(float xEnd1){
+    protected void setXEnd1(float xEnd1){
     	this.xEnd1 = xEnd1;
     }
     
-    public void setXEnd2(float xEnd2){
+    protected void setXEnd2(float xEnd2){
     	this.xEnd2 = xEnd2;
     }
 }

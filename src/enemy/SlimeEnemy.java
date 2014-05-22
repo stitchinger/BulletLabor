@@ -8,22 +8,22 @@ public class SlimeEnemy extends EnemyMain {
 		super(x, y, xEnd1, xEnd2);
 		
 		//Setter von EnemyMain
-		this.setPersistent(100);
-		this.setAggrorange(50);
-		this.setXEnd1(xEnd1);
-		this.setXEnd2(xEnd2);
+		super.setPersistent(100);
+		super.setAggrorange(50);
+		super.setXEnd1(xEnd1);
+		super.setXEnd2(xEnd2);
 		
 		//Setter von LivingObjects
-		this.setHealth(50);
-		this.setAcceleration(0.35f);
-		this.setMaxWalkSpeed(6);
-		this.setJumpHeight(8);
-		this.setJumpCount(2);
-		this.setDirection("right");
-		this.setMaxHealth(100);
+		super.setHealth(50);
+		super.setAcceleration(0.35f);
+		super.setMaxWalkSpeed(6);
+		super.setJumpHeight(8);
+		super.setJumpCount(2);
+		super.setDirection("right");
+		super.setMaxHealth(100);
 		
 		//Setter von StaticObjects
-		this.setSpriteImage(Settings.enemySprite);
+		super.setSpriteImage(Settings.enemySprite);
     }
 	
 	public void update(int delta){
