@@ -18,7 +18,18 @@ public class World {
 	private int height;
 	
 	public World() throws SlickException{
-		tiledMap = new TiledMap("Map/Level3.tmx");
+		
+		loadWorld(new TiledMap("Map/Level3.tmx"));
+	}
+	
+	public void update(){
+	
+		
+		
+	}
+	
+	public void loadWorld(TiledMap tiledMap){
+		this.tiledMap = tiledMap;
 		this.posX = 0;
 		this.posY = 0;
 		
@@ -26,10 +37,6 @@ public class World {
 		this.collisionLayer = this.tiledMap.getLayerIndex("CollisionLayer");
 		this.width = tiledMap.getWidth() * this.tileSize;
 		this.height = tiledMap.getHeight() * this.tileSize;
-	}
-	
-	public void update(){
-	
 		
 		
 	}

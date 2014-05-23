@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.tiled.TiledMap;
 import util.Vector2;
 
-public class PhysicsObject extends StaticObject {
+public abstract class PhysicsObject extends StaticObject {
 
 	protected Vector2 velocity = new Vector2(0,0);
 	protected float gravity = 0.38f;

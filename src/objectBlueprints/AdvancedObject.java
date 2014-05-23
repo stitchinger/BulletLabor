@@ -7,7 +7,7 @@ import org.newdawn.slick.Graphics;
 import util.Vector2;
 import weapons.Weapon;
 
-public class AdvancedObject extends PhysicsObject {
+public abstract class AdvancedObject extends PhysicsObject {
 	
 	protected Weapon weapon;
 	

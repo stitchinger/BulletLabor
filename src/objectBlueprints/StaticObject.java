@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Shape;
 import util.Settings;
 import util.Vector2;
 
-public class StaticObject {
+public abstract class StaticObject {
    
 	protected Vector2 position;
     protected int width;

@@ -2,7 +2,7 @@ package objectBlueprints;
 
 import main.Game;
 
-public class LivingObject extends AdvancedObject {
+public abstract class LivingObject extends AdvancedObject {
 
 	protected float acceleration;
 	protected int maxWalkSpeed;
