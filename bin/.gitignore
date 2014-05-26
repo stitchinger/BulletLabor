@@ -1,11 +1,5 @@
-/Images
-/Map
-/enemy
-/items
-/main
-/objectBlueprints
-/player
-/readme.txt
-/util
 /weapons
+/main
+/enemy
+/objectBlueprints
 /world
