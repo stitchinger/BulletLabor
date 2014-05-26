@@ -10,7 +10,7 @@ import objectBlueprints.StaticObject;
 
 import org.newdawn.slick.*;
 
-import enemy.SlimeEnemy;
+import enemy.Slime;
 import player.Player;
 import util.Settings;
 import util.Vector2;
@@ -35,7 +35,7 @@ public class Game extends BasicGame {
   
     public static Player player;
     public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
-    public static List<SlimeEnemy> enemy_list = new LinkedList<SlimeEnemy>();
+    public static List<Slime> enemy_list = new LinkedList<Slime>();
     public static List<Bullet> bullet_list = new LinkedList<Bullet>();
     public static List<Powerup> powerup_list = new LinkedList<Powerup>();
     public static List<Weapon> weapon_list = new LinkedList<Weapon>();
@@ -60,9 +60,9 @@ public class Game extends BasicGame {
      
         player = new Player(400, 100);
         
-        for (int i = 0; i < 1; i += 1) {
+        for (int i = 0; i < 0; i += 1) {
         	
-        	SlimeEnemy enemy = new SlimeEnemy(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100));
+        	Slime enemy = new Slime(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100));
         	enemy_list.add(enemy);
         }
         
@@ -87,7 +87,7 @@ public class Game extends BasicGame {
     	gameworld.update();
         player.update(delta,in);
        
-        for (SlimeEnemy slimeenemy : enemy_list) {
+        for (Slime slimeenemy : enemy_list) {
         	slimeenemy.update(delta);
             if(slimeenemy.getHitbox().intersects(player.getHitbox())){
     			player.receiveDamage(5);
@@ -111,7 +111,7 @@ public class Game extends BasicGame {
         }
         for (Bullet bullet : bullet_list) {
         	bullet.update(delta);
-        	for(SlimeEnemy slimeenemy : enemy_list){
+        	for(Slime slimeenemy : enemy_list){
         		if(bullet.getHitbox().intersects(slimeenemy.getHitbox())){
         			slimeenemy.receiveDamage(bullet.getDamage());
         			slimeenemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
@@ -161,7 +161,7 @@ public class Game extends BasicGame {
 	   for (Object o : toRemoveObjects) {
     	   if(o instanceof Bullet){
     		   bullet_list.remove(o);
-    	   }else if(o instanceof SlimeEnemy){
+    	   }else if(o instanceof Slime){
     		   enemy_list.remove(o);
     	   }
     	   else if(o instanceof Weapon){
@@ -193,7 +193,7 @@ public class Game extends BasicGame {
        player.render(g);  // Dafür Animated Mario hinzugefügt
        
        // Gegner rendern
-       for (SlimeEnemy enemy : enemy_list) {
+       for (Slime enemy : enemy_list) {
        	enemy.render(g);
        }
        
