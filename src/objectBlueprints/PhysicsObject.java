@@ -10,7 +10,7 @@ public abstract class PhysicsObject extends StaticObject {
 	protected Vector2 velocity = new Vector2(0,0);
 	protected float gravity = 0.38f;
 	protected float maxFallSpeed = 20;
-	protected float friction = 0.8f;
+	protected float friction = 0.4f;
 	protected boolean isRunning = false;
 	
 	public PhysicsObject(float x, float y) {
@@ -21,32 +21,24 @@ public abstract class PhysicsObject extends StaticObject {
 		this.fall(delta);
 		this.limitFallSpeed();
 		this.applyFriction();
-		
 		this.actualMovement(delta);
 		this.resolveWorldCollision();
-	
 	}
 	
 	public void render(Graphics g){
-		
 		super.render(g);
 	}
 	
 	protected void actualMovement(int delta){
-	
 		this.position.add(this.velocity);
-	
 		hitbox.setLocation(this.position.x(), this.position.y());
-
 	}
 	
 	public void applyFriction(){
-		
 		if(!this.isRunning && this.isBottomSideCollided()){
 			if(this.getVelocityX() > 0 - this.friction && this.getVelocityX() < 0 + this.friction){
 				this.setVelocityX(0);
 			}else if(this.getVelocityX() > 0){
-				
 				this.addForce(-this.friction, 0);
 			}else if(this.getVelocityX() < 0){
 				this.addForce(this.friction, 0);

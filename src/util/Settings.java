@@ -4,6 +4,7 @@ package util;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class Settings {
 	
@@ -22,6 +23,10 @@ public class Settings {
     public static Image weaponSprite;
     public static Image shellSprite;
     
+    public static Sound weaponSound;
+    
+    
+    
     public Settings() throws SlickException {
     	
     	playerSprite = new Image("Images/Player/player.png");
@@ -29,7 +34,8 @@ public class Settings {
 	    heartSprite = new Image("Images/Powerups/heart.png");
 	    bulletSprite = new Image("Images/Weapon/bullet.png");
 	    weaponSprite = new Image("Images/Weapon/weapon.png");
-	    //weaponSprite = new Image("Images/Weapon/shell.png");
+	    
+	    weaponSound = new Sound("Ressources/fire.wav");
     
     }
 }

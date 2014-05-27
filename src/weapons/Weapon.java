@@ -5,6 +5,8 @@ import main.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import objectBlueprints.AdvancedObject;
 import objectBlueprints.PhysicsObject;
@@ -26,6 +28,8 @@ public class Weapon extends PhysicsObject {
 	private float rotationInertia;
 	private float positionInertia;
 	
+	private Sound sound;
+	
 	public Weapon(float x, float y) {
 		super(x, y);
 		
@@ -39,6 +43,7 @@ public class Weapon extends PhysicsObject {
 		this.rotationInertia = 0.2f;
 		this.positionInertia = 0.49f;
 		
+		this.sound = Settings.weaponSound;
 		this.setSpriteImage(Settings.weaponSprite);
 	
 	}
@@ -91,6 +96,7 @@ public class Weapon extends PhysicsObject {
 	public void angleShot(){
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.ammo--;
+    	this.sound.play();
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
     	Bullet bullet = new Bullet((this.getX()+this.width/2), (this.getY()+this.height/2));
     	
