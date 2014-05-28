@@ -46,8 +46,7 @@ public abstract class AdvancedObject extends PhysicsObject {
 	    	this.weapon = weapon;
 	    	Game.removeObject(weapon);
 	    	this.weapon.setOwner(this);
-	    	this.weapon.getTaken();
-	 }
+	}
 	 
 	public void dropWeapon(){
 	    	if(this.hasWeapon()){
@@ -61,7 +60,7 @@ public abstract class AdvancedObject extends PhysicsObject {
 	 
 	public boolean hasWeapon(){
 		 return this.weapon != null;
-	 }
+	}
 	    
 	public int getAmmo(){
 		 int leftAmmo;

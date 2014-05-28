@@ -1,10 +1,7 @@
 package main;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.TrueTypeFont;
-
 import util.Vector2;
 
 public class Gui {

@@ -6,9 +6,9 @@ public enum ImageContainer {
 	bullet("Images/Bullet/bullet.png"),
 	powerup("Images/Powerups/powerup.png");
 	
-	private String path;
+	
 	
 	private ImageContainer(String path){
-		this.path = path;
+	
 	}
 }
