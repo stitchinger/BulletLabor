@@ -28,6 +28,10 @@ public abstract class StaticObject {
         this.y = y;
     }
     
+    public void update(int delta){
+    	
+    }
+    
     public void render(Graphics g){
     	if(this.timestampOfLastHit + flashTimeInMillis > System.currentTimeMillis()){
     		this.getSpriteImage().drawFlash(this.getX(), this.getY());

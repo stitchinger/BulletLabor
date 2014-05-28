@@ -102,7 +102,7 @@ public class Weapon extends PhysicsObject {
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
-    	Game.bullet_list.add(bullet);
+    	Game.world_objects.add(bullet);
     }
 	
 	public float getSpreadRotation(){

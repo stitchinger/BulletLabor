@@ -5,6 +5,7 @@ import items.Powerup;
 import java.util.LinkedList;
 import java.util.List;
 
+
 import objectBlueprints.PhysicsObject;
 import objectBlueprints.StaticObject;
 
@@ -24,22 +25,16 @@ public class Game extends BasicGame {
    
     public static Input in;
   
-    public static List<StaticObject> toRemoveObjects = new LinkedList<StaticObject>();
-
- 
     public static World gameworld;
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
     
-  
     public static Player player;
-    public static List<StaticObject> tile_list = new LinkedList<StaticObject>();
-    public static List<SlimeEnemy> enemy_list = new LinkedList<SlimeEnemy>();
-    public static List<Bullet> bullet_list = new LinkedList<Bullet>();
-    public static List<Powerup> powerup_list = new LinkedList<Powerup>();
-    public static List<Weapon> weapon_list = new LinkedList<Weapon>();
-    public static List<PhysicsObject> physics_list = new LinkedList<PhysicsObject>();
+    public static List<StaticObject> world_objects = new LinkedList<StaticObject>();
+    public static List<StaticObject> toRemoveObjects = new LinkedList<StaticObject>();
+  
+  
     public static float deltaTime;
     public static int killCount = 0;
     
@@ -63,19 +58,22 @@ public class Game extends BasicGame {
         for (int i = 0; i < 5; i += 1) {
         	
         	SlimeEnemy enemy = new SlimeEnemy(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100));
-        	enemy_list.add(enemy);
+        	
+        	world_objects.add(enemy);
         }
         
         for (int i = 0; i < 1; i += 1) {
         	
         	Powerup powerup = new Powerup(100, 100, "healthItem");
-        	powerup_list.add(powerup);
+        
+        	world_objects.add(powerup);
         }
         
         for (int i = 0; i < 1; i += 1) {
         	
         	Weapon weapon = new Weapon(randomX(), 200);
-        	weapon_list.add(weapon);
+        	
+        	world_objects.add(weapon);
         }
         
        
@@ -87,43 +85,11 @@ public class Game extends BasicGame {
     	gameworld.update();
         player.update(delta,in);
        
-        for (SlimeEnemy slimeenemy : enemy_list) {
-        	slimeenemy.update(delta);
-            if(slimeenemy.getHitbox().intersects(player.getHitbox())){
-    			player.receiveDamage(5);
-    		}
-        }
-        for (Powerup powerup : powerup_list) {
-            if(powerup.getHitbox().intersects(player.getHitbox())){
-    			player.addHealth(powerup.getHealthAmount());
-    			Game.removeObject(powerup);
-    		}
-        }
-        for (Weapon weapon : weapon_list) {
-        	weapon.update(delta);
-            if(weapon.getHitbox().intersects(player.getHitbox())){
-            	if(in.isKeyDown(Input.KEY_E)){
-                    player.setWeapon(weapon);
-            		break;
-                }
-            }
-           
-        }
-        for (Bullet bullet : bullet_list) {
-        	bullet.update(delta);
-        	for(SlimeEnemy slimeenemy : enemy_list){
-        		if(bullet.getHitbox().intersects(slimeenemy.getHitbox())){
-        			slimeenemy.receiveDamage(bullet.getDamage());
-        			slimeenemy.addForce(bullet.getVelocityX()/2, bullet.getVelocityY()/10);
-        			bullet.die();
-        		}	
-        	}
-        }
-        for(PhysicsObject physicObj : physics_list){
-        	physicObj.update(delta);
+        for (StaticObject actor : world_objects) {
+        	actor.update(delta);
+            
         }
         
-       
         removeObjects();
        
        
@@ -158,19 +124,12 @@ public class Game extends BasicGame {
     }
 
     public void removeObjects(){
+	 
+	   
 	   for (Object o : toRemoveObjects) {
-    	   if(o instanceof Bullet){
-    		   bullet_list.remove(o);
-    	   }else if(o instanceof SlimeEnemy){
-    		   enemy_list.remove(o);
-    	   }
-    	   else if(o instanceof Weapon){
-    		   weapon_list.remove(o);
-    	   }
-    	   else if(o instanceof Powerup){
-    		   powerup_list.remove(o);
-    	   }
+    	   world_objects.remove(o);
 	   }
+	   
 	   
 	   toRemoveObjects.clear();
    }
@@ -192,27 +151,11 @@ public class Game extends BasicGame {
    	  
        player.render(g);  // Dafür Animated Mario hinzugefügt
        
-       // Gegner rendern
-       for (SlimeEnemy enemy : enemy_list) {
-       	enemy.render(g);
+       for (StaticObject actor : world_objects) {
+         	actor.render(g);
        }
        
-       // Bullets rendern
-       for (Bullet bullet : bullet_list) {
-       	bullet.render(g);
-       }
-       
-    // Powerups rendern
-       for (Powerup powerup : powerup_list) {
-       	powerup.render(g);
-       }
-       
-       for (Weapon weapon : weapon_list) {
-          	weapon.render(g);
-          }
-       for (PhysicsObject physicsObj : physics_list) {
-         	physicsObj.render(g);
-       }
+     
 		
 	}
     

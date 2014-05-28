@@ -52,7 +52,7 @@ public abstract class AdvancedObject extends PhysicsObject {
 	public void dropWeapon(){
 	    	if(this.hasWeapon()){
 	    		this.weapon.drop();
-	    		Game.weapon_list.add(this.weapon);
+	    		Game.world_objects.add(this.weapon);
 	    		this.weapon.velocity.set(this.getVelocity().mult(0.5f));
 	    		this.weapon.addForce(this.getSomehowUp().mult(8));
 	    		this.weapon = null;
