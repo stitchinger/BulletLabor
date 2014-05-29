@@ -43,19 +43,20 @@ public class Game extends BasicGame {
         player = new Player(400, 100);
         
         for (int i = 0; i < 5; i += 1) {
-        	SlimeEnemy enemy = new SlimeEnemy(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100));
-        	world_objects.add(enemy);
+        	this.addObject(new SlimeEnemy(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100)));
         }
         for (int i = 0; i < 1; i += 1) {
-        	Powerup powerup = new Powerup(100, 100, "healthItem");
-        	world_objects.add(powerup);
+        	this.addObject(new Powerup(100, 100, "healthItem"));
         }
         for (int i = 0; i < 1; i += 1) {
-        	Weapon weapon = new Weapon(randomX(), 200);
-        	world_objects.add(weapon);
+        	this.addObject(new Weapon(randomX(), 200));
         }
     }
-
+    
+    public void addObject(StaticObject obj){
+    	world_objects.add(obj);
+    }
+    
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	gameworld.update();
