@@ -35,7 +35,7 @@ public class Settings {
 	    bulletSprite = new Image("Images/Weapon/bullet.png");
 	    weaponSprite = new Image("Images/Weapon/weapon.png");
 	    
-	    weaponSound = new Sound("Ressources/fire.wav");
+	    weaponSound = new Sound("Sounds/Weapon/fire.wav");
     
     }
 }
