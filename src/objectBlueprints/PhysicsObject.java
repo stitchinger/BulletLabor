@@ -67,8 +67,7 @@ public abstract class PhysicsObject extends StaticObject {
 		
 		if(this.isLeftSideCollided()){
 			this.setVelocityX(Math.max(0, this.getVelocityX()));
-			//To-Do --> this.setX() wieder einfügen, sodass Gegner dennoch weiterhin richtig drauf reagieren
-			//this.setX(((int)(this.getX()/32)+1)*32); <-- ursprüngliche Version, welche buggy ist.
+			this.setX(this.getX() + 0.4f); //<-- Temp. Hotfix, ist aber definitiv nicht optimal!
 		}
 		else if(this.isRightSideCollided()){
 			this.setVelocityX(Math.min(0, this.getVelocityX()));
