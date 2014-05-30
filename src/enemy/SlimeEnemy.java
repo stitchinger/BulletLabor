@@ -4,14 +4,11 @@ import util.Settings;
 
 public class SlimeEnemy extends EnemyMain {
 	
-	public SlimeEnemy(float x, float y, float xEnd1, float xEnd2) {
-		super(x, y, xEnd1, xEnd2);
+	public SlimeEnemy(float x, float y) {
+		super(x, y);
 		
 		//Setter von EnemyMain
-		super.setPersistent(100);
-		super.setAggrorange(50);
-		super.setXEnd1(xEnd1);
-		super.setXEnd2(xEnd2);
+		super.setAggrorange(100);
 		
 		//Setter von LivingObjects
 		super.setHealth(50);
@@ -29,4 +26,8 @@ public class SlimeEnemy extends EnemyMain {
 	public void update(int delta){
 		super.update(delta);
 	}
+	
+    public void aggroEvent(){
+    	//To-DO, Methode bzw. Event ausdenken welches die Slime Unit machen könnte
+    }
 }

@@ -43,7 +43,7 @@ public class Game extends BasicGame {
         player = new Player(400, 100);
         
         for (int i = 0; i < 5; i += 1) {
-        	this.addObject(new SlimeEnemy(Game.randomX(), 200, (Game.randomX() - 100), (Game.randomX() + 100)));
+        	this.addObject(new SlimeEnemy(Game.randomX(), 200));
         }
         for (int i = 0; i < 1; i += 1) {
         	this.addObject(new Powerup(100, 100, "healthItem"));

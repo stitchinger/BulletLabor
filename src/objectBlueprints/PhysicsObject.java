@@ -62,20 +62,21 @@ public abstract class PhysicsObject extends StaticObject {
 		
 		} else if(this.isTopSideCollided()){
 			this.setVelocityY(Math.max(0, this.getVelocityY()));
-			this.setY( ((int)(this.getY()/32)+1)*32);
+			this.setY(((int)(this.getY()/32)+1)*32);
 		}
 		
 		if(this.isLeftSideCollided()){
 			this.setVelocityX(Math.max(0, this.getVelocityX()));
-			this.setX( ((int)(this.getX()/32)+1)*32);
-			
-		}else if(this.isRightSideCollided()){
+			//To-Do --> this.setX() wieder einfügen, sodass Gegner dennoch weiterhin richtig drauf reagieren
+			//this.setX(((int)(this.getX()/32)+1)*32); <-- ursprüngliche Version, welche buggy ist.
+		}
+		else if(this.isRightSideCollided()){
 			this.setVelocityX(Math.min(0, this.getVelocityX()));
 			this.setX(((int)((this.getX()+this.width)/32))*32 - this.width);
 		}
-		
-		
 	}
+		
+		
 	
 	
 	public void addForce(float velocityX, float velocityY){
