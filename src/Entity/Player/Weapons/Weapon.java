@@ -51,9 +51,9 @@ public class Weapon extends PhysicsObject {
 		if(rotation < 0){
 			sprite = this.getSpriteImage().getFlippedCopy(true, false);
 		
-		} else{
+		} 
+		else{
 			sprite = this.getSpriteImage();
-			
 		}
 		sprite.setRotation(rotation); 
 		sprite.draw(this.getX(), this.getY());
@@ -63,7 +63,6 @@ public class Weapon extends PhysicsObject {
           	g.draw(this.getHitbox());
           	g.setColor(Color.white); 
           	g.drawString("Ammo: "+ this.ammo, this.getX(), this.getY()+ this.height );
-       
           }
 	}
 	

@@ -42,8 +42,6 @@ public class Camera {
 		 
 		 this.actualMovement();
 		 this.avoidLeavingWorld();
-			
-		
 	}
 	
 	public void render(Graphics g){
@@ -79,11 +77,9 @@ public class Camera {
 		 if(in.isKeyDown(Input.KEY_RIGHT)){
 			 this.position.add(10, 0);
 		 }
-		
 	}
 	
 	public void smoothMovement(){
-		
 		this.velocity.mult(this.inertia);
 	}
 	
@@ -97,7 +93,6 @@ public class Camera {
 		float posY = Math.min(Math.max(minY, this.getY()), maxY);
 		
 		this.position.set(posX, posY);
-		
 	}
 	
 	public void actualMovement(){
@@ -110,7 +105,6 @@ public class Camera {
 	
 	public float getY(){
 		return this.position.y();
-		
 	}
 	
 	public boolean isInViewport(Vector2 position){
@@ -149,9 +143,4 @@ public class Camera {
 	public int getViewportHeight(){
 		return this.viewportHeight;
 	}
-	
-	
-	
-	
-	
 }

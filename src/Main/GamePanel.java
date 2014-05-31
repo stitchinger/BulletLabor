@@ -19,9 +19,6 @@ public class GamePanel extends BasicGame {
     public static GameController controller;
     public static Background background;
     public static Player player;
-
-    public static float deltaTime;
-    public static int killCount = 0;
     
 
     public GamePanel(String title) {

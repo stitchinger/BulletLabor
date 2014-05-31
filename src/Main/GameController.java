@@ -46,6 +46,10 @@ public class GameController {
         removeObjects();
 	}
 	
+	public void render (Graphics g){
+		renderGameObjects(g);
+	}
+	
 	public static int randomX(int minDistance) {
         int randomX = (int) (Math.random()* gameworld.getWidth());
         randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
@@ -72,10 +76,6 @@ public class GameController {
    	  	for (StaticObject actor : world_objects) {
          	actor.render(g);
    	  	}
-	}
-    
-	public void render (Graphics g){
-		renderGameObjects(g);
 	}
 
 	public static List<StaticObject> getWorld_objects() {
