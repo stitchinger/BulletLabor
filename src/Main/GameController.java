@@ -68,7 +68,7 @@ public class GameController {
     }
 	
     public void renderGameObjects(Graphics g) {
-   	  	GamePanel.player.render(g);  // Dafï¿½r Animated Mario hinzugefï¿½gt
+   	  	GamePanel.player.render(g);  // Dafür Animated Mario hinzufügen
    	  	for (StaticObject actor : world_objects) {
          	actor.render(g);
    	  	}
