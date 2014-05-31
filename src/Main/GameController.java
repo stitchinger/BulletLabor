@@ -7,9 +7,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import World.World;
+import Entity.StaticObject;
 import Entity.Enemies.Slime;
 import Entity.Items.Powerup;
-import Entity.ObjectBlueprints.StaticObject;
 import Entity.Player.Weapons.Weapon;
 
 public class GameController {

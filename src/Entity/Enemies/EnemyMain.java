@@ -1,6 +1,6 @@
 package Entity.Enemies;
 
-import Entity.ObjectBlueprints.LivingObject;
+import Entity.LivingObject;
 import Main.GamePanel;
 
 public class EnemyMain extends LivingObject{

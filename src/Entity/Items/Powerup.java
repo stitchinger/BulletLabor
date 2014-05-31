@@ -1,7 +1,7 @@
 package Entity.Items;
 
 import Util.Settings;
-import Entity.ObjectBlueprints.StaticObject;
+import Entity.StaticObject;
 
 public class Powerup extends StaticObject{
 

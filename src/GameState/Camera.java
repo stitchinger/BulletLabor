@@ -3,7 +3,7 @@ package GameState;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import Entity.ObjectBlueprints.PhysicsObject;
+import Entity.PhysicsObject;
 import Main.GamePanel;
 import Util.Settings;
 import Util.Vector2;

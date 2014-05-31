@@ -5,8 +5,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 
-import Entity.ObjectBlueprints.AdvancedObject;
-import Entity.ObjectBlueprints.PhysicsObject;
+import Entity.AdvancedObject;
+import Entity.PhysicsObject;
 import Main.GameController;
 import Util.Settings;
 import Util.Vector2;

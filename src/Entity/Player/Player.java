@@ -3,7 +3,7 @@ package Entity.Player;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Input;
 
-import Entity.ObjectBlueprints.LivingObject;
+import Entity.LivingObject;
 import Entity.Player.Weapons.Weapon;
 import Main.GamePanel;
 import Util.Settings;

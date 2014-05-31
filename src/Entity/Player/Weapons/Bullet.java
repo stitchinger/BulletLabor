@@ -4,7 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import Entity.ObjectBlueprints.PhysicsObject;
+import Entity.PhysicsObject;
 import Main.GameController;
 import Util.Settings;
 

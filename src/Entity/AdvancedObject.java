@@ -1,4 +1,4 @@
-package Entity.ObjectBlueprints;
+package Entity;
 
 import org.newdawn.slick.Graphics;
 
