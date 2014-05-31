@@ -5,6 +5,7 @@ import Entity.ObjectBlueprints.StaticObject;
 
 public class Powerup extends StaticObject{
 
+	@SuppressWarnings("unused")
 	private String id;
 	private int healthAmount;
 	

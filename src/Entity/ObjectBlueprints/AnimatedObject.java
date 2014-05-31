@@ -6,13 +6,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import Main.GamePanel;
-
 public class AnimatedObject {
 	
     private SpriteSheet charakterSpritesheet;
-    private Animation goLeft, goRight, idleLeft, idleRight, jumpLeft, jumpRight,fallLeft,fallRight, walkAnimation;
-    private Image walkR;
+    @SuppressWarnings("unused")
+	private Animation goLeft, goRight, idleLeft, idleRight, jumpLeft, jumpRight,fallLeft,fallRight, walkAnimation;
+    @SuppressWarnings("unused")
+	private Image walkR;
     
     
     public AnimatedObject() throws SlickException{
