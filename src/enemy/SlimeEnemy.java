@@ -20,7 +20,7 @@ public class SlimeEnemy extends EnemyMain {
 		super.setMaxHealth(50);
 		
 		//Setter von StaticObjects
-		super.setSpriteImage(Settings.enemySprite);
+		super.setSpriteImage(Settings.slimeEnemySprite);
     }
 	
 	public void update(int delta){
