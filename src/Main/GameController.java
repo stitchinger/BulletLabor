@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 import World.World;
 import Entity.StaticObject;
 import Entity.Enemies.Slime;
-import Entity.Items.Powerup;
+import Entity.Items.Heart;
 import Entity.Player.Weapons.Weapon;
 
 public class GameController {
@@ -31,7 +31,7 @@ public class GameController {
 	    	this.addObject(new Slime(randomX(300), 200));
 	    }
 	    for (int i = 0; i < 1; i += 1) {
-	    	this.addObject(new Powerup(100, 100, "healthItem"));
+	    	this.addObject(new Heart(100, 100, "healthItem"));
 	    }
 	    for (int i = 0; i < 1; i += 1) {
 	    	this.addObject(new Weapon(randomX(300), 200));
