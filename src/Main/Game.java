@@ -7,7 +7,6 @@ import Util.Settings;
 
 public class Game {
 	
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws SlickException {
         
 		AppGameContainer app = new AppGameContainer(new GamePanel(Settings.TITLE));
