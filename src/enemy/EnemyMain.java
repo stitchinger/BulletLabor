@@ -23,19 +23,7 @@ public class EnemyMain extends LivingObject{
     	this.enemyJump();
    	}
     
-    
-    public void enemyJump(){
-    	if(Math.random() < 0.01f && super.isBottomSideCollided()){
-        	super.jump();
-        }
-    }
-    
-   public void moveCollision(){
-	   if(super.isRightSideCollided())
-		   super.setDirection("left");
-	   if(super.isLeftSideCollided())
-		   super.setDirection("right");
-   }
+
     
     public void enemyMove(){
     	if(super.direction == "right"){
@@ -46,31 +34,45 @@ public class EnemyMain extends LivingObject{
         }
     }
     
-    public void changeDirection(){
-    	if(super.direction == "right"){
-    		super.direction = "left";
-    	}
-    	else if(super.direction == "left"){
-    		super.direction = "right";
-    	}
+    public void moveCollision(){
+ 	   if(super.isRightSideCollided()){
+ 		   super.setDirection("left");
+ 	   }
+ 	   if(super.isLeftSideCollided()){
+ 		   super.setDirection("right");
+ 	   }
     }
     
     public void aggroInit(){
-    	if((Math.abs(Game.player.getX() - super.getX()) <= this.aggrorange)){
-    		this.aggroEvent();
+ 	   if((Math.abs(Game.player.getX() - super.getX()) <= this.aggrorange)){
+ 		   this.aggroEvent();
         }
     }
+    
+    public void enemyJump(){
+    	if(Math.random() < 0.01f && super.isBottomSideCollided()){
+        	super.jump();
+        }
+    }
+    
+    /* TO-DO Liste für Enemy System: 
+     * Init Methode, welche bzgl. der Kamera aggiert (Gegner bewegt sich erst in Reichweite von Kamera) 
+     * Nächster Schritt --> x Position von Kamera sauber bekommen; aktuell "buggy" (NullPointer)
+     * Weitere Feinde hinzufügen.
+     * Linke Kollision fixen --> aktuell für den Player verbuggt, aber nicht für Enemy
+     */
 
     public void aggroEvent(){
-    	//Methode wird in jedem Gegener definiert
+    	//Methode wird in jedem Gegener definiert, welcher ein Event haben soll
     }
 
-	public float getAggrorange() {
-		return aggrorange;
+
+    
+    public float getAggrorange(){
+    	return this.aggrorange;
 	}
 
-	public void setAggrorange(float aggrorange) {
-		this.aggrorange = aggrorange;
-	}
-    
+    public void setAggrorange(float aggrorange){
+    	this.aggrorange = aggrorange;
+    }
 }

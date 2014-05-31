@@ -17,7 +17,7 @@ public class SlimeEnemy extends EnemyMain {
 		super.setJumpHeight(8);
 		super.setJumpCount(2);
 		super.setDirection("right");
-		super.setMaxHealth(100);
+		super.setMaxHealth(50);
 		
 		//Setter von StaticObjects
 		super.setSpriteImage(Settings.enemySprite);
@@ -27,7 +27,9 @@ public class SlimeEnemy extends EnemyMain {
 		super.update(delta);
 	}
 	
-    public void aggroEvent(){
-    	//To-DO, Methode bzw. Event ausdenken welches die Slime Unit machen könnte
-    }
+	//Methode mit den Komponenten für das Verhalten dieser Einheit
+	public void behavior(){
+    	this.enemyMove();
+    	this.moveCollision();
+   	}
 }

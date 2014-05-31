@@ -43,13 +43,13 @@ public class Game extends BasicGame {
         player = new Player(400, 100);
         
         for (int i = 0; i < 5; i += 1) {
-        	this.addObject(new SlimeEnemy(Game.randomX(), 200));
+        	this.addObject(new SlimeEnemy(Game.randomX(300), 200));
         }
         for (int i = 0; i < 1; i += 1) {
         	this.addObject(new Powerup(100, 100, "healthItem"));
         }
         for (int i = 0; i < 1; i += 1) {
-        	this.addObject(new Weapon(randomX(), 200));
+        	this.addObject(new Weapon(randomX(300), 200));
         }
     }
     
@@ -117,8 +117,7 @@ public class Game extends BasicGame {
    	  	}
 	}
     
-	public static int randomX() {
-    	int minDistance = 300;
+	public static int randomX(int minDistance) {
         int randomX = (int) (Math.random()* gameworld.getWidth());
         randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
         return randomX;
