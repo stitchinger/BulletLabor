@@ -1,6 +1,6 @@
 package objectBlueprints;
 
-import main.Game;
+import main.GameController;
 
 public abstract class LivingObject extends AdvancedObject {
 
@@ -114,7 +114,7 @@ public abstract class LivingObject extends AdvancedObject {
 	}
 	
 	public void die(){
-		Game.removeObject(this);
+		GameController.removeObject(this);
 	}
 }
 

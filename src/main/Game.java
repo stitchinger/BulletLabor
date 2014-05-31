@@ -1,14 +1,8 @@
 package main;
 
-import items.Powerup;
-import java.util.LinkedList;
-import java.util.List;
-import objectBlueprints.StaticObject;
 import org.newdawn.slick.*;
-import enemy.SlimeEnemy;
 import player.Player;
 import util.Settings;
-import weapons.Weapon;
 import world.World;
 
 public class Game extends BasicGame {
@@ -19,10 +13,9 @@ public class Game extends BasicGame {
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
+    public static GameController controller;
     
     public static Player player;
-    public static List<StaticObject> world_objects = new LinkedList<StaticObject>();
-    public static List<StaticObject> toRemoveObjects = new LinkedList<StaticObject>();
   
     public static float deltaTime;
     public static int killCount = 0;
@@ -39,22 +32,10 @@ public class Game extends BasicGame {
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();
-     
+        
+        controller = new GameController();
         player = new Player(400, 100);
         
-        for (int i = 0; i < 5; i += 1) {
-        	this.addObject(new SlimeEnemy(Game.randomX(300), 200));
-        }
-        for (int i = 0; i < 1; i += 1) {
-        	this.addObject(new Powerup(100, 100, "healthItem"));
-        }
-        for (int i = 0; i < 1; i += 1) {
-        	this.addObject(new Weapon(randomX(300), 200));
-        }
-    }
-    
-    public void addObject(StaticObject obj){
-    	world_objects.add(obj);
     }
     
     @Override
@@ -62,10 +43,7 @@ public class Game extends BasicGame {
     	gameworld.update();
         player.update(delta,in);
        
-        for (StaticObject actor : world_objects) {
-        	actor.update(delta);
-        }
-        removeObjects();
+        controller.update(delta);
        
         cam.update(in);
         gui.update();
@@ -75,7 +53,7 @@ public class Game extends BasicGame {
     	cam.render(g);
     	renderBackground(g);
     	renderWorld(g);
-    	renderGameObjects(g);
+    	controller.renderGameObjects(g);
         gui.render(g);
     }
 
@@ -88,17 +66,6 @@ public class Game extends BasicGame {
         app.start();
     }
     
-    public static void removeObject(StaticObject obj){
-    	toRemoveObjects.add(obj);
-    }
-
-    public void removeObjects(){
-    	for (Object o : toRemoveObjects) {
-    	   world_objects.remove(o);
-    	}
-    	toRemoveObjects.clear();
-    }
-    
     private void renderWorld(Graphics g) {
     	gameworld.render(g);
 	}
@@ -109,18 +76,4 @@ public class Game extends BasicGame {
        g.fillRect(0, 0, gameworld.getWidth(), gameworld.getHeight());
 		
 	}
-
-	private void renderGameObjects(Graphics g) {
-   	  	player.render(g);  // Dafür Animated Mario hinzugefügt
-   	  	for (StaticObject actor : world_objects) {
-         	actor.render(g);
-   	  	}
-	}
-    
-	public static int randomX(int minDistance) {
-        int randomX = (int) (Math.random()* gameworld.getWidth());
-        randomX = Math.min(Math.max(randomX, minDistance), gameworld.getWidth()-minDistance);
-        return randomX;
-	}
-
 }

@@ -1,6 +1,6 @@
 package weapons;
 
-import main.Game;
+import main.GameController;
 import objectBlueprints.PhysicsObject;
 
 import org.newdawn.slick.Graphics;
@@ -8,9 +8,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
 import util.Settings;
-
-
-
 
 public class Bullet extends PhysicsObject{
     
@@ -83,11 +80,10 @@ public class Bullet extends PhysicsObject{
     		this.setVelocityY( this.getVelocityY() * -this.bouncyness);
     		if(this.getVelocityY() > -1 && this.getVelocityY() < 1){
         		this.setVelocityY(0);
-        	}
-    		
-    		
-    			
-   		} else if(this.isTopSideCollided()){
+        	}	
+   		} 
+    	
+    	else if(this.isTopSideCollided()){
    		
    			this.setY(((int)(this.getY()/32)+1)*32);
    		
@@ -95,22 +91,13 @@ public class Bullet extends PhysicsObject{
    			if(this.getVelocityY() > -1 && this.getVelocityY() < 1){
    	    		this.setVelocityY(0);
    	    	} 
-   			
-   		
-   			
-    		
-   		}
-    	
-  
-    	
-    		
-    		
-    	}
+   		}		
+    }
     	
     public void die(){
     	
     	this.isAlive = false;
-    	Game.removeObject(this);
+    	GameController.removeObject(this);
     }
     
     public int getDamage(){

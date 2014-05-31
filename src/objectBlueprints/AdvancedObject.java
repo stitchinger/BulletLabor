@@ -1,6 +1,6 @@
 package objectBlueprints;
 
-import main.Game;
+import main.GameController;
 
 import org.newdawn.slick.Graphics;
 
@@ -44,14 +44,14 @@ public abstract class AdvancedObject extends PhysicsObject {
 	    		this.dropWeapon();
 	    	}
 	    	this.weapon = weapon;
-	    	Game.removeObject(weapon);
+	    	GameController.removeObject(weapon);
 	    	this.weapon.setOwner(this);
 	}
 	 
 	public void dropWeapon(){
 	    	if(this.hasWeapon()){
 	    		this.weapon.drop();
-	    		Game.world_objects.add(this.weapon);
+	    		GameController.getWorld_objects().add(this.weapon);
 	    		this.weapon.velocity.set(this.getVelocity().mult(0.5f));
 	    		this.weapon.addForce(this.getSomehowUp().mult(8));
 	    		this.weapon = null;

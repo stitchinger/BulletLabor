@@ -1,6 +1,6 @@
 package weapons;
 
-import main.Game;
+import main.GameController;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -100,7 +100,7 @@ public class Weapon extends PhysicsObject {
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
-    	Game.world_objects.add(bullet);
+    	GameController.getWorld_objects().add(bullet);
     }
 	
 	public float getSpreadRotation(){
