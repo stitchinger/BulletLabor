@@ -1,18 +1,16 @@
-package main;
-
-import items.Powerup;
+package Main;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import objectBlueprints.StaticObject;
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import weapons.Weapon;
-import world.World;
-import enemy.SlimeEnemy;
+import World.World;
+import Entity.Enemies.Slime;
+import Entity.Items.Powerup;
+import Entity.ObjectBlueprints.StaticObject;
+import Entity.Player.Weapons.Weapon;
 
 public class GameController {
 
@@ -30,7 +28,7 @@ public class GameController {
     
     public void initObjects(){
     	for (int i = 0; i < 5; i += 1) {
-	    	this.addObject(new SlimeEnemy(randomX(300), 200));
+	    	this.addObject(new Slime(randomX(300), 200));
 	    }
 	    for (int i = 0; i < 1; i += 1) {
 	    	this.addObject(new Powerup(100, 100, "healthItem"));
@@ -70,7 +68,7 @@ public class GameController {
     }
 	
     public void renderGameObjects(Graphics g) {
-   	  	Game.player.render(g);  // Dafür Animated Mario hinzugefügt
+   	  	GamePanel.player.render(g);  // Dafür Animated Mario hinzugefügt
    	  	for (StaticObject actor : world_objects) {
          	actor.render(g);
    	  	}

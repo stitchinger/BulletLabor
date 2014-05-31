@@ -1,12 +1,11 @@
-package world;
-
-import main.Game;
+package World;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-import util.Vector2;
+import Main.GamePanel;
+import Util.Vector2;
 
 public class World {
 	private TiledMap tiledMap;

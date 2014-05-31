@@ -1,6 +1,6 @@
 //Klasse für alle Konstanten bzw. Berechnunge für Konstanten im Spiel.
 
-package util;
+package Util;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
