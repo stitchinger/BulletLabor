@@ -9,8 +9,8 @@ public class Slime extends EnemyMain {
 		
 		//Setter von LivingObjects
 		super.setHealth(50);
-		super.setAcceleration(0.35f);
-		super.setMaxWalkSpeed(6);
+		super.setAcceleration(0.2f);
+		super.setMaxWalkSpeed(3);
 		super.setJumpHeight(8);
 		super.setJumpCount(2);
 		super.setDirection("right");
