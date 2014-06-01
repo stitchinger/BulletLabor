@@ -10,6 +10,8 @@ public class BackgroundLayer{
 	private Image sprite;
 	private int width;
 	private int height;
+	private float scaleX;
+	private float scaleY;
 	private int distance;
 	private Vector2 position;
 	
