@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 
 import World.World;
 import Entity.StaticObject;
-import Entity.Enemies.Slime;
+import Entity.Enemies.*;
 import Entity.Player.Weapons.Weapon;
 import Entity.Powerups.*;
 
