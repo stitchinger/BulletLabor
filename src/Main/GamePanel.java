@@ -43,6 +43,7 @@ public class GamePanel extends BasicGame {
         player.update(delta, in);
         controller.update(delta);
         cam.update(in);
+        background.update();
         gui.update();
     }
 

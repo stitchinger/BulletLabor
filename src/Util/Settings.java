@@ -28,6 +28,10 @@ public class Settings {
     
     public static Sound weaponSound;
     
+    public static Image bg1Sprite;
+    public static Image bg2Sprite;
+    
+    
     
     public Settings() throws SlickException {
     	
@@ -42,6 +46,9 @@ public class Settings {
 	    weaponSprite = new Image("Images/Weapon/weapon.png");
 	    
 	    weaponSound = new Sound("Sounds/Weapon/fire.wav");
+	    
+	    bg1Sprite = new Image("Images/Backgrounds/bg3.png");
+	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");
     
     }
 }
