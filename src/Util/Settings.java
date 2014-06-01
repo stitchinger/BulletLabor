@@ -47,7 +47,7 @@ public class Settings {
 	    
 	    weaponSound = new Sound("Sounds/Weapon/fire.wav");
 	    
-	    bg1Sprite = new Image("Images/Backgrounds/bg3.png");
+	    bg1Sprite = new Image("Images/Backgrounds/bg4.png");
 	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");
     
     }
