@@ -17,7 +17,9 @@ public class Settings {
     public static final boolean DEBUG_MODUS = false;
     
     public static Image playerSprite;
+    
     public static Image heartSprite;
+    public static Image coinSprite;
     
     public static Image slimeEnemySprite;
     
@@ -30,7 +32,9 @@ public class Settings {
     public Settings() throws SlickException {
     	
     	playerSprite = new Image("Images/Player/player.png");
+    	
     	heartSprite = new Image("Images/Powerups/heart.png");
+    	coinSprite = new Image("Images/Powerups/coin.png");
     	
     	slimeEnemySprite = new Image("Images/Enemies/slime.png");
     	
