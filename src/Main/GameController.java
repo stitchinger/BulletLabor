@@ -9,8 +9,8 @@ import org.newdawn.slick.SlickException;
 import World.World;
 import Entity.StaticObject;
 import Entity.Enemies.*;
+import Entity.Items.*;
 import Entity.Player.Weapons.Weapon;
-import Entity.Powerups.*;
 
 public class GameController {
 
@@ -25,6 +25,7 @@ public class GameController {
     	
     	this.initObjects();
     }
+    
     
     public void initObjects(){
     	for (int i = 0; i < 5; i += 1) {
@@ -43,15 +44,18 @@ public class GameController {
     
 	public void update(int delta) {
 	    
-	    for (StaticObject actor : world_objects) {
-        	actor.update(delta);
+	    for (StaticObject obj : world_objects) {
+        	obj.update(delta);
         }
-        removeObjects();
+        this.removeObjects();
 	}
 	
-	public void render (Graphics g){
-		renderGameObjects(g);
+	public void render(Graphics g){
+		for (StaticObject obj : world_objects) {
+         	obj.render(g);
+   	  	}
 	}
+	
 	
 	public static int randomX(int minDistance) {
         int randomX = (int) (Math.random()* gameworld.getWidth());
@@ -73,13 +77,6 @@ public class GameController {
     public static void removeObject(StaticObject obj){
     	toRemoveObjects.add(obj);
     }
-	
-    public void renderGameObjects(Graphics g) {
-   	  	GamePanel.player.render(g);  // Dafür Animated Mario hinzufügen
-   	  	for (StaticObject actor : world_objects) {
-         	actor.render(g);
-   	  	}
-	}
 
 	public static List<StaticObject> getWorld_objects() {
 		return world_objects;

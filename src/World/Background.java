@@ -36,7 +36,7 @@ public class Background {
 		}
 	}
 	
-	public void renderBackground(Graphics g) {
+	public void render(Graphics g) {
 	   	Color bgc = new Color(50,100,200);
 	   	g.setColor(bgc);
 	   	g.fillRect(0, 0, this.width, this.height);

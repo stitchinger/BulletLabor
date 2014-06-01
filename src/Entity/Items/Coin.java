@@ -1,13 +1,13 @@
-package Entity.Powerups;
+package Entity.Items;
 
 import Util.Settings;
 
-public class Coin extends PowerupMain {
+public class Coin extends ItemMain {
 	
 	public Coin(float x, float y) {
 		super(x, y);
 		
-		super.setPowerupAmount(1);
+		super.setItemBuffAmount(1);
 		super.setSpriteImage(Settings.coinSprite);
 	}
 }

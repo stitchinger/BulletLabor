@@ -49,9 +49,10 @@ public class GamePanel extends BasicGame {
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
     	cam.render(g);
-    	background.renderBackground(g);
+    	background.render(g);
     	gameworld.render(g);
-    	controller.renderGameObjects(g);
+    	controller.render(g);
         gui.render(g);
+        player.render(g); // Dafür Animated Mario hinzufügen
     }
 }

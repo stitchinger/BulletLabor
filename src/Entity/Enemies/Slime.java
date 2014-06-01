@@ -7,9 +7,6 @@ public class Slime extends EnemyMain {
 	public Slime(float x, float y) {
 		super(x, y);
 		
-		//Setter von EnemyMain
-		super.setAggrorange(100);
-		
 		//Setter von LivingObjects
 		super.setHealth(50);
 		super.setAcceleration(0.35f);
@@ -29,7 +26,7 @@ public class Slime extends EnemyMain {
 	
 	//Methode mit den Komponenten für das Verhalten dieser Einheit
 	public void behavior(){
-    	this.enemyMove();
-    	this.moveCollision();
+    	super.enemyMove();
+    	super.moveCollision();
    	}
 }
