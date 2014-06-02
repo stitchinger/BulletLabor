@@ -3,7 +3,7 @@ package Entity;
 import org.newdawn.slick.Graphics;
 
 import Entity.Player.Weapons.Weapon;
-import Main.GameController;
+import GameManager.ObjectManager;
 import Util.Vector2;
 
 public abstract class AdvancedObject extends PhysicsObject {
@@ -43,14 +43,14 @@ public abstract class AdvancedObject extends PhysicsObject {
 	    		this.dropWeapon();
 	    	}
 	    	this.weapon = weapon;
-	    	GameController.removeObject(weapon);
+	    	ObjectManager.removeObject(weapon);
 	    	this.weapon.setOwner(this);
 	}
 	 
 	public void dropWeapon(){
 	    	if(this.hasWeapon()){
 	    		this.weapon.drop();
-	    		GameController.getWorld_objects().add(this.weapon);
+	    		ObjectManager.getWorld_objects().add(this.weapon);
 	    		this.weapon.velocity.set(this.getVelocity().mult(0.5f));
 	    		this.weapon.addForce(this.getSomehowUp().mult(8));
 	    		this.weapon = null;

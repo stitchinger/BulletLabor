@@ -1,4 +1,4 @@
-package Main;
+package GameManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,13 +12,13 @@ import Entity.Enemies.*;
 import Entity.Items.*;
 import Entity.Player.Weapons.Weapon;
 
-public class GameController {
+public class ObjectManager {
 
 	private static List<StaticObject> world_objects;
     private static List<StaticObject> toRemoveObjects;
     private static World gameworld;
 	
-    public GameController() throws SlickException{
+    public ObjectManager() throws SlickException{
     	gameworld = new World();
     	world_objects = new LinkedList<StaticObject>();
     	toRemoveObjects = new LinkedList<StaticObject>();

@@ -1,6 +1,6 @@
 package Entity;
 
-import Main.GameController;
+import GameManager.ObjectManager;
 
 public abstract class LivingObject extends AdvancedObject {
 
@@ -114,7 +114,7 @@ public abstract class LivingObject extends AdvancedObject {
 	}
 	
 	public void die(){
-		GameController.removeObject(this);
+		ObjectManager.removeObject(this);
 	}
 }
 

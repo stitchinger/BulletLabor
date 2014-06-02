@@ -11,8 +11,6 @@ public class Slime extends EnemyMain {
 		super.setHealth(50);
 		super.setAcceleration(0.2f);
 		super.setMaxWalkSpeed(3);
-		super.setJumpHeight(8);
-		super.setJumpCount(2);
 		super.setDirection("right");
 		super.setMaxHealth(50);
 		

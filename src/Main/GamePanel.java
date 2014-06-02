@@ -6,6 +6,7 @@ import Util.Settings;
 import World.Background;
 import World.World;
 import Entity.Player.Player;
+import GameManager.ObjectManager;
 import GameState.Camera;
 import GameState.Gui;
 
@@ -16,7 +17,7 @@ public class GamePanel extends BasicGame {
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
-    public static GameController controller;
+    public static ObjectManager controller;
     public static Background background;
     public static Player player;
     
@@ -33,7 +34,7 @@ public class GamePanel extends BasicGame {
         cam = new Camera();
         gui = new Gui();
         background = new Background();
-        controller = new GameController();
+        controller = new ObjectManager();
         player = new Player(400, 100);
     }
     

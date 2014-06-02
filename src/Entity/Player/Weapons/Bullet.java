@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
 import Entity.PhysicsObject;
-import Main.GameController;
+import GameManager.ObjectManager;
 import Util.Settings;
 
 public class Bullet extends PhysicsObject{
@@ -96,7 +96,7 @@ public class Bullet extends PhysicsObject{
     public void die(){
     	
     	this.isAlive = false;
-    	GameController.removeObject(this);
+    	ObjectManager.removeObject(this);
     }
     
     public int getDamage(){

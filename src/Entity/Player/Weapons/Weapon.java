@@ -7,7 +7,7 @@ import org.newdawn.slick.Sound;
 
 import Entity.AdvancedObject;
 import Entity.PhysicsObject;
-import Main.GameController;
+import GameManager.ObjectManager;
 import Util.Settings;
 import Util.Vector2;
 
@@ -98,7 +98,7 @@ public class Weapon extends PhysicsObject {
     	
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
-    	GameController.getWorld_objects().add(bullet);
+    	ObjectManager.getWorld_objects().add(bullet);
     }
 	
 	public float getSpreadRotation(){
