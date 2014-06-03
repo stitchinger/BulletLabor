@@ -1,6 +1,7 @@
 package Entity;
 
 import GameManager.ObjectManager;
+import GameManager.SoundManager;
 
 public abstract class LivingObject extends AdvancedObject {
 
@@ -43,6 +44,11 @@ public abstract class LivingObject extends AdvancedObject {
 		
 		this.setVelocityY(-this.jumpHeight);
 		this.jumpCount++;
+		
+		if (this.jumpCount <= 1)
+			SoundManager.play("jump2");
+		else
+			SoundManager.play("jump");
 	}
 	
 	public void addHealth(int hp){

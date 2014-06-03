@@ -7,6 +7,7 @@ import World.Background;
 import World.World;
 import Entity.Player.Player;
 import GameManager.ObjectManager;
+import GameManager.SoundManager;
 import GameState.Camera;
 import GameState.Gui;
 
@@ -17,6 +18,7 @@ public class GamePanel extends BasicGame {
     public static Camera cam;
     public static Gui gui;
     public static Settings settings;
+    public static SoundManager soundmanager;
     public static ObjectManager controller;
     public static Background background;
     public static Player player;
@@ -30,6 +32,7 @@ public class GamePanel extends BasicGame {
   	public void init(GameContainer gc) throws SlickException {
         in = gc.getInput();
         settings = new Settings();
+        soundmanager = new SoundManager();
         gameworld = new World();
         cam = new Camera();
         gui = new Gui();

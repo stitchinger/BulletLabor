@@ -11,6 +11,7 @@ import Util.Vector2;
 
 public class Player extends LivingObject{
 	
+	
 	public Player(int x, int y) {
         super(x, y);
         
@@ -54,6 +55,7 @@ public class Player extends LivingObject{
         }
         if((in.isKeyPressed(Input.KEY_SPACE)||in.isKeyPressed(Input.KEY_W)) && this.jumpCount < 2){
            this.jump();
+   		
         }
         if(in.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
         	if(this.weapon != null){
