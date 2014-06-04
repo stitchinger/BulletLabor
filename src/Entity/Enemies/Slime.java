@@ -2,6 +2,7 @@ package Entity.Enemies;
 
 import org.newdawn.slick.SlickException;
 
+import Entity.StaticObject;
 import Util.Settings;
 
 public class Slime extends EnemyMain {
@@ -22,6 +23,10 @@ public class Slime extends EnemyMain {
 	
 	public void update(int delta){
 		super.update(delta);
+	}
+	
+	public void collidedWith(StaticObject obj){
+		System.out.println(obj.getClass());
 	}
 	
 	//Methode mit den Komponenten für das Verhalten dieser Einheit

@@ -21,7 +21,7 @@ public abstract class LivingObject extends AdvancedObject {
 	
 	public LivingObject(float x, float y) throws SlickException {
 		super(x, y);
-		this.aniMan = new AnimationManager(this);
+		this.aniMan = null;
 	}
 
 	public void update(int delta){
@@ -30,13 +30,15 @@ public abstract class LivingObject extends AdvancedObject {
 		 if(this.isBottomSideCollided()){
 			 this.jumpCount= 0;
 		 }
-		 this.aniMan.update(this);
+		 if(this.aniMan != null)
+			 this.aniMan.update(this);
 	 }
 	
 	public void render(Graphics g){
 		
 		super.render(g);
-		this.aniMan.render(g);
+		if(this.aniMan != null)
+			this.aniMan.render(g);
 	}
 	 
 	public void moveRight() {

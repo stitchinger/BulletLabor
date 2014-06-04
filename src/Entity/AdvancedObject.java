@@ -24,6 +24,7 @@ public abstract class AdvancedObject extends PhysicsObject {
 		if(this.weapon != null){
 			this.weapon.render(g);
 		}
+		
 	}
 	
 	public Vector2 getTargetVector(Vector2 targetPosition){

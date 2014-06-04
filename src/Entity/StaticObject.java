@@ -85,6 +85,10 @@ public abstract class StaticObject {
     	this.position.setX(x);
     }
     
+    public void collidedWith(StaticObject obj){
+    	
+    }
+    
     public void setY(float y){
     	this.position.setY(y);
     }

@@ -6,6 +6,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import Entity.LivingObject;
+import Entity.StaticObject;
+import Entity.Enemies.EnemyMain;
+import Entity.Enemies.Slime;
 import Entity.Player.Weapons.Weapon;
 import GameManager.AnimationManager;
 import Main.GamePanel;
@@ -74,6 +77,13 @@ public class Player extends LivingObject{
         	}     	
         }
        
+    }
+    
+    public void collidedWith(StaticObject obj){
+    	if(obj.getClass() == Slime.class){
+    		
+    	}
+    	System.out.println(obj.getClass());
     }
     
     public Vector2 getMousePosition(){

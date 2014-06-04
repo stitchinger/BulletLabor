@@ -46,6 +46,19 @@ public class ObjectManager {
 	    for (StaticObject obj : world_objects) {
         	obj.update(delta);
         }
+	    
+	    for (int i = 0; i< world_objects.size();i++) {
+        	StaticObject one = world_objects.get(i);
+        	one.update(delta);
+        	for (int j = i + 1; j < world_objects.size(); j++) {
+            	StaticObject two = world_objects.get(j);
+            	if(one.getHitbox().intersects(two.getHitbox())){
+            		one.collidedWith(two);
+            		two.collidedWith(one);
+            	}
+            }
+        }
+	    
         this.removeObjects();
 	}
 	
