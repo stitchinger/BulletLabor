@@ -1,7 +1,6 @@
 package GameManager;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -14,14 +13,14 @@ import Entity.Player.Weapons.Weapon;
 
 public class ObjectManager {
 
-	private static List<StaticObject> world_objects;
-    private static List<StaticObject> toRemoveObjects;
+	private static ArrayList<StaticObject> world_objects;
+    private static ArrayList<StaticObject> toRemoveObjects;
     private static World gameworld;
 	
     public ObjectManager() throws SlickException{
     	gameworld = new World();
-    	world_objects = new LinkedList<StaticObject>();
-    	toRemoveObjects = new LinkedList<StaticObject>();
+    	world_objects = new ArrayList<StaticObject>();
+    	toRemoveObjects = new ArrayList<StaticObject>();
     	
     	this.initObjects();
     }
@@ -78,11 +77,11 @@ public class ObjectManager {
     	toRemoveObjects.add(obj);
     }
 
-	public static List<StaticObject> getWorld_objects() {
+	public static ArrayList<StaticObject> getWorld_objects() {
 		return world_objects;
 	}
 
-	public static List<StaticObject> getToRemoveObjects() {
+	public static ArrayList<StaticObject> getToRemoveObjects() {
 		return toRemoveObjects;
 	}
 }
