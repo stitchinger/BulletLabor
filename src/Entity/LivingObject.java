@@ -1,5 +1,9 @@
 package Entity;
 
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
+import GameManager.AnimationManager;
 import GameManager.ObjectManager;
 import GameManager.SoundManager;
 
@@ -13,8 +17,11 @@ public abstract class LivingObject extends AdvancedObject {
 	protected int health;
 	protected int maxHealth;
 	
-	public LivingObject(float x, float y) {
+	protected AnimationManager aniMan;
+	
+	public LivingObject(float x, float y) throws SlickException {
 		super(x, y);
+		this.aniMan = new AnimationManager(this);
 	}
 
 	public void update(int delta){
@@ -23,7 +30,14 @@ public abstract class LivingObject extends AdvancedObject {
 		 if(this.isBottomSideCollided()){
 			 this.jumpCount= 0;
 		 }
+		 this.aniMan.update(this);
 	 }
+	
+	public void render(Graphics g){
+		
+		super.render(g);
+		this.aniMan.render(g);
+	}
 	 
 	public void moveRight() {
 		this.isRunning = true;
@@ -97,6 +111,10 @@ public abstract class LivingObject extends AdvancedObject {
 	public void setDirection(String direction){
     	this.direction = direction;
     }
+	
+	public String getDirection(){
+		return this.direction;
+	}
 	
 	public void setMaxHealth(int maxHealth){
     	this.maxHealth = maxHealth;

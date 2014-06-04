@@ -1,10 +1,13 @@
 package Entity.Player;
 
 import org.lwjgl.input.Mouse;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 import Entity.LivingObject;
 import Entity.Player.Weapons.Weapon;
+import GameManager.AnimationManager;
 import Main.GamePanel;
 import Util.Settings;
 import Util.Vector2;
@@ -12,11 +15,13 @@ import Util.Vector2;
 public class Player extends LivingObject{
 	
 	
-	public Player(int x, int y) {
+	
+	public Player(int x, int y) throws SlickException {
         super(x, y);
         
         this.weapon = new Weapon(this.getX(), this.getY());
         this.weapon.setOwner(this);
+        this.aniMan = new AnimationManager(this);
         
         //Setter von LivingObjects
       	this.setHealth(100);
@@ -31,6 +36,8 @@ public class Player extends LivingObject{
       	this.setSpriteImage(Settings.playerSprite);
     }
 
+	
+	
 	public void update(int delta, Input in){
     	 
 		playerControl(in);
@@ -39,6 +46,7 @@ public class Player extends LivingObject{
     		this.weapon.setRotation(this.getMousePosition().toDegee());
 			this.weapon.move(this.getCenteredPosition());
 		}
+    	
     }
     
     public void playerControl(Input in){

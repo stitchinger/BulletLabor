@@ -1,10 +1,12 @@
 package Entity.Enemies;
 
+import org.newdawn.slick.SlickException;
+
 import Util.Settings;
 
 public class Slime extends EnemyMain {
 	
-	public Slime(float x, float y) {
+	public Slime(float x, float y) throws SlickException {
 		super(x, y);
 		
 		//Setter von LivingObjects

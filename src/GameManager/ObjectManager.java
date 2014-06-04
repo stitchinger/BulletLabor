@@ -26,7 +26,7 @@ public class ObjectManager {
     }
     
     
-    public void initObjects(){
+    public void initObjects() throws SlickException{
     	for (int i = 0; i < 5; i += 1) {
 	    	this.addObject(new Slime(randomX(300), 200));
 	    }

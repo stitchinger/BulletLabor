@@ -1,4 +1,10 @@
 /Entity
-/Main
+/GameManager
+/GameState
 /Images
+/Main
+/Map
+/Sounds
 /Util
+/World
+/readme.txt
