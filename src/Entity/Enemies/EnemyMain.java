@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import Entity.LivingObject;
 import GameManager.ObjectManager;
 
-public class EnemyMain extends LivingObject{
+public abstract class EnemyMain extends LivingObject{
 	
 	private float aggrorange;
 	
@@ -64,12 +64,9 @@ public class EnemyMain extends LivingObject{
      * Linke Kollision fixen --> aktuell für den Player verbuggt, aber nicht für Enemy
      */
 
-    public void aggroEvent(){
+    public abstract void aggroEvent();
     	//Methode wird in jedem Gegener definiert, welcher ein Event haben soll
-    }
 
-
-    
     public float getAggrorange(){
     	return this.aggrorange;
 	}

@@ -34,6 +34,11 @@ public class Slime extends EnemyMain {
     	super.enemyMove();
     	super.moveCollision();
    	}
+
+	@Override
+	public void aggroEvent() {
+		//wird kein aggroEvent erhalten; soll nur von links nach rechts laufen
+	}
 	
 	public String getObjectName() {
 		return "slime";
