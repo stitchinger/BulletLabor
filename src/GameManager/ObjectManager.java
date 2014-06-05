@@ -111,7 +111,10 @@ public class ObjectManager {
     }
     
     public static StaticObject getObject(String objectName){
-    	return world_objects.get(findObject(objectName));
+    	if(findObject(objectName) != -1){
+    		return world_objects.get(findObject(objectName));
+    	}
+		return null;
     }    
 
 	public static ArrayList<StaticObject> getWorld_objects() {
