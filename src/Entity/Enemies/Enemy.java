@@ -1,7 +1,5 @@
 package Entity.Enemies;
 
-import org.newdawn.slick.SlickException;
-
 import Entity.LivingObject;
 import GameManager.ObjectManager;
 
@@ -9,7 +7,7 @@ public abstract class Enemy extends LivingObject{
 	
 	private float aggrorange;
 	
-	public Enemy(float x, float y) throws SlickException {
+	public Enemy(float x, float y) {
         super(x, y);
     }
     

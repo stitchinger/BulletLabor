@@ -1,7 +1,6 @@
 package Entity;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 import GameManager.AnimationManager;
 import GameManager.ObjectManager;
@@ -19,7 +18,7 @@ public abstract class LivingObject extends AdvancedObject {
 	
 	protected AnimationManager aniMan;
 	
-	public LivingObject(float x, float y) throws SlickException {
+	public LivingObject(float x, float y) {
 		super(x, y);
 		this.aniMan = null;
 	}

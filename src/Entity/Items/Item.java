@@ -20,4 +20,8 @@ public class Item extends StaticObject {
 	public void setItemBuffAmount(int buffAmount) {
 		this.itemBuffAmount = buffAmount;
 	}
+	
+	/* TO-DO Liste für Item System: 
+     * Nächster Schritt --> weitere Items hinzufügen
+     */
 }

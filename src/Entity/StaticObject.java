@@ -126,7 +126,7 @@ public abstract class StaticObject {
 		return 0;
 	}
 
-	public void eventTrigger() {
+	public void eventTrigger(){
 		
 	}
     

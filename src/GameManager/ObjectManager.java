@@ -46,7 +46,7 @@ public class ObjectManager {
 	    	this.addObject(new Weapon(randomX(300), 200));
 	    }
 	    
-	    this.addObject(new AirAttack(275, 325));
+	    this.addObject(new AirAttack(275, 325, 3));
     }
     
 	public void update(int delta) {
@@ -63,11 +63,20 @@ public class ObjectManager {
         }
 		
 		for (int i = 0; i< world_objects.size();i++) {
-        	StaticObject eventObject = world_objects.get(i);
-        	StaticObject player = getObject("player");
+        	
+			StaticObject eventObject = world_objects.get(i);
+			
+			if(world_objects.get(i).getObjectName().equalsIgnoreCase("event")){
+        		eventObject = world_objects.get(i);
+        		
+        		StaticObject player = getObject("player");
+                
             	if(eventObject.getHitbox().intersects(player.getHitbox())){
             		eventObject.eventTrigger();
-            	}
+                }
+        	}
+        	
+        	
 		}
 	    
 	    for (int i = 0; i< world_objects.size();i++) {
