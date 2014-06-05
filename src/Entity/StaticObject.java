@@ -101,13 +101,13 @@ public abstract class StaticObject {
     public int getHeight(){
     	return this.height;
     }
-
+    
+    //leere Methoden damit wir via Liste drauf zugreifen können in den Unterklassen
 	public String getObjectName() {
 		return " ";
 	}
 
 	public void update(int delta, Input in) {
-		
 	}
 
 	public float getVelocityX() {
