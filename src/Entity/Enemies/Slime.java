@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import Entity.StaticObject;
 import Util.Settings;
 
-public class Slime extends EnemyMain {
+public class Slime extends Enemy {
 	
 	public Slime(float x, float y) throws SlickException {
 		super(x, y);

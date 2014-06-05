@@ -2,7 +2,7 @@ package Entity.Items;
 
 import Util.Settings;
 
-public class Coin extends ItemMain {
+public class Coin extends Item {
 	
 	public Coin(float x, float y) {
 		super(x, y);

@@ -28,6 +28,8 @@ public class Settings {
     public static Image bg1Sprite;
     public static Image bg2Sprite;
     
+    public static Image eventSprite;
+    
     
     
     public Settings() throws SlickException {
@@ -44,6 +46,8 @@ public class Settings {
 	    
 	    bg1Sprite = new Image("Images/Backgrounds/bg4.png");
 	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");
+	    
+	    eventSprite = new Image("Map/eventTile.png");
     
     }
 }

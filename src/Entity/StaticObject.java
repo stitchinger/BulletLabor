@@ -125,6 +125,10 @@ public abstract class StaticObject {
 	public int getHealth() {
 		return 0;
 	}
+
+	public void eventTrigger() {
+		
+	}
     
    
 }

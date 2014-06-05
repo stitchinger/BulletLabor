@@ -18,7 +18,7 @@ public class GamePanel extends BasicGame {
     public static Gui gui;
     public static Settings settings;
     public static SoundManager soundmanager;
-    public static ObjectManager controller;
+    public static ObjectManager entitymanager;
     public static Background background;
     
 
@@ -35,13 +35,13 @@ public class GamePanel extends BasicGame {
         cam = new Camera();
         gui = new Gui();
         background = new Background();
-        controller = new ObjectManager();
+        entitymanager = new ObjectManager();
     }
     
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	gameworld.update();
-        controller.update(delta);
+        entitymanager.update(delta);
         cam.update(in);
         background.update();
         gui.update();
@@ -51,7 +51,7 @@ public class GamePanel extends BasicGame {
     	cam.render(g);
     	background.render(g);
     	gameworld.render(g);
-    	controller.render(g);
+    	entitymanager.render(g);
         gui.render(g);
     }
 }

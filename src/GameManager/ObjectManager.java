@@ -11,6 +11,7 @@ import Entity.Enemies.*;
 import Entity.Items.*;
 import Entity.Player.Player;
 import Entity.Player.Weapons.Weapon;
+import Events.AirAttack;
 import Main.GamePanel;
 
 public class ObjectManager {
@@ -44,6 +45,8 @@ public class ObjectManager {
 	    for (int i = 0; i < 1; i += 1) {
 	    	this.addObject(new Weapon(randomX(300), 200));
 	    }
+	    
+	    this.addObject(new AirAttack(275, 325));
     }
     
 	public void update(int delta) {
@@ -58,6 +61,14 @@ public class ObjectManager {
         		obj.update(delta);
         	}
         }
+		
+		for (int i = 0; i< world_objects.size();i++) {
+        	StaticObject eventObject = world_objects.get(i);
+        	StaticObject player = getObject("player");
+            	if(eventObject.getHitbox().intersects(player.getHitbox())){
+            		eventObject.eventTrigger();
+            	}
+		}
 	    
 	    for (int i = 0; i< world_objects.size();i++) {
         	StaticObject one = world_objects.get(i);
