@@ -13,19 +13,26 @@ public class AirAttack extends Event {
 		
 		super.setSpriteImage(Settings.eventSprite);
 	}
+	
+	public void update(int delta){
+		super.update(delta);
+	}
 
 	public void eventTrigger() {
 		if((Math.random() < 0.50f && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30))){
-			Slime slime = new Slime(300, 100);
+			Slime slime = new Slime(250, 100);
 			ObjectManager.getWorld_objects().add(slime);
-			slime.moveLeft();
 			
-			super.amountEnemies--;
-		}
-		
-		if(super.amountEnemies == 0){
-			super.removeEvent();
+			if(super.getX() > ObjectManager.getObject("player").getX()){
+				slime.moveLeft();
+			}
+			else {
+				slime.moveRight();
+			}
+			
+			super.enemyWaves--;
 		}
 		//Gegner fliegen zu den Spieler runter und bewegen sich in seine Richtung
+		//Nächster Schritt: Initial Bewegung an den Spieler ausrichten
 	}
 }

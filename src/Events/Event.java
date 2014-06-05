@@ -5,11 +5,16 @@ import GameManager.ObjectManager;
 
 public abstract class Event extends StaticObject{
 	
-	protected int amountEnemies;
+	protected int enemyWaves;
 	
-	public Event(float x, float y, int amountEnemies){
+	public Event(float x, float y, int enemyWaves){
 		super(x, y);
-		this.amountEnemies = amountEnemies;
+		this.enemyWaves = enemyWaves;
+	}
+	
+	public void update(int delta){
+		super.update(delta);
+		this.stopEvent();
 	}
 	
 	public abstract void eventTrigger();
@@ -20,12 +25,18 @@ public abstract class Event extends StaticObject{
      * Nächster Schritt --> Events und zugehörige Methoden hinzufügen
      */
 	
-	public int getAmountEnemies() {
-		return this.amountEnemies;
+	public int getEnemyWaves() {
+		return this.enemyWaves;
 	}
 	
 	public void removeEvent(){
 		ObjectManager.removeObject(this);
+	}
+	
+	public void stopEvent(){
+		if(this.enemyWaves == 0){
+			this.removeEvent();
+		}
 	}
 	
 	public String getObjectName(){
