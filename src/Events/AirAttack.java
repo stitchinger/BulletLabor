@@ -15,15 +15,15 @@ public class AirAttack extends Event {
 	}
 
 	public void eventTrigger() {
-		if((Math.random() < 0.03f) && (super.getAmountEnemies() > 0)){
+		if((Math.random() < 0.50f && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30))){
 			Slime slime = new Slime(300, 100);
 			ObjectManager.getWorld_objects().add(slime);
 			slime.moveLeft();
 			
-			super.setAmountEnemies(1);
+			super.amountEnemies--;
 		}
 		
-		if(super.getAmountEnemies() == 0){
+		if(super.amountEnemies == 0){
 			super.removeEvent();
 		}
 		//Gegner fliegen zu den Spieler runter und bewegen sich in seine Richtung
