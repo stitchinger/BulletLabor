@@ -3,7 +3,8 @@ package GameState;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import Entity.PhysicsObject;
+import Entity.StaticObject;
+import GameManager.ObjectManager;
 import Main.GamePanel;
 import Util.Settings;
 import Util.Vector2;
@@ -33,7 +34,7 @@ public class Camera {
 		 this.cameraControl(in);
 		 
 		 if(this.followMode){
-			this.follow(GamePanel.player);
+			this.follow(ObjectManager.getObject("player"));
 		 }
 		
 		 if(this.smoothFollowMode){
@@ -48,11 +49,11 @@ public class Camera {
 		g.translate(-this.getX(), -this.getY());
 	}
 	
-	public void follow(PhysicsObject target){
-		float targetX = target.getCenteredPosition().x() - this.viewportWidth/2 + this.offsetCenterX;
-		float targetY = target.getCenteredPosition().y() - this.viewportHeight/2 + this.offsetCenterY;
+	public void follow(StaticObject staticObject){
+		float targetX = staticObject.getCenteredPosition().x() - this.viewportWidth/2 + this.offsetCenterX;
+		float targetY = staticObject.getCenteredPosition().y() - this.viewportHeight/2 + this.offsetCenterY;
 		
-		targetX += target.getVelocityX();
+		targetX += staticObject.getVelocityX();
 		
 		this.velocity.setX(targetX - this.getX());
 		this.velocity.setY(targetY - this.getY()); 

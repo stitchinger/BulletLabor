@@ -9,7 +9,9 @@ import World.World;
 import Entity.StaticObject;
 import Entity.Enemies.*;
 import Entity.Items.*;
+import Entity.Player.Player;
 import Entity.Player.Weapons.Weapon;
+import Main.GamePanel;
 
 public class ObjectManager {
 
@@ -27,6 +29,9 @@ public class ObjectManager {
     
     
     public void initObjects() throws SlickException{
+    	
+    	this.addObject(new Player(400, 100));
+    	
     	for (int i = 0; i < 5; i += 1) {
 	    	this.addObject(new Slime(randomX(300), 200));
 	    }
@@ -43,13 +48,19 @@ public class ObjectManager {
     
 	public void update(int delta) {
 	    
-	    for (StaticObject obj : world_objects) {
-        	obj.update(delta);
+		for (int i = 0; i< world_objects.size();i++) {
+        	StaticObject obj = world_objects.get(i);
+        	
+        	if(obj.getObjectName().equalsIgnoreCase(getObject("player").getObjectName())){
+        		obj.update(delta, GamePanel.in);
+        	}
+        	else {
+        		obj.update(delta);
+        	}
         }
 	    
 	    for (int i = 0; i< world_objects.size();i++) {
         	StaticObject one = world_objects.get(i);
-        	one.update(delta);
         	for (int j = i + 1; j < world_objects.size(); j++) {
             	StaticObject two = world_objects.get(j);
             	if(one.getHitbox().intersects(two.getHitbox())){
@@ -89,6 +100,19 @@ public class ObjectManager {
     public static void removeObject(StaticObject obj){
     	toRemoveObjects.add(obj);
     }
+    
+    public static int findObject(String objectName){
+    	for(int i = 0; i < world_objects.size(); i++){
+    		if(world_objects.get(i).getObjectName().equalsIgnoreCase(objectName)){
+    			return i;
+    		}
+    	}
+    	return -1;
+    }
+    
+    public static StaticObject getObject(String objectName){
+    	return world_objects.get(findObject(objectName));
+    }    
 
 	public static ArrayList<StaticObject> getWorld_objects() {
 		return world_objects;

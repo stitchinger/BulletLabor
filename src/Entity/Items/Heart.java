@@ -10,4 +10,8 @@ public class Heart extends ItemMain {
 		super.setItemBuffAmount(50);
 		super.setSpriteImage(Settings.heartSprite);
 	}
+	
+	public String getObjectName() {
+		return "heart";
+	}
 }

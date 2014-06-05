@@ -3,6 +3,7 @@ package GameState;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
+import GameManager.ObjectManager;
 import Main.GamePanel;
 import Util.Vector2;
 
@@ -38,7 +39,7 @@ public class Gui {
 		float px = this.posX+ this.width - 120;
 		float py = this.posY + this.height - 120;
 		
-		float healthToDegree =  (GamePanel.player.getHealth() * 3.6f);
+		float healthToDegree =  (ObjectManager.getObject("player").getHealth() * 3.6f);
 	
 		g.setColor(Color.black);
 		g.fillOval(px, py, 100, 100);
@@ -50,12 +51,12 @@ public class Gui {
 		g.fillOval(this.posX+ this.width - 99, this.posY + this.height - 100, 60, 60);
 		
 		g.setColor(Color.white);
-		g.drawString("" + GamePanel.player.getAmmo(), px+40 , py+40);
+		g.drawString("" + ObjectManager.getObject("player").getAmmo(), px+40 , py+40);
 	}
 	
 	public void drawPointer(Graphics g){
-		Vector2 mouseDirection = GamePanel.player.getMousePosition();
-		Vector2 pointerPosition1 = new Vector2(GamePanel.player.getCenteredPosition()).add(mouseDirection.mult(100));
+		Vector2 mouseDirection = ObjectManager.getObject("player").getMousePosition();
+		Vector2 pointerPosition1 = new Vector2(ObjectManager.getObject("player").getCenteredPosition()).add(mouseDirection.mult(100));
 		g.setColor(Color.red);
 		g.fillOval(pointerPosition1.x()-5, pointerPosition1.y()-5, 10, 10);
 	

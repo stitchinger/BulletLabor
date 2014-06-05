@@ -34,4 +34,8 @@ public class Slime extends EnemyMain {
     	super.enemyMove();
     	super.moveCollision();
    	}
+	
+	public String getObjectName() {
+		return "slime";
+	}
 }

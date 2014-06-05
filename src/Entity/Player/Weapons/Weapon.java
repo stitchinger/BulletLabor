@@ -142,4 +142,8 @@ public class Weapon extends PhysicsObject {
 	public void setOwner(AdvancedObject owner){
 		this.owner = owner;
 	}
+	
+	public String getObjectName() {
+		return "weapon";
+	}
 }

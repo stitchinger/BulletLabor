@@ -3,7 +3,7 @@ package Entity.Enemies;
 import org.newdawn.slick.SlickException;
 
 import Entity.LivingObject;
-import Main.GamePanel;
+import GameManager.ObjectManager;
 
 public class EnemyMain extends LivingObject{
 	
@@ -46,7 +46,7 @@ public class EnemyMain extends LivingObject{
     }
     
     public void aggroInit(){
- 	   if((Math.abs(GamePanel.player.getX() - super.getX()) <= this.aggrorange)){
+ 	   if((Math.abs(ObjectManager.getObject("player").getX() - super.getX()) <= this.aggrorange)){
  		   this.aggroEvent();
         }
     }

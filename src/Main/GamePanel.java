@@ -5,7 +5,6 @@ import org.newdawn.slick.*;
 import Util.Settings;
 import World.Background;
 import World.World;
-import Entity.Player.Player;
 import GameManager.ObjectManager;
 import GameManager.SoundManager;
 import GameState.Camera;
@@ -21,7 +20,6 @@ public class GamePanel extends BasicGame {
     public static SoundManager soundmanager;
     public static ObjectManager controller;
     public static Background background;
-    public static Player player;
     
 
     public GamePanel(String title) {
@@ -38,13 +36,11 @@ public class GamePanel extends BasicGame {
         gui = new Gui();
         background = new Background();
         controller = new ObjectManager();
-        player = new Player(400, 100);
     }
     
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
     	gameworld.update();
-        player.update(delta, in);
         controller.update(delta);
         cam.update(in);
         background.update();
@@ -57,6 +53,5 @@ public class GamePanel extends BasicGame {
     	gameworld.render(g);
     	controller.render(g);
         gui.render(g);
-        player.render(g); // Dafür Animated Mario hinzufügen
     }
 }

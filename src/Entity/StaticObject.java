@@ -3,6 +3,7 @@ package Entity;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
@@ -100,6 +101,30 @@ public abstract class StaticObject {
     public int getHeight(){
     	return this.height;
     }
+
+	public String getObjectName() {
+		return " ";
+	}
+
+	public void update(int delta, Input in) {
+		
+	}
+
+	public float getVelocityX() {
+		return 0;
+	}
+
+	public Vector2 getMousePosition() {
+		return null;
+	}
+
+	public int getAmmo() {
+		return 0;
+	}
+
+	public int getHealth() {
+		return 0;
+	}
     
    
 }

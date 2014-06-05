@@ -10,4 +10,8 @@ public class Coin extends ItemMain {
 		super.setItemBuffAmount(1);
 		super.setSpriteImage(Settings.coinSprite);
 	}
+	
+	public String getObjectName() {
+		return "coin";
+	}
 }

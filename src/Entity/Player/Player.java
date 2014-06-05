@@ -1,13 +1,11 @@
 package Entity.Player;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import Entity.LivingObject;
 import Entity.StaticObject;
-import Entity.Enemies.EnemyMain;
 import Entity.Enemies.Slime;
 import Entity.Player.Weapons.Weapon;
 import GameManager.AnimationManager;
@@ -92,6 +90,10 @@ public class Player extends LivingObject{
         Vector2 mousePosition = new Vector2(mouseX, mouseY);
         return this.getTargetVector(mousePosition);
        
+    }
+    
+    public String getObjectName(){
+    	return "player";
     }
     
     
