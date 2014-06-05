@@ -32,7 +32,5 @@ public class AirAttack extends Event {
 			
 			super.enemyWaves--;
 		}
-		//Gegner fliegen zu den Spieler runter und bewegen sich in seine Richtung
-		//Nächster Schritt: Initial Bewegung an den Spieler ausrichten
 	}
 }

@@ -18,8 +18,6 @@ public abstract class Event extends StaticObject{
 	}
 	
 	public abstract void eventTrigger();
-		//ist der eigentliche Inhalt des Events; beschreibt zb wie die Gegner dann spawnen sollen
-		//kann auch durch weitere Methoden beschrieben werden
 	
 	/* TO-DO Liste für Event System: 
      * Nächster Schritt --> Events und zugehörige Methoden hinzufügen
