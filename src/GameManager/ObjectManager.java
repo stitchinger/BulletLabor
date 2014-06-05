@@ -8,10 +8,10 @@ import org.newdawn.slick.SlickException;
 import World.World;
 import Entity.StaticObject;
 import Entity.Enemies.*;
+import Entity.Events.*;
 import Entity.Items.*;
 import Entity.Player.Player;
 import Entity.Player.Weapons.Weapon;
-import Events.AirAttack;
 import Main.GamePanel;
 
 public class ObjectManager {

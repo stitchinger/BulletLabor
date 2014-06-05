@@ -1,4 +1,4 @@
-package Events;
+package Entity.Events;
 
 import org.newdawn.slick.SlickException;
 
