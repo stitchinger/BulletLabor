@@ -8,12 +8,14 @@ import GameManager.ObjectManager;
 public abstract class Event extends StaticObject{
 	
 	private int eventSize;
+	private float eventChance;
+	
 	protected Enemy[] enemys;
-	protected float eventChance;
 	
 	public Event(float x, float y, int eventSize){
 		super(x, y);
 		
+		this.eventChance = 1;
 		this.eventSize = eventSize;
 		enemys = new Enemy [this.eventSize];
 	}
@@ -54,7 +56,7 @@ public abstract class Event extends StaticObject{
 	}
 	
 	public void eventTrigger(){
-		if(Math.random() < this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){
+		if(randomCalc(1, 2) == this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){
 			this.eventInit();
 		}
 	}
