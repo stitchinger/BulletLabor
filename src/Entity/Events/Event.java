@@ -1,40 +1,50 @@
 package Entity.Events;
 
 import Entity.StaticObject;
+import Entity.Enemies.Enemy;
 import GameManager.ObjectManager;
 
 public abstract class Event extends StaticObject{
 	
-	protected int enemyWaves;
+	protected int eventSize;
+	protected Enemy[] enemy_list;
 	
-	public Event(float x, float y, int enemyWaves){
+	protected int smallEvent;
+	protected int mediumEvent;
+	protected int bigEvent;
+	
+	public Event(float x, float y, int eventSize){
 		super(x, y);
-		this.enemyWaves = enemyWaves;
+		
+		this.eventSize = eventSize;
+		enemy_list = new Enemy [this.eventSize];
 	}
 	
-	public void update(int delta){
-		super.update(delta);
-		this.stopEvent();
+	public void eventInit(){
+		this.enemyInit();
+		this.enemyMove();
+		this.objectManagerInit();
+		this.removeEvent();
 	}
+	
+	public void objectManagerInit(){
+		for(int i = 0; i < this.enemy_list.length; i++){
+			ObjectManager.getWorld_objects().add(enemy_list[i]);
+		}
+	}
+	
+	public void enemyMove(){
+		for(int i = 0; i < enemy_list.length; i++){
+			enemy_list[i].moveInit();
+		}
+	}
+	
+	public abstract void enemyInit();
 	
 	public abstract void eventTrigger();
 	
-	/* TO-DO Liste für Event System: 
-     * Nächster Schritt --> Events und zugehörige Methoden hinzufügen
-     */
-	
-	public int getEnemyWaves() {
-		return this.enemyWaves;
-	}
-	
 	public void removeEvent(){
 		ObjectManager.removeObject(this);
-	}
-	
-	public void stopEvent(){
-		if(this.enemyWaves == 0){
-			this.removeEvent();
-		}
 	}
 	
 	public String getObjectName(){

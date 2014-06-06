@@ -3,34 +3,25 @@ package Entity.Events;
 import org.newdawn.slick.SlickException;
 
 import Entity.Enemies.Slime;
-import GameManager.ObjectManager;
 import Util.Settings;
 
 public class AirAttack extends Event {
 	
-	public AirAttack(float x, float y, int amountEnemies) throws SlickException {
-		super(x, y, amountEnemies);
+	public AirAttack(float x, float y, int eventSize) throws SlickException {
+		super(x, y, eventSize);
 		
 		super.setSpriteImage(Settings.eventSprite);
 	}
-	
-	public void update(int delta){
-		super.update(delta);
+
+	public void eventTrigger(){
+		if(Math.random() < 0.50f){
+			super.eventInit();
+		}
 	}
 
-	public void eventTrigger() {
-		if((Math.random() < 0.50f && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30))){
-			Slime slime = new Slime(250, 100);
-			ObjectManager.getWorld_objects().add(slime);
-			
-			if(super.getX() > ObjectManager.getObject("player").getX()){
-				slime.moveLeft();
-			}
-			else {
-				slime.moveRight();
-			}
-			
-			super.enemyWaves--;
+	public void enemyInit() {
+		for(int i = 0; i < enemy_list.length; i++){
+			enemy_list[i] = new Slime(200, 100); //x,y random erstellen
 		}
 	}
 }

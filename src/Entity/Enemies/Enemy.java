@@ -55,6 +55,15 @@ public abstract class Enemy extends LivingObject{
         }
     }
     
+    public void moveInit(){
+    	if(super.getX() > ObjectManager.getObject("player").getX()){
+			super.moveLeft();
+		}
+		else if(super.getX() < ObjectManager.getObject("player").getX()){
+			super.moveRight();
+		}
+    }
+    
     /* TO-DO Liste für Enemy System: 
      * Init Methode, welche bzgl. der Kamera aggiert (Gegner bewegt sich erst in Reichweite von Kamera) 
      * Nächster Schritt --> x Position von Kamera sauber bekommen; aktuell "buggy" (NullPointer)
