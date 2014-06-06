@@ -15,6 +15,7 @@ public abstract class Event extends StaticObject{
 	public Event(float x, float y, int eventSize){
 		super(x, y);
 		
+		this.loadImage();
 		this.eventChance = 1;
 		this.eventSize = eventSize;
 		enemys = new Enemy [this.eventSize];
@@ -51,7 +52,7 @@ public abstract class Event extends StaticObject{
 			super.setSpriteImage(Settings.eventSpriteDebug);
 		}
 		else{
-			super.setSpriteImage(Settings.eventSprite); //dafür soll ein durchsichtiges Sprite rein
+			super.setSpriteImage(Settings.eventSprite);
 		}
 	}
 	
@@ -68,5 +69,7 @@ public abstract class Event extends StaticObject{
 	public String getObjectName(){
 		return "event";
 	}
-	//Nächster Schritt: Weitere Events erstellen
 }
+
+//Nächster Schritt: Weitere Events erstellen
+

@@ -9,8 +9,6 @@ public class Ambush extends Event {
 	
 	public Ambush(float x, float y, int eventSize) throws SlickException {
 		super(x, y, eventSize);
-		
-		super.loadImage();
 	}
 
 	public void enemyInit() {
