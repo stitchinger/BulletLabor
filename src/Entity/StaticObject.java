@@ -87,7 +87,8 @@ public abstract class StaticObject {
     }
     
     public void collidedWith(StaticObject obj){
-    	
+    	//Nur ein kleiner Hinweis: Habe eine getObjectName Methode in jedem Objekt drinnen 
+    	//eingefügt wodurch du die Objekte relativ einfach vergleichen bzw. bekommen kannst.
     }
     
     public void setY(float y){
