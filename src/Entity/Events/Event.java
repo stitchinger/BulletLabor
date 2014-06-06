@@ -7,7 +7,7 @@ import GameManager.ObjectManager;
 
 public abstract class Event extends StaticObject{
 	
-	protected int eventSize;
+	private int eventSize;
 	protected Enemy[] enemys;
 	protected float eventChance;
 	

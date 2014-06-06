@@ -10,7 +10,7 @@ public class Ambush extends Event {
 	public Ambush(float x, float y, int eventSize) throws SlickException {
 		super(x, y, eventSize);
 		
-		super.eventChance = randomCalc(1, 10);
+		super.eventChance = (int)randomCalc(1, 10);
 		super.loadImage();
 	}
 

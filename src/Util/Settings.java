@@ -15,7 +15,7 @@ public class Settings {
     public static final int FPS_LIMIT = 60;
     public static final boolean DEBUG_MODUS = false;
     
-    public static boolean EVENT_DEBUG_MODUS = true;
+    public static boolean EVENT_DEBUG_MODUS = false;
     
     public static Image playerSprite;
     
