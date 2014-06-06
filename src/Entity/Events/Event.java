@@ -25,17 +25,24 @@ public abstract class Event extends StaticObject{
 		this.removeEvent();
 	}
 	
-	public void objectManagerInit(){
-		for(int i = 0; i < this.enemys.length; i++){
-			ObjectManager.getWorld_objects().add(enemys[i]);
-		}
-	}
+	public abstract void enemyInit();
 	
 	public void enemyMove(){
 		for(int i = 0; i < enemys.length; i++){
 			enemys[i].moveInit();
 		}
 	}
+	
+	public void objectManagerInit(){
+		for(int i = 0; i < this.enemys.length; i++){
+			ObjectManager.getWorld_objects().add(enemys[i]);
+		}
+	}
+	
+	public void removeEvent(){
+		ObjectManager.removeObject(this);
+	}
+	
 	
 	public void loadImage(){
 		if(Settings.EVENT_DEBUG_MODUS == true){
@@ -46,20 +53,14 @@ public abstract class Event extends StaticObject{
 		}
 	}
 	
-	public static int randomXY(float low, float high) {
-		return (int) (Math.random() * (high - low) + low);
-	}
-	
-	public abstract void enemyInit();
-	
 	public void eventTrigger(){
 		if(Math.random() < this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){
 			this.eventInit();
 		}
 	}
 	
-	public void removeEvent(){
-		ObjectManager.removeObject(this);
+	public static int randomCalc(float low, float high) {
+		return (int) (Math.random() * (high - low) + low);
 	}
 	
 	public String getObjectName(){
