@@ -53,7 +53,7 @@ public abstract class Event extends StaticObject{
 	public abstract void enemyInit();
 	
 	public void eventTrigger(){
-		if(Math.random() < this.eventChance){
+		if(Math.random() < this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){
 			this.eventInit();
 		}
 	}
