@@ -1,5 +1,6 @@
 package Entity.Events;
 
+import Util.Settings;
 import Entity.StaticObject;
 import Entity.Enemies.Enemy;
 import GameManager.ObjectManager;
@@ -8,6 +9,7 @@ public abstract class Event extends StaticObject{
 	
 	protected int eventSize;
 	protected Enemy[] enemys;
+	protected float eventChance;
 	
 	public Event(float x, float y, int eventSize){
 		super(x, y);
@@ -35,9 +37,26 @@ public abstract class Event extends StaticObject{
 		}
 	}
 	
+	public void loadImage(){
+		if(Settings.EVENT_DEBUG_MODUS == true){
+			super.setSpriteImage(Settings.eventSpriteDebug);
+		}
+		else{
+			super.setSpriteImage(Settings.eventSprite); //dafür soll ein durchsichtiges Sprite rein
+		}
+	}
+	
+	public static int randomXY(float low, float high) {
+		return (int) (Math.random() * (high - low) + low);
+	}
+	
 	public abstract void enemyInit();
 	
-	public abstract void eventTrigger();
+	public void eventTrigger(){
+		if(Math.random() < this.eventChance){
+			this.eventInit();
+		}
+	}
 	
 	public void removeEvent(){
 		ObjectManager.removeObject(this);
@@ -46,7 +65,5 @@ public abstract class Event extends StaticObject{
 	public String getObjectName(){
 		return "event";
 	}
-	
-	//Nächster Schritt: Event System mit Tilemap verbinden. Heißt man erstellt nur noch ein Tile
-	//auf der Karte und dazu wird dann automatisch ein Event Tile generiert + Event Objekt
+	//Nächster Schritt: Weitere Events erstellen
 }

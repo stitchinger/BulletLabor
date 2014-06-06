@@ -15,6 +15,8 @@ public class Settings {
     public static final int FPS_LIMIT = 60;
     public static final boolean DEBUG_MODUS = false;
     
+    public static boolean EVENT_DEBUG_MODUS = true;
+    
     public static Image playerSprite;
     
     public static Image heartSprite;
@@ -28,8 +30,8 @@ public class Settings {
     public static Image bg1Sprite;
     public static Image bg2Sprite;
     
+    public static Image eventSpriteDebug;
     public static Image eventSprite;
-    
     
     
     public Settings() throws SlickException {
@@ -47,6 +49,7 @@ public class Settings {
 	    bg1Sprite = new Image("Images/Backgrounds/bg4.png");
 	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");
 	    
+	    eventSpriteDebug = new Image("Map/eventTileDebug.png");
 	    eventSprite = new Image("Map/eventTile.png");
     
     }

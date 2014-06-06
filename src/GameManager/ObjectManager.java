@@ -47,6 +47,7 @@ public class ObjectManager {
 	    }
 	    
 	    this.addObject(new AirAttack(275, 325, 3));
+	    this.addObject(new Ambush(350, 1700, 3));
     }
     
 	public void update(int delta) {
