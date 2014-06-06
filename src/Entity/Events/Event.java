@@ -9,10 +9,6 @@ public abstract class Event extends StaticObject{
 	protected int eventSize;
 	protected Enemy[] enemys;
 	
-	protected int smallEvent;
-	protected int mediumEvent;
-	protected int bigEvent;
-	
 	public Event(float x, float y, int eventSize){
 		super(x, y);
 		
@@ -50,4 +46,7 @@ public abstract class Event extends StaticObject{
 	public String getObjectName(){
 		return "event";
 	}
+	
+	//N‰chster Schritt: Event System mit Tilemap verbinden. Heiﬂt man erstellt nur noch ein Tile
+	//auf der Karte und dazu wird dann automatisch ein Event Tile generiert + Event Objekt
 }

@@ -21,7 +21,11 @@ public class AirAttack extends Event {
 
 	public void enemyInit() {
 		for(int i = 0; i < enemys.length; i++){
-			enemys[i] = new Slime(200, 100); //x,y random erstellen
+			enemys[i] = new Slime(randomXY(super.getX() - 200, super.getX() + 200), randomXY(50, 100));
 		}
+	}
+	
+	public static int randomXY(float low, float high) {
+		return (int) (Math.random() * (high - low) + low);
 	}
 }
