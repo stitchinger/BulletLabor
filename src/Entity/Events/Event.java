@@ -71,5 +71,8 @@ public abstract class Event extends StaticObject{
 	}
 }
 
-//Nächster Schritt: Weitere Events erstellen
-
+/* Nächster Schritt:
+ * Weitere Events erstellen;
+ * Animationen beim Spawnen zur Verfügung stellen?
+ * Boss Event hinzufügen --> bekommt ebenfalls eine komplett eigene Klasse
+ */
