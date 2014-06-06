@@ -20,8 +20,8 @@ public class AirAttack extends Event {
 	}
 
 	public void enemyInit() {
-		for(int i = 0; i < enemy_list.length; i++){
-			enemy_list[i] = new Slime(200, 100); //x,y random erstellen
+		for(int i = 0; i < enemys.length; i++){
+			enemys[i] = new Slime(200, 100); //x,y random erstellen
 		}
 	}
 }

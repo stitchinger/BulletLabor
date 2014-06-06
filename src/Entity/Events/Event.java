@@ -7,7 +7,7 @@ import GameManager.ObjectManager;
 public abstract class Event extends StaticObject{
 	
 	protected int eventSize;
-	protected Enemy[] enemy_list;
+	protected Enemy[] enemys;
 	
 	protected int smallEvent;
 	protected int mediumEvent;
@@ -17,7 +17,7 @@ public abstract class Event extends StaticObject{
 		super(x, y);
 		
 		this.eventSize = eventSize;
-		enemy_list = new Enemy [this.eventSize];
+		enemys = new Enemy [this.eventSize];
 	}
 	
 	public void eventInit(){
@@ -28,14 +28,14 @@ public abstract class Event extends StaticObject{
 	}
 	
 	public void objectManagerInit(){
-		for(int i = 0; i < this.enemy_list.length; i++){
-			ObjectManager.getWorld_objects().add(enemy_list[i]);
+		for(int i = 0; i < this.enemys.length; i++){
+			ObjectManager.getWorld_objects().add(enemys[i]);
 		}
 	}
 	
 	public void enemyMove(){
-		for(int i = 0; i < enemy_list.length; i++){
-			enemy_list[i].moveInit();
+		for(int i = 0; i < enemys.length; i++){
+			enemys[i].moveInit();
 		}
 	}
 	
