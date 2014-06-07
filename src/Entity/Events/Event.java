@@ -1,5 +1,7 @@
 package Entity.Events;
 
+import org.newdawn.slick.Input;
+
 import Util.Settings;
 import Entity.StaticObject;
 import Entity.Enemies.Enemy;
@@ -47,6 +49,25 @@ public abstract class Event extends StaticObject{
 	}
 	
 	
+	//Debug Modus Ausdruck Start 
+	//Kontrolle über die Taste "3" - vereinfachte ingame Tests möglich
+	
+	public void update(Input in){
+		this.debugControl(in);
+		this.loadImage();
+	}
+	
+	private void debugControl(Input in){
+		 if(in.isKeyPressed(Input.KEY_3)){
+			 if(Settings.EVENT_DEBUG_MODUS == true){
+				 Settings.EVENT_DEBUG_MODUS = false;
+			 }
+			 else {
+				 Settings.EVENT_DEBUG_MODUS = true;
+			 }
+		 }
+	}
+	
 	public void loadImage(){
 		if(Settings.EVENT_DEBUG_MODUS == true){
 			super.setSpriteImage(Settings.eventSpriteDebug);
@@ -55,6 +76,8 @@ public abstract class Event extends StaticObject{
 			super.setSpriteImage(Settings.eventSprite);
 		}
 	}
+	//Debug Modus Ausdruck Ende
+	
 	
 	public void eventTrigger(){
 		if(randomCalc(1, 2) == this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){

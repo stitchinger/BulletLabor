@@ -58,6 +58,9 @@ public class ObjectManager {
         	if(obj.getObjectName().equalsIgnoreCase(getObject("player").getObjectName())){
         		obj.update(delta, GamePanel.in);
         	}
+        	else if(obj.getObjectName().equalsIgnoreCase(getObject("event").getObjectName())){
+        		obj.update(GamePanel.in);
+        	}
         	else {
         		obj.update(delta);
         	}

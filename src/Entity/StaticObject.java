@@ -130,6 +130,10 @@ public abstract class StaticObject {
 	public void eventTrigger(){
 		
 	}
+
+	public void update(Input in) {
+		
+	}
     
    
 }
