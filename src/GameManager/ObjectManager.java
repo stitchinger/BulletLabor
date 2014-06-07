@@ -46,12 +46,13 @@ public class ObjectManager {
 	    	this.addObject(new Weapon(randomX(300), 200));
 	    }
 	    
+	    this.addObject(new AirAttack(0, 0, 0)); //das MUSS bestehen bleiben, sonst Null Exception
 	    this.addObject(new AirAttack(275, 325, 3));
 	    this.addObject(new Ambush(350, 1700, 3));
     }
     
 	public void update(int delta) {
-	    
+		
 		for (int i = 0; i< world_objects.size();i++) {
         	StaticObject obj = world_objects.get(i);
         	
@@ -59,7 +60,7 @@ public class ObjectManager {
         		obj.update(delta, GamePanel.in);
         	}
         	else if(obj.getObjectName().equalsIgnoreCase(getObject("event").getObjectName())){
-        		obj.update(GamePanel.in);
+        		obj.update(delta, GamePanel.in);
         	}
         	else {
         		obj.update(delta);
@@ -79,7 +80,6 @@ public class ObjectManager {
             		eventObject.eventTrigger();
                 }
         	}
-        	
         	
 		}
 	    
@@ -115,7 +115,7 @@ public class ObjectManager {
     }
 
     public void removeObjects(){
-    	for (Object obj : toRemoveObjects) {
+    	for (StaticObject obj : toRemoveObjects) {
     	   world_objects.remove(obj);
     	}
     	toRemoveObjects.clear();

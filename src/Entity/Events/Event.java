@@ -10,15 +10,13 @@ import GameManager.ObjectManager;
 public abstract class Event extends StaticObject{
 	
 	private int eventSize;
-	private float eventChance;
-	
 	protected Enemy[] enemys;
+	protected int eventChance;
 	
 	public Event(float x, float y, int eventSize){
 		super(x, y);
 		
 		this.loadImage();
-		this.eventChance = 1;
 		this.eventSize = eventSize;
 		enemys = new Enemy [this.eventSize];
 	}
@@ -52,7 +50,8 @@ public abstract class Event extends StaticObject{
 	//Debug Modus Ausdruck Start 
 	//Kontrolle über die Taste "3" - vereinfachte ingame Tests möglich
 	
-	public void update(Input in){
+	public void update(int delta, Input in){
+		super.update(delta);
 		this.debugControl(in);
 		this.loadImage();
 	}
@@ -80,13 +79,17 @@ public abstract class Event extends StaticObject{
 	
 	
 	public void eventTrigger(){
-		if(randomCalc(1, 2) == this.eventChance && (Math.abs(super.getX() - ObjectManager.getObject("player").getX()) > 30)){
+		if(this.eventChance == 2){
 			this.eventInit();
+		}
+		
+		else{
+			this.removeEvent();
 		}
 	}
 	
 	public static int randomCalc(float low, float high) {
-		return (int) (Math.random() * (high - low) + low);
+		return ((int) (Math.random() * (high - low) + low));
 	}
 	
 	public String getObjectName(){

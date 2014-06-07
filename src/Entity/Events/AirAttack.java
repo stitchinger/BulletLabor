@@ -9,6 +9,8 @@ public class AirAttack extends Event {
 	
 	public AirAttack(float x, float y, int eventSize) throws SlickException {
 		super(x, y, eventSize);
+		
+		super.eventChance = randomCalc(1, 4); //randomCalc(min, max) --> "2" muss zwischen min/max
 	}
 
 	public void enemyInit() {
