@@ -79,9 +79,7 @@ public class Player extends LivingObject{
     }
     
     public void collidedWith(StaticObject obj){
-    	if(obj.getClass() == Slime.class){
-    		
-    	}
+    	
     	System.out.println(obj.getClass());
     }
     

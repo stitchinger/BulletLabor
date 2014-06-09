@@ -40,7 +40,7 @@ public class AnimationManager {
 	
 	public void render(Graphics g){
 		float posX = this.owner.getCenteredPosition().x() - this.spriteSet.getWidth() / this.spriteSet.getHorizontalCount()/2;
-		System.out.println("text:   " + this.spriteSet.getTextureWidth());
+		
 		float posY = this.owner.getCenteredPosition().y() - this.spriteSet.getHeight() / this.spriteSet.getVerticalCount()/2;
 	
 		if(this.owner.getDirection() == "right"){

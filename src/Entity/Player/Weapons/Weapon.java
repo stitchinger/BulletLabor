@@ -78,7 +78,7 @@ public class Weapon extends PhysicsObject {
 		
 		float rotationDistance = rotation - this.rotation;
 		
-		System.out.println(rotation);
+	
 		this.rotation = this.rotation + rotationDistance * this.rotationInertia;
 	}
 	

@@ -24,7 +24,7 @@ public class Slime extends Enemy {
 	}
 	
 	public void collidedWith(StaticObject obj){
-		System.out.println(obj.getClass());
+		//System.out.println(obj.getClass());
 	}
 	
 	//Methode mit den Komponenten für das Verhalten dieser Einheit
