@@ -13,23 +13,24 @@ import Util.Vector2;
 
 public class Weapon extends PhysicsObject {
 
-	private AdvancedObject owner;
+	protected AdvancedObject owner;
 
-	private float rotation;
-	
-	private int ammo;
-	private int shotsPerMinute;
-	private float power;
-	private float recoil;
-	private long timeOfLastShot;
-	private float spreadRange;
-	private float rotationInertia;
-	private float positionInertia;
+	protected String id;
+	protected float rotation;
+	protected Bullet typeOfBullet;
+	protected int ammo;
+	protected int shotsPerMinute;
+	protected float power;
+	protected float recoil;
+	protected long timeOfLastShot;
+	protected float spreadRange;
+	protected float rotationInertia;
+	protected float positionInertia;
 	
 	
 	public Weapon(float x, float y) {
 		super(x, y);
-		
+		this.typeOfBullet = new Bullet(0,0);
 		this.power = 30;
 		this.recoil = 0.05f;
 		this.rotation = 0;
@@ -95,8 +96,9 @@ public class Weapon extends PhysicsObject {
     	
     	
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
-    	Bullet bullet = new Bullet((this.getX()+this.width/2), (this.getY()+this.height/2));
-    	
+    
+    	Bullet bullet = this.getBullet((this.getX()+this.width/2), (this.getY()+this.height/2));
+    
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
     	ObjectManager.getWorld_objects().add(bullet);
@@ -145,5 +147,16 @@ public class Weapon extends PhysicsObject {
 	
 	public String getObjectName() {
 		return "weapon";
+	}
+	
+	public Bullet getBullet(float x, float y){
+		if(this.id.equals("Rocketlauncher")){
+			return new Rocket(x,y);
+		}else if(this.id.equals("M4")){
+			return new Bullet(x,y);
+		}
+		else
+			return null;
+		
 	}
 }

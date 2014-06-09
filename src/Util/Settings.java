@@ -26,6 +26,8 @@ public class Settings {
     
     public static Image bulletSprite;
     public static Image weaponSprite;
+    public static Image rocketSprite;
+    public static Image rocketlauncherSprite;
     
     public static Image bg1Sprite;
     public static Image bg2Sprite;
@@ -44,7 +46,9 @@ public class Settings {
     	slimeEnemySprite = new Image("Images/Enemies/slime.png");
     	
 	    bulletSprite = new Image("Images/Weapon/bullet.png");
+	    rocketSprite = new Image("Images/Weapon/rocket.png");
 	    weaponSprite = new Image("Images/Weapon/weapon.png");
+	    rocketlauncherSprite = new Image("Images/Weapon/rocketlauncher.png");
 	    
 	    bg1Sprite = new Image("Images/Backgrounds/bg4.png");
 	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");

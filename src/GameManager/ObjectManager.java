@@ -11,6 +11,7 @@ import Entity.Enemies.*;
 import Entity.Events.*;
 import Entity.Items.*;
 import Entity.Player.Player;
+import Entity.Player.Weapons.Rocketlauncher;
 import Entity.Player.Weapons.Weapon;
 import Main.GamePanel;
 

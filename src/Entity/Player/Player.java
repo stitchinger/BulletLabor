@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import Entity.LivingObject;
 import Entity.StaticObject;
 import Entity.Enemies.Slime;
+import Entity.Player.Weapons.Rocketlauncher;
 import Entity.Player.Weapons.Weapon;
 import GameManager.AnimationManager;
 import Main.GamePanel;
@@ -20,7 +21,7 @@ public class Player extends LivingObject{
 	public Player(int x, int y) throws SlickException {
         super(x, y);
         
-        this.weapon = new Weapon(this.getX(), this.getY());
+        this.weapon = new Rocketlauncher(this.getX(), this.getY());
         this.weapon.setOwner(this);
         this.aniMan = new AnimationManager(this);
         

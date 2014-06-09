@@ -12,12 +12,12 @@ public class Bullet extends PhysicsObject{
     
 	private boolean isAlive = true;
     private int bulletDamage = 10;
-    private float bouncyness = 0.0f;
+    protected float bouncyness = 0.0f;
 	private int lifeTimeMillis = 4000;
 	
     private long timestampOfBirth;
     private float rotation;
-    private Image img;
+    protected Image img;
 	
   
     
