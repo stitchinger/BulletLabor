@@ -12,6 +12,7 @@ import Util.Vector2;
 
 public class Camera {
 	
+	private StaticObject target;
 	private Vector2 position;
 	private Vector2 velocity;
 	private int viewportWidth;
@@ -22,11 +23,21 @@ public class Camera {
 	private boolean smoothFollowMode = true;
 	private float inertia = 0.2f;
 	
+	
 	public Camera(){
 		this.position = new Vector2(0,0);
 		this.velocity = new Vector2(0,0);
 		this.viewportWidth = Settings.WINDOW_WIDTH;
 		this.viewportHeight = Settings.WINDOW_HEIGHT;
+		
+	}
+	
+	public Camera(StaticObject target){
+		this.position = new Vector2(0,0);
+		this.velocity = new Vector2(0,0);
+		this.viewportWidth = Settings.WINDOW_WIDTH;
+		this.viewportHeight = Settings.WINDOW_HEIGHT;
+		this.target = target;
 	}
 	
 	public void update(Input in){
@@ -34,7 +45,7 @@ public class Camera {
 		 this.cameraControl(in);
 		 
 		 if(this.followMode){
-			this.follow(ObjectManager.getObject("player"));
+			this.follow(this.target);
 		 }
 		
 		 if(this.smoothFollowMode){

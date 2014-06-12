@@ -32,10 +32,12 @@ public class GamePanel extends BasicGame {
         settings = new Settings();
         soundmanager = new SoundManager();
         gameworld = new World();
-        cam = new Camera();
-        gui = new Gui();
+       
+       
         background = new Background();
         entitymanager = new ObjectManager();
+        cam = new Camera(entitymanager.getObject("player"));
+        gui = new Gui();
     }
     
     @Override
