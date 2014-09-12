@@ -32,6 +32,7 @@ public class Player extends Creature{
         this.maxJumpCount = 2;
         this.direction = "right";
         this.maxHealth = 150;
+        // test
        
         this.setSpriteImage(Settings.playerSprite);
     }
