@@ -1,7 +1,6 @@
-/Sounds
-/Entity
-/GameManager
-/GameState
-/Main
-/Util
-/World
+/world
+/manager
+/entities
+/enemies
+/player
+/items

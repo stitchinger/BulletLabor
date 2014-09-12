@@ -1,6 +1,6 @@
 //Klasse für alle Konstanten bzw. Berechnunge für Konstanten im Spiel.
 
-package Util;
+package utility;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -51,7 +51,7 @@ public class Settings {
 	    rocketlauncherSprite = new Image("Images/Weapon/rocketlauncher.png");
 	    
 	    bg1Sprite = new Image("Images/Backgrounds/bg4.png");
-	    bg2Sprite = new Image("Images/Backgrounds/bg2.png");
+	    //bg2Sprite = new Image("Images/Backgrounds/bg2.png");
 	    
 	    eventSpriteDebug = new Image("Map/eventTileDebug.png");
 	    eventSprite = new Image("Map/eventTile.png");

@@ -3,7 +3,7 @@ package Main;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
-import Util.Settings;
+import utility.Settings;
 
 public class Game {
 	

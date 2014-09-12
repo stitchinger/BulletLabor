@@ -1,19 +1,20 @@
-package Entity.Player.Weapons;
+package items;
 
+import manager.EntityManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import Entity.AdvancedObject;
-import Entity.PhysicsObject;
-import GameManager.ObjectManager;
-import GameManager.SoundManager;
-import Util.Settings;
-import Util.Vector2;
 
-public class Weapon extends PhysicsObject {
+import entities.Creature;
 
-	protected AdvancedObject owner;
+import entities.Rigidbody;
+import utility.Settings;
+import utility.Vector2;
+
+public class Weapon extends Rigidbody {
+
+	protected Creature owner;
 
 	protected String id;
 	protected float rotation;
@@ -92,7 +93,7 @@ public class Weapon extends PhysicsObject {
     	this.timeOfLastShot = System.currentTimeMillis();
     	this.ammo--;
     	//GameManager.SoundManager.weaponSound.play();
-    	SoundManager.play("weapon");
+    	
     	
     	
     	Vector2 spreadRotation = new Vector2(this.getSpreadRotation()).normalize();
@@ -101,7 +102,7 @@ public class Weapon extends PhysicsObject {
     
     	bullet.addForce(spreadRotation.mult(this.power));
     	this.owner.addForce(spreadRotation.mult(-this.recoil));
-    	ObjectManager.getWorld_objects().add(bullet);
+    	EntityManager.getWorld_objects().add(bullet);
     }
 	
 	public float getSpreadRotation(){
@@ -141,7 +142,7 @@ public class Weapon extends PhysicsObject {
 		return this.ammo;
 	}
 	
-	public void setOwner(AdvancedObject owner){
+	public void setOwner(Creature owner){
 		this.owner = owner;
 	}
 	
@@ -150,13 +151,9 @@ public class Weapon extends PhysicsObject {
 	}
 	
 	public Bullet getBullet(float x, float y){
-		if(this.id.equals("Rocketlauncher")){
-			return new Rocket(x,y);
-		}else if(this.id.equals("M4")){
+		
 			return new Bullet(x,y);
-		}
-		else
-			return null;
+		
 		
 	}
 }
